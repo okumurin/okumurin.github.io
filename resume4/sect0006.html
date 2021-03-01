@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>SPSSによる統計的データ解析入門: 一元配置分散分析</title>
+
+<link href="sect0007.html" title="クロス集計表の2検定" rel="next" />
+<link href="sect0005.html" title="独立な2群の平均値差の検定" rel="prev" />
+<link href="index.html" title="SPSSによる統計的データ解析入門" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0005.html" title="独立な2群の平均値差の検定"><img alt="Previous: 独立な2群の平均値差の検定" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="index.html" title="SPSSによる統計的データ解析入門"><img alt="Up: SPSSによる統計的データ解析入門" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0007.html" title="クロス集計表の検定"><img alt="Next: クロス集計表の検定" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">SPSSによる統計的データ解析入門</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">SPSSによる統計的データ解析入門</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">一元配置分散分析</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h1 id="a0000000007">6 一元配置分散分析</h1>
+<p>群が3つ以上ある場合，一元配置分散分析と呼ばれる分析手法を用いる。 <a href="#a0000000037" class="footnote"><sup class="footnotemark">1</sup></a> こうした群のことを分散分析では「水準」と呼ぶ。 また，群ひとまとまりのことを「要因（あるいは因子）」と呼ぶ。 従って，一元配置分散分析は1要因の分散分析といってもよい。 1要因2水準の分散分析は2群の平均値の比較と等価である。 ここでは2要因以上の分散分析については扱わない。 </p><p>ここで設定される帰無仮説は，「相手の態度（友好的・敵対的・ふつう）に関係なく妬み感情には差はない」である。 仮にこれが棄却された場合，どの「相手の態度」の違いに「妬み感情」の差が生じているのかは，多重比較によって検定することになる。 <a href="#a0000000038" class="footnote"><sup class="footnotemark">2</sup></a> </p><h2 id="a0000000039">6.1 SPSSによる分析の手順</h2>
+<p>まず，メニューバーから[分析]-[平均値の比較]-[一元配置分散分析]を選択する。 </p><div class="figure"><center> 
+<img src="images/img-0045.png" alt="\includegraphics[width=15cm]{anova1.ps}" style="width:15cm" /> </center></div><p><br /></p><p>「一元配置分散分析」ウィンドウが立ち上がる。 ここで，「従属変数リスト」ボックスに「妬み感情」を，「因子」ボックスに「相手の態度」を移動させる。 </p><p>次に，多重比較を行うことを想定して，「その後の検定」をクリックする。 </p><div class="figure"><center> 
+<img src="images/img-0046.png" alt="\includegraphics[width=10cm]{anova2.ps}" style="width:10cm" /> </center></div><p>「一元配置分散分析：その後の多重比較」ウィンドウが立ち上がる。 様々な多重比較の方法がオプションとして選択できるが，最もポピュラーなものとしてここではTukeyのHSD検定を選択することにする。「Tukey」にチェックを入れたら，[続行]をクリックする。 </p><div class="figure"><center> 
+<img src="images/img-0047.png" alt="\includegraphics[width=12cm]{anova3.ps}" style="width:12cm" /> </center></div><p>再び「一元配置分散分析」の画面に戻るので，[OK]をクリックすると，SPSSビューアが立ち上がって結果が表示される。 </p><div class="figure"><center> 
+<img src="images/img-0048.png" alt="\includegraphics[width=12cm]{anova4.ps}" style="width:12cm" /> </center></div><p>まず，「分散分析」で「グループ間」欄を見る。有意確率.000で「相手の態度によって妬み感情は変わらない」帰無仮説は5%水準で棄却された。 </p><p>では次に多重比較の結果によりどの水準間に差があったのか見てみることにしよう。 「多重比較」欄の“ * ” を見ると，「友好的」と「敵対的」，「敵対的」と「ふつう」の間で妬み感情に統計的に有意な差が見られたということがわかる。 </p></div>
+
+
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000037">ここでは，南風原朝和「心理統計学の基礎」から妬み感情に関するデータを使用する。</li><li id="a0000000038">2群の<img src="images/img-0050.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" />検定を各組み合わせについてくりかえすのは正しくない。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0005.html" title="独立な2群の平均値差の検定"><img alt="Previous: 独立な2群の平均値差の検定" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="index.html" title="SPSSによる統計的データ解析入門"><img alt="Up: SPSSによる統計的データ解析入門" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0007.html" title="クロス集計表の検定"><img alt="Next: クロス集計表の検定" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">SPSSによる統計的データ解析入門</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

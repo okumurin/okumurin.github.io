@@ -1,0 +1,740 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="因子分析">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node12.html">
+<LINK REL="previous" HREF="node10.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node12.html">
+<TITLE>因子分析</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html190"
+  HREF="node12.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html188"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html182"
+  HREF="node10.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html191"
+  HREF="node12.html">尺度の信頼性</A>
+<B>Up:</B> <A NAME="tex2html189"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html183"
+  HREF="node10.html">回帰分析</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html192"
+  HREF="node11.html#SECTION000111000000000000000">データの読み込み</A>
+<LI><A NAME="tex2html193"
+  HREF="node11.html#SECTION000112000000000000000">因子分析の実行</A>
+<LI><A NAME="tex2html194"
+  HREF="node11.html#SECTION000113000000000000000">その他の指定</A>
+<LI><A NAME="tex2html195"
+  HREF="node11.html#SECTION000114000000000000000">因子数の変更と再分析</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000110000000000000000">
+因子分析</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000111000000000000000">
+データの読み込み</A>
+</H2>
+
+<P>
+ここでは、Data Library にある練習用データを用いて因子分析を実行してみることにする。
+
+<P>
+[Open] メニューから [Data Library] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [8. Network Analysis] と進むと、[BFI Network] というデータセットが見つかる。
+
+<P>
+右側のアイコンをダブルクリックして、.csv 形式のファイルを開いてみよう。
+
+<P>
+これは、パーソナリティに関する25項目の尺度（A1-O5）と性別、学歴、年齢からなるデータセット（2,800人分）である<A NAME="tex2html26"
+  HREF="footnode.html#foot431"><SUP><SPAN CLASS="arabic">15</SPAN></SUP></A>。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="266" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspbfi.png"
+ ALT="Image figjaspbfi">
+
+<P>
+質問項目は以下の通り。（私家訳版）
+<DL>
+<DT><STRONG> A1</STRONG></DT>
+<DD>他人の気持ちには無関心である。
+</DD>
+<DT><STRONG> A2</STRONG></DT>
+<DD>他人の幸福をたずねる。
+</DD>
+<DT><STRONG> A3</STRONG></DT>
+<DD>人をどうやって安心させるかわかる。
+</DD>
+<DT><STRONG> A4</STRONG></DT>
+<DD>子供が好きだ。
+</DD>
+<DT><STRONG> A5</STRONG></DT>
+<DD>人々を気楽にさせる。
+</DD>
+<DT><STRONG> C1</STRONG></DT>
+<DD>仕事をするのが好きだ。
+</DD>
+<DT><STRONG> C2</STRONG></DT>
+<DD>何事も完璧になるまでやり遂げる。
+</DD>
+<DT><STRONG> C3</STRONG></DT>
+<DD>計画にそって物事を行う。
+</DD>
+<DT><STRONG> C4</STRONG></DT>
+<DD>物事を中途半端に終わらせる。
+</DD>
+<DT><STRONG> C5</STRONG></DT>
+<DD>時間を無駄にする。
+</DD>
+<DT><STRONG> E1</STRONG></DT>
+<DD>無口な方だ。
+</DD>
+<DT><STRONG> E2</STRONG></DT>
+<DD>人と接するのは難しい。
+</DD>
+<DT><STRONG> E3</STRONG></DT>
+<DD>人をどうやって魅了するかわかる。
+</DD>
+<DT><STRONG> E4</STRONG></DT>
+<DD>簡単に友達を作れる。
+</DD>
+<DT><STRONG> E5</STRONG></DT>
+<DD>人の上に立つ。
+</DD>
+<DT><STRONG> N1</STRONG></DT>
+<DD>怒りっぽい。
+</DD>
+<DT><STRONG> N2</STRONG></DT>
+<DD>いらいらしやすい。
+</DD>
+<DT><STRONG> N3</STRONG></DT>
+<DD>気分が変わりやすい。
+</DD>
+<DT><STRONG> N4</STRONG></DT>
+<DD>落ち込むことがある。
+</DD>
+<DT><STRONG> N5</STRONG></DT>
+<DD>パニックになりやすい。
+</DD>
+<DT><STRONG> O1</STRONG></DT>
+<DD>アイデアが豊富だ。
+</DD>
+<DT><STRONG> O2</STRONG></DT>
+<DD>難しい本は読みたくない。
+</DD>
+<DT><STRONG> O3</STRONG></DT>
+<DD>会話を高尚な方向に持っていく。
+</DD>
+<DT><STRONG> O4</STRONG></DT>
+<DD>状況をよく考えて時間を費やす。
+</DD>
+<DT><STRONG> O5</STRONG></DT>
+<DD>物事を深く調べようとはしない。
+</DD>
+</DL>
+
+<P>
+いずれも、「1=全くあてはまらない」から「6=とてもあてはまる」で得点化されている。
+これらの項目に関して因子分析を適用することにしよう。
+
+<P>
+
+<H2><A NAME="SECTION000112000000000000000">
+因子分析の実行</A>
+</H2>
+
+<P>
+分析メニューから [Factor] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Exploratory Factor Analysis] と進むと、因子分析を実行する画面が現れる。
+
+<P>
+左側のボックスから分析に用いる A1-O5 までの25項目を選択し、右側の [Included Variables] に移動してやると、自動的に因子分析が実行され結果が右側画面に表示される。
+
+<P>
+因子負荷と独自性 uniqueness（<SPAN CLASS="MATH"><IMG
+ WIDTH="41" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img40.png"
+ ALT="$ =1-$"></SPAN>共通性）の値が [Component Loadings] として報告されている。
+因子は RC1-RC6 と表示されており、自動的に因子数が6に設定されたことがわかる。
+
+<P>
+あとで述べるように、デフォルトでは一定の大きさ未満の因子負荷は "." として表示されるようになっている。
+因子負荷行列を見る限り、どの因子にも大きな負荷を持たない項目（A4, A5, O4）があるほか、複数の因子に大きい負荷を持つ項目（O3）もあり、単純構造が満たされているとは言い難い。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="510" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspfactordefault.png"
+ ALT="Image figjaspfactordefault">
+
+<P>
+変数を指定したボックスのすぐ下に、分析の詳細をコントロールするメニューが設けられている。
+
+<P>
+<IMG
+  WIDTH="709" HEIGHT="269" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspfactorspec.png"
+ ALT="Image figjaspfactorspec">
+
+<P>
+
+<H4><A NAME="SECTION000112010000000000000">
+Number of Factors</A>
+</H4>
+
+<P>
+因子数を決定する方法を指定する。
+以下の3つから選ぶことができる。
+
+<P>
+<DL>
+<DT><STRONG>&nbsp;&nbsp;Parallel Analysis</STRONG></DT>
+<DD>平行分析による
+</DD>
+<DT><STRONG>&nbsp;&nbsp;Eigenvalues</STRONG></DT>
+<DD>相関行列の固有値のうち基準値より大きいものの個数
+</DD>
+<DT><STRONG>&nbsp;&nbsp;Manual</STRONG></DT>
+<DD>分析者が任意の数を指定する
+</DD>
+</DL>
+
+<P>
+デフォルトでは、平行分析（parallel analysis）と呼ばれる方法によって自動的に因子数が決められる。
+これは、分析対象となる項目数と同じ数の乱数を発生させて相関行列を算出し、データの相関行列から計算された固有値のうち乱数による相関行列から計算された相関行列よりも大きいものの数を因子数とするというものである[<A
+ HREF="node15.html#hori2005">3</A>]。
+
+<P>
+固有値の値にもとづく方法を採用するのであれば、[Eigenvalues] を選択し [Eigenvalues above] に続くボックスに基準となる値を入力すればよい。
+通常は1を用いることが多く、これをカイザー基準と呼ぶ。
+
+<P>
+スクリープロットを利用するのであれば、あとで述べる方法で表示されたスクリープロットの形状から [Manual] の [Number of Factors] に続くボックスに因子数を入力すればよい。
+理論や経験にもとづいて因子数を指定する場合も同様である。
+
+<P>
+
+<H4><A NAME="SECTION000112020000000000000">
+Rotation</A>
+</H4>
+
+<P>
+因子の回転方法を指定する。
+
+<P>
+<DL>
+<DT><STRONG>&nbsp;&nbsp;Orthogonal</STRONG></DT>
+<DD>直交回転を行う（因子同士は無相関） 
+</DD>
+<DT><STRONG>&nbsp;&nbsp;Oblique</STRONG></DT>
+<DD>斜交回転を行う（因子間に相関関係を許す）
+</DD>
+</DL>
+
+<P>
+デフォルトでは、斜交回転のうち（プロマックス法 [promax]）が選択されている。
+斜交回転であっても別の方法を採用したい場合は、プルダウンメニューから選択することができる。
+なお、プロマックス法以外ではオブリミン法 [oblimin] もよく用いられる。
+
+<P>
+また、直交回転はデフォルトでは回転なし [none] が入っている。
+この場合は、初期解（最尤法により算出）が返されることになる。
+プルダウンメニューからバリマックス法 [varimax] などを選択することができる。
+
+<P>
+
+<H2><A NAME="SECTION000113000000000000000">
+その他の指定</A>
+</H2>
+
+<P>
+デフォルトでは、絶対値が0.4未満の因子負荷は値が表示されない。
+また、斜交回転を行った場合でも因子間相関が表示されないし、スクリープロットも得られない。
+
+<P>
+これらの設定は、下部にある [Output options] を開くことで変更することができる。
+
+<P>
+<IMG
+  WIDTH="552" HEIGHT="307" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspfactoroptions.png"
+ ALT="Image figjaspfactoroptions">
+
+<P>
+
+<H4><A NAME="SECTION000113010000000000000">
+Highlight</A>
+</H4>
+
+<P>
+値を表示する因子負荷の基準を設定する。
+デフォルトでは0.4となっている。
+値の大きさに関わらずすべての因子負荷の値を表示させたいのであれば、スライダーを一番下まで移動させるか下のボックスに0と入力すればよい。
+
+<P>
+
+<H4><A NAME="SECTION000113020000000000000">
+Include tables</A>
+</H4>
+
+<P>
+因子負荷行列に加えて出力する情報を設定する。
+デフォルトでは、どれにもチェックが入っていない。
+因子間相関やスクリープロットなど、必要に応じてチェックを入れれば右側のボックスに結果が追加表示される。
+
+<P>
+<DL>
+<DT><STRONG>&nbsp;&nbsp;Factor correlations</STRONG></DT>
+<DD>因子間相関 
+</DD>
+<DT><STRONG>&nbsp;&nbsp;Additional fit indices</STRONG></DT>
+<DD>追加の適合度指標 
+</DD>
+<DT><STRONG>&nbsp;&nbsp;Path diagram</STRONG></DT>
+<DD>パス図
+</DD>
+<DT><STRONG>&nbsp;&nbsp;Scree plot</STRONG></DT>
+<DD>スクリープロット
+</DD>
+</DL>
+
+<P>
+このデータの場合、[Scree plot] にチェックを入れると次のようなスクリープロットが得られる。
+黒丸で表されたのがデータとして得られた相関行列の固有値を示している。
+
+<P>
+<IMG
+  WIDTH="394" HEIGHT="394" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspfactorscreeplot.png"
+ ALT="Image figjaspfactorscreeplot">
+
+<P>
+
+<H4><A NAME="SECTION000113030000000000000">
+Missing values</A>
+</H4>
+
+<P>
+データに欠測があった場合の処理方法を指定する。
+
+<P>
+<DL>
+<DT><STRONG>&nbsp;&nbsp;Exclude cases pairwise</STRONG></DT>
+<DD>ペアワイズ除去 
+</DD>
+<DT><STRONG>&nbsp;&nbsp;Exclude cases listwise</STRONG></DT>
+<DD>リストワイズ除去 
+</DD>
+</DL>
+
+<P>
+データに欠測がある場合、1変数でも欠測のあるケースはすべて分析から除去してしまう（リストワイズ）か、相関行列を算出する際にペアとしてデータがない場合のみ除去する（ペアワイズ）か、いずれかを選択できるようになっている。
+デフォルトはペアワイズになっている。
+
+<P>
+
+<H2><A NAME="SECTION000114000000000000000">
+因子数の変更と再分析</A>
+</H2>
+
+<P>
+ここで、上で出力されたスクリープロットを見てみよう。
+黒丸で表されたのがデータから得られた固有値であり、黒三角で表されたのが乱数から得られた固有値である。
+平行分析ではこの黒三角より大きい黒丸の数を因子数とするのであるが、このプロットを見る限り第6固有値に関してはほとんど差がないようである。
+また、第6固有値自体がほとんど1に近く、この場合は因子数5でもよいのではないかという気がしてくる。
+
+<P>
+そこで、因子数を5と指定して再分析してみることにしよう。
+[Number of Factors] で [Manual] を選択し、ボックスに5と入力する。
+その他の条件はデフォルトのまま維持するものとする。
+
+<P>
+すると、結果は次のようになる。
+O4の因子負荷がいずれも0.4に届いていないが、それ以外はきれいな単純構造になっていることがわかる。
+因子負荷がマイナスの項目は、逆転項目のはずである。
+項目内容を確認してみよう。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="488" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspfactorre.png"
+ ALT="Image figjaspfactorre">
+
+<P>
+[Highlight] を操作してすべての因子負荷を出力させ、項目O4がどのような状態になっているのか調べてみよう。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="143" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspfactoro4.png"
+ ALT="Image figjaspfactoro4">
+
+<P>
+すると、項目O4は因子5に最大の負荷 .376 を持っているものの、因子1や因子2、因子3にも .20 に近い負荷を持っていることがわかる。
+独自性も .749 と高く（つまり共通性が低く）、他の項目と一緒に因子分析にかけることか妥当か少し疑わしい。
+（項目O4の文言も再度チェックしてみよう。他の項目と比べて異質な内容になっているだろうか。）
+
+<P>
+そこで、ここでは項目O4を削除した上で、再度因子数を5とした因子分析を適用することにする。
+項目O4を選択して右側のボックスから左側のボックスに移動させるだけでよい。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="444" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspfactorwithouto4.png"
+ ALT="Image figjaspfactorwithouto4">
+
+<P>
+うまくいくかと思いきや、今度は項目A4の因子負荷がいずれも0.4を下回るという結果になった。
+このように、特定の項目を外すと、それ以外の項目の因子負荷にも影響が及ぶことになる。
+1つ前の結果を見てみると、A4はもともと因子負荷がギリギリ0.4という項目だったことがわかる。
+
+<P>
+ここでさらにA4を省いて再分析するかどうかは分析者の裁量次第である。
+今は、このままの結果を採用することとし、すべての因子負荷の値を表示させることにする。
+
+<P>
+得られた結果をコピーして編集したものが次の表である。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+	<DIV ALIGN="CENTER">
+
+</DIV>	
+	<A NAME="327"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 11.1:</STRONG>
+因子負荷行列</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="RIGHT">因子1</TD>
+<TD ALIGN="RIGHT">因子2</TD>
+<TD ALIGN="RIGHT">因子3</TD>
+<TD ALIGN="RIGHT">因子4</TD>
+<TD ALIGN="RIGHT">因子5</TD>
+<TD ALIGN="RIGHT">独自性</TD>
+</TR>
+<TR><TD ALIGN="LEFT">A1</TD>
+<TD ALIGN="RIGHT">.119</TD>
+<TD ALIGN="RIGHT">.151</TD>
+<TD ALIGN="RIGHT">.078</TD>
+<TD ALIGN="RIGHT">-.477</TD>
+<TD ALIGN="RIGHT">.094</TD>
+<TD ALIGN="RIGHT">.794</TD>
+</TR>
+<TR><TD ALIGN="LEFT">A2</TD>
+<TD ALIGN="RIGHT">.073</TD>
+<TD ALIGN="RIGHT">.078</TD>
+<TD ALIGN="RIGHT">.064</TD>
+<TD ALIGN="RIGHT">.617</TD>
+<TD ALIGN="RIGHT">-.025</TD>
+<TD ALIGN="RIGHT">.545</TD>
+</TR>
+<TR><TD ALIGN="LEFT">A3</TD>
+<TD ALIGN="RIGHT">.056</TD>
+<TD ALIGN="RIGHT">.210</TD>
+<TD ALIGN="RIGHT">-.001</TD>
+<TD ALIGN="RIGHT">.616</TD>
+<TD ALIGN="RIGHT">-.012</TD>
+<TD ALIGN="RIGHT">.469</TD>
+</TR>
+<TR><TD ALIGN="LEFT">A4</TD>
+<TD ALIGN="RIGHT">-.025</TD>
+<TD ALIGN="RIGHT">.099</TD>
+<TD ALIGN="RIGHT">.188</TD>
+<TD ALIGN="RIGHT">.387</TD>
+<TD ALIGN="RIGHT">.154</TD>
+<TD ALIGN="RIGHT">.721</TD>
+</TR>
+<TR><TD ALIGN="LEFT">A5</TD>
+<TD ALIGN="RIGHT">-.067</TD>
+<TD ALIGN="RIGHT">.336</TD>
+<TD ALIGN="RIGHT">-.028</TD>
+<TD ALIGN="RIGHT">.458</TD>
+<TD ALIGN="RIGHT">.008</TD>
+<TD ALIGN="RIGHT">.541</TD>
+</TR>
+<TR><TD ALIGN="LEFT">C1</TD>
+<TD ALIGN="RIGHT">.068</TD>
+<TD ALIGN="RIGHT">-.023</TD>
+<TD ALIGN="RIGHT">.562</TD>
+<TD ALIGN="RIGHT">-.056</TD>
+<TD ALIGN="RIGHT">-.122</TD>
+<TD ALIGN="RIGHT">.674</TD>
+</TR>
+<TR><TD ALIGN="LEFT">C2</TD>
+<TD ALIGN="RIGHT">.162</TD>
+<TD ALIGN="RIGHT">-.097</TD>
+<TD ALIGN="RIGHT">.696</TD>
+<TD ALIGN="RIGHT">.046</TD>
+<TD ALIGN="RIGHT">-.039</TD>
+<TD ALIGN="RIGHT">.548</TD>
+</TR>
+<TR><TD ALIGN="LEFT">C3</TD>
+<TD ALIGN="RIGHT">.032</TD>
+<TD ALIGN="RIGHT">-.083</TD>
+<TD ALIGN="RIGHT">.591</TD>
+<TD ALIGN="RIGHT">.062</TD>
+<TD ALIGN="RIGHT">.066</TD>
+<TD ALIGN="RIGHT">.680</TD>
+</TR>
+<TR><TD ALIGN="LEFT">C4</TD>
+<TD ALIGN="RIGHT">.187</TD>
+<TD ALIGN="RIGHT">.079</TD>
+<TD ALIGN="RIGHT">-.616</TD>
+<TD ALIGN="RIGHT">.014</TD>
+<TD ALIGN="RIGHT">.079</TD>
+<TD ALIGN="RIGHT">.551</TD>
+</TR>
+<TR><TD ALIGN="LEFT">C5</TD>
+<TD ALIGN="RIGHT">.234</TD>
+<TD ALIGN="RIGHT">-.075</TD>
+<TD ALIGN="RIGHT">-.544</TD>
+<TD ALIGN="RIGHT">.031</TD>
+<TD ALIGN="RIGHT">-.080</TD>
+<TD ALIGN="RIGHT">.585</TD>
+</TR>
+<TR><TD ALIGN="LEFT">E1</TD>
+<TD ALIGN="RIGHT">-.000</TD>
+<TD ALIGN="RIGHT">-.631</TD>
+<TD ALIGN="RIGHT">.161</TD>
+<TD ALIGN="RIGHT">.021</TD>
+<TD ALIGN="RIGHT">.021</TD>
+<TD ALIGN="RIGHT">.659</TD>
+</TR>
+<TR><TD ALIGN="LEFT">E2</TD>
+<TD ALIGN="RIGHT">.186</TD>
+<TD ALIGN="RIGHT">-.716</TD>
+<TD ALIGN="RIGHT">.049</TD>
+<TD ALIGN="RIGHT">.057</TD>
+<TD ALIGN="RIGHT">-.024</TD>
+<TD ALIGN="RIGHT">.478</TD>
+</TR>
+<TR><TD ALIGN="LEFT">E3</TD>
+<TD ALIGN="RIGHT">.088</TD>
+<TD ALIGN="RIGHT">.535</TD>
+<TD ALIGN="RIGHT">-.048</TD>
+<TD ALIGN="RIGHT">.147</TD>
+<TD ALIGN="RIGHT">-.196</TD>
+<TD ALIGN="RIGHT">.561</TD>
+</TR>
+<TR><TD ALIGN="LEFT">E4</TD>
+<TD ALIGN="RIGHT">-.049</TD>
+<TD ALIGN="RIGHT">.710</TD>
+<TD ALIGN="RIGHT">-.024</TD>
+<TD ALIGN="RIGHT">.120</TD>
+<TD ALIGN="RIGHT">.194</TD>
+<TD ALIGN="RIGHT">.447</TD>
+</TR>
+<TR><TD ALIGN="LEFT">E5</TD>
+<TD ALIGN="RIGHT">.113</TD>
+<TD ALIGN="RIGHT">.480</TD>
+<TD ALIGN="RIGHT">.238</TD>
+<TD ALIGN="RIGHT">-.047</TD>
+<TD ALIGN="RIGHT">-.135</TD>
+<TD ALIGN="RIGHT">.598</TD>
+</TR>
+<TR><TD ALIGN="LEFT">N1</TD>
+<TD ALIGN="RIGHT">.776</TD>
+<TD ALIGN="RIGHT">.156</TD>
+<TD ALIGN="RIGHT">.029</TD>
+<TD ALIGN="RIGHT">-.217</TD>
+<TD ALIGN="RIGHT">.076</TD>
+<TD ALIGN="RIGHT">.357</TD>
+</TR>
+<TR><TD ALIGN="LEFT">N2</TD>
+<TD ALIGN="RIGHT">.757</TD>
+<TD ALIGN="RIGHT">.098</TD>
+<TD ALIGN="RIGHT">.038</TD>
+<TD ALIGN="RIGHT">-.186</TD>
+<TD ALIGN="RIGHT">.014</TD>
+<TD ALIGN="RIGHT">.404</TD>
+</TR>
+<TR><TD ALIGN="LEFT">N3</TD>
+<TD ALIGN="RIGHT">.737</TD>
+<TD ALIGN="RIGHT">-.025</TD>
+<TD ALIGN="RIGHT">-.002</TD>
+<TD ALIGN="RIGHT">.008</TD>
+<TD ALIGN="RIGHT">-.008</TD>
+<TD ALIGN="RIGHT">.451</TD>
+</TR>
+<TR><TD ALIGN="LEFT">N4</TD>
+<TD ALIGN="RIGHT">.563</TD>
+<TD ALIGN="RIGHT">-.349</TD>
+<TD ALIGN="RIGHT">-.092</TD>
+<TD ALIGN="RIGHT">.120</TD>
+<TD ALIGN="RIGHT">-.116</TD>
+<TD ALIGN="RIGHT">.508</TD>
+</TR>
+<TR><TD ALIGN="LEFT">N5</TD>
+<TD ALIGN="RIGHT">.529</TD>
+<TD ALIGN="RIGHT">-.150</TD>
+<TD ALIGN="RIGHT">.037</TD>
+<TD ALIGN="RIGHT">.157</TD>
+<TD ALIGN="RIGHT">.144</TD>
+<TD ALIGN="RIGHT">.651</TD>
+</TR>
+<TR><TD ALIGN="LEFT">O1</TD>
+<TD ALIGN="RIGHT">.061</TD>
+<TD ALIGN="RIGHT">.169</TD>
+<TD ALIGN="RIGHT">.048</TD>
+<TD ALIGN="RIGHT">.015</TD>
+<TD ALIGN="RIGHT">-.459</TD>
+<TD ALIGN="RIGHT">.703</TD>
+</TR>
+<TR><TD ALIGN="LEFT">O2</TD>
+<TD ALIGN="RIGHT">.152</TD>
+<TD ALIGN="RIGHT">.102</TD>
+<TD ALIGN="RIGHT">-.053</TD>
+<TD ALIGN="RIGHT">.059</TD>
+<TD ALIGN="RIGHT">.503</TD>
+<TD ALIGN="RIGHT">.717</TD>
+</TR>
+<TR><TD ALIGN="LEFT">O3</TD>
+<TD ALIGN="RIGHT">.092</TD>
+<TD ALIGN="RIGHT">.238</TD>
+<TD ALIGN="RIGHT">-.020</TD>
+<TD ALIGN="RIGHT">.083</TD>
+<TD ALIGN="RIGHT">-.557</TD>
+<TD ALIGN="RIGHT">.548</TD>
+</TR>
+<TR><TD ALIGN="LEFT">O5</TD>
+<TD ALIGN="RIGHT">.057</TD>
+<TD ALIGN="RIGHT">.099</TD>
+<TD ALIGN="RIGHT">-.001</TD>
+<TD ALIGN="RIGHT">-.052</TD>
+<TD ALIGN="RIGHT">.568</TD>
+<TD ALIGN="RIGHT">.686</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+
+<P>
+同様に、因子間相関も出力して次のように加工した。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+	<DIV ALIGN="CENTER">
+
+</DIV>	
+	<A NAME="333"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 11.2:</STRONG>
+因子間相関</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="RIGHT">因子1</TD>
+<TD ALIGN="RIGHT">因子2</TD>
+<TD ALIGN="RIGHT">因子3</TD>
+<TD ALIGN="RIGHT">因子4</TD>
+</TR>
+<TR><TD ALIGN="LEFT">因子2</TD>
+<TD ALIGN="RIGHT">-.199</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">因子3</TD>
+<TD ALIGN="RIGHT">-.248</TD>
+<TD ALIGN="RIGHT">.457</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">因子4</TD>
+<TD ALIGN="RIGHT">-.149</TD>
+<TD ALIGN="RIGHT">.555</TD>
+<TD ALIGN="RIGHT">.355</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+</TR>
+<TR><TD ALIGN="LEFT">因子5</TD>
+<TD ALIGN="RIGHT">.131</TD>
+<TD ALIGN="RIGHT">-.341</TD>
+<TD ALIGN="RIGHT">-.315</TD>
+<TD ALIGN="RIGHT">-.144</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+
+<P>
+この結果から、因子1-因子5はどのように命名、解釈できるだろうか。
+項目内容と照らし合わせながら各自考えてみてほしい。
+
+<P>
+因子分析は、このように様々な条件を試行錯誤で変えながら、解釈しやすい結果にたどり着くよう工夫を重ねるものである。
+唯一絶対の正解があるわけではなく、多くの部分が分析者の裁量に委ねられることになる。
+その分、なぜそのような選択をしたのか、説明する責任が分析者側にあるとも言える。
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html190"
+  HREF="node12.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html188"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html182"
+  HREF="node10.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html191"
+  HREF="node12.html">尺度の信頼性</A>
+<B>Up:</B> <A NAME="tex2html189"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html183"
+  HREF="node10.html">回帰分析</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

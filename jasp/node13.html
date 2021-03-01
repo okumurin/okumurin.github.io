@@ -1,0 +1,304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="カウントデータの分析">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node14.html">
+<LINK REL="previous" HREF="node12.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node14.html">
+<TITLE>カウントデータの分析</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html216"
+  HREF="node14.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html214"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html208"
+  HREF="node12.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html217"
+  HREF="node14.html">メタ分析</A>
+<B>Up:</B> <A NAME="tex2html215"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html209"
+  HREF="node12.html">尺度の信頼性</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html218"
+  HREF="node13.html#SECTION000131000000000000000">度数分布表</A>
+<LI><A NAME="tex2html219"
+  HREF="node13.html#SECTION000132000000000000000">クロス集計表</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000130000000000000000">
+カウントデータの分析</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000131000000000000000">
+度数分布表</A>
+</H2>
+
+<P>
+下の表は、80人の生徒に対して理科のうち好きな科目を択一で選択させた結果を示したものである。
+このデータをもとに、物理・化学・生物・地学で人気に違いがあるか検証したいとする。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<DIV ALIGN="CENTER">
+<A NAME="345"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 13.1:</STRONG>
+理科の科目選択（択一）</CAPTION>
+<TR><TD ALIGN="CENTER">科目</TD>
+<TD ALIGN="RIGHT">物理</TD>
+<TD ALIGN="RIGHT">化学</TD>
+<TD ALIGN="RIGHT">生物</TD>
+<TD ALIGN="RIGHT">地学</TD>
+</TR>
+<TR><TD ALIGN="CENTER">人数</TD>
+<TD ALIGN="RIGHT">30人</TD>
+<TD ALIGN="RIGHT">25人</TD>
+<TD ALIGN="RIGHT">15人</TD>
+<TD ALIGN="RIGHT">10人</TD>
+</TR>
+</TABLE>
+</DIV>
+<A NAME="tab.science"></A>
+</DIV>
+<BR>
+<P>
+ここでは、以下のデータファイル science.csv を用いて分析することにする。
+（<TT><A NAME="tex2html31"
+  HREF="http://www.juen.ac.jp/lab/okumura/jasp/science.csv">http://www.juen.ac.jp/lab/okumura/jasp/science.csv</A></TT> からダウンロード可能。）
+変数 Science に各科目（physics, chemistry, biology, geology）が、Counts にそれを選択した人数が格納されている。
+
+<P>
+<IMG
+  WIDTH="237" HEIGHT="169" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdatascience.png"
+ ALT="Image figjaspdatascience">
+
+<P>
+JASP でこのデータを開き、分析メニューで [Frequencies] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Multinomial Test] へと進む。
+
+<P>
+分析画面で Science を [Factor] へ、Counts を [Counts] へ移動させると、カイ2乗検定の結果が表示される。
+
+<P>
+<IMG
+  WIDTH="867" HEIGHT="424" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspmultinomialmenu.png"
+ ALT="Image figjaspmultinomialmenu">
+
+<P>
+ここでは、検定結果は有意（<!-- MATH
+ $\chi^2(3)=12.50$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="99" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img43.png"
+ ALT="$ \chi^2(3)=12.50$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="$ p=.006$"></SPAN>）となっており、同じ理科でも科目により人気に違いが見られるという結果になる。
+[Additional Statisitics] で [Descriptives] にチェックを入れておくと、観測度数と帰無仮説の下での期待度数が表示される。
+
+<P>
+
+<H2><A NAME="SECTION000132000000000000000">
+クロス集計表</A>
+</H2>
+
+<P>
+下の表は、ある主張に対する意見（賛成・反対・中立）について、性別（男子・女子）ごとに人数を集計したものである。
+このクロス集計表をもとに、性別と意見の間にどのような連関があるか検証したいとする。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<DIV ALIGN="CENTER">
+<A NAME="358"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 13.2:</STRONG>
+性別と意見</CAPTION>
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="RIGHT">賛成</TD>
+<TD ALIGN="RIGHT">反対</TD>
+<TD ALIGN="RIGHT">中立</TD>
+</TR>
+<TR><TD ALIGN="CENTER">男子</TD>
+<TD ALIGN="RIGHT">30人</TD>
+<TD ALIGN="RIGHT">10人</TD>
+<TD ALIGN="RIGHT">10人</TD>
+</TR>
+<TR><TD ALIGN="CENTER">女子</TD>
+<TD ALIGN="RIGHT">20人</TD>
+<TD ALIGN="RIGHT">20人</TD>
+<TD ALIGN="RIGHT">10人</TD>
+</TR>
+</TABLE>
+</DIV>
+<A NAME="tab.sexandopinion"></A>
+</DIV>
+<BR>
+<P>
+分析をするにあたって、ここでは2つのデータの入力形式を紹介しておく。
+1つ目は、次のように性別（Gender）と意見（Opinion）の各組み合わせについて、該当する人数（Counts）を入力するというものである。
+このデータは、opinion1.csv として <TT><A NAME="tex2html33"
+  HREF="http://www.juen.ac.jp/lab/okumura/jasp/opinion1.csv">http://www.juen.ac.jp/lab/okumura/jasp/opinion1.csv</A></TT> からダウンロード可能である。
+
+<P>
+<IMG
+  WIDTH="315" HEIGHT="208" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdataopinion1.png"
+ ALT="Image figjaspdataopinion1">
+
+<P>
+このデータを JASP で読み込み、分析メニューで [Frequencies] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Contingency Tables] へと進む。
+
+<P>
+<IMG
+  WIDTH="552" HEIGHT="139" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspcrossmenu1.png"
+ ALT="Image figjaspcrossmenu1">
+
+<P>
+分析画面で性別（Gender）を [Rows] へ、意見（Opinion）を [Columns] へ、人数（Counts）を [Counts] へ移動させると、下のようにクロス集計表が表示され、カイ2乗検定の結果が示される（<!-- MATH
+ $\chi^2(2) = 5.333$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="99" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img45.png"
+ ALT="$ \chi^2(2) = 5.333$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$ p = .069$"></SPAN>）。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="475" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspcrossresults1.png"
+ ALT="Image figjaspcrossresults1">
+
+<P>
+また、[Statistics] メニューを開き、[Phi and Cramer's V] にチェックを入れると、クラメルの連関係数 <SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img47.png"
+ ALT="$ V$"></SPAN> の値が表示される（<SPAN CLASS="MATH"><IMG
+ WIDTH="67" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img48.png"
+ ALT="$ V = .231$"></SPAN>）<A NAME="tex2html34"
+  HREF="footnode.html#foot370"><SUP><SPAN CLASS="arabic">16</SPAN></SUP></A>。
+
+<P>
+[Cells] メニューで [Expected] にチェックを入れると、クロス集計表に期待度数（"Expected count"）が合わせて表示される。
+クロス集計表の検定におけるカイ2乗統計量は、データとして得られた観測度数とこの期待度数との離れ具合を数値化したものと言える。
+
+<P>
+<IMG
+  WIDTH="197" HEIGHT="113" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspcrossexpected1.png"
+ ALT="Image figjaspcrossexpected1">
+<IMG
+  WIDTH="473" HEIGHT="224" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspcrossexpected2.png"
+ ALT="Image figjaspcrossexpected2">
+
+<P>
+2つ目は、次のように各生徒（Id）の性別（Gender）と意見（Opinion）について、その具体的な値を1行ずつ入力するというものである。
+このデータは、opinion2.csv として <TT><A NAME="tex2html35"
+  HREF="http://www.juen.ac.jp/lab/okumura/jasp/opinion2.csv">http://www.juen.ac.jp/lab/okumura/jasp/opinion2.csv</A></TT> からダウンロード可能である。
+
+<P>
+<IMG
+  WIDTH="315" HEIGHT="208" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdataopinion2.png"
+ ALT="Image figjaspdataopinion2">
+
+<P>
+分析の仕方は先ほどと同様である。
+データを JASP で読み込み、分析メニューで [Frequencies] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Contingency Tables] へと進む。
+
+<P>
+分析画面で性別（Gender）を [Rows] へ、意見（Opinion）を [Columns] へ移動させると、先ほどと同じ結果が表示される。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="316" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspcrossresults2.png"
+ ALT="Image figjaspcrossresults2">
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html216"
+  HREF="node14.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html214"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html208"
+  HREF="node12.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html217"
+  HREF="node14.html">メタ分析</A>
+<B>Up:</B> <A NAME="tex2html215"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html209"
+  HREF="node12.html">尺度の信頼性</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

@@ -1,0 +1,482 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="回帰分析">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node11.html">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node11.html">
+<TITLE>回帰分析</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html175"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html173"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html167"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html176"
+  HREF="node11.html">因子分析</A>
+<B>Up:</B> <A NAME="tex2html174"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html168"
+  HREF="node9.html">分散分析（対応なし×対応あり）</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html177"
+  HREF="node10.html#SECTION000101000000000000000">データの読み込み</A>
+<LI><A NAME="tex2html178"
+  HREF="node10.html#SECTION000102000000000000000">データの概要</A>
+<LI><A NAME="tex2html179"
+  HREF="node10.html#SECTION000103000000000000000">回帰分析の実行</A>
+<LI><A NAME="tex2html180"
+  HREF="node10.html#SECTION000104000000000000000">追加の分析</A>
+<LI><A NAME="tex2html181"
+  HREF="node10.html#SECTION000105000000000000000">分析結果の保存</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000100000000000000000">
+回帰分析</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000101000000000000000">
+データの読み込み</A>
+</H2>
+
+<P>
+ここでは、Data Library にある練習用データを用いて回帰分析を実行してみることにする。
+
+<P>
+[Open] メニューから [Data Library] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [4. Regression] と進むと、[Exam Anxiety] というデータセットが見つかる。
+
+<P>
+右側のアイコンをダブルクリックして、.csv 形式のファイルを開いてみよう。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="300" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspopenanxiety.png"
+ ALT="Image figjaspopenanxiety">
+
+<P>
+次のようなデータが表示される。
+
+<P>
+これは、生徒103人について学力テストの得点とテスト実施前の質問紙調査の結果からなる仮想データである[<A
+ HREF="node15.html#field2017">2</A>]。
+
+<P>
+<IMG
+  WIDTH="709" HEIGHT="278" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanxiety.png"
+ ALT="Image figjaspanxiety">
+
+<P>
+変数の概要は以下の通り。
+
+<P>
+<DL>
+<DT><STRONG> Code</STRONG></DT>
+<DD>生徒番号
+</DD>
+<DT><STRONG> Revise</STRONG></DT>
+<DD>テスト勉強に費やした時間（単位は時間）
+</DD>
+<DT><STRONG> Exam</STRONG></DT>
+<DD>学力テストの成績（パーセンタイル順位：値が大きいほど順位が上）
+</DD>
+<DT><STRONG> Anxiety</STRONG></DT>
+<DD>テスト不安尺度（Exam Anxiety Questionnaire）の得点
+</DD>
+<DT><STRONG> Gender</STRONG></DT>
+<DD>性別（Male, Female）
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION000102000000000000000">
+データの概要</A>
+</H2>
+
+<P>
+回帰分析を実行する前に、基本統計量を算出してデータの特徴を把握しておこう。
+
+<P>
+分析メニューの [Descriptives] から "Revise", "Exam", "Anxiety" の3変数について平均、SD、最小値、最大値等をまとめたものが以下の表である。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+	<DIV ALIGN="CENTER">
+
+</DIV>	
+	<A NAME="261"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 10.1:</STRONG>
+基本統計量（Exam Anxiety）</CAPTION>
+<TR><TD ALIGN="LEFT">&nbsp;</TD>
+<TD ALIGN="RIGHT">Revise</TD>
+<TD ALIGN="RIGHT">Exam</TD>
+<TD ALIGN="RIGHT">Anxiety</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Valid</TD>
+<TD ALIGN="RIGHT">103</TD>
+<TD ALIGN="RIGHT">103</TD>
+<TD ALIGN="RIGHT">103</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Missing</TD>
+<TD ALIGN="RIGHT">0</TD>
+<TD ALIGN="RIGHT">0</TD>
+<TD ALIGN="RIGHT">0</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Mean</TD>
+<TD ALIGN="RIGHT">19.85</TD>
+<TD ALIGN="RIGHT">56.57</TD>
+<TD ALIGN="RIGHT">74.34</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Std. Deviation</TD>
+<TD ALIGN="RIGHT">18.16</TD>
+<TD ALIGN="RIGHT">25.94</TD>
+<TD ALIGN="RIGHT">17.18</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Minimum</TD>
+<TD ALIGN="RIGHT">0.000</TD>
+<TD ALIGN="RIGHT">2.000</TD>
+<TD ALIGN="RIGHT">0.05600</TD>
+</TR>
+<TR><TD ALIGN="LEFT">Maximum</TD>
+<TD ALIGN="RIGHT">98.00</TD>
+<TD ALIGN="RIGHT">100.0</TD>
+<TD ALIGN="RIGHT">97.58</TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+
+<P>
+また、同じく分析メニューの [Regression] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Correlation Matrix] から各変数の得点分布と散布図等を図示したものが次の図である。
+
+<P>
+"Exam" は "Revise" と正の相関（テスト勉強の時間が長い生徒ほど成績が良い）、 "Anxiety" と負の相関（テスト不安の高い生徒ほど成績が悪い）を示しているが、やや曲線的な相関があることも見て取れる。
+
+<P>
+また、"Revise" と "Anxiety" のデータはそれぞれ右と左に大きく歪んでいることもわかる。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="788" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanxietycorplot.png"
+ ALT="Image figjaspanxietycorplot">
+
+<P>
+
+<H2><A NAME="SECTION000103000000000000000">
+回帰分析の実行</A>
+</H2>
+
+<P>
+以上のことに留意しながら、とりあえず "Exam" を従属変数、"Revise" と "Anxiety" を独立変数とした重回帰分析を実行してみることにしよう。
+
+<P>
+分析メニューの [Regession] から [Linear Regression] を選択する。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="164" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspmenureg.png"
+ ALT="Image figjaspmenureg">
+
+<P>
+次のように回帰分析を実行するメニューが現れる。
+最低限行うことは、従属変数と独立変数を指定することである。
+これは、左側のボックスに並んだ変数名をクリックし、右側のボックスに移動させることで実行できる。
+
+<P>
+<DL>
+<DT><STRONG> Dependent Variable</STRONG></DT>
+<DD>従属変数を指定する（1つのみ選択可）
+</DD>
+<DT><STRONG> Covariates</STRONG></DT>
+<DD>独立変数を指定する（複数選択可）
+</DD>
+</DL>
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="410" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspregnew.png"
+ ALT="Image figjaspregnew">
+
+<P>
+"Exam" を [Dependent Variable] に、"Revise" と "Anxiety" を [Covariates] に移動させると、右側の画面に回帰分析の結果が即表示される。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="439" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspregresults.png"
+ ALT="Image figjaspregresults">
+
+<P>
+<DL>
+<DT><STRONG> Model Summary</STRONG></DT>
+<DD>決定係数および自由度調整ずみ決定係数の値
+</DD>
+<DT><STRONG> ANOVA</STRONG></DT>
+<DD>決定係数の検定結果
+</DD>
+<DT><STRONG> Coefficients</STRONG></DT>
+<DD>切片や傾きの値と検定結果
+</DD>
+</DL>
+
+<P>
+これらの結果は、それぞれタイトル部分をクリックし [Copy] を選択することで、クリップボードにコピーできる<A NAME="tex2html21"
+  HREF="footnode.html#foot275"><SUP><SPAN CLASS="arabic">11</SPAN></SUP></A>。
+コピーした部分はMS Word などに（ペースト）し、編集することが可能である。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="187" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspregcopy.png"
+ ALT="Image figjaspregcopy">
+
+<P>
+次の表は、上記の出力を1つにまとめたものである。
+APAの指針を参考に、非標準化係数を <SPAN CLASS="MATH"><IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img34.png"
+ ALT="$ b$"></SPAN>、標準化係数を <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$ b^*$"></SPAN> と表記している。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+	<DIV ALIGN="CENTER">
+
+</DIV>	
+	<A NAME="278"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 10.2:</STRONG>
+回帰分析の結果</CAPTION>
+<TR><TD ALIGN="LEFT">　  要因</TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img34.png"
+ ALT="$ b$"></SPAN></TD>
+<TD ALIGN="RIGHT">SE</TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img35.png"
+ ALT="$ b^*$"></SPAN></TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ t$"></SPAN></TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$ p$"></SPAN></TD>
+</TR>
+<TR><TD ALIGN="LEFT">切片</TD>
+<TD ALIGN="RIGHT">87.833</TD>
+<TD ALIGN="RIGHT">17.047</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">5.152</TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$ &lt;$"></SPAN> .001</TD>
+</TR>
+<TR><TD ALIGN="LEFT">勉強時間</TD>
+<TD ALIGN="RIGHT">0.241</TD>
+<TD ALIGN="RIGHT">0.180</TD>
+<TD ALIGN="RIGHT">0.169</TD>
+<TD ALIGN="RIGHT">1.339</TD>
+<TD ALIGN="RIGHT">0.184</TD>
+</TR>
+<TR><TD ALIGN="LEFT">テスト不安</TD>
+<TD ALIGN="RIGHT">-0.485</TD>
+<TD ALIGN="RIGHT">0.191</TD>
+<TD ALIGN="RIGHT">-0.321</TD>
+<TD ALIGN="RIGHT">-2.545</TD>
+<TD ALIGN="RIGHT">0.012</TD>
+</TR>
+<TR><TD ALIGN="RIGHT" COLSPAN=6><SPAN><!-- MATH
+ $R^2 = .209$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="73" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img37.png"
+ ALT="$ R^2 = .209$"></SPAN>, <!-- MATH
+ $R^2_{\mathit{adj}} = .193$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="86" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img38.png"
+ ALT="$ R^2_{\mathit{adj}} = .193$"></SPAN>, <!-- MATH
+ $F(2, 100) = 13.18, p < .001$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="190" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img39.png"
+ ALT="$ F(2, 100) = 13.18, p &lt; .001$"></SPAN></SPAN></TD>
+</TR>
+</TABLE>
+</DIV>
+<BR>
+
+<P>
+
+<H2><A NAME="SECTION000104000000000000000">
+追加の分析</A>
+</H2>
+
+<P>
+変数を指定するダイアログの下にあるメニューを開い、追加の分析を行うことができる。
+
+<P>
+例えば、[Statistics] メニューの [Collinearity diagnostics] にチェックを入れると、独立変数同士の相関が高すぎることによる多重共線性を判定するための指標（VIF: variance inflation factor<A NAME="tex2html23"
+  HREF="footnode.html#foot287"><SUP><SPAN CLASS="arabic">12</SPAN></SUP></A>）などが算出される。
+
+<P>
+<IMG
+  WIDTH="867" HEIGHT="144" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspregvif.png"
+ ALT="Image figjaspregvif">
+
+<P>
+また、同じメニューの [Part and partial correlations] にチェックを入れると、従属変数と各独立変数の部分相関係数および偏相関係数を算出することができる。
+これを2乗したものが、部分決定係数および偏決定係数である。
+
+<P>
+<IMG
+  WIDTH="709" HEIGHT="111" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspregpartcor.png"
+ ALT="Image figjaspregpartcor">
+
+<P>
+[Plot] メニューで残差の分布を図示することもできる。
+回帰分析では、予測値のどの範囲においても残差は同じ分布に従う<A NAME="tex2html24"
+  HREF="footnode.html#foot290"><SUP><SPAN CLASS="arabic">13</SPAN></SUP></A>という仮定がおかれており、これが満たされていることが分析結果の妥当性を担保する1つの要件になっている。
+
+<P>
+例えば、[Residuals vs. predicted] にチェックを入れると、次のようなプロット（残差プロット）が表示される<A NAME="tex2html25"
+  HREF="footnode.html#foot291"><SUP><SPAN CLASS="arabic">14</SPAN></SUP></A>。
+
+<P>
+<IMG
+  WIDTH="473" HEIGHT="357" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspregresidualplot.png"
+ ALT="Image figjaspregresidualplot">
+
+<P>
+これを見ると、テスト得点 Exam の予測値 [Predicted Values] の小さいところで残差 [Residuals] が大きくばらついている様子がわかる。
+
+<P>
+最初に示した "Revise" と "Anxiety" の散布図を見ると明らかなように、このデータは「勉強時間が短くかつテスト不安の高い」生徒が非常に多くを占める構成となっている。
+一方、テスト得点は勉強時間と正の、テスト不安と負の相関をしていることからテスト得点が低いと予測される生徒ばかりが発生することになり、このような大きなばらつきを発生させる原因になっていると考えられる。
+それに加えて、"Exam" と "Anxiety" の相関が曲線的であることもこのような現象を生み出す要因となっているだろう。
+
+<P>
+
+<H2><A NAME="SECTION000105000000000000000">
+分析結果の保存</A>
+</H2>
+
+<P>
+分析結果は、[File] タブから保存することができる。
+
+<P>
+左側メニューの [Export Results] から [Computer] を選択すれば、分析結果をまとめて .html 形式でPC上に保存できる。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="192" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspregexportresults.png"
+ ALT="Image figjaspregexportresults">
+
+<P>
+データと分析結果をまとめて保存することもできる。
+
+<P>
+左側メニューの [Save As] から [Computer] を選択すれば、分析に用いたデータとJASPでの分析結果がまとめて .jasp 形式のファイルでPC上に保存される。
+これを [Open] から開けば、データとそれを用いた分析結果をまとめて [Common] タブに表示させることができる。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="170" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspregsaveas.png"
+ ALT="Image figjaspregsaveas">
+
+<P>
+分析結果を保存しない場合は、[File] から一番下の [Close] を選択し、[Save Workplace?] と聞かれるダイアログで [Discard] を選択すればよい。
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html175"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html173"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html167"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html176"
+  HREF="node11.html">因子分析</A>
+<B>Up:</B> <A NAME="tex2html174"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html168"
+  HREF="node9.html">分散分析（対応なし×対応あり）</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

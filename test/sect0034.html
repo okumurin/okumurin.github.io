@@ -1,0 +1,201 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>テスト理論: 項目パラメータの推定</title>
+
+<link href="sect0035.html" title="項目情報量" rel="next" />
+<link href="sect0033.html" title="能力パラメータの推定" rel="prev" />
+<link href="sect0030.html" title="項目反応理論" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0033.html" title="能力パラメータの推定"><img alt="Previous: 能力パラメータの推定" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0030.html" title="項目反応理論"><img alt="Up: 項目反応理論" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0035.html" title="項目情報量"><img alt="Next: 項目情報量" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">テスト理論</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">テスト理論</a> <b>:</b>
+</span>
+
+</span><span>
+<span>
+<a href="sect0030.html">項目反応理論</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">項目パラメータの推定</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h2 id="a0000000035">6.4 項目パラメータの推定</h2>
+<p>一般には項目パラメータの値は未知であるから、これについてもデータから値を求めておく必要がある。 </p><p><img src="images/img-0055.png" alt="$K$" style="vertical-align:0px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" />項目の識別力と困難度をまとめて<img src="images/img-0318.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {a}$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" />、<img src="images/img-0319.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {b}$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:15px" class="math gen" />と書く。 式 (<a href="sect0033.html#eq.prod01">101</a>) は、<img src="images/img-0318.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {a}$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" />と<img src="images/img-0319.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {b}$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:15px" class="math gen" />が既知であると見なしているから、これを<img src="images/img-0320.png" alt="$P(\bm@general \boldmath \m@ne \mv@bold \bm@command {x}_ i | \bm@general \boldmath \m@ne \mv@bold \bm@command {a}, \bm@general \boldmath \m@ne \mv@bold \bm@command {b}, \theta _ i)$" style="vertical-align:-5px; 
+                                     width:103px; 
+                                     height:20px" class="math gen" />と書いてもよい。 今、合計<img src="images/img-0001.png" alt="$N$" style="vertical-align:0px; 
+                                     width:16px; 
+                                     height:14px" class="math gen" />人の回答者の回答パターン<img src="images/img-0042.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {x}$" style="vertical-align:0px; 
+                                     width:12px; 
+                                     height:10px" class="math gen" />が得られていると、これが得られる確率<img src="images/img-0321.png" alt="$P(\bm@general \boldmath \m@ne \mv@bold \bm@command {x}|\bm@general \boldmath \m@ne \mv@bold \bm@command {a}, \bm@general \boldmath \m@ne \mv@bold \bm@command {b}, \bm@general \boldmath \m@ne \mv@bold \bm@command {\theta })$" style="vertical-align:-5px; 
+                                     width:93px; 
+                                     height:20px" class="math gen" />は、 </p><table id="eq.prod02" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000213">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0322.png" alt="$\displaystyle  P(\bm@general \boldmath \m@ne \mv@bold \bm@command {x}|\bm@general \boldmath \m@ne \mv@bold \bm@command {a}, \bm@general \boldmath \m@ne \mv@bold \bm@command {b}, \bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }) = \prod _{i=1}^ N P(\bm@general \boldmath \m@ne \mv@bold \bm@command {x}_ i | \bm@general \boldmath \m@ne \mv@bold \bm@command {a}, \bm@general \boldmath \m@ne \mv@bold \bm@command {b}, \theta _ i) \label{eq.prod02}  $" style="vertical-align:-23px; width:254px;                     height:57px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>103</span>)</span></td>
+</tr>
+</table><p> である。 ただし、<img src="images/img-0323.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:15px" class="math gen" /> は<img src="images/img-0001.png" alt="$N$" style="vertical-align:0px; 
+                                     width:16px; 
+                                     height:14px" class="math gen" />個の<img src="images/img-0290.png" alt="$\theta _ i$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:17px" class="math gen" />を格納したベクトルである。 </p><p>能力パラメータの値を求めたときと同様、式 (<a href="sect0034.html#eq.prod02">103</a>) を<img src="images/img-0318.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {a}$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" />と<img src="images/img-0319.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {b}$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:15px" class="math gen" />の関数と見なしたものを尤度関数とし、対数尤度関数の導関数を0とおいて<img src="images/img-0318.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {a}$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" />と<img src="images/img-0319.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {b}$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:15px" class="math gen" />ついて解けばよいと思われる。 しかし、回答者数に合わせてサイズが大きくなる<img src="images/img-0323.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:15px" class="math gen" />を残したまま<img src="images/img-0318.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {a}$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" />と<img src="images/img-0319.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {b}$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:15px" class="math gen" />を求めるのはよくないことが知られており、一般には式 (<a href="sect0034.html#eq.prod02">103</a>) から<img src="images/img-0323.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:15px" class="math gen" />を消去したものを尤度関数として扱う。 このためには、<img src="images/img-0324.png" alt="$P(\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta })$" style="vertical-align:-5px; 
+                                     width:38px; 
+                                     height:20px" class="math gen" />を<img src="images/img-0323.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:15px" class="math gen" />の確率分布として、 </p><table id="eq.prod03" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000214">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0325.png" alt="$\displaystyle  \int _{-\infty }^{\infty } P(\bm@general \boldmath \m@ne \mv@bold \bm@command {x} | \bm@general \boldmath \m@ne \mv@bold \bm@command {a}, \bm@general \boldmath \m@ne \mv@bold \bm@command {b} , \bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }) P(\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }) d \bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }  $" style="vertical-align:-18px; width:196px;                     height:46px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0326.png" alt="$\displaystyle = \int _{-\infty }^{\infty } P(\bm@general \boldmath \m@ne \mv@bold \bm@command {x}, \bm@general \boldmath \m@ne \mv@bold \bm@command {\theta } | \bm@general \boldmath \m@ne \mv@bold \bm@command {a}, \bm@general \boldmath \m@ne \mv@bold \bm@command {b}) d \bm@general \boldmath \m@ne \mv@bold \bm@command {\theta } \label{eq.prod03}  $" style="vertical-align:-18px; width:176px;                     height:46px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>104</span>)</span></td>
+</tr><tr id="eq.prod04">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0030.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0327.png" alt="$\displaystyle = P(\bm@general \boldmath \m@ne \mv@bold \bm@command {x}|\bm@general \boldmath \m@ne \mv@bold \bm@command {a},\bm@general \boldmath \m@ne \mv@bold \bm@command {b}) \label{eq.prod04}  $" style="vertical-align:-5px; width:95px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>105</span>)</span></td>
+</tr>
+</table><p> であることを利用すればよい。 <img src="images/img-0324.png" alt="$P(\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta })$" style="vertical-align:-5px; 
+                                     width:38px; 
+                                     height:20px" class="math gen" />としては、通常平均<img src="images/img-0328.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {0}$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:15px" class="math gen" />、分散共分散行列<img src="images/img-0329.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {I}$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:15px" class="math gen" />の多変量標準正規分布が用いられる。 式(<a href="sect0034.html#eq.prod03">104</a>) から式(<a href="sect0034.html#eq.prod04">105</a>) の変形は、<img src="images/img-0323.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:15px" class="math gen" />のあらゆる値の組み合わせに対し、その<img src="images/img-0323.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\theta }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:15px" class="math gen" />のもとでデータが得られる確率を評価し、その期待値を取っていると考えればよい。 また、式(<a href="sect0034.html#eq.prod03">104</a>) の変形は、条件付き確率の性質 </p><table id="a0000000215" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000216">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0330.png" alt="$\displaystyle  P(x|y)=\frac{P(x,y)}{P(y)}  $" style="vertical-align:-19px; width:145px;                     height:47px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>106</span>)</span></td>
+</tr>
+</table><p> を利用している。 </p><p>あとは、<img src="images/img-0331.png" alt="$ P(\bm@general \boldmath \m@ne \mv@bold \bm@command {x}|\bm@general \boldmath \m@ne \mv@bold \bm@command {a},\bm@general \boldmath \m@ne \mv@bold \bm@command {b}) $" style="vertical-align:-5px; 
+                                     width:74px; 
+                                     height:20px" class="math gen" />の自然対数を取ったものを<img src="images/img-0318.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {a}$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" />と<img src="images/img-0319.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {b}$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:15px" class="math gen" />についてそれぞれ偏微分し、0とおいたものを解けばよい。 このように、余計なパラメータを積分することで関数内から除去することを、パラメータの周辺化という。 周辺化した尤度関数を用いて最尤法を適用することから、これを周辺最尤法などという。 ただし、これにはコンピュータを用いた数値解法が必要である。 </p></div>
+
+
+
+
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0033.html" title="能力パラメータの推定"><img alt="Previous: 能力パラメータの推定" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0030.html" title="項目反応理論"><img alt="Up: 項目反応理論" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0035.html" title="項目情報量"><img alt="Next: 項目情報量" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">テスト理論</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

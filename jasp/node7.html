@@ -1,0 +1,461 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="分散分析（対応なし）">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node8.html">
+<LINK REL="previous" HREF="node6.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node8.html">
+<TITLE>分散分析（対応なし）</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html135"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html133"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html127"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html136"
+  HREF="node8.html">分散分析（対応あり）</A>
+<B>Up:</B> <A NAME="tex2html134"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html128"
+  HREF="node6.html">平均の差に関する推測</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html137"
+  HREF="node7.html#SECTION00071000000000000000">データの概要</A>
+<LI><A NAME="tex2html138"
+  HREF="node7.html#SECTION00072000000000000000">対応のない一要因分散分析</A>
+<LI><A NAME="tex2html139"
+  HREF="node7.html#SECTION00073000000000000000">対応のない二要因分散分析</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00070000000000000000">
+分散分析（対応なし）</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00071000000000000000">
+データの概要</A>
+</H2>
+
+<P>
+ここでは、アクティブ・ラーニングを取り入れることが生徒の学習意欲を高めるか検証した実験データ（人工データ）を利用することにする <TT><A NAME="tex2html16"
+  HREF="http://www.juen.ac.jp/lab/okumura/jasp/alanova.csv">http://www.juen.ac.jp/lab/okumura/jasp/alanova.csv</A></TT>。
+
+<P>
+下の図は、このデータをJASPで開いたものである。
+
+<P>
+<IMG
+  WIDTH="473" HEIGHT="169" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdataalanova.png"
+ ALT="Image figjaspdataalanova">
+
+<P>
+格納されている変数は以下の通り。
+<DL>
+<DT><STRONG> ID</STRONG></DT>
+<DD>生徒番号（1-120）
+</DD>
+<DT><STRONG> Motivation</STRONG></DT>
+<DD>学習意欲得点（20点満点）
+</DD>
+<DT><STRONG> Style</STRONG></DT>
+<DD>授業形式（講義形式 [統制群] = <TT>Lecture</TT>、グループ・ディスカッション = <TT>Discussion</TT>、ピア・チュータリング = <TT>PeerTutor</TT>）
+</DD>
+<DT><STRONG> Achievement</STRONG></DT>
+<DD>生徒の学力水準（低群 = <TT>Lower</TT>、高群 = <TT>Upper</TT>）
+</DD>
+</DL>
+
+<P>
+授業形式（Style）と学力水準（Achievement）の水準の組み合わせが合計で6つあるが、いずれにも20人ずつが割り振られている。
+
+<P>
+このデータを用いて、学習意欲得点を従属変数、授業形式と学力水準を要因（いずれも対応なし）とした分散分析を実行してみよう。
+
+<P>
+
+<H2><A NAME="SECTION00072000000000000000">
+対応のない一要因分散分析</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00072100000000000000">
+主効果</A>
+</H3>
+
+<P>
+まずは、授業形式 Style のみを考慮した分析を行う。
+[ANOVA] メニューから対応のない要因を扱う分散分析として、 [ANOVA] を選択する。
+
+<P>
+<IMG
+  WIDTH="473" HEIGHT="128" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamenu.png"
+ ALT="Image figjaspanovamenu">
+
+<P>
+すると、分散分析を実行する画面が提示される。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="341" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovanew.png"
+ ALT="Image figjaspanovanew">
+
+<P>
+左のボックスから、Motivation を [Dependent Variables] へ、Style を [Fixed Factors] へ移動させる。
+すると、下のように分散分析表が提示される。
+授業形式 Style の主効果は統計的に有意となっている（<!-- MATH
+ $F(2,117)=5.703$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="126" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$ F(2,117)=5.703$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="$ p=.004$"></SPAN>）。
+
+<P>
+<IMG
+  WIDTH="709" HEIGHT="218" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovatablenp1.png"
+ ALT="Image figjaspanovatablenp1">
+
+<P>
+主効果について効果量を得るには、[Additional Options] から [Display] の [Estimates of effect size] に該当する指標にチェックを入れればよい。
+ここでは、<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ \eta^2$"></SPAN> と <SPAN CLASS="MATH"><IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \omega^2$"></SPAN> を選択している。
+これらの値は、分散分析表の右端に表示される。
+
+<P>
+<IMG
+  WIDTH="237" HEIGHT="90" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovaesmenunp1.png"
+ ALT="Image figjaspanovaesmenunp1">
+<IMG
+  WIDTH="630" HEIGHT="127" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovaesoutnp1.png"
+ ALT="Image figjaspanovaesoutnp1">
+
+<P>
+
+<H3><A NAME="SECTION00072200000000000000">
+多重比較</A>
+</H3>
+
+<P>
+主効果が有意であったので、多重比較を行うこととする。
+[Post Hoc Tests] で Style を右側のボックスに移し、デフォルトで [Tukey] と [Standard] にチェックが入っている。
+あわせて [Effect Size] にチェックを入れると、2群ごとの平均の差に関する検定と標準化された平均の差が返される。
+
+<P>
+ここでは、学習意欲の平均について Discussion <SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.png"
+ ALT="$ &gt;$"></SPAN> Lecture, PeerTutor <SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.png"
+ ALT="$ &gt;$"></SPAN> Lecture という結果が得られている（検定統計量の符号に注意）。
+Discussion と PeerTutor の間には有意な差が確認できていない。
+なお、この場合の検定に関する自由度は、上で行った分散分析の誤差平方和 Residual Sum of Squares の自由度（ここでは 117）を用いる。
+従って、例えばグループ・ディスカッション群と統制群（講義形式群）の間の有意差は、<!-- MATH
+ $t(117)=2.483$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="104" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img16.png"
+ ALT="$ t(117)=2.483$"></SPAN>, <!-- MATH
+ $p_{\mathrm{tukey}}=.038$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="94" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img17.png"
+ ALT="$ p_{\mathrm{tukey}}=.038$"></SPAN> のように報告すればよい。
+
+<P>
+<IMG
+  WIDTH="1182" HEIGHT="437" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamcnp1.png"
+ ALT="Image figjaspanovamcnp1">
+
+<P>
+
+<H2><A NAME="SECTION00073000000000000000">
+対応のない二要因分散分析</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00073100000000000000">
+主効果と交互作用</A>
+</H3>
+
+<P>
+続いて、授業形式 Style と学力水準 Achievement を投入した二要因分散分析を実行する。
+先ほどの分析画面において、Achievement を [Fixed Factors] へ移動させると要因が追加される。
+分散分析表は以下の通り。Achievement の主効果、および Style と Achievement の交互作用はいずれも有意とはなっていない。
+
+<P>
+<IMG
+  WIDTH="709" HEIGHT="227" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovatablenp2.png"
+ ALT="Image figjaspanovatablenp2">
+
+<P>
+これらについて効果量を得るには、[Additional Options] から [Display] の [Estimates of effect size] に該当する指標にチェックを入れればよい。
+ここでは、<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ \eta^2$"></SPAN>、<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="$ \eta^2_p$"></SPAN> と <SPAN CLASS="MATH"><IMG
+ WIDTH="22" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ \omega^2$"></SPAN> を選択している。
+これらの値は、分散分析表の右端に表示される。
+
+<P>
+<IMG
+  WIDTH="237" HEIGHT="91" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovaesmenunp2.png"
+ ALT="Image figjaspanovaesmenunp2">
+<IMG
+  WIDTH="709" HEIGHT="204" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovaesoutnp2.png"
+ ALT="Image figjaspanovaesoutnp2">
+
+<P>
+なお、講義形式（Style）の主効果が有意であることから多重比較に進む場合の手順は一要因の場合と同様である。
+その場合の検定における自由度についても、一要因の場合と同じく分散分析表 [Residual] の行を用いればよい。
+この例では、df = 114 である。
+
+<P>
+
+<H3><A NAME="SECTION00073200000000000000">
+単純主効果</A>
+</H3>
+
+<P>
+ここでは交互作用が有意ではなかったのであるが、単純主効果の検証に移ることにしよう。
+[Simple Main Effects] メニューを開き、単純主効果を検証する要因を [Simple Effect Factor] へ、どの要因の水準ごとにそれを検証するかを [Moderator Factor 1] に移動させる。
+ここでは、Achievement の単純主効果を Style の各水準で検証することとして、Achievement を [Simple Effect Factor]、Style を [Moderator Factor 1] に移動させる。
+
+<P>
+結果は以下の通り。授業にグループ・ディスカッションが取り入れらた場合に学力水準の単純主効果が有意となっている。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="126" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovasimplenp2.png"
+ ALT="Image figjaspanovasimplenp2">
+
+<P>
+この表では検定統計量 <SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="$ F$"></SPAN> が報告されているが、誤差の自由度（平方和、平均平方）は記載されていない。
+ここで用いられている誤差は、主効果と交互作用を検定した分散分析表の最終行に表示されているものである。
+従って、誤差の自由度はこの場合 <!-- MATH
+ $\mathrm{df} = 114$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="64" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img20.png"
+ ALT="$ \mathrm{df} = 114$"></SPAN> ということになり、例えば授業形式（Style）が Discussion である場合の学力水準（Achievement）の単純主効果の検定結果は、<!-- MATH
+ $F(1, 114) = 5.303$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="126" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img21.png"
+ ALT="$ F(1, 114) = 5.303$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$ p = .023$"></SPAN> と記載することになる。
+
+<P>
+以下に、この単純主効果の検定に関する部分を分散分析表にまとめたものを示す。
+<SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="$ F$"></SPAN> 値について計算が正しいか確認しておこう。
+<SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="$ F$"></SPAN> は「検定したい効果の平均平方 / 誤差の平均平方」であるから、ここでは 34.225 / 6.454 (=5.303) となる。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<DIV ALIGN="CENTER">
+<A NAME="199"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 7.1:</STRONG>
+授業形式がグループ・ディスカッションである場合の学力水準の単純効果（分散分析表）</CAPTION>
+<TR><TD ALIGN="LEFT">要因</TD>
+<TD ALIGN="RIGHT">平方和 （Sum of Squares）</TD>
+<TD ALIGN="RIGHT">自由度（df）</TD>
+<TD ALIGN="RIGHT">平均平方（Mean Square）</TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="$ F$"></SPAN></TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$ p$"></SPAN></TD>
+</TR>
+<TR><TD ALIGN="LEFT">学力水準（Discussion）</TD>
+<TD ALIGN="RIGHT">34.225</TD>
+<TD ALIGN="RIGHT">1</TD>
+<TD ALIGN="RIGHT">34.225</TD>
+<TD ALIGN="RIGHT">5.303</TD>
+<TD ALIGN="RIGHT">.023</TD>
+</TR>
+<TR><TD ALIGN="LEFT">誤差（Residual）</TD>
+<TD ALIGN="RIGHT">735.750</TD>
+<TD ALIGN="RIGHT">114</TD>
+<TD ALIGN="RIGHT">6.454</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+</TR>
+</TABLE>
+</DIV>
+<A NAME="tab.anovanp2simple"></A>
+</DIV>
+<BR>
+<P>
+
+<H3><A NAME="SECTION00073300000000000000">
+交互作用プロット</A>
+</H3>
+
+<P>
+[Descriptive Plots] メニューから [Factors] ボックスにある要因のうち、[Horizontal Axis] に Style を、[Separate Lines] に Achievement を移動させると、今回のデータを図示することができる。
+これを見ると、グループ・ディスカッションを取り入れることは学力水準の高い生徒に限って効果的であるという結果となっていることがわかる。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="323" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovainteractionplotnp2.png"
+ ALT="Image figjaspanovainteractionplotnp2">
+
+<P>
+なお、ここではデフォルトで水準がアルファベット順に "Discussion <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> Lecture <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> PeerTutor" という並びとなっているが、これは変更することができる。
+分析実行画面の左端にある三角形をクリックするとデータ画面に戻る。
+ここで、先頭にある変数名 Style をクリックすると、下のように水準の順番をカスタマイズする画面が表示される。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="118" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovacategory1.png"
+ ALT="Image figjaspanovacategory1">
+
+<P>
+ここで、Lecture を選択して右の上向き三角をクリックすると、水準が "Lecture <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> Discussion <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> PeerTutor" に更新される。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="117" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovacategory2.png"
+ ALT="Image figjaspanovacategory2">
+
+<P>
+右の [x] マークをクリックすると、もとのデータ画面に戻る。
+先ほどのプロットをもう一度確認すると、以下のようにプロットが更新されている。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="319" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovainteractionplot2np2.png"
+ ALT="Image figjaspanovainteractionplot2np2">
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html135"
+  HREF="node8.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html133"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html127"
+  HREF="node6.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html136"
+  HREF="node8.html">分散分析（対応あり）</A>
+<B>Up:</B> <A NAME="tex2html134"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html128"
+  HREF="node6.html">平均の差に関する推測</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

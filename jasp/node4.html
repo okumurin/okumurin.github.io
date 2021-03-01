@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="データの記述">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node5.html">
+<TITLE>データの記述</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html99"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html97"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html91"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html100"
+  HREF="node5.html">相関係数に関する推測</A>
+<B>Up:</B> <A NAME="tex2html98"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html92"
+  HREF="node3.html">起動とデータの読み込み</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html101"
+  HREF="node4.html#SECTION00041000000000000000">データの読み込み</A>
+<LI><A NAME="tex2html102"
+  HREF="node4.html#SECTION00042000000000000000">記述統計量の算出</A>
+<LI><A NAME="tex2html103"
+  HREF="node4.html#SECTION00043000000000000000">データの可視化</A>
+<LI><A NAME="tex2html104"
+  HREF="node4.html#SECTION00044000000000000000">相関係数</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00040000000000000000">
+データの記述</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00041000000000000000">
+データの読み込み</A>
+</H2>
+
+<P>
+ここでは、Data Library にある練習用データを用いて記述統計量の算出等を行ってみることにする。
+
+<P>
+左上メニューから [Open] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Data Library] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [4. Regression] と進むと、[College Success] というデータセットが見つかる。
+
+<P>
+右側のアイコンをダブルクリックして、.csv 形式のファイルを開いてみよう。
+次のようなデータが表示されるはずだ。
+これは、224名の学生について、大学の成績と高校の成績、大学入学適性試験の成績、および性別を記録したデータである。
+
+<P>
+<IMG
+  WIDTH="709" HEIGHT="263" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspcollegesuccess.png"
+ ALT="Image figjaspcollegesuccess">
+
+<P>
+主な変数について、概要は以下の通り。[<A
+ HREF="node15.html#campbell1984">1</A>]
+<DL>
+<DT><STRONG> id</STRONG></DT>
+<DD>学生番号
+</DD>
+<DT><STRONG> gpa</STRONG></DT>
+<DD>大学入学後3学期（セメスター）後の成績（grade point average: GPA）
+</DD>
+<DT><STRONG> hse</STRONG></DT>
+<DD>高校における国語の成績
+</DD>
+<DT><STRONG> satv</STRONG></DT>
+<DD>大学入学適性試験（SAT）における言語系検査の得点
+</DD>
+<DT><STRONG> sex</STRONG></DT>
+<DD>性別（男性 = 1、女性 = 2）<A NAME="tex2html9"
+  HREF="footnode.html#foot79"><SUP><SPAN CLASS="arabic">5</SPAN></SUP></A>
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00042000000000000000">
+記述統計量の算出</A>
+</H2>
+
+<P>
+ウィンドウ上部の分析メニュー [Descriptives] をクリックし [Descriptive Statistics] を選択する。
+
+<P>
+<IMG
+  WIDTH="315" HEIGHT="161" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdesmenu.png"
+ ALT="Image figjaspdesmenu">
+
+<P>
+記述統計量を算出するには、左側のボックスにある変数を選択して右側の "Variables" というボックスに移動させればよい。
+ここでは、大学入学後の成績 <TT>gpa</TT> と高校における国語の成績 <TT>hse</TT>、SAT得点 <TT>satv</TT> について記述統計量を算出している。
+
+<P>
+右側の "Split" に性別 <TT>sex</TT> を移動させているが、これにより記述統計量を男女ごとに算出することができる。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="425" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdesstats.png"
+ ALT="Image figjaspdesstats">
+
+<P>
+右半分の "Results" 領域に "Descriptives" というメニューが現れ、そこに "Descriptive Statistics" として記述統計量の値が男女別に格納されている。
+デフォルトでは、ここにあるように
+<DL>
+<DT><STRONG> Valid</STRONG></DT>
+<DD>分析に使用したケースの数（この場合は学生の人数）
+</DD>
+<DT><STRONG> Missing</STRONG></DT>
+<DD>欠測<A NAME="tex2html10"
+  HREF="footnode.html#foot89"><SUP><SPAN CLASS="arabic">6</SPAN></SUP></A>の数
+</DD>
+<DT><STRONG> Mean</STRONG></DT>
+<DD>平均
+</DD>
+<DT><STRONG> Std. Deviation</STRONG></DT>
+<DD>標準偏差
+</DD>
+<DT><STRONG> Minimum</STRONG></DT>
+<DD>最大値
+</DD>
+<DT><STRONG> Maximum</STRONG></DT>
+<DD>最小値
+</DD>
+</DL>
+の記述統計量に関して結果が返される。
+
+<P>
+
+<H2><A NAME="SECTION00043000000000000000">
+データの可視化</A>
+</H2>
+
+<P>
+変数を指定するボックスの下にある [Plots] を開き、チェックボックスにチェックを入れることでデータの様相をグラフとして確認することができる。
+
+<P>
+<IMG
+  WIDTH="630" HEIGHT="131" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdesplots.png"
+ ALT="Image figjaspdesplots">
+
+<P>
+<DL>
+<DT><STRONG> Distribution plots</STRONG></DT>
+<DD>得点分布を描く
+</DD>
+<DT><STRONG> Correlation plot</STRONG></DT>
+<DD>散布図を描く 
+</DD>
+</DL>
+
+<P>
+下は、<TT>gpa</TT>、<TT>hse</TT>、<TT>satv</TT> の3変数について、得点の分布と散布図（男性のデータ）を出力したものである。
+なお、出力された図はタイトルをクリックして [Save Image As] を選択すれば、画像ファイルとしてダウンロードすることもできる。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="790" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdesscatterplot.png"
+ ALT="Image figjaspdesscatterplot">
+
+<P>
+
+<H2><A NAME="SECTION00044000000000000000">
+相関係数</A>
+</H2>
+
+<P>
+再び分析メニューから [Regression] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Classical: Correlation] を選択してみよう。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="236" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspcormatmenu.png"
+ ALT="Image figjaspcormatmenu">
+
+<P>
+先ほどと同様、相関係数を算出したい変数を左側から右側のボックスに移動させると、相関係数行列が表示される。
+（Pearson's r とあるのが相関係数の値。）
+このデータでは、大学入学適性試験の成績よりも高校の国語成績の方が、大学入学後の成績とより強い相関関係にあることがわかる。
+
+<P>
+デフォルトではボックス下の "Report significance" にチェックが入っており、相関係数の下に検定結果（有意確率の値）が表示される。
+また、同様に "Confidence intervals" にチェックを入れれば、相関係数の信頼区間（信頼水準はデフォルトでは95%）について下限と上限の値が検定結果の下に表示される。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="448" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspcormat.png"
+ ALT="Image figjaspcormat">
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html99"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html97"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html91"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html100"
+  HREF="node5.html">相関係数に関する推測</A>
+<B>Up:</B> <A NAME="tex2html98"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html92"
+  HREF="node3.html">起動とデータの読み込み</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

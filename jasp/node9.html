@@ -1,0 +1,348 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="分散分析（対応なし×対応あり）">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node10.html">
+<LINK REL="previous" HREF="node8.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node10.html">
+<TITLE>分散分析（対応なし×対応あり）</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html161"
+  HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html159"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html153"
+  HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html162"
+  HREF="node10.html">回帰分析</A>
+<B>Up:</B> <A NAME="tex2html160"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html154"
+  HREF="node8.html">分散分析（対応あり）</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html163"
+  HREF="node9.html#SECTION00091000000000000000">データの概要</A>
+<LI><A NAME="tex2html164"
+  HREF="node9.html#SECTION00092000000000000000">二要因混合計画の分散分析</A>
+<LI><A NAME="tex2html165"
+  HREF="node9.html#SECTION00093000000000000000">多重比較</A>
+<LI><A NAME="tex2html166"
+  HREF="node9.html#SECTION00094000000000000000">単純主効果</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00090000000000000000">
+分散分析（対応なし×対応あり）</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00091000000000000000">
+データの概要</A>
+</H2>
+
+<P>
+対応のある一要因の分散分析（Section <A HREF="node8.html#sec.repeatedanova">8</A>）で用いたデータ alrepeat.csv を再度用いることにする。
+このデータには Achievement という変数が格納されていた。
+これは、生徒をその学力水準で低群（<TT>Lower</TT>）と高群（<TT>Upper</TT>）に分けたものであるから、当然対応のない要因である。
+
+<P>
+そこで、学習意欲得点を従属変数とし、測定時期（Time）を対応のある要因、学力水準（Achievement）を対応のない要因としたいわゆる二要因混合計画のデータとして分散分析を行ってみることにしよう。
+
+<P>
+
+<H2><A NAME="SECTION00092000000000000000">
+二要因混合計画の分散分析</A>
+</H2>
+
+<P>
+[ANOVA] メニューから [Repeated Measures ANOVA] を選択し、Time0, Time1, Time2 を [Repeated Measures Cells] に移動させるところまでは対応のある一要因の分析と同じである。
+
+<P>
+次に、対応のない要因である Achievement を、[Between Subject Factors] に移動させる。
+すると、以下のような分散分析表が表示される。
+
+<P>
+<IMG
+  WIDTH="945" HEIGHT="474" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamix1.png"
+ ALT="Image figjaspanovamix1">
+
+<P>
+まず、測定時間の主効果と、測定時間と学力水準の交互作用に関する検定結果が、上部の [Within Subjects Effects] にそれぞれ [RM Factor 1] および [RM Factor 1 ＊ Achievement] として表示されている。
+ここでは、これら主効果と交互作用のいずれもが5%水準で有意という結果になっている（測定時間の主効果 <!-- MATH
+ $F(2,76)=183.762$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="133" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img26.png"
+ ALT="$ F(2,76)=183.762$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$ p &lt; .001$"></SPAN>; 測定時間と学力水準の交互作用 <!-- MATH
+ $F(2,76)=4.933$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="118" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img27.png"
+ ALT="$ F(2,76)=4.933$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img28.png"
+ ALT="$ p=.010$"></SPAN>）。
+
+<P>
+次に、学力水準の主効果は、下部の [Between Subjects Effects] に Achievement として表示されている。
+ここでは、5%水準で有意ではないという結果になっている（<!-- MATH
+ $F(1,38)=3.652$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="118" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img29.png"
+ ALT="$ F(1,38)=3.652$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img30.png"
+ ALT="$ p=.064$"></SPAN>）。
+
+<P>
+ここで、対応のない要因と対応のある要因とでは何がその大きさを評価する上での「誤差（residual）」として働くかが異なるということに注意しよう。
+対応のない要因については、同じ水準において見られる従属変数（この場合であれば学習意欲）の得点そのものの個人差が「誤差」の働きをするのに対し、対応のある要因については、異なる水準にわたって見られる従属変数の変化の個人差が「誤差」の働きをする。
+
+<P>
+今の例に即して言えば、学力水準（Achievement）の高低によって学習意欲に差が見られるかを検証する場合には、学力水準の高群・低群それぞれにおける学習意欲のばらつき具合（を合算したもの）が誤差であり、測定時期（Time）によって学習意欲に差が見られるかを検証する場合には、Time 0 から Time 2 に至るまで個人の学習意欲がどのように変化したのか、その軌跡の多様さが誤差として扱われることになる。
+なお、ここでの交互作用（学力水準の高低によって学習意欲の変化の仕方に違いが見られるか）のように、1つでも対応のある要因と絡んでいるものについては、対応のある要因の誤差を用いて検定されることになっている。
+
+<P>
+二要因混合計画に限らず、実験計画の中に対応のある要因が含まれている場合は誤差の選択が検定において重要な検討事項になるので、特に誤差自由度の選択を誤らないように注意が必要である。
+
+<P>
+
+<H2><A NAME="SECTION00093000000000000000">
+多重比較</A>
+</H2>
+
+<P>
+交互作用が有意であったので主効果の解釈には注意が必要であるが、とりあえず測定時期（Time）の主効果について多重比較を行っておこう。
+やり方は対応のある一要因の場合と同様である。
+[Post Hoc Tests] メニューを開き、測定時期（RM Factor 1）を右側のボックスに移動させればよい。
+結果は次の通り。
+
+<P>
+この結果を、対応のある一要因の結果（Section <A HREF="node8.html#subsec.anova1pmultiple">8.3</A>）と見比べてほしい。
+全く同じであることに気づいただろうか。
+ここでも、<SPAN CLASS="MATH"><IMG
+ WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ t$"></SPAN> 統計量の算出には該当する2群を対応のあるデータとして取り出し比較した場合の自由度を用いる。
+この例ではいずれの水準にも40名の生徒がいるのであるから、自由度はここから1を引いた39である。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="317" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamixposthoc.png"
+ ALT="Image figjaspanovamixposthoc">
+
+<P>
+
+<H2><A NAME="SECTION00094000000000000000">
+単純主効果</A>
+</H2>
+
+<P>
+交互作用が有意であったことから、単純主効果について検証しておこう。
+
+<P>
+まず、交互作用プロットの確認をしておく。
+[Description Plots] の [Factors] から測定時期（RM Factor 1）を [Horizontal Axis] へ、学力水準（Achievement）を [Separate Lines] に移動させれば、「学習意欲得点の測定時期による変化を学力水準別にプロットしたもの」を確認することができる。
+デフォルトでは縦軸は空欄になっているが、表示させる必要があれば [Label y-axis] に入力すれば良い。
+
+<P>
+このプロットを見る限り、学力水準の高低で確かに学習意欲の変化には違いがあるよう（高群の方が Time 0 から Time 1 への上昇が急で、Time 1 から Time 2 への変化が緩やかに見える）だが、いずれの群でも時間とともに学習意欲が向上しているという傾向に関しては大きな相違はないようである。
+
+<P>
+<IMG
+  WIDTH="867" HEIGHT="270" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamixinteractionplot.png"
+ ALT="Image figjaspanovamixinteractionplot">
+
+<P>
+これを踏まえて、「学力水準の高低別に測定時期の単純主効果を検証」することにしてみよう。
+[Simple Main Effects] において [Simple Effect Factor] に測定時期（RM Factor 1）を、[Moderator Factor 1] に学力水準（Achievement）を左のボックスから移動させれば良い。
+
+<P>
+検定結果は以下の通りである。
+学力水準の高・低いずれについても時間を経るに従って学習意欲が有意に上昇するという結果になっている。
+
+<P>
+<IMG
+  WIDTH="1063" HEIGHT="178" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamixsimple.png"
+ ALT="Image figjaspanovamixsimple">
+
+<P>
+では、ここでの検定における誤差には何が用いられているのだろうか。
+対応のない2要因の場合は誤差は [Residual] として1つしか存在しなかったが、二要因混合計画では [Residual] は対応ありの要因用と対応なしの要因用の2種類存在している。
+今の例では対応ありの要因である測定時期（RM Factor 1）の単純主効果を検証しているので、分散分析表の上側の [Residual] を用いており誤差の自由度は 76 になると思うかもしれないが、実はそうではない。
+
+<P>
+実は、ここでの単純主効果は学力水準（Achievement）の高群（Upper）と低群（Lower）にデータを分割し、それぞれについて対応のある一要因の分散分析を行った場合の誤差を用いて検定が行われている。
+そうすると、今の場合は高群（Upper）の生徒20名について3回の観測を行ったデータと、低群（Lower）の生徒が20名に3回の観測を行ったデータということになるから、誤差の自由度はいずれも (対応のある要因の水準数-1)×(20-1) = 2 × 19 = 38 となる。
+
+<P>
+例えば、学力水準の高群における測定時期の単純主効果の検定結果は、<!-- MATH
+ $F(2, 38)=88.179$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="126" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img31.png"
+ ALT="$ F(2, 38)=88.179$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$ p &lt; .001$"></SPAN> と表せることになる。
+
+<P>
+このことを確認するために、実際にこのデータから学力水準の高群のデータのみを取り出して対応のある一要因分散分析を行ってみよう。
+データ入力画面で変数名（Achievement）をクリックすると、次のような画面が開くはずである。
+
+<P>
+<IMG
+  WIDTH="473" HEIGHT="352" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamixdataview01.png"
+ ALT="Image figjaspanovamixdataview01">
+
+<P>
+この画面で、左側の [Filter] とあるところのチェックマークを [Lower] についてクリックしてみよう。
+次のように、チェックマークが "X" に変わるはずである。
+入力されたデータを見ると、Achievement が Upper であるデータだけが黒字になっていて、Lower のデータはグレーアウトしている。
+これは、学力水準が高群のデータだけが分析対象に設定されたということを意味する。
+
+<P>
+<IMG
+  WIDTH="473" HEIGHT="302" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamixdataview02.png"
+ ALT="Image figjaspanovamixdataview02">
+
+<P>
+この状態で、測定時期のみを対応のある要因とした分散分析を実行してみよう。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="318" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspanovamixedsimplep1.png"
+ ALT="Image figjaspanovamixedsimplep1">
+
+<P>
+ここに表示された分散分析表の上側にある [Residual] が、先ほどの学力水準が高群の場合における観測時期の単純主効果を検定する際に用いられた部分である。
+分散分析表を1つにまとめてみよう。
+<SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="$ F$"></SPAN> は平均平方の比であるから、誤差平均平方は観測時期の平均平方を<SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="$ F$"></SPAN>で割ってやればよい。
+この値は <!-- MATH
+ $21.117 / 88.179 = 0.2394$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="166" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img32.png"
+ ALT="$ 21.117 / 88.179 = 0.2394$"></SPAN> となり、確かに誤差平均平方と一致している。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<DIV ALIGN="CENTER">
+<A NAME="244"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 9.1:</STRONG>
+学力水準が高群である場合の観測時期の単純主効果（分散分析表）</CAPTION>
+<TR><TD ALIGN="LEFT">要因</TD>
+<TD ALIGN="RIGHT">平方和 （Sum of Squares）</TD>
+<TD ALIGN="RIGHT">自由度（df）</TD>
+<TD ALIGN="RIGHT">平均平方（Mean Square）</TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img19.png"
+ ALT="$ F$"></SPAN></TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img2.png"
+ ALT="$ p$"></SPAN></TD>
+</TR>
+<TR><TD ALIGN="LEFT">観測時期（RM Factor 1）</TD>
+<TD ALIGN="RIGHT">42.233</TD>
+<TD ALIGN="RIGHT">2</TD>
+<TD ALIGN="RIGHT">21.117</TD>
+<TD ALIGN="RIGHT">88.179</TD>
+<TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="50" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img33.png"
+ ALT="$ &lt; .001$"></SPAN></TD>
+</TR>
+<TR><TD ALIGN="LEFT">誤差（Residual）</TD>
+<TD ALIGN="RIGHT">9.100</TD>
+<TD ALIGN="RIGHT">38</TD>
+<TD ALIGN="RIGHT">0.239</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+<TD ALIGN="RIGHT">&nbsp;</TD>
+</TR>
+</TABLE>
+</DIV>
+<A NAME="tab.anovanp2simple"></A>
+</DIV>
+<BR>
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html161"
+  HREF="node10.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html159"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html153"
+  HREF="node8.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html162"
+  HREF="node10.html">回帰分析</A>
+<B>Up:</B> <A NAME="tex2html160"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html154"
+  HREF="node8.html">分散分析（対応あり）</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

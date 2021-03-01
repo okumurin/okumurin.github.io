@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>階層的線形モデルによるデータ分析の実際 — HLM6，SAS，Rを利用して —: オプションの指定</title>
+
+<link href="sect0010.html" title="HLMファイルの保存" rel="next" />
+<link href="sect0008.html" title="モデルの指定" rel="prev" />
+<link href="sect0003.html" title="HLM6による分析の手順" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0008.html" title="モデルの指定"><img alt="Previous: モデルの指定" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0003.html" title="HLM6による分析の手順"><img alt="Up: HLM6による分析の手順" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0010.html" title="HLMファイルの保存"><img alt="Next: HLMファイルの保存" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</a> <b>:</b>
+</span>
+
+</span><span>
+<span>
+<a href="sect0003.html">HLM6による分析の手順</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">オプションの指定</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h2 id="a0000000010">3.6 オプションの指定</h2>
+<p>次に，さまざまなオプションの設定を行う。 <a href="#a0000000101" class="footnote"><sup class="footnotemark">1</sup></a> </p><h3 id="a0000000102">Basic Settings</h3>
+<p>[Basic Settings]メニューでは，従属変数の分布に関する指定，結果のファイルの名前，分析のタイトル，残差ファイル指定などを行うことができる。 </p><p>まず，[Basic Setting]をクリックする。 <a href="#a0000000103" class="footnote"><sup class="footnotemark">2</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0036.png" alt="\includegraphics[width=12cm]{basic1.ps}" style="width:12cm" /> </center></div><h3 id="a0000000104">残差ファイルの指定</h3>
+<p>ここでは，残差を出力するファイルの指定について説明する。 残差ファイルには，各レベルの残差だけでなくレベル１の切片や傾きの推定値など重要な情報がたくさん含まれている。 残差ファイルの設定は，各レベルごとに行う。 </p><p>まず，レベル１の残差ファイルの設定を行うために，[Level-1 Residual File]をクリックする。 </p><div class="figure"><center> 
+<img src="images/img-0037.png" alt="\includegraphics[width=12cm]{basic2.ps}" style="width:12cm" /> </center></div><p>レベル１，レベル２それぞれの"Variables in residual file"に，モデルの設定のところで投入した変数がそのまま入っているはずである。 もし必要であればさらに変数をダブルクリックして投入することができる。 ただし，すでにモデルに投入ずみの変数は取り除くことができない。 </p><p>ここではデフォルトのままとし，"Residual File Type"で"SPSS"を選択した。 <a href="#a0000000105" class="footnote"><sup class="footnotemark">3</sup></a> ファイル名もデフォルトのまま，"resfil1.sav"とした。 </p><p>[OK]をクリックしてこのウィンドウを閉じる。 </p><p>次に，レベル2モデルの残差ファイルを指定する。 [Level-2 Residual File]をクリックする。 </p><div class="figure"><center> 
+<img src="images/img-0038.png" alt="\includegraphics[width=8cm]{basic3.ps}" style="width:8cm" /> </center></div><p>ここでも，"Variables in residual file"に，モデルの設定のところで投入したレベル２の変数がそのまま入っているはずである。 レベル1のときと同様，変数に関してはデフォルトのままとし，"Residual File Type"で"SPSS"を選択し，[OK]をクリックする。 </p><p>これで，分析後"resfil1.sav"および"resfil2.sav"という2つの残差ファイルができるはずである。 </p><h3 id="a0000000106">タイトルと結果の出力ファイル名の指定</h3>
+<p>"Title"に，この分析のタイトルを入れる。 <a href="#a0000000107" class="footnote"><sup class="footnotemark">4</sup></a> </p><p>"Output file name"に，出力ファイルの名前をフルパスで入力する。 ここでは，デフォルトのままとした。 </p><p>"Graph file name"に，グラフを作る際のファイルの名前をフルパスで入力する。 ここでは，デフォルトのままとした。 </p><p>[OK]をクリックして，終了。 </p><h3 id="a0000000108">Other Settings</h3>
+<p>ここでは，反復計算，推定法，統計的検定に関する設定などを行うことができる。 今回はデフォルトのままにしておく。 </p></div>
+
+
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000101">オプションであるので，必須というわけではないが，残差ファイルに関してはここで指定しないと作成されない。</li><li id="a0000000103">もしくは，[Level-1]の上の[Outcome]をクリックしてもよい。</li><li id="a0000000105">ここで仮に"Free Format"を選択し，テキストファイル（.txt）やCSVファイル（.csv）で保存すると，カンマ区切りの残差ファイルが作成される。SPSSがなければこのようにして作成した残差ファイルをあとでExcelなどで開けばよい。（テキストエディタで開いてもよいが，見づらい。）</li><li id="a0000000107">デフォルトでは"no title"となっている。このままでもよいが，今回は"HSB-GD"とした。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0008.html" title="モデルの指定"><img alt="Previous: モデルの指定" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0003.html" title="HLM6による分析の手順"><img alt="Up: HLM6による分析の手順" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0010.html" title="HLMファイルの保存"><img alt="Next: HLMファイルの保存" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

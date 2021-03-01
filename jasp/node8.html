@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="分散分析（対応あり）">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node9.html">
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node9.html">
+<TITLE>分散分析（対応あり）</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html148"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html146"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html140"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html149"
+  HREF="node9.html">分散分析（対応なし×対応あり）</A>
+<B>Up:</B> <A NAME="tex2html147"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html141"
+  HREF="node7.html">分散分析（対応なし）</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html150"
+  HREF="node8.html#SECTION00081000000000000000">データの概要</A>
+<LI><A NAME="tex2html151"
+  HREF="node8.html#SECTION00082000000000000000">対応のある一要因分散分析</A>
+<LI><A NAME="tex2html152"
+  HREF="node8.html#SECTION00083000000000000000">多重比較 </A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00080000000000000000"></A><A NAME="sec.repeatedanova"></A>
+<BR>
+分散分析（対応あり）
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00081000000000000000">
+データの概要</A>
+</H2>
+
+<P>
+アクティブ・ラーニングを取り入れた授業の開始後、40人の生徒の学習意欲を時間を追って測定したデータ（人工データ）を利用することにする  <TT><A NAME="tex2html18"
+  HREF="http://www.juen.ac.jp/lab/okumura/jasp/alrepeat.csv">http://www.juen.ac.jp/lab/okumura/jasp/alrepeat.csv</A></TT>。
+
+<P>
+下の図は、このデータをJASPで開いたものである。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="188" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdataalrepeat.png"
+ ALT="Image figjaspdataalrepeat">
+
+<P>
+格納されている変数は以下の通り。
+<DL>
+<DT><STRONG> ID</STRONG></DT>
+<DD>生徒番号（1-40）
+</DD>
+<DT><STRONG> Time0</STRONG></DT>
+<DD>アクティブ・ラーニング実施前の学習意欲得点（20点満点）
+</DD>
+<DT><STRONG> Time1</STRONG></DT>
+<DD>アクティブ・ラーニング実施後4週間後の学習意欲得点（20点満点）
+</DD>
+<DT><STRONG> Time2</STRONG></DT>
+<DD>アクティブ・ラーニング実施後8週間後の学習意欲得点（20点満点）
+</DD>
+<DT><STRONG> Achievement</STRONG></DT>
+<DD>生徒の学力水準（低群 = <TT>Lower</TT>、高群 = <TT>Upper</TT>）
+</DD>
+</DL>
+
+<P>
+
+<H2><A NAME="SECTION00082000000000000000">
+対応のある一要因分散分析</A>
+</H2>
+
+<P>
+学習意欲得点を従属変数とし、測定時期（Time）を対応のある要因とした分散分析を実施してみよう。
+
+<P>
+[ANOVA] メニューから [Repeated Measures ANOVA] を選択する。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="455" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasprepeatedmenu.png"
+ ALT="Image figjasprepeatedmenu">
+
+<P>
+ここで、左のボックスから従属変数 Time0, Time1, Time2 を右側の [Repeated Measures Cells] に移動させるのであるが、デフォルトではここには [Level 1] と [Level 2] の2水準しか用意されていない。
+この要因は3水準から成っているので、まずは一番上の [Repeated Measures Factors] の水準について、名称変更を兼ねて [Time0] から [Time2] までに変更しておく（Level 1 - Level 3 などラベルは任意で良い）。
+
+<P>
+<IMG
+  WIDTH="237" HEIGHT="319" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasprepeatedlevels.png"
+ ALT="Image figjasprepeatedlevels">
+
+<P>
+その上で、Time0 から Time2 までを左のボックスから右のボックスに順に移動させる。
+すると、以下のように分散分析表が表示される。
+測定時期（Time）の主効果は上部の [Within Subjects Effects] に [RM Factor 1] という名称で格納されている。
+検定結果は5%水準で有意となっている（<!-- MATH
+ $F(2, 78)=166.926$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="133" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$ F(2, 78)=166.926$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$ p &lt; .001$"></SPAN>）。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="352" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasprepeatedtable.png"
+ ALT="Image figjasprepeatedtable">
+
+<P>
+ちなみに、分析メニューにおいてデフォルトの要因名 [RM Factor] を [Time] など任意の名称に変更しておけば、それ以降の分析結果に要因名として反映される。
+
+<P>
+<IMG
+  WIDTH="276" HEIGHT="205" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasprepeatedtime.png"
+ ALT="Image figjasprepeatedtime">
+
+<P>
+
+<H2><A NAME="SECTION00083000000000000000"></A><A NAME="subsec.anova1pmultiple"></A>
+<BR>
+多重比較 
+</H2>
+
+<P>
+引き続き、[Post Hoc Tests] を開いて多重比較を実施しておこう。
+要因名が [RM Factor 1] と表示されているので、これを左から右のボックスに移動させる。
+多重比較としては Holm の方法がデフォルトで採用されており、これにもとづく結果が表示される。
+
+<P>
+また、[Description Plots] を開き、[Horizontal Axis] に同様の要因を移動させると、時点ごとの学習意欲得点の平均がプロットされる。
+
+<P>
+なお、ここでの自由度の扱いは少々面倒である。
+というのも、2群の平均の比較にはそれに関連するデータしか用いていないためである。
+例えば、Time 0 と Time 1 の平均を比較する際には、この2水準のデータ（40名×2時点）のみが分析の対象となるということである。
+しかも対応のあるデザインなので、差得点は40人分であり、自由度は <!-- MATH
+ $39 (=40-1)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="93" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ 39 (=40-1)$"></SPAN> ということになる。
+従って、この場合は検定結果を <!-- MATH
+ $t(39)=-15.165$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="116" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img25.png"
+ ALT="$ t(39)=-15.165$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$ p &lt; .001$"></SPAN> のように報告することになる。
+
+<P>
+<IMG
+  WIDTH="1103" HEIGHT="602" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasprepeatedposthoc.png"
+ ALT="Image figjasprepeatedposthoc">
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html148"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html146"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html140"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html149"
+  HREF="node9.html">分散分析（対応なし×対応あり）</A>
+<B>Up:</B> <A NAME="tex2html147"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html141"
+  HREF="node7.html">分散分析（対応なし）</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

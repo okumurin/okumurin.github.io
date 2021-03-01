@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>テスト理論: 分散共分散行列</title>
+
+<link href="sect0009.html" title="相関係数行列" rel="next" />
+<link href="sec-icc.html" title="項目特性曲線 " rel="prev" />
+<link href="sect0004.html" title="項目分析" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sec-icc.html" title="項目特性曲線 "><img alt="Previous: 項目特性曲線 " border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0004.html" title="項目分析"><img alt="Up: 項目分析" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0009.html" title="相関係数行列"><img alt="Next: 相関係数行列" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">テスト理論</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">テスト理論</a> <b>:</b>
+</span>
+
+</span><span>
+<span>
+<a href="sect0004.html">項目分析</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">分散共分散行列</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h2 id="a0000000009">2.5 分散共分散行列</h2>
+<p>項目得点の分散を対角成分に、項目得点間の共分散を非対角成分に配置した行列を、分散共分散行列という。 Table <a href="sect0008.html#tab.varcovmat">2</a> に示すように、分散共分散行列は対称行列である。 従って、右上か左下どちらかの非対角成分は省いて報告することもある。 </p><div id="tab.varcovmat" class="table"><div class="caption"><b>Table 2</b>: <span>分散共分散行列</span></div><center> <table cellspacing="0" class="tabular">
+<tr>
+
+    
+    <td style="text-align:center; border-right:1px solid black">&nbsp;</td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0093.png" alt="$x_1$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:12px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0094.png" alt="$x_2$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:12px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0095.png" alt="$x_ K$" style="vertical-align:-3px; 
+                                     width:24px; 
+                                     height:12px" class="math gen" /> </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-top-style:solid; text-align:center; border-top-color:black; border-top-width:1px; border-right:1px solid black"><p><img src="images/img-0093.png" alt="$x_1$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:12px" class="math gen" /> </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> <img src="images/img-0096.png" alt="$V_{x_1}$" style="vertical-align:-4px; 
+                                     width:23px; 
+                                     height:18px" class="math gen" /> </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> <img src="images/img-0097.png" alt="$C_{x_1 x_2}$" style="vertical-align:-4px; 
+                                     width:41px; 
+                                     height:18px" class="math gen" /> </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center">&nbsp;</td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> <img src="images/img-0098.png" alt="$C_{x_1 x_ K}$" style="vertical-align:-5px; 
+                                     width:46px; 
+                                     height:19px" class="math gen" /> </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:center; border-right:1px solid black"><p><img src="images/img-0094.png" alt="$x_2$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:12px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0099.png" alt="$C_{x_2 x_1}$" style="vertical-align:-4px; 
+                                     width:40px; 
+                                     height:18px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0100.png" alt="$V_{x_2}$" style="vertical-align:-4px; 
+                                     width:24px; 
+                                     height:18px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0101.png" alt="$C_{x_2 x_ K}$" style="vertical-align:-5px; 
+                                     width:46px; 
+                                     height:19px" class="math gen" /> </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:center; border-right:1px solid black"><p><img src="images/img-0072.png" alt="$\vdots $" style="vertical-align:0px; 
+                                     width:3px; 
+                                     height:15px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0072.png" alt="$\vdots $" style="vertical-align:0px; 
+                                     width:3px; 
+                                     height:15px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0072.png" alt="$\vdots $" style="vertical-align:0px; 
+                                     width:3px; 
+                                     height:15px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0102.png" alt="$\ddots $" style="vertical-align:2px; 
+                                     width:18px; 
+                                     height:12px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0072.png" alt="$\vdots $" style="vertical-align:0px; 
+                                     width:3px; 
+                                     height:15px" class="math gen" /> </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-bottom-color:black; border-bottom-width:1px; text-align:center; border-bottom-style:solid; border-right:1px solid black"><p><img src="images/img-0095.png" alt="$x_ K$" style="vertical-align:-3px; 
+                                     width:24px; 
+                                     height:12px" class="math gen" /> </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> <img src="images/img-0103.png" alt="$C_{x_ K x_1}$" style="vertical-align:-5px; 
+                                     width:45px; 
+                                     height:19px" class="math gen" /> </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> <img src="images/img-0104.png" alt="$C_{x_ K x_2}$" style="vertical-align:-5px; 
+                                     width:46px; 
+                                     height:19px" class="math gen" /> </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center">&nbsp;</td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> <img src="images/img-0105.png" alt="$V_{x_ K}$" style="vertical-align:-5px; 
+                                     width:29px; 
+                                     height:19px" class="math gen" /> </p></td>
+
+</tr>
+</table> </center></div><p>今、テスト得点<img src="images/img-0106.png" alt="$x_{\bullet }$" style="vertical-align:-2px; 
+                                     width:18px; 
+                                     height:11px" class="math gen" />を項目得点の合計とする。 このとき、 </p><table id="a0000000092" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000093">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0107.png" alt="$\displaystyle  V_{x_{\bullet }} = \sum _{k=1}^ K V_{x_{k}} + \mathop {\sum _{k=1}^{K}\sum _{k'=1}^{K}}_{k \neq k'} C_{x_ k x_{k'}}  $" style="vertical-align:-41px; width:250px;                     height:75px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>22</span>)</span></td>
+</tr>
+</table><p> が成り立つ。 上式の右辺第1項は分散共分散行列の対角成分の和、第2項は非対角成分の和である。 つまり、合計得点の分散<img src="images/img-0108.png" alt="$V_{x_{\bullet }}$" style="vertical-align:-4px; 
+                                     width:24px; 
+                                     height:18px" class="math gen" />は、項目得点の分散共分散行列に含まれる成分の総合計である。 </p></div>
+
+
+
+
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sec-icc.html" title="項目特性曲線 "><img alt="Previous: 項目特性曲線 " border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0004.html" title="項目分析"><img alt="Up: 項目分析" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0009.html" title="相関係数行列"><img alt="Next: 相関係数行列" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">テスト理論</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

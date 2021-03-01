@@ -1,0 +1,515 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="平均の差に関する推測">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node7.html">
+<TITLE>平均の差に関する推測</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html123"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html121"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html115"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html124"
+  HREF="node7.html">分散分析（対応なし）</A>
+<B>Up:</B> <A NAME="tex2html122"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html116"
+  HREF="node5.html">相関係数に関する推測</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html125"
+  HREF="node6.html#SECTION00061000000000000000">対応のない2群（1要因2水準被験者間計画）</A>
+<LI><A NAME="tex2html126"
+  HREF="node6.html#SECTION00062000000000000000">対応のある2群（1要因2水準被験者内計画）</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00060000000000000000">
+平均の差に関する推測</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00061000000000000000">
+対応のない2群（1要因2水準被験者間計画）</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00061100000000000000">
+データの概要</A>
+</H3>
+
+<P>
+左上メニューをクリックして [Open] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Data Library] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [2. T-Tests] と進むと、[Directed Reading Activities] というデータセットが見つかる。
+右側のアイコンをダブルクリックして、.csv 形式のファイルを開いてみよう。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="294" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdatareadingopen.png"
+ ALT="Image figjaspdatareadingopen">
+
+<P>
+<IMG
+  WIDTH="394" HEIGHT="187" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdatareading.png"
+ ALT="Image figjaspdatareading">
+
+<P>
+これは、読解指導の効果を検証するために44名の生徒を指導あり/なしの2群に割り当て、読解テストを実施した結果を格納したものである。
+変数の概要は以下の通り。
+
+<P>
+<DL>
+<DT><STRONG> id</STRONG></DT>
+<DD>生徒番号
+</DD>
+<DT><STRONG> group</STRONG></DT>
+<DD>割り当てられた群（Treat = 実験群、Control = 統制群）
+</DD>
+<DT><STRONG> g</STRONG></DT>
+<DD>割り当てられた群（0 = 実験群、1 = 統制群）
+</DD>
+<DT><STRONG> drp</STRONG></DT>
+<DD>読解テストの得点
+</DD>
+</DL>
+
+<P>
+読解テストの得点について、群ごとの記述を行ってみよう。
+分析メニューから [Descriptives] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Discriptive Statistics] と進み、[Variables] に <TT>drp</TT>、[Split] に <TT>group</TT> を移動させると、次のような記述統計量の一覧が表示される。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="532" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdatareadingstats.png"
+ ALT="Image figjaspdatareadingstats">
+
+<P>
+[Plots] を開いて [Boxplots] にチェックを入れると、次のような箱ひげ図が表示される。
+分布の特徴を直感的に把握するのに非常に便利である。
+
+<P>
+実験群の方が全体的に読解テストの得点は高めになっており、また得点のばらつき具合も少ないようである。
+
+<P>
+<IMG
+  WIDTH="394" HEIGHT="263" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdatareadingboxplot.png"
+ ALT="Image figjaspdatareadingboxplot">
+
+<P>
+
+<H3><A NAME="SECTION00061200000000000000">
+平均の比較</A>
+</H3>
+
+<P>
+次に、平均の差に関する推測を行うことにしよう。
+まず、分析メニューから [T-Tests] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Independent Samples T-Test] を選択する。
+
+<P>
+<IMG
+  WIDTH="394" HEIGHT="215" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspnpttestopen.png"
+ ALT="Image figjaspnpttestopen">
+
+<P>
+次のような分析画面が表示されるので、従属変数である <TT>drp</TT> を [Dependent Variables] へ、要因（独立変数）である <TT>group</TT> を [Grouping Variables] へ移動させてみよう。
+この時点で、独立な2群（対応のない2群）の平均の差に関する <SPAN CLASS="MATH"><IMG
+ WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ t$"></SPAN> 検定の結果が表示されるはずだ。
+
+<P>
+さらに、効果量とその信頼区間を算出するために、[Additional Statisitics] の [Effect size] と [Confidence interval] にチェックを入れてみよう。
+また、すでに確認したことと重複するが、[Descriptives] にチェックを入れると、群ごとの記述統計量も表示される。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="482" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspnpttest.png"
+ ALT="Image figjaspnpttest">
+
+<P>
+ここで、この分析結果では <SPAN CLASS="MATH"><IMG
+ WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ t$"></SPAN> 値がマイナスになっていることに注意しよう。
+これは、<SPAN CLASS="MATH"><IMG
+ WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ t$"></SPAN> を計算する際に統制群の平均から実験群の平均を引いた差を考えているためである。
+JASP では、平均の差を取る際に水準の値の小さい方から大きい方を引く（アルファベットの場合は、若い方から後の方を引く）ようになっている。
+このデータでは、変数 <TT>group</TT> で、実験群が <TT>Treat</TT>、統制群が <TT>Control</TT> と入力されていたので、「実験群が統制群よりも平均が高い」ではなく、「統制群が実験群よりも平均が低い」という観点で結果が出力されたことになる。
+今の例では、「読解指導によって読解テストの得点が上がる」と主張するのが自然であるから、結果を報告する際には正負を入れ替えた方が混乱を招かなくてよいだろう<A NAME="tex2html11"
+  HREF="footnode.html#foot426"><SUP><SPAN CLASS="arabic">7</SPAN></SUP></A>。
+つまり、検定に関しては
+<BLOCKQUOTE>
+読解テストの得点は、読解指導あり群の平均がなし群の平均を統計的に有意に上回っていた（<!-- MATH
+ $t(42)=2.267$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="96" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ t(42)=2.267$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ p = .029$"></SPAN>）。
+
+</BLOCKQUOTE>
+のように述べるということである。
+
+<P>
+同様に、標準化された平均の差が [Cohen's d] として、またその信頼区間が [95% CI for Cohen's d] として報告されているが、上記のようにするならばそれに合わせてこちらの符号も入れ替えてやる必要がある。
+つまり、検定結果と合わせて効果量とその推定結果も記述するならば、上記のカッコ内は、
+<BLOCKQUOTE>
+<!-- MATH
+ $t(42)=2.267$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="96" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img4.png"
+ ALT="$ t(42)=2.267$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$ p = .029$"></SPAN>, Cohen's <SPAN CLASS="MATH"><IMG
+ WIDTH="70" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img6.png"
+ ALT="$ d = 0.684$"></SPAN>, <!-- MATH
+ $95\% CI [0.071, 1.290]$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="143" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.png"
+ ALT="$ 95\% CI [0.071, 1.290]$"></SPAN>
+</BLOCKQUOTE>
+のようになるであろう<A NAME="tex2html12"
+  HREF="footnode.html#foot131"><SUP><SPAN CLASS="arabic">8</SPAN></SUP></A>。
+
+<P>
+読解指導の効果は統計的に有意であり、得られたデータにおいては中程度の効果量であったものの、母集団においては小さく見積もって無視できるレベル、大きく見積もって相当大きな向上をもたらすといえるレベルということになり、かなり曖昧な主張しかできない。
+さらに標本サイズを大きくして信頼区間の幅を狭める努力が必要だろう。
+
+<P>
+
+<H2><A NAME="SECTION00062000000000000000">
+対応のある2群（1要因2水準被験者内計画）</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION00062100000000000000">
+データの概要</A>
+</H3>
+
+<P>
+同じく Data Library から、[2. T-Test] と進むと、[Weight Gain] というデータが見つかるはずである。
+これは、16人の被験者について、8週間にわたるカロリーの過剰摂取の前後で体重を測定したデータである<A NAME="tex2html13"
+  HREF="footnode.html#foot134"><SUP><SPAN CLASS="arabic">9</SPAN></SUP></A>。
+
+<P>
+<IMG
+  WIDTH="394" HEIGHT="184" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdataweightgain.png"
+ ALT="Image figjaspdataweightgain">
+
+<P>
+変数の概要は以下の通り。
+
+<P>
+<DL>
+<DT><STRONG> Weight Before</STRONG></DT>
+<DD>カロリー過剰摂取前の体重（ポンド）
+</DD>
+<DT><STRONG> Weight After</STRONG></DT>
+<DD>カロリー過剰摂取後の体重（ポンド）
+</DD>
+<DT><STRONG> Difference</STRONG></DT>
+<DD>体重の変化量（摂取後の値から摂取前の値を引いたもの）
+</DD>
+</DL>
+
+<P>
+分析メニューから [Descriptives] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Discriptive Statistics] と進むと、各変数の記述統計量を確認できる。
+カロリー摂取前から摂取後にかけて、当然ではあるが平均体重が増加していることがわかる。
+このことは、体重の変化量 <TT>Difference</TT> の平均からも明らかである。
+
+<P>
+<IMG
+  WIDTH="394" HEIGHT="176" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdataweightgainstats.png"
+ ALT="Image figjaspdataweightgainstats">
+
+<P>
+ちなみに、このデータファイルでは、事前と事後の得点が異なる列として横に並べられている。
+このような整理の仕方をワイドフォーマット（wide format）という。
+差得点を算出するのであれば、このような整理の仕方は確かに便利である。
+
+<P>
+一方、被験者のIDと事前/事後を表す変数を用意した上で、同じ従属変数の値は1列につなげて整理するという方法もある。
+表 <A HREF="#tab.longformat">6.1</A> は、被験者を <TT>id</TT>、事前/事後を <TT>treat</TT>（<TT>pre</TT> = 事前、<TT>post</TT> = 事後）、体重を <TT>weight</TT> として整理し直したものである。
+このような形式をロングフォーマット（long format）という。
+差得点を算出するのには向いていないかもしれないが、分析によってはこちらの方法で整理されている方がやりやすい場合もある。
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<DIV ALIGN="CENTER">
+<A NAME="147"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 6.1:</STRONG>
+ロングフォーマットの例</CAPTION>
+<TR><TD ALIGN="RIGHT">id</TD>
+<TD ALIGN="LEFT">treat</TD>
+<TD ALIGN="CENTER">weight</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">1</TD>
+<TD ALIGN="LEFT">pre</TD>
+<TD ALIGN="CENTER">122.54</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">1</TD>
+<TD ALIGN="LEFT">post</TD>
+<TD ALIGN="CENTER">135.74</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">2</TD>
+<TD ALIGN="LEFT">pre</TD>
+<TD ALIGN="CENTER">120.78</TD>
+</TR>
+<TR><TD ALIGN="RIGHT">2</TD>
+<TD ALIGN="LEFT">post</TD>
+<TD ALIGN="CENTER">129.36</TD>
+</TR>
+<TR><TD ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="9" HEIGHT="27" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$ \vdots$"></SPAN></TD>
+<TD ALIGN="LEFT"><SPAN CLASS="MATH"><IMG
+ WIDTH="9" HEIGHT="27" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$ \vdots$"></SPAN></TD>
+<TD ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="9" HEIGHT="27" ALIGN="BOTTOM" BORDER="0"
+ SRC="img8.png"
+ ALT="$ \vdots$"></SPAN></TD>
+</TR>
+<TR><TD ALIGN="RIGHT">16</TD>
+<TD ALIGN="LEFT">post</TD>
+<TD ALIGN="CENTER">132.66</TD>
+</TR>
+</TABLE>
+</DIV>
+<A NAME="tab.longformat"></A>
+</DIV>
+<BR>
+<P>
+
+<H3><A NAME="SECTION00062200000000000000">
+平均の比較</A>
+</H3>
+
+<P>
+対応のある2群の平均を比較する方法は、大きく分けて2通りある。
+1つは「平均の差」について検証するもの、もう1つは「差得点の平均」について検証するものである。
+対応のあるデザインの場合、平均の差と差得点の平均は等しいということから想像できるように、どちらの方法を用いても検定や推定の結果は同じになる。
+
+<P>
+
+<H3><A NAME="SECTION00062300000000000000">
+平均の差を検証する</A>
+</H3>
+
+<P>
+まずは、対応のある2群についてそれぞれ定義される平均の間に差があるか検証する方法を実行してみよう。
+分析メニューから [T-Tests] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [Paired Samples T-Test] を選択する。
+
+<P>
+<IMG
+  WIDTH="394" HEIGHT="231" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasppttestopen.png"
+ ALT="Image figjasppttestopen">
+
+<P>
+すると、次のようなメニューが開くので、左のボックスにある変数から「引かれるもの」「引くもの」の順で右のボックスに移動させる。
+この例では、<TT>Weight After</TT> を先に、<TT>Weight Before</TT> を移せばよい。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="428" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasppttestmenu.png"
+ ALT="Image figjasppttestmenu">
+
+<P>
+すると、2群の平均の差に関する検定の結果が表示される。
+さらに、[Additional Statistics] の [Location parameter] と [Confidence interval] にチェックを入れると、標準化されていない平均の差に関する推定結果が、[Effect size] と [Confidence interval] にチェックを入れると、標準化された平均の差に関する推定結果が検定結果の右側に追加される。
+
+<P>
+また、[Descriptives] にチェックを入れれば、事前と事後それぞれのデータについて記述統計量が算出される。
+
+<P>
+検定結果からは、カロリー摂取によって体重が有意に増加する（<!-- MATH
+ $t(15)=10.84$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="96" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$ t(15)=10.84$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$ p &lt; .001$"></SPAN>）ことがわかる。
+さらに、体重の場合は明確な単位（この場合はポンド）が存在するので、標準化されていない平均の差を報告した方がイメージがつかみやすいかもしれない。
+ちなみに、ここで Cohen's d と表示されているものは、対応のない2群で用いられたものと異なる定義で計算されたもの<A NAME="tex2html15"
+  HREF="footnode.html#foot161"><SUP><SPAN CLASS="arabic">10</SPAN></SUP></A>であるため、結果の評価には注意が必要である。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="411" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasppttestout.png"
+ ALT="Image figjasppttestout">
+
+<P>
+
+<H3><A NAME="SECTION00062400000000000000">
+差得点の平均を検証する</A>
+</H3>
+
+<P>
+このデータには <TT>Difference</TT> として体重の変化量（差得点）がすでに与えられている。
+差得点の平均は平均の差に等しく、また対応がある場合の平均の差について検定するための検定統計量は差得点の情報さえあれば計算できるから、この変化量のデータだけを用いて上記と同じ分析を行うことができる。
+
+<P>
+分析メニューから [T-Tests] <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \rightarrow$"></SPAN> [One Sample T-Test] を選択する。
+
+<P>
+すると、次のようなメニューが開くので、差得点である <TT>Difference</TT> を左のボックスから右のボックスへと移動させる。
+また、先ほどと同じように推定と記述の結果も出力させておこう。
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="380" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasponettestmenu.png"
+ ALT="Image figjasponettestmenu">
+
+<P>
+結果は次の通りである。
+ここでは、「差得点の母集団平均はゼロである」という帰無仮説を検定しているのだが、「母集団平均の差はゼロである」という帰無仮説の検定結果と同じになっていること、また差得点の母集団平均に関する推定の結果も、母集団平均の差に関する推定の結果と同じであることを確認しておこう。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="451" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjasponettestout.png"
+ ALT="Image figjasponettestout">
+
+<P>
+
+<H3><A NAME="SECTION00062500000000000000">
+いずれの方法を用いるか</A>
+</H3>
+
+<P>
+検定や推定の結果は同じになるので、どちらの方法を採用すべきか迷うところではある。
+データの記述という観点からは事前と事後の平均やSDもわかっていた方が何かと都合がよいので、その部分は2群のデータを用いればよいだろう。
+一方、推測になると2群のデータを用いた場合は特に標準化された平均の差が同じ Cohen's d と表記されていながら実は異なる定義にもとづく指標であるということに気づきにくい。
+あくまで差得点から算出された指標だということを忘れないためにも、後者の方法を取った方がよいかもしれない。
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html123"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html121"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html115"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html124"
+  HREF="node7.html">分散分析（対応なし）</A>
+<B>Up:</B> <A NAME="tex2html122"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html116"
+  HREF="node5.html">相関係数に関する推測</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

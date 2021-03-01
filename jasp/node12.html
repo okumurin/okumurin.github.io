@@ -1,0 +1,130 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="尺度の信頼性">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node13.html">
+<LINK REL="previous" HREF="node11.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node13.html">
+<TITLE>尺度の信頼性</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html204"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html202"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html196"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html205"
+  HREF="node13.html">カウントデータの分析</A>
+<B>Up:</B> <A NAME="tex2html203"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html197"
+  HREF="node11.html">因子分析</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html206"
+  HREF="node12.html#SECTION000121000000000000000">データ</A>
+<LI><A NAME="tex2html207"
+  HREF="node12.html#SECTION000122000000000000000">分析</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000120000000000000000">
+尺度の信頼性</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000121000000000000000">
+データ</A>
+</H2>
+
+<P>
+因子分析で用いたのと同じ、BFI Network データをここでも使うことにする。
+A1-A5, C1-C5, E1-E5, N1-N5, O1-O5 まで5項目ずつ5因子からなる尺度であることを前提として、各下位尺度で信頼性を評価することにしよう。
+
+<P>
+
+<H2><A NAME="SECTION000122000000000000000">
+分析</A>
+</H2>
+
+<P>
+分析メニューの [Descriptives] から [Reliability Analysis] を選択する。
+左のボックスから、A1-A5 までを右に移動させよう。
+デフォルトでは、マクドナルドの <SPAN CLASS="MATH"><IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img41.png"
+ ALT="$ \omega$"></SPAN> 係数のみが算出されるのだが、[Scale Statistics] の [Cronbach's <SPAN CLASS="MATH"><IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img42.png"
+ ALT="$ \alpha$"></SPAN>] にチェックを入れることで、<SPAN CLASS="MATH"><IMG
+ WIDTH="15" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img42.png"
+ ALT="$ \alpha$"></SPAN> 係数が算出される。
+
+<P>
+注意しなくてはいけないのは、A1 は逆転項目だということである。
+これを処理するには、[Reverse-Scaled Items] で該当する項目を右側のボックスに移動させる必要がある。
+
+<P>
+さらに、[Individual Item Statistics] にチェックを入れると、各項目を下位尺度から取り除いた場合に信頼性がどのように変化するかが表示される。
+
+<P>
+<IMG
+  WIDTH="788" HEIGHT="549" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspreliabilitya.png"
+ ALT="Image figjaspreliabilitya">
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html204"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html202"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html196"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html205"
+  HREF="node13.html">カウントデータの分析</A>
+<B>Up:</B> <A NAME="tex2html203"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html197"
+  HREF="node11.html">因子分析</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

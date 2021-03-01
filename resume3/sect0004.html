@@ -1,0 +1,303 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>階層的線形モデルによるデータ分析の実際1 — HLM6，SAS，Rを利用して —: SAS PROC MIXEDによる分析</title>
+
+<link href="sect0005.html" title="Rによる分析" rel="next" />
+<link href="sect0003.html" title="HLM6による分析の手順" rel="prev" />
+<link href="index.html" title="階層的線形モデルによるデータ分析の実際これは，2006年にグループ・ダイナミクス学会で行われたワークショップの配布資料をもとに作成したものである。 — HLM6，SAS，Rを利用して —" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0003.html" title="HLM6による分析の手順"><img alt="Previous: HLM6による分析の手順" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="index.html" title="階層的線形モデルによるデータ分析の実際1 — HLM6，SAS，Rを利用して —"><img alt="Up: 階層的線形モデルによるデータ分析の実際1 — HLM6，SAS，Rを利用して —" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0005.html" title="Rによる分析"><img alt="Next: Rによる分析" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">階層的線形モデルによるデータ分析の実際<a href="#a0000000008" class="footnote"><sup class="footnotemark">1</sup></a> <br />— HLM6，SAS，Rを利用して —</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">階層的線形モデルによるデータ分析の実際<a href="#a0000000008" class="footnote"><sup class="footnotemark">1</sup></a> <br />— HLM6，SAS，Rを利用して —</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">SAS PROC MIXEDによる分析</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h1 id="a0000000005">4 SAS PROC MIXEDによる分析</h1>
+<p>階層的線形モデルは，何もHLM6を用いてしか分析できないというわけではない。 <a href="#a0000000126" class="footnote"><sup class="footnotemark">1</sup></a> 基本的に階層的線形モデルは線形混合モデルと考えることができるので，線形混合モデルを扱えるソフトウェアであれば階層的線形モデルによる分析を行うことができる。 </p><p>ここでは，SASにおいて混合モデルを扱うためのMIXEDプロシジャを用いて階層的線形モデルによる分析を行う方法について簡単に説明する。 </p><p>SAS PROC MIXEDでは，HLM6とモデル式の表し方が若干異なる。 </p><p>式(<a href="sect0003.html#eq.level2-1">5</a>)および式(<a href="sect0003.html#eq.level2-2">6</a>)を式(<a href="sect0003.html#eq.level1">1</a>)に代入して整理すると， </p><table id="a0000000127" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000128">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0053.png" alt="$\displaystyle  MATHACH_{ij} = [  $" style="vertical-align:-5px; width:135px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0054.png" alt="$\displaystyle  \gamma _{00} + \gamma _{01} SECTOR_ j + \notag  $" style="vertical-align:-4px; width:159px;                     height:15px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>7</span>)</span></td>
+</tr><tr id="a0000000129">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0055.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0056.png" alt="$\displaystyle  \gamma _{02} MEANSES_ j + \gamma _{10} (SES_{ij} - \bar{SES_{.j}}) + \notag  $" style="vertical-align:-4px; width:302px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>8</span>)</span></td>
+</tr><tr id="a0000000130">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0055.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0057.png" alt="$\displaystyle  \gamma _{11} SECTOR_ j (SES_{ij} - \bar{SES_{.j}}) + \notag  $" style="vertical-align:-4px; width:241px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>9</span>)</span></td>
+</tr><tr id="a0000000131">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0055.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0058.png" alt="$\displaystyle  \gamma _{12} MEANSES_{j} (SES_{ij} - \bar{SES_{.j}})] + \notag  $" style="vertical-align:-5px; width:264px;                     height:21px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>10</span>)</span></td>
+</tr><tr id="eq.tougou">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0055.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0059.png" alt="$\displaystyle  [ u_{0j} + u_{1j} (SES_{ij} - \bar{SES_{.j}}) + r_{ij} ] \label{eq.tougou}  $" style="vertical-align:-5px; width:236px;                     height:21px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>11</span>)</span></td>
+</tr>
+</table><p> となる。 このうち，最初の[ ]内は固定効果であり，2番目の[ ]内は変量効果である。 HLM6ではレベルごとに分けた式を入力できたのに対し，SAS（およびこの後で触れるR）においては，すべてのレベルを統合したモデル式(<a href="sect0004.html#eq.tougou">11</a>)をもとに固定効果と変量効果の部分を分けて記述することになる。 SAS PROC MIXEDを用いた階層的モデルの分析方法について，詳しくは，Singer(1998)を参照されたい。 </p><p>以下に，HSBデータを用いてHLM6を用いて行ったのと同じ分析をするためのプログラムの一例とその結果の出力を示した。 </p><h2 id="a0000000132">4.1 SASプログラム</h2>
+<p><small class="footnotesize"><pre>
+***************************;
+* SASによるHSBデータの分析 ;
+*    By Taichi OKUMURA     ;
+***************************;
+
+OPTIONS ls = 80;
+
+/* データの読み込み */
+DATA hsb;
+INFILE 'C:\Program Files\SAS Institute\SAS\V8\hsb-sas.dat';
+INPUT id school ses mathach meanses cses sector;
+RUN;
+
+/* proc mixedによる分析 */
+PROC MIXED DATA=hsb NOCLPRINT COVTEST;
+CLASS school;
+MODEL mathach = sector
+                meanses 
+                cses 
+                sector*cses 
+                meanses*cses / SOLUTION DDFM=bw NOTEST;
+RANDOM intercept cses / TYPE = un SUB=school;
+RUN;
+QUIT;
+</pre><p><span class="normalsize"><p>以下に，MIXEDプロシジャの部分を簡単に説明しておく。 </p></span></p></small></p><h3 id="a0000000133">PROC MIXED</h3>
+<dl class="description">
+
+    <dt>    NOCLPRINT: </dt>
+    <dd><p>集団（この場合はschool）ごとの結果は出力しない </p></dd>
+
+    <dt>    COVTEST: </dt>
+    <dd><p>分散要素の検定を行う </p></dd>
+
+</dl><h3 id="a0000000134">CLASS</h3>
+<p>schoolは数値ではなく，カテゴリ変数。 </p><h3 id="a0000000135">MODEL</h3>
+<p>この部分には固定効果の式を書く。 </p><dl class="description">
+
+    <dt>    SOLUTION: </dt>
+    <dd><p>固定効果の推定値を出力させる </p></dd>
+
+    <dt>    DDFM=bw: </dt>
+    <dd><p>固定効果の検定の際の自由度の設定 </p></dd>
+
+    <dt>    NOTEST: </dt>
+    <dd><p>固定効果に関する仮説検定を行わない </p></dd>
+
+</dl><h3 id="a0000000136">RANDOM</h3>
+<p>この部分には変量効果の式を書く。 </p><dl class="description">
+
+    <dt>    TYPE = un: </dt>
+    <dd><p>分散・共分散行列に構造を仮定しない </p></dd>
+
+    <dt>    sub=school: </dt>
+    <dd><p>今回の例では，個々の生徒の観測値は学校（"school"）にネストされている </p></dd>
+
+</dl><h2 id="a0000000137">4.2 SASのアウトプット</h2>
+<p>上記のプログラムを実行したときのアウトプットを以下に示す。 <a href="#a0000000138" class="footnote"><sup class="footnotemark">2</sup></a> </p><p><small class="footnotesize"><pre>
+                                  SAS システム   
+
+
+                              The Mixed Procedure
+
+                               Model Information
+
+             Data Set                     WORK.HSB
+             Dependent Variable           mathach
+             Covariance Structure         Unstructured
+             Subject Effect               school
+             Estimation Method            REML /* REML推定（デフォルト） */
+             Residual Variance Method     Profile
+             Fixed Effects SE Method      Model-Based
+             Degrees of Freedom Method    Between-Within
+
+
+                                  Dimensions
+
+                      Covariance Parameters             4
+                      Columns in X                      6
+                      Columns in Z Per Subject          2
+                      Subjects                        160
+                      Max Obs Per Subject              67
+                      Observations Used              7185
+                      Observations Not Used             0
+                      Total Observations             7185
+
+
+                               Iteration History
+
+          Iteration    Evaluations    -2 Res Log Like       Criterion
+
+                  0              1     46724.22627510
+                  1              2     46503.66454957      0.00000010
+                  2              1     46503.66286827      0.00000000
+
+
+                           Convergence criteria met.
+
+
+                         Covariance Parameter Estimates
+
+                                           Standard         Z
+       Cov Parm     Subject    Estimate       Error     Value        Pr Z
+/* レベル2の分散・共分散の推定値と有意性検定の結果 */
+       UN(1,1)      school       2.3794      0.3714      6.41      &lt;.0001
+       UN(2,1)      school       0.1918      0.2043      0.94      0.3479
+       UN(2,2)      school       0.1012      0.2138      0.47      0.3180
+/* レベル1の分散の推定値と有意性検定の結果 */
+       Residual                 36.7212      0.6261     58.65      &lt;.0001
+
+
+                                Fit Statistics
+
+                     -2 Res Log Likelihood         46503.7 /* deviance */
+                     AIC (smaller is better)       46511.7
+                     AICC (smaller is better)      46511.7
+                     BIC (smaller is better)       46524.0
+
+
+                        Null Model Likelihood Ratio Test
+
+                          DF    Chi-Square      Pr &gt; ChiSq
+
+                           3        220.56          &lt;.0001
+
+/* 固定効果（レベル2の偏回帰係数）の推定結果・有意性検定 */
+                          Solution for Fixed Effects
+
+                                  Standard
+      Effect          Estimate       Error      DF    t Value    Pr &gt; |t|
+
+      Intercept        12.1279      0.1993     157      60.86      &lt;.0001  /* G00 */
+      sector            1.2266      0.3063     157       4.00      &lt;.0001  /* G01 */
+      meanses           5.3329      0.3692     157      14.45      &lt;.0001  /* G02 */
+      cses              2.9450      0.1556    7022      18.93      &lt;.0001  /* G10 */
+      sector*cses      -1.6427      0.2398    7022      -6.85      &lt;.0001  /* G11 */
+      meanses*cses      1.0392      0.2989    7022       3.48      0.0005  /* G12 */
+
+</pre><p><span class="normalsize"></span></p></small></p></div>
+
+
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000126">ただし，検定の方法や反復計算の手法などが多少異なる場合がある。また，HLM6と異なり，この場合はデータセットを1つのファイルにまとめる必要がある。（具体的なデータは，<a href="sect0005.html#page.rdata">*</a>ページのRで用いたものと同様のものであるので参照されたい。）以下の例は，すでに整形したデータファイルを使用して分析したものである。</li><li id="a0000000138">"<img src="images/img-0060.png" alt="$/*$" style="vertical-align:-4px; 
+                                     width:15px; 
+                                     height:16px" class="math gen" />" 〜 "<img src="images/img-0061.png" alt="$*/$" style="vertical-align:-4px; 
+                                     width:15px; 
+                                     height:16px" class="math gen" />"の部分はコメントである。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0003.html" title="HLM6による分析の手順"><img alt="Previous: HLM6による分析の手順" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="index.html" title="階層的線形モデルによるデータ分析の実際1 — HLM6，SAS，Rを利用して —"><img alt="Up: 階層的線形モデルによるデータ分析の実際1 — HLM6，SAS，Rを利用して —" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0005.html" title="Rによる分析"><img alt="Next: Rによる分析" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">階層的線形モデルによるデータ分析の実際<a href="#a0000000008" class="footnote"><sup class="footnotemark">1</sup></a> <br />— HLM6，SAS，Rを利用して —</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

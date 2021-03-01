@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>階層的線形モデルによるデータ分析の実際 — HLM6，SAS，Rを利用して —: グラフの表示など</title>
+
+<link href="sect0013.html" title="残差のチェック" rel="next" />
+<link href="henkaikikeisu.html" title="結果の確認" rel="prev" />
+<link href="sect0003.html" title="HLM6による分析の手順" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="henkaikikeisu.html" title="結果の確認"><img alt="Previous: 結果の確認" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0003.html" title="HLM6による分析の手順"><img alt="Up: HLM6による分析の手順" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0013.html" title="残差のチェック"><img alt="Next: 残差のチェック" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</a> <b>:</b>
+</span>
+
+</span><span>
+<span>
+<a href="sect0003.html">HLM6による分析の手順</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">グラフの表示など</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h2 id="a0000000013">3.10 グラフの表示など</h2>
+<p>HLM6には，さまざまなグラフを表示させる機能がついている。 ここでは，例として式(<a href="sect0004.html#eq.level1">1</a>)で示したレベル1の回帰式が，学校の属性を表すSECTORによってどのように異なるのかグラフで示してみたい。 </p><p>[File]-[Graph Equations]-[Level-1 equation graphing]を選択する。 </p><div class="figure"><center> 
+<img src="images/img-0041.png" alt="\includegraphics[width=15cm]{graph1.ps}" style="width:15cm" /> </center></div><p>レベル1のモデル式をグラフ化するためのウィンドウが立ち上がる。 </p><div class="figure"><center> 
+<img src="images/img-0042.png" alt="\includegraphics[width=10cm]{graph2.ps}" style="width:10cm" /> </center></div><h3 id="a0000000121">X-focus</h3>
+<dl class="description">
+
+    <dt>    Level-1:</dt>
+    <dd><p>レベル1の説明変数を投入する。ここでは，"SES"を選択。 </p></dd>
+
+    <dt>    Number of groups:</dt>
+    <dd><p>表示するグループの数を選択する。ここでは，"All groups"を選択。 </p></dd>
+
+</dl><h3 id="a0000000122">Z-focus</h3>
+<p> 学校を分類する変数を選択。ここでは，"SECTOR"を選択。<br /></p><p>[OK]をクリックすると，グラフが表示される。 </p><div class="figure"><center> 
+<img src="images/img-0043.png" alt="\includegraphics[width=15cm]{graph3.ps}" style="width:15cm" />  </center></div><p>このグラフを見ると，Cathoric（SECTOR=1）の学校のほうが切片の値は大きいが傾きは小さい傾向にあることがわかる。 これはSECTORにかかるレベル2の偏回帰係数の推定値の符号と一致している。 </p><p>ここで，<a href="henkaikikeisu.html">*</a>ページに示したレベル2の偏回帰係数の推定結果の欄を次に再掲したのでグラフとの対応を確認されたい。 </p><p>変数SECTORにかかる偏回帰係数の値に関して，切片（"<tt class="ttfamily">INTRCPT1, B0</tt>"）欄では<img src="images/img-0044.png" alt="$1.226384$" style="vertical-align:0px; 
+                                     width:60px; 
+                                     height:12px" class="math gen" />とプラスの値であるのに対し，傾き（"<tt class="ttfamily">SES slope, B1</tt>"）欄では<img src="images/img-0045.png" alt="$-1.640954$" style="vertical-align:0px; 
+                                     width:73px; 
+                                     height:13px" class="math gen" />とマイナスの値となっていることがわかる。 </p><div class="figure"><center> 
+<img src="images/img-0046.png" alt="\includegraphics[width=15cm]{kekka.ps}" style="width:15cm" /> </center></div></div>
+
+
+
+
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="henkaikikeisu.html" title="結果の確認"><img alt="Previous: 結果の確認" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0003.html" title="HLM6による分析の手順"><img alt="Up: HLM6による分析の手順" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0013.html" title="残差のチェック"><img alt="Next: 残差のチェック" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

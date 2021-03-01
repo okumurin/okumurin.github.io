@@ -1,0 +1,383 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2017.2 (Released Jan 23, 2017) JA patch-2.1beta1.18 -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2017.2 JA patch-2.1beta1.18">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="メタ分析">
+<META NAME="keywords" CONTENT="jasp">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="jasp.css">
+
+<LINK REL="next" HREF="node15.html">
+<LINK REL="previous" HREF="node13.html">
+<LINK REL="up" HREF="jasp.html">
+<LINK REL="next" HREF="node15.html">
+<TITLE>メタ分析</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html228"
+  HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html226"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html220"
+  HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html229"
+  HREF="node15.html">参考文献</A>
+<B>Up:</B> <A NAME="tex2html227"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html221"
+  HREF="node13.html">カウントデータの分析</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html230"
+  HREF="node14.html#SECTION000141000000000000000">データの概要</A>
+<LI><A NAME="tex2html231"
+  HREF="node14.html#SECTION000142000000000000000">メタ分析の実行</A>
+<LI><A NAME="tex2html232"
+  HREF="node14.html#SECTION000143000000000000000">結果</A>
+<LI><A NAME="tex2html233"
+  HREF="node14.html#SECTION000144000000000000000">メタ回帰分析</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000140000000000000000">
+メタ分析</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000141000000000000000">
+データの概要</A>
+</H2>
+
+<P>
+ここでは、ピグマリオン効果（教師期待効果）に関する19個の研究結果をまとめたデータ <TT><A NAME="tex2html36"
+  HREF="http://www.juen.ac.jp/lab/okumura/jasp/Raudenbush_Bryk_1985.csv">http://www.juen.ac.jp/lab/okumura/jasp/Raudenbush_Bryk_1985.csv</A></TT> を利用することにする。
+
+<P>
+下の図は、このデータをJASPで開いたものである。
+このデータには、4つの変数が格納されている。
+
+<P>
+<DL>
+<DT><STRONG> study</STRONG></DT>
+<DD>研究識別ID（著者と発表年）
+</DD>
+<DT><STRONG> weeks</STRONG></DT>
+<DD>研究開始時点で教師が児童生徒と知り合って何週間経過していたか
+</DD>
+<DT><STRONG> d</STRONG></DT>
+<DD>実験群と統制群のIQ向上に関する効果量（標準化された平均の差）
+</DD>
+<DT><STRONG> se</STRONG></DT>
+<DD>効果量の標準誤差（SE）
+</DD>
+</DL>
+
+<P>
+<IMG
+  WIDTH="591" HEIGHT="639" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspdataraudenbush.png"
+ ALT="Image figjaspdataraudenbush">
+
+<P>
+ピグマリオン効果に関しては、それを初めて検証した Rosenthal による解説[<A
+ HREF="node15.html#rosenthal2002">5</A>]に詳しい。
+
+<P>
+もともとは、小学校6学年の児童について非言語式知能検査を実施し、その結果とは無関係にランダムに選ばれた約2割の児童（実験群）について、それぞれのクラスの担任教師に知能検査の結果から今後8週間で目覚ましい知的能力の向上が見られるだろうとフィードバックを返したところ、実験群の児童についてはそのようなフィードバックがなかった児童（統制群）に比べて、8週間後に実施された同じ知能検査のIQが平均的に大きく伸びていた、というものである。
+ここでの効果量 <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img50.png"
+ ALT="$ d$"></SPAN> は、この8週間でのIQの平均的伸びについて、実験群と統制群の差を標準化したものである。
+
+<P>
+インパクトの強い研究だっただけに、ピグマリオン効果に関しては繰り返し追試が行われてきている。
+データに含まれる変数 weeks（週数）については、教師が生徒と知り合って間なしであるほどピグマリオン効果は顕著に見られるのではないか、という仮説を検証するために各研究の特性として入れてあるものである[<A
+ HREF="node15.html#raudenbush_bryk1985">4</A>]。
+
+<P>
+
+<H2><A NAME="SECTION000142000000000000000">
+メタ分析の実行</A>
+</H2>
+
+<P>
+分析メニューから [Meta Analysis] を選択すると、[Classical Meta Analysis] という分析実行画面が表示される。
+
+<P>
+[Method] にはデフォルトで [Restricted ML] が入っている。
+これは、変量効果モデルで分析する際に研究間分散 <SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="17" ALIGN="BOTTOM" BORDER="0"
+ SRC="img51.png"
+ ALT="$ \tau^2$"></SPAN> を推定する方法として「制約つき最尤法」を採用する、というものである。
+より古典的なモーメント法 [DerSimonian-Laird] が用いられることもあるが、ここではデフォルトでよいだろう。
+もし固定効果モデルで分析するのであれば、ここを [Fixed Effects] に変更しておけばよい。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="449" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspmetamenu.png"
+ ALT="Image figjaspmetamenu">
+
+<P>
+次に、分析に用いる変数を左のボックスから右のボックスに移動させる。
+今の例では、[Effect Size] に d を、[Effect Size Standard Error] に se を移動させればよい。
+また、[Study Labels] に研究ID（study）を指定しておけば、forest plot で結果を見るときに便利である。
+
+<P>
+
+<H2><A NAME="SECTION000143000000000000000">
+結果</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION000143100000000000000">
+デフォルトの出力</A>
+</H3>
+
+<P>
+下が、統合結果の出力である。
+
+<P>
+<IMG
+  WIDTH="473" HEIGHT="427" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspmetaoutrand.png"
+ ALT="Image figjaspmetaoutrand">
+
+<P>
+表 [Fixed and Random Effects] の [Test of Residual Heterogeneity] に等質性検定の結果が表示されている。
+この例では、効果量の等質性仮説は棄却される（<!-- MATH
+ $Q(18)=35.825$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="111" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img52.png"
+ ALT="$ Q(18)=35.825$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img53.png"
+ ALT="$ p=.007$"></SPAN>）。
+従って、デフォルト通り変量効果モデルで分析するという判断でよいだろう。
+
+<P>
+表 [Coefficients] の [intrcpt] が統合された効果量の値と検定結果である。
+分析メニューの [Statistics] を開いて [Confidence intervals] にチェックを入れれば、統合された効果量の信頼区間がこの表に追加される。
+この例では、実験群と統制群の差は有意ではないという結果になっている（<!-- MATH
+ $\widehat{\mu_{\delta}} = 0.084$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="78" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img54.png"
+ ALT="$ \widehat{\mu_{\delta}} = 0.084$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="70" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img55.png"
+ ALT="$ z=1.625$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.png"
+ ALT="$ p=.105$"></SPAN>, 95% CI [<!-- MATH
+ $-0.018, 0.185$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="96" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img57.png"
+ ALT="$ -0.018, 0.185$"></SPAN>]）。
+
+<P>
+表 [Residual Heterogeneity Estimates] には、研究間分散および効果量の非等質性に関する情報が記載されている。
+効果量の研究間標準偏差 <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img58.png"
+ ALT="$ \tau$"></SPAN> は 0.137 と推定されている。
+ということは、先ほどの統合結果と合わせると <!-- MATH
+ $0.084 \pm 1.96 \times 0.137 (=[-0.185, 0.353])$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="274" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img59.png"
+ ALT="$ 0.084 \pm 1.96 \times 0.137 (=[-0.185, 0.353])$"></SPAN> の範囲に大体 95% の効果量が分布していると考えればよいことになる。
+もとのデータで報告されている効果量と比べてどうだろうか。
+また、<!-- MATH
+ $I^2 = 41.85\%$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="91" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img60.png"
+ ALT="$ I^2 = 41.85\%$"></SPAN> と推定されている。信頼区間が広いので正確な見積もりは難しいが、研究結果に見られるばらつきは、ある程度研究間での手続きの差異に帰することができるといえそうである。
+
+<P>
+
+<H3><A NAME="SECTION000143200000000000000">
+Forest plot と funnel plot</A>
+</H3>
+
+<P>
+分析メニューの [Statistics] にある [Forest plot] にチェックを入れると、各研究の信頼区間と統合の重み、最終的な統合結果を視覚的にチェックできる。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="481" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspmetaforest.png"
+ ALT="Image figjaspmetaforest">
+
+<P>
+同様に、その下の [Funnel plot] にチェックを入れると、公表バイアス検出のための funnel plot が表示される。
+Funnel plot の非対称性を Egger 検定により検証するのであれば、[Regression test for funnel plot asymmetry] にチェックを入れるとよいだろう。
+
+<P>
+<IMG
+  WIDTH="473" HEIGHT="624" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspmetafunnel.png"
+ ALT="Image figjaspmetafunnel">
+
+<P>
+Funnel plot の左下がごそっと抜けていること、Egger 検定が有意になっていることから、公表バイアスがどうやらありそうである。
+
+<P>
+
+<H3><A NAME="SECTION000143300000000000000">
+公表バイアスの評価</A>
+</H3>
+
+<P>
+分析メニューの [Plots] から [Trim-fill analysis] と [Fail-safe N] にチェックを入れると、公表バイアスの評価が行える。
+（ここではもともと統合結果が有意ではなかったので、fail-safe <SPAN CLASS="MATH"><IMG
+ WIDTH="19" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img61.png"
+ ALT="$ N$"></SPAN> を出すことには特に意味はない。）
+
+<P>
+下の図は、潜在的な効果量を埋めた後の forest plot と funnel plot を示したものである。
+合計で3つの効果量が対称性を保つよう左側領域に埋められ、これによって補正された統合効果量は 0.03 となっている。
+
+<P>
+<IMG
+  WIDTH="985" HEIGHT="522" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspmetatrim.png"
+ ALT="Image figjaspmetatrim">
+
+<P>
+これをもって、公表バイアスの影響を大きいと見るかどうかは議論の分かれるところかもしれない。
+ここでは、もともと統合した効果量自体が 0.08 とかなり小さめであったこと、補正しても 0.05 程度しか変化しないこと、またピグマリオン効果の追試はもともと否定的な考えを持つ研究者によって行われてきたことなどを考えて、公表バイアス自体はほぼ無視できるものとしておこう。
+
+<P>
+
+<H2><A NAME="SECTION000144000000000000000">
+メタ回帰分析</A>
+</H2>
+
+<P>
+
+<H3><A NAME="SECTION000144100000000000000">
+実行</A>
+</H3>
+
+<P>
+非等質性の評価において、研究間での結果のばらつきはただの誤差によるものだけではなく、手続きの違いなど実質的な差異に起因する部分も一定程度あるという結果が得られていた。
+そこで、ピグマリオン効果の大きさが何によって左右されるのか、具体的に見ていくことにしよう。
+
+<P>
+ここでは、教師が児童と知り合ってからの週数（weeks）を共変量としたメタ回帰分析を実行することにする。
+手続きは簡単である。共変量 <TT>weeks</TT> を左のボックスから右の [Covariates] に移動させればよい。
+
+<P>
+
+<H3><A NAME="SECTION000144200000000000000">
+結果</A>
+</H3>
+
+<P>
+下がメタ回帰分析の結果を示したものである。
+
+<P>
+<IMG
+  WIDTH="709" HEIGHT="566" ALIGN="BOTTOM" BORDER="0"
+ SRC="./figjaspmetareg.png"
+ ALT="Image figjaspmetareg">
+
+<P>
+まず、[Coefficients] の [intrcpt] を見ると、統合された効果量は統計的に有意となっている（<!-- MATH
+ $\widehat{\mu_{\delta}}=0.194$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="78" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img62.png"
+ ALT="$ \widehat{\mu_{\delta}}=0.194$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="70" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img63.png"
+ ALT="$ z=3.065$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img64.png"
+ ALT="$ p=.002$"></SPAN>, 95% CI [0.070, 0.318]）。
+これは、<TT>weeks</TT> を独立変数、効果量を従属変数とした回帰分析であるから、ここに示された切片は「<TT>weeks</TT>=0」すなわち教師と児童が初対面の状態でIQの伸びに関するフィードバックを得た場合の標準化された平均の差（ピグマリオン効果の大きさ）に相当する。
+統計的に有意ではあるが、信頼区間は無視できるレベルから中程度に満たないレベルとなっており、そこまで大きいというわけではなさそうである。
+
+<P>
+同じく、[weeks] は傾き（回帰係数）に相当する結果である。
+すなわち、教師と児童が初対面の状態から <TT>weeks</TT> が1増えるごとに（つまりフィードバックのタイミングが初対面から1週間遅れるごとに）ピグマリオン効果がどれくらい大きくなるか、を表す量ということになる。
+この場合、係数は有意な負の値となっているから、教師が児童のことをよく知るようになればなるほどピグマリオン効果は消滅していく傾向にあるということがわかる。
+切片と比較すると、おおよそ児童と初めて会って10週間程度経過すれば、ピグマリオン効果はほぼ見られなくなるということになりそうである。
+
+<P>
+さて、等質性に関する評価はどのようになっているだろうか。
+まず等質性検定の結果は、共変量投入前と同様、統計的に有意である（<!-- MATH
+ $Q(17)=27.664$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="111" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$ Q(17)=27.664$"></SPAN>, <SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.png"
+ ALT="$ p=.049$"></SPAN>）。
+ということは、効果量の間には週数の違いでは説明できないような非等質性が残っているということになる。
+ただし、<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$ I^2$"></SPAN> の推定値は小さいので、こうした非等質性は偶然的な誤差に起因するものかも知れず、これ以上結果を実質的に左右する共変量や研究を分けるカテゴリを見つけることは難しいかも知れない。
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html228"
+  HREF="node15.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html226"
+  HREF="jasp.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html220"
+  HREF="node13.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html229"
+  HREF="node15.html">参考文献</A>
+<B>Up:</B> <A NAME="tex2html227"
+  HREF="jasp.html">JASPについて</A>
+<B> Previous:</B> <A NAME="tex2html221"
+  HREF="node13.html">カウントデータの分析</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2020-07-17</I>
+</ADDRESS>
+</BODY>
+</HTML>

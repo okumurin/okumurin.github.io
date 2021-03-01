@@ -1,0 +1,1000 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+
+<title>事前事後データの分析について1</title>
+
+
+
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td class="navtitle" align="center">事前事後データの分析について<a href="#a0000000003" class="footnote"><sup class="footnotemark">1</sup></a></td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+
+
+<div><table id="a0000000002" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+
+</table><div class="titlepage">
+<h1>事前事後データの分析について<a href="#a0000000003" class="footnote"><sup class="footnotemark">1</sup></a></h1>
+<p>奥村太一（上越教育大学）</p>
+<p>2012年2月20日</p>
+
+</div><h1 id="a0000000004">Chap1. Introduction</h1>
+<h2 id="a0000000005">Clinical applications of pretest-posttest data (p.1-)</h2>
+<h4 id="a0000000006">事前・事後デザイン</h4>
+<ul class="itemize">
+<li><p>統制群なし：新たな処置を受ける群の処置前後の比較 </p></li><li><p>統制群あり：処置の効果をすでに知られている群と新たな処置を受ける群と比較 </p></li>
+</ul><h4 id="a0000000007">事前・事後デザインを規定するもの</h4>
+<ol class="enumerate">
+<li><p>同一の実験ユニットについて2回の測定が行われている </p></li><li><p>処置の前と後で測定が行われている </p></li><li><p>2回の測定の間には一定の時間間隔がある </p></li>
+</ol><h4 id="a0000000008">対象となる問い</h4>
+<ul class="itemize">
+<li><p>集団間差（こちらが本書のテーマ） </p></li><li><p>個人の変化 </p></li>
+</ul><p>事前事後データでは，事後値は事前値にある程度依存していることが想定されており，分析にはこのことを考慮する必要がある。 </p><h2 id="a0000000009">Why use the pretest data? (p.3-)</h2>
+<p>事後値だけを群間で比較するのは事前事後デザインにおいては危険。 なぜなら，ベースラインとして群が比較可能であるという保証がないから。 </p><p>被験者の個人差を統制するために，無作為化の前に測定しておいた個々の被験者の反応を用いる方法が挙げられる。 </p><p>Cohen(1988)による，対応のあるデータの効果量 </p><table id="a0000000010" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000011">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0001.png" alt="$\displaystyle  ES=\frac{\mu _ t-\mu _ r}{\sigma \sqrt {1-\rho }}  $" style="vertical-align:-15px; width:110px;                     height:33px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>2</span>)</span></td>
+</tr>
+</table><p> ただし，<img src="images/img-0002.png" alt="$\rho $" style="vertical-align:-3px; 
+                                     width:9px; 
+                                     height:10px" class="math gen" />は同一被験者について得られた測定値間の相関係数（再検査信頼性<a href="#a0000000012" class="footnote"><sup class="footnotemark">2</sup></a>）。 </p><h2 id="a0000000013">Graphical presentation of pretest-posttest data (p.10-)</h2>
+<dl class="description">
+
+    <dt>scatter plot</dt>
+    <dd><p>事前値と事後値の散布図 </p></dd>
+
+    <dt>tilted-line segment plot</dt>
+    <dd><p>各被験者の事前値と事後値を線で結んだもの。 </p></dd>
+
+    <dt>(modified) sliding-square plot</dt>
+    <dd><p>事前値と事後値の散布図に回帰直線を引き，さらに周辺分布を箱ヒゲ図で表現 </p></dd>
+
+</dl><h2 id="a0000000014">How to analyze pretest-posttest data: possible solutions</h2>
+<p>事前事後データの分析法 </p><ol class="enumerate">
+<li><p>事後値のみを利用したANOVA </p></li><li><p>差得点を利用したANOVA </p></li><li><p>percent change（事前から事後への変化率）を利用したANOVA </p></li><li><p>ANCOVA </p></li><li><p>初期値によるブロッキング（層化） </p></li>
+</ol><h1 id="a0000000015">Chap2. Measurement Concepts</h1>
+<h2 id="a0000000016">What is reliability? (p.24-)</h2>
+<p>変化を査定するために満たされているべき条件 </p><ol class="enumerate">
+<li><p>真値と呼ばれる一定期間一定のまま安定した特定の特性や特徴を被験者が有していること </p></li><li><p>各測定において生じる誤差はランダムなもので，系統的な誤差が生じないこと </p></li><li><p>観測値は真値と誤差の和であること </p></li><li><p>事前測定と事後測定を通じて測定装置が安定していること<a href="#a0000000017" class="footnote"><sup class="footnotemark">3</sup></a> </p></li>
+</ol><h2 id="a0000000018">What is regression towards the mean? (p.29-)</h2>
+<h4 id="a0000000019">law of initial values（初期値の法則）</h4>
+<p> The intensity and direction of the response of any function of the organism at the moment of stimulus depends to a great extent on the initial value (level) of the function at the moment of stimulation. </p><h4 id="a0000000020">regression towards the mean（平均への回帰）</h4>
+<p>Sir Francis Galton(1885)によって報告されたのが始まり。 Furby(1973), Nesselroade, Stigler, and Baltes(1980), Labouvie(1982)による総括的なレビュー </p><p><img src="images/img-0003.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />を事前値，<img src="images/img-0004.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />を事後値とすると，どのような<img src="images/img-0005.png" alt="$\{  x, (\overline{Y}|X=x) \} $" style="vertical-align:-4px; 
+                                     width:107px; 
+                                     height:19px" class="math gen" />についても </p><table id="a0000000021" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000022">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0006.png" alt="$\displaystyle  |\overline{Y}-(\overline{Y}|X=x)| &lt; |\overline{X}-(\overline{X}|X=x)| = |\overline{X}-x|  $" style="vertical-align:-4px; width:338px;                     height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>3</span>)</span></td>
+</tr>
+</table><p> が成り立つ。 事前値と差得点の散布図を描くと明らかに右下がりの形状を示し，両者が負の相関関係にあることがわかる。 つまり，事前値が平均より低かった個体は正の変化を，事前値が平均より高かった個体は負の変化を示す傾向にあるということ。 </p><p>平均への回帰は，被験者に共通する何らかの生物的・物理的特徴から生じるのではなく，単に条件付き期待値に関する統計的性質によるものである。 </p><h2 id="a0000000023">Why is regression towards the mean important? (p.35-)</h2>
+<p>事前値が平均から離れていればいるほど，平均への回帰は大きい。しかも，この現象は処置の効果とは無関係に生じる。 特に，ベースラインがある値よりも高いヒトや低いヒトが被験者として集められていると平均への回帰は重大である。 </p><p><img src="images/img-0007.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 平均への回帰を統制するための群が必要 </p><h4 id="a0000000024">McDonald, Mazzuca, and McCabe(1983)</h4>
+<p> 既知の再検査信頼性の値を利用して，平均への回帰によって生じると期待される改善率を提案<a href="#a0000000025" class="footnote"><sup class="footnotemark">4</sup></a> </p><table id="a0000000026" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000027">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0008.png" alt="$\displaystyle  \text {expected percent improvement} = \frac{Q \sigma (1-G) * 100\% }{\mu + Q \sigma }  $" style="vertical-align:-14px; width:379px;                     height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>4</span>)</span></td>
+</tr>
+</table><p> ただし，<img src="images/img-0009.png" alt="$Q$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:14px" class="math gen" />は平均からの隔たりをSDを単位として表したもの，<img src="images/img-0010.png" alt="$G$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />は再検査信頼性である。 </p><p>[証明（※原典は未確認）] </p><p>もし<img src="images/img-0011.png" alt="$\mu _ X=\mu _ Y=\mu $" style="vertical-align:-3px; 
+                                     width:98px; 
+                                     height:10px" class="math gen" />かつ<img src="images/img-0012.png" alt="$\sigma _ X=\sigma _ Y=\sigma $" style="vertical-align:-2px; 
+                                     width:97px; 
+                                     height:9px" class="math gen" />であれば， </p><table id="a0000000028" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000029">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0013.png" alt="$\displaystyle  E[Y|X=x]  $" style="vertical-align:-5px; width:85px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0014.png" alt="$\displaystyle  = \mu _ Y + \frac{G (x-\mu _ X)\sigma _ Y}{\sigma _ X}  $" style="vertical-align:-14px; width:160px;                     height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>5</span>)</span></td>
+</tr><tr id="a0000000030">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0015.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0016.png" alt="$\displaystyle = \mu + G(x-\mu )  $" style="vertical-align:-4px; width:111px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>6</span>)</span></td>
+</tr>
+</table><p> ここで，<img src="images/img-0003.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />が<img src="images/img-0017.png" alt="$\mu $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" />から<img src="images/img-0018.png" alt="$Q\sigma $" style="vertical-align:-3px; 
+                                     width:23px; 
+                                     height:14px" class="math gen" />ぶん離れているとすると（つまり<img src="images/img-0019.png" alt="$X=\mu -Q\sigma $" style="vertical-align:-3px; 
+                                     width:90px; 
+                                     height:14px" class="math gen" />）， </p><table id="a0000000031" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000032">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0020.png" alt="$\displaystyle  E[Y|X=\mu -Q \sigma ]  $" style="vertical-align:-5px; width:129px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0021.png" alt="$\displaystyle = \mu + G(\mu -Q \sigma - \mu )  $" style="vertical-align:-4px; width:155px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>7</span>)</span></td>
+</tr><tr id="a0000000033">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0015.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0022.png" alt="$\displaystyle = \mu - GQ\sigma  $" style="vertical-align:-3px; width:82px;                     height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>8</span>)</span></td>
+</tr><tr id="a0000000034">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0023.png" alt="$\displaystyle E[Y-X|X=\mu +Q \sigma ]  $" style="vertical-align:-5px; width:164px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0024.png" alt="$\displaystyle = \mu - GQ\sigma -(\mu -Q \sigma )  $" style="vertical-align:-4px; width:168px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>9</span>)</span></td>
+</tr><tr id="a0000000035">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0015.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0025.png" alt="$\displaystyle = Q \sigma (1-G)  $" style="vertical-align:-4px; width:92px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>10</span>)</span></td>
+</tr>
+</table><p> 従って， </p><table id="a0000000036" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000037">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0026.png" alt="$\displaystyle  E \left[ \frac{Y-X}{X} \Big| X=\mu -Q\sigma \right]  $" style="vertical-align:-16px; width:178px;                     height:40px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0027.png" alt="$\displaystyle  =\frac{Q \sigma (1-G)}{\mu +Q\sigma }  $" style="vertical-align:-14px; width:96px;                     height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>11</span>)</span></td>
+</tr>
+</table><div style="text-align:right"> [証明終わり] </div><h2 id="a0000000038">Dealing with regression towards the mean and how to take advantage of test-retest reliability (p.37-)</h2>
+<p>平均への回帰を防いだり調整したりするための様々な測定を用いることができる。 </p><h3 id="a0000000039">平均への回帰を防ぐ方法</h3>
+<h4 id="a0000000040">McDonald, Mazzuca, and McCabe(1983)</h4>
+<p> 単一の測定値ではなく，ベースラインとして複数の測定値の平均を用いることで信頼性を上げるとよい。 </p><h4 id="a0000000041">Shepard(1981)</h4>
+<p>複数の測定の平均を用いることの2つのメリット(Shepard, 1981) </p><ol class="enumerate">
+<li><p>平均への回帰を小さくできる </p></li><li><p>測定値間の精度を高めることができる </p></li>
+</ol><p>研究によっては，極端な事前値の被験者を対象として組み入れる場合がある。 繰り返し測定は非常にコストがかかるという問題がある。 1回か2回の測定を行った時点でそうした被験者を検出する方法があれば有用である。 </p><h4 id="a0000000042">Moye, Davis, Sacks, Cole, Brown, Hawkins (1996)</h4>
+<p> <img src="images/img-0028.png" alt="$n$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:7px" class="math gen" />回の測定における再検査信頼性を<img src="images/img-0010.png" alt="$G$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />とする。 <img src="images/img-0029.png" alt="$m &lt; n$" style="vertical-align:0px; 
+                                     width:46px; 
+                                     height:10px" class="math gen" />において， </p><table id="a0000000043" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000044">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0030.png" alt="$\displaystyle  p(e_1 \leq \overline{X}_ n \leq e_2 | \overline{X}_ m) = \Phi _ Z \left[ \frac{e_2-\mu _ p}{\sqrt {v_ p}} \right] - \Phi _ Z \left[ \frac{e_1-\mu _ p}{\sqrt {v_ p}} \right]  $" style="vertical-align:-18px; width:392px;                     height:42px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>12</span>)</span></td>
+</tr>
+</table><p> ただし，<img src="images/img-0031.png" alt="$e_1$" style="vertical-align:-2px; 
+                                     width:14px; 
+                                     height:9px" class="math gen" />と<img src="images/img-0032.png" alt="$e_2$" style="vertical-align:-2px; 
+                                     width:14px; 
+                                     height:9px" class="math gen" />は研究に組み入れる上限と下限で， </p><table id="a0000000045" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000046">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0033.png" alt="$\displaystyle  \mu _ p = \mu _ n + \frac{m}{n} \left[ \frac{1+(n-1)G}{1+(m-1)G} \right] (\overline{X}_ m - \mu _ m)  $" style="vertical-align:-16px; width:304px;                     height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>13</span>)</span></td>
+</tr><tr id="a0000000047">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0034.png" alt="$\displaystyle v_ p = \frac{1+(n-1)G}{n} \left[ 1 - \frac{m}{n} \left( \frac{1+(n-1)G}{1+(m-1)G} \right) \right] \sigma ^2  $" style="vertical-align:-17px; width:350px;                     height:42px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>14</span>)</span></td>
+</tr>
+</table><p> である。 </p><h4 id="a0000000048">Davis (1976)</h4>
+<p> 事前値によって研究に組みれられる被験者が決まる場合にすべきこと </p><ol class="enumerate">
+<li><p>1回の測定値ではなく，複数の測定値の平均を用いる </p></li><li><p>事前値にもとづいて被験者が選ばれたのであれば，変化の評価を2回目の事前値を用いて行う（1回目の事前値と事後値の相関，2回目の事前値と事後値の相関が等しければ，平均への回帰は生じない<a href="#a0000000049" class="footnote"><sup class="footnotemark">5</sup></a>）同様に，<img src="images/img-0035.png" alt="$n_1$" style="vertical-align:-2px; 
+                                     width:16px; 
+                                     height:9px" class="math gen" />回の事前値をスクリーニングに，<img src="images/img-0036.png" alt="$n_2$" style="vertical-align:-2px; 
+                                     width:16px; 
+                                     height:9px" class="math gen" />回の事前値を変化の評価に用いるという拡張も考えられる </p></li>
+</ol><h3 id="a0000000050">平均への回帰を修正する方法</h3>
+<p> 何らかの要因を用いて事後値を補正し，補正した事後値を用いて統計分析を行う。 </p><h4 id="a0000000051">Chuang-Stein (1993); Chuang-Stein and Tong (1992)</h4>
+<p><img src="images/img-0037.png" alt="$Y_{\mathit{adj}}$" style="vertical-align:-4px; 
+                                     width:29px; 
+                                     height:15px" class="math gen" />を調整後の事後値，<img src="images/img-0017.png" alt="$\mu $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" />を事前値の平均とすると， </p><table id="eq.adjustedposttestscore" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000052">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0038.png" alt="$\displaystyle  Y_{\mathit{adj}}=Y-\frac{\sigma _ Y}{\sigma _ X} (G-1) (X-\mu ) \label{eq.adjustedposttestscore}  $" style="vertical-align:-14px; width:223px;                     height:32px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>15</span>)</span></td>
+</tr>
+</table><ol class="enumerate">
+<li><p>修正値と修正無し値はかなり相関が高い </p></li><li><p>修正値と修正無し値はともに平均は等しいが，分散は修正値の方が大きい </p></li>
+</ol><p> 平均への回帰について詳細はLin and Hughes (1997)に詳しい。 </p><p>ANCOVAを用いることでも，平均への回帰を事後的に修正できる（第5章）。 </p><h2 id="a0000000053">What is pretest sensitization? (p.44-)</h2>
+<p>以降の前提：事前値は事後値に影響を及ぼすが，処置効果には影響を及ぼさない（必ずしも成り立っているとは限らないが）。 すなわち，モデルは， </p><table id="a0000000054" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000055">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0039.png" alt="$\displaystyle  Y_ i = \mu _ i + \tau + e_ i  $" style="vertical-align:-3px; width:114px;                     height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>16</span>)</span></td>
+</tr><tr id="a0000000056">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0040.png" alt="$\displaystyle Cov(\mu _ i, \tau )=0  $" style="vertical-align:-4px; width:104px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>17</span>)</span></td>
+</tr>
+</table><p>事前値が処置効果に影響を及ぼすことを，“the pretest has sensitized subjects to the treatment"と表現する。 </p><h4 id="a0000000057">Pretest sensitization</h4>
+<table id="a0000000058" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000059">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0041.png" alt="$\displaystyle  \text {統制群：} ~ Y_{1i}  $" style="vertical-align:-2px; width:21px;                     height:13px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0042.png" alt="$\displaystyle = \mu _ i + \tau _1 + e_{1i}  $" style="vertical-align:-3px; width:106px;                     height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>18</span>)</span></td>
+</tr><tr id="a0000000060">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0043.png" alt="$\displaystyle \text {実験群：} ~ Y_{2i}  $" style="vertical-align:-2px; width:21px;                     height:13px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0044.png" alt="$\displaystyle = \mu _ i + f(\mu _ i,\tau _2) + e_{2i}  $" style="vertical-align:-4px; width:152px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>19</span>)</span></td>
+</tr><tr id="a0000000061">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0015.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0045.png" alt="$\displaystyle = \mu _ i + \tau _ i^* + e_{2i}  $" style="vertical-align:-4px; width:108px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>20</span>)</span></td>
+</tr>
+</table><h4 id="a0000000062">James(1973); Senn and Brown(1985);(1989)</h4>
+<p> Pretest sensitizationのモデル </p><table id="a0000000063" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000064">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0046.png" alt="$\displaystyle  Y_ i = \mu + \gamma \rho (X_ i - \mu ) + e_ i  $" style="vertical-align:-4px; width:180px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>21</span>)</span></td>
+</tr>
+</table><p> ただし，<img src="images/img-0017.png" alt="$\mu $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" />は事前値の平均，<img src="images/img-0047.png" alt="$\gamma $" style="vertical-align:-3px; 
+                                     width:9px; 
+                                     height:10px" class="math gen" />は処置効果に比例する要因であり，<img src="images/img-0048.png" alt="$\gamma &lt; 1$" style="vertical-align:-3px; 
+                                     width:38px; 
+                                     height:15px" class="math gen" />のとき処置効果は初期値に関係する<a href="#a0000000065" class="footnote"><sup class="footnotemark">6</sup></a>。 </p><h4 id="a0000000066">Chen and Cox (1992)</h4>
+<p> <img src="images/img-0028.png" alt="$n$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:7px" class="math gen" />を事前測定の回数，<img src="images/img-0049.png" alt="$m$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:7px" class="math gen" />を事前測定の回数として<img src="images/img-0050.png" alt="$n \gg m$" style="vertical-align:-1px; 
+                                     width:49px; 
+                                     height:11px" class="math gen" />のとき<a href="#a0000000067" class="footnote"><sup class="footnotemark">7</sup></a> </p><table id="a0000000068" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000069">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0051.png" alt="$\displaystyle  \hat{\rho } = \sqrt {1-\frac{\sum _{i=1}^ n [(Y_ i-\mu )-a(X_ i-\mu )]^2}{n \sigma ^2}}  $" style="vertical-align:-12px; width:287px;                     height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>22</span>)</span></td>
+</tr><tr id="a0000000070">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0052.png" alt="$\displaystyle \hat{\gamma }=\frac{a}{\hat{\rho }}  $" style="vertical-align:-15px; width:42px;                     height:33px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>23</span>)</span></td>
+</tr><tr id="a0000000071">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0053.png" alt="$\displaystyle a = \frac{\sum _{i=1}^ n(X_ i-\mu )(Y_ i-\mu )}{\sum _{i=1}^ n(X_ i-\mu )^2}  $" style="vertical-align:-16px; width:194px;                     height:42px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>24</span>)</span></td>
+</tr>
+</table><h2 id="a0000000072">Controlling for pretest sensitization with factorial designs (p.46-)</h2>
+<p>Pretest sensitizationを予防する最も良い方法は，事前テストと事後テストの間の交互作用をisolateできる実験デザインを適用すること（実験に先だってpretest sensitizationを防ぐということ）。 </p><h4 id="a0000000073">Solomon-four (Solomon, 1949)</h4>
+<div id="default" class="table"><div class="caption"><b>Table 1</b>: <span>Solomon-four (<img src="images/img-0054.png" alt="$2^2$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:14px" class="math gen" /> factorial) design</span></div><center> <table cellspacing="0" class="tabular">
+<tr>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+    
+    <td style="text-align:center"><p> Administer </p></td>
+
+    
+    <td style="text-align:center"><p> pretest </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center">&nbsp;</td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center">&nbsp;</td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> No </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> Yes </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p>Administer </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> No </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> Group1 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> Group2 </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p>Treatment </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> Yes </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> Group3 </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> Group4 </p></td>
+
+</tr>
+</table> </center></div><p>交互作用が有意であればpretest sensitizationがあったとする。 </p><h4 id="a0000000074">交互作用があるときの主効果の扱いについて</h4>
+<dl class="description">
+
+    <dt>意味なしとする立場</dt>
+    <dd><p>主効果は，他のあらゆる変数の全ての水準における予測変数の一定の効果を査定するもの。交互作用が存在するということは，一定の効果ではなく，その効果が事前テストの特定の水準に依存するということ。すべての水準を平均化した主効果にはあまり意味がない。仮に交互作用が存在する場合，要因Aの全ての水準における要因Bの効果と要因Bの全ての水準における要因Aの効果を調べる必要がある。 </p></dd>
+
+    <dt>意味ありとする立場</dt>
+    <dd><p>主効果は，独立変数の効果を全ての水準について平均したものであるとして解釈可能である。第3の変数によって独立変数の従属変数に対する効果が変わることを調整（moderation）という(Jaccard, 1997)。何が独立変数で何が調整変数か分析者が決定する必要がある。事前・事後デザインでは，処置が独立変数で事前値が調整変数。交互作用が存在する場合，調整変数の各水準における独立変数の効果を調べれば十分。 </p></dd>
+
+</dl><h1 id="a0000000075">Chap.3 Difference scores</h1>
+<h2 id="a0000000076">Definition and assumptions (p.51-)</h2>
+<p>差得点も変化率も事前値と事後値を1つの値にまとめる働きを持っている。 </p><p><img src="images/img-0003.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />を事前値，<img src="images/img-0004.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />を事後値として，差得点<img src="images/img-0055.png" alt="$\Delta $" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:12px" class="math gen" />は </p><table id="a0000000077" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000078">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0056.png" alt="$\displaystyle  \Delta = Y -X  $" style="vertical-align:0px; width:83px;                     height:12px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>25</span>)</span></td>
+</tr>
+</table><h2 id="a0000000079">Nonparametric Alternatives (p.57-)</h2>
+<p>正規性の前提が満たされない場合の代替法としてのノンパラメトリックな検定 </p><h4 id="a0000000080">正規性の検定</h4>
+<dl class="description">
+
+    <dt>Shapiro-Wilk <img src="images/img-0057.png" alt="$W$" style="vertical-align:0px; 
+                                     width:17px; 
+                                     height:11px" class="math gen" />統計量</dt>
+    <dd><p><img src="images/img-0058.png" alt="$N \leq 50$" style="vertical-align:-2px; 
+                                     width:53px; 
+                                     height:15px" class="math gen" />のとき </p></dd>
+
+    <dt>Kolmogorov <img src="images/img-0059.png" alt="$D$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />統計量</dt>
+    <dd><p><img src="images/img-0060.png" alt="$N &gt; 50$" style="vertical-align:0px; 
+                                     width:53px; 
+                                     height:13px" class="math gen" />のとき </p></dd>
+
+</dl><h4 id="a0000000081">正規性が満たされない場合のノンパラメトリック検定</h4>
+<p>Wilcoxon signed-rank test (Wilcoxon rank sum test) </p><h2 id="a0000000082">Effect of regression towards the mean on difference scores (p.70-)</h2>
+<p>変換後の得点と変換前の得点は独立であることが望ましい(Kaiser, 1989)。 差得点は，それを構成する得点と独立でなくしばしば事前値と相関しているとして批判の対象になる<a href="#a0000000083" class="footnote"><sup class="footnotemark">8</sup></a>。 事前値と差得点の相関は， </p><table id="a0000000084" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000085">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0061.png" alt="$\displaystyle  \rho _{x,y-x}  $" style="vertical-align:-4px; width:44px;                     height:11px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0062.png" alt="$\displaystyle = \frac{\sigma _ x \sigma _ y G - \sigma _ x^2}{\sigma _ x \sigma _{y-x}}  $" style="vertical-align:-16px; width:105px;                     height:42px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>26</span>)</span></td>
+</tr><tr id="a0000000086">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0015.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0063.png" alt="$\displaystyle = \frac{\mathrm{Cov}(x,y)-\sigma _ x^2}{\sigma _ x \sigma _{y-x}}  $" style="vertical-align:-16px; width:124px;                     height:42px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>27</span>)</span></td>
+</tr>
+</table><p> となる(Ghiselli, Campbell, and Zeddeck, 1981)。 </p><p>事前値と差得点が相関しているということは，差得点を従属変数とし事前値を共変量としたANCOVAを行う価値があるということ。 </p><p>事前値と差得点が相関しているので，差得点は平均への回帰の影響を受けることになる。 </p><p>式(<a href="index.html#eq.adjustedposttestscore">15</a>)による平均への回帰の修正が事後値の代わりに適用されることになる。 </p><h4 id="a0000000087">Mee and Chua (1991)</h4>
+<p>事前値にもとづいて被験者が選ばれており，<img src="images/img-0017.png" alt="$\mu $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" />が既知である場合の<img src="images/img-0064.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" />検定への修正 </p><table id="a0000000088" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000089">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0065.png" alt="$\displaystyle  Z_ i = X_ i -\mu  $" style="vertical-align:-3px; width:87px;                     height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>28</span>)</span></td>
+</tr>
+</table><p> として，<img src="images/img-0066.png" alt="$Z_ i=z_ i$" style="vertical-align:-2px; 
+                                     width:50px; 
+                                     height:13px" class="math gen" />と固定して </p><table id="a0000000090" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000091">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0067.png" alt="$\displaystyle  Y = \mu + \tau + \rho z + e  $" style="vertical-align:-3px; width:139px;                     height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>29</span>)</span></td>
+</tr>
+</table><p> を考える<a href="#a0000000092" class="footnote"><sup class="footnotemark">9</sup></a>。 つまり，<img src="images/img-0004.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />と<img src="images/img-0068.png" alt="$z$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" />は再テスト信頼性<img src="images/img-0002.png" alt="$\rho $" style="vertical-align:-3px; 
+                                     width:9px; 
+                                     height:10px" class="math gen" />を傾きとして切片を<img src="images/img-0069.png" alt="$\mu +\tau $" style="vertical-align:-3px; 
+                                     width:39px; 
+                                     height:14px" class="math gen" />とした線形回帰の関係になっている。 事前値のSDと事後値のSDが等しいとすると，検定統計量は </p><table id="a0000000093" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000094">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0070.png" alt="$\displaystyle  t=\frac{\beta _0 - \mu }{\left( \mathit{MSE}\left[ \frac{1}{n}+\frac{\overline{Z}^2}{\sum _{i=1}^ n (Z_ i-\overline{Z})^2} \right] \right)^{1/2}}  $" style="vertical-align:-33px; width:248px;                     height:55px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>30</span>)</span></td>
+</tr>
+</table><p> で，自由度は<img src="images/img-0071.png" alt="$n-2$" style="vertical-align:0px; 
+                                     width:38px; 
+                                     height:12px" class="math gen" />である。 </p><p>[本方法の弱点] </p><ol class="enumerate">
+<li><p>線形モデルが正しくなく，あるいは正規性の前提が成り立っていないと正しい検定にならない。 </p></li><li><p>被験者によって効果の大きさが異なることに対してこの検定は敏感である。 </p></li><li><p><img src="images/img-0017.png" alt="$\mu $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" />が既知である必要がある。 </p></li>
+</ol><p> Mee and Chua (1991)は，これらの問題に対していくつかの解決案を提示している。 </p><h4 id="a0000000095">George, Johnson, Shahane, and Nick (1997)</h4>
+<p> Mee and Chua (1991)の方法に対して，<img src="images/img-0017.png" alt="$\mu $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" />が未知の場合の最尤法にもとづくアプローチを提案。 一定の条件下で，Georgeらの方法はMeeらの方法より高い検定力を示すことがモンテカルロシミュレーションによって示されている。 </p><h1 id="a0000000096">Chap.4 Relative change functions</h1>
+<h2 id="a0000000097">Definitions and assumptions (p.75-)</h2>
+<table id="a0000000098" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000099">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0072.png" alt="$\displaystyle  C  $" style="vertical-align:0px; width:13px;                     height:11px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0073.png" alt="$\displaystyle = \frac{Y-X}{X} \text {~ ~ raw change}  $" style="vertical-align:-11px; width:171px;                     height:34px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>31</span>)</span></td>
+</tr><tr id="a0000000100">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0074.png" alt="$\displaystyle |C|  $" style="vertical-align:-4px; width:18px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0075.png" alt="$\displaystyle = \frac{|Y-X|}{X} \text {~ ~ absolute change}  $" style="vertical-align:-11px; width:214px;                     height:36px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>32</span>)</span></td>
+</tr>
+</table><p>変化率の最大の弱点は，正規分布に従うということがしばしば満たされないということ。 </p><p><img src="images/img-0076.png" alt="$Y/X$" style="vertical-align:-4px; 
+                                     width:33px; 
+                                     height:16px" class="math gen" />の期待値を1次のテイラー級数展開で表すと </p><table id="a0000000101" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000102">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0077.png" alt="$\displaystyle  E \left(\frac{Y}{X} \right) = \frac{\mu _ y}{\mu _ x} + \frac{1}{\mu _ x^2} \left( \sigma _ x^2 \frac{\mu _ y}{\mu _ x} - \rho \sigma _ x \sigma _ y \right)　 \neq \frac{\mu _ y}{\mu _ x}  $" style="vertical-align:-17px; width:324px;                     height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>33</span>)</span></td>
+</tr>
+</table><p> また，変化率については </p><table id="a0000000103" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000104">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0078.png" alt="$\displaystyle  E(C\% ) = 100 \left[ \frac{\mu _ y}{\mu _ x} + \frac{1}{\mu _ x^2} \left( \sigma _ y^2 \frac{\mu _ y}{\mu _ x} -\rho \sigma _ x \sigma _ y \right)-1 \right]  $" style="vertical-align:-17px; width:341px;                     height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>34</span>)</span></td>
+</tr><tr id="a0000000105">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0079.png" alt="$\displaystyle \mathit{Var}(C\% ) = \frac{100^2}{\mu _ x^2} \left(\sigma ^2_ x \frac{\mu _ y^2}{\mu _ x^2} + \sigma _ y^2 - 2\rho \sigma _ x \sigma _ y \frac{\mu _ y}{\mu _ x} \right)  $" style="vertical-align:-21px; width:322px;                     height:50px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>35</span>)</span></td>
+</tr>
+</table><p> である。 </p><h2 id="a0000000106">Change scores and regression towards the mean (p.79-)</h2>
+<p>change scoresも事前値としばしば高い相関を持つので，差得点の分析と同様の困難が生じる。 </p><p>差得点と事前値との相関は，percent changeと事前値との相関に等しい<a href="#a0000000107" class="footnote"><sup class="footnotemark">10</sup></a>。 </p><p>change scoresの分析は，差得点の分析が有している全ての問題に加え，独自の問題も有する。 </p><p>事後テスト得点のモデルを </p><table id="a0000000108" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000109">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0080.png" alt="$\displaystyle  Y_ i = \mu + S_ i + \tau + e_ i  $" style="vertical-align:-3px; width:145px;                     height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>36</span>)</span></td>
+</tr>
+</table><p> とする。 relative change scoresの平均への回帰は以下のように補正できる(Chuang-Stein (1993)も参照)。 </p><table id="a0000000110" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000111">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0081.png" alt="$\displaystyle  C_{\mathit{adj}} = \frac{Y-X}{X} - \frac{\sigma _ y(\rho -1)}{\sigma _ x} \left( 1-\frac{\mu }{x} \right)  $" style="vertical-align:-14px; width:261px;                     height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>37</span>)</span></td>
+</tr>
+</table><h2 id="a0000000112">Difference scores or relative change scores? (p.80-)</h2>
+<p>差得点と変化率のいずれを分析対象とするか，いくつかの基準で決定することが考えられる。 </p><ol class="enumerate">
+<li><p>いずれの変数が読者にとってより理解しやすいか </p></li><li><p>いずれの変数が平均への回帰の影響をより強く受けるか </p></li>
+</ol><h4 id="a0000000113">Kaiser (1989)</h4>
+<p>事前値との相関がより弱い変数を分析に使うべきである。 いずれの変数を分析に用いるべきか統計的な基準（尤度比の形になっている）を提案。 </p><table id="a0000000114" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000115">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0082.png" alt="$\displaystyle  R=\left[ \frac{\left( \mathit{geo}(\overline{X}) \right)^2\sum _{ij} \left[ \frac{(C\% {ij} - \overline{C}\% _{i})}{100} \right]^2 }{\sum _{ij}(D_{ij}-\overline{D_ i})^2} \right]^{n/2}  $" style="vertical-align:-32px; width:297px;                     height:76px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>38</span>)</span></td>
+</tr>
+</table><p> ただし，<img src="images/img-0083.png" alt="$i=1,2,\dots ,k$" style="vertical-align:-3px; 
+                                     width:97px; 
+                                     height:15px" class="math gen" />はグループ数，<img src="images/img-0084.png" alt="$j=1,2,\dots ,n$" style="vertical-align:-3px; 
+                                     width:101px; 
+                                     height:15px" class="math gen" />は各グループの人数。 </p><table id="a0000000116" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000117">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0085.png" alt="$\displaystyle  R \begin{cases}  &gt;1 \text { : use difference scores}\\ \leq 1 \text { : use percent change scores} \end{cases} $" style="vertical-align:-22px; width:257px;                     height:51px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>39</span>)</span></td>
+</tr>
+</table><p> ただし，この基準のみを用いて変数選択を行うべきではない。 </p><h1 id="a0000000118">Chap5. Analysis of covariance</h1>
+<h2 id="a0000000119">Definitions and assumptions (p.91-)</h2>
+<p>平均への回帰が問題になる場合，ANCOVAが有力な選択肢となる。 </p><p>ANCOVAを用いる際には，事前値と事後値が同じ尺度で測られている必要がない。 必要なのは，事前値と事後値がある程度相関しているということだけ。 </p><h2 id="a0000000120">Parametric ANCOVA (p.91-)</h2>
+<table id="a0000000121" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000122">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0086.png" alt="$\displaystyle  Y_{ij}=\mu + \tau _ i + \beta _ w (X_{ij}-\overline{X}_{..})+ e_{ij}  $" style="vertical-align:-4px; width:247px;                     height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>42</span>)</span></td>
+</tr>
+</table><p> 事前・事後デザインの場合， </p><table id="a0000000123" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000124">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0087.png" alt="$\displaystyle  \beta _ w = \frac{\sigma ^2_ S}{\sigma ^2_ S + \sigma ^2_ e}  $" style="vertical-align:-16px; width:101px;                     height:42px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>43</span>)</span></td>
+</tr>
+</table><p> である(Crager, 1987)。<img src="images/img-0088.png" alt="$\sigma ^2_ S,~ \sigma ^2_ e$" style="vertical-align:-4px; 
+                                     width:48px; 
+                                     height:18px" class="math gen" />はそれぞれ被験者間／被験者内分散。 </p><p>完全無作為デザイン </p><table id="a0000000125" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000126">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0089.png" alt="$\displaystyle  Y_{ij}=\mu + \tau _ i + e_{ij}  $" style="vertical-align:-4px; width:124px;                     height:15px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>44</span>)</span></td>
+</tr>
+</table><p> と比べると，誤差項を </p><ol class="enumerate">
+<li><p>事後値の事前値に対する回帰によるもの </p></li><li><p>説明できない残差のばらつきによるもの </p></li>
+</ol><p> の2つに分解していることがわかる。 </p><p>ANCOVAを用いた2段階の分析 </p><ol class="enumerate">
+<li><p>ANCOVAを用いて事後値を修正する </p><table id="a0000000127" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000128">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0090.png" alt="$\displaystyle  Y_{(\mathit{adj})ij} = Y_{ij}-\beta _ w (X_{ij} - \overline{X}_{..}) = \mu + \tau _ i + e_{ij}  $" style="vertical-align:-6px; width:321px;                     height:21px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>45</span>)</span></td>
+</tr>
+</table></li><li><p>修正した事後値に対してANOVAを適用する </p></li>
+</ol><h2 id="a0000000129">ANCOVA with difference scores as the dependent variable (p.93-)</h2>
+<p>差得点を従属変数にしたANCOVAと事後値を従属変数にしたANCOVAでは，効果の推定は同じになる(Laird, 1983)。 </p><h2 id="a0000000130">ANCOVA using percent change as the dependent variable (p.94-)</h2>
+<p>変化率を従属変数としたANCOVAでは，独立変数との関係性が2次関数的になる(Suisa, Levinton, and Esdaile, 1989)。 </p><h2 id="a0000000131">Assumptions of the ANCOVA (p.96-)</h2>
+<ol class="enumerate">
+<li><p>誤差は独立かつ平均がゼロ，分散共通の正規分布に従う </p></li><li><p>グループ内回帰係数は母集団において等しい </p></li><li><p>事前値は誤差なしに測定されている </p></li><li><p>事前値と事後値に曲線的な関係があれば，それは線形モデルにおいて反影される </p></li>
+</ol><h2 id="a0000000132">Error-in-variables ANCOVA (p.101-)</h2>
+<p>誤差のない測定値は存在しない。 独立変数<img src="images/img-0003.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />に誤差を導入する。 </p><table id="a0000000133" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000134">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0091.png" alt="$\displaystyle  Y_{ij} = \mu + \tau _ i + \beta _ w (X_{ij} - \overline{X}_{..} + e_{xij}) + e_{ij}  $" style="vertical-align:-4px; width:295px;                     height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>46</span>)</span></td>
+</tr>
+</table><p> このとき， </p><table id="a0000000135" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000136">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0092.png" alt="$\displaystyle  \mathit{Cov}(X, e-\beta _ w d) \neq 0  $" style="vertical-align:-4px; width:149px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>47</span>)</span></td>
+</tr>
+</table><p> である<a href="#a0000000137" class="footnote"><sup class="footnotemark">11</sup></a>。 </p><h2 id="a0000000138">Effect of outliers and influential observations (p.103-)</h2>
+<p>IRWLS(iteratively reweighted least-squares)を用いた母数推定 </p><ol class="enumerate">
+<li><p>全ての観測値に対する重み関数を選択する </p></li><li><p>全ての観測値に対する重みの初期値を得る </p></li><li><p>重みの初期値を用いて重みつき最小2乗法を実行する </p></li><li><p>残差を得る </p></li><li><p>残差を用いて重みを更新する </p></li><li><p>収束するまでStep3に戻って繰り返す </p></li>
+</ol><p> 重み関数として，Huber functionとbisquare functionが知られている(Seber, 1977)。 外れ値の割合が大きい場合（10%を超える）はbisquare functionが優れているが，そうでない場合はパフォーマンスにほとんど違いはない(Birch and Myers, 1982)。 </p><h2 id="a0000000139">Nonrandom assignment of subjects to treatment groups (p.105-)</h2>
+<p>無作為でない割り付けは，妥当なだけでなく無作為割り付けよりも有利な点がある(Dalton and Overall, 1977)。 </p><p>事前値の情報をもとにした無作為でないシステマティックな割り付け法としてalternate ranks design(ARD)が知られている。 事前値と処遇との間の相関を取り除く形で被験者を割り付ける。 </p><h1 id="a0000000140">Chap.6 Blocking techniques</h1>
+<dl class="description">
+
+    <dt>stratification / blocking</dt>
+    <dd><p>事前値を統制するために，処遇グループに割り付ける前に被験者をブロックに割り付ける </p></dd>
+
+    <dt>post-hoc blocking</dt>
+    <dd><p>事後値を得てから被験者をブロックに割り付け，post-hoc blocksを統計分析の要因として用いる </p></dd>
+
+</dl><h2 id="a0000000141">Using stratification to control for the pretest (p.111-)</h2>
+<h4 id="a0000000142">Feldt(1958)</h4>
+<p>事前・事後デザインにおけるブロック数を決めるための表を提供（Table6.1 at p.114）。 </p><ol class="enumerate">
+<li><p>全体のサンプルサイズ </p></li><li><p>事前テストと事後テストの間の相関 </p></li><li><p>グループの数 </p></li>
+</ol><p> の3つの情報が必要。 また， </p><ol class="enumerate">
+<li><p>事前値と事後値の間の傾きはどの群でも同じ（ANCOVAと似ている） </p></li><li><p>群間の等分散性<a href="#a0000000143" class="footnote"><sup class="footnotemark">12</sup></a> </p></li>
+</ol><p> という条件が前提とされている。 ロバストネスについては未検討。 </p><p>ANCOVAとブロッキング，差得点の分析の検定力を比較。 どの方法が検定力が最高かは事前と事後の相関の強さに依存する。 </p><ul class="itemize">
+<li><p><img src="images/img-0093.png" alt="$G &lt;0.2$" style="vertical-align:0px; 
+                                     width:56px; 
+                                     height:12px" class="math gen" />：事後値のANOVAが検定力最高 </p></li><li><p><img src="images/img-0094.png" alt="$G &lt; 0.4$" style="vertical-align:0px; 
+                                     width:56px; 
+                                     height:12px" class="math gen" />：ブロッキングが検定力最高 </p></li><li><p><img src="images/img-0095.png" alt="$0.4 \leq G \leq 0.6$" style="vertical-align:-2px; 
+                                     width:99px; 
+                                     height:14px" class="math gen" />：ブロッキングもANCOVAも検定力は同じくらい </p></li><li><p><img src="images/img-0096.png" alt="$G&gt;0.6$" style="vertical-align:0px; 
+                                     width:56px; 
+                                     height:12px" class="math gen" />：ANCOVAが検定力最高 </p></li>
+</ul><p> 差得点の分析は事前事後の相関に関わらず最も検定力が低い。 ANCOVAの方が制約が多く，また教育・心理においては<img src="images/img-0097.png" alt="$G &gt; 0.6$" style="vertical-align:0px; 
+                                     width:56px; 
+                                     height:12px" class="math gen" />になることは考えにくいとして，Feldt(1958)はブロッキングを推奨。 </p><h1 id="a0000000144">Chap.7 Repeated measures analysis of variance</h1>
+<h2 id="a0000000145">Regression towards the mean with multiple posttest measurements (p.123-)</h2>
+<p>詳しくはDiggle, Liang, and Zeger (1995), Nesselroade, Stigler, and Baltes (1980), McDonald, Mazzuca, and McCabe (1983)などを参照。 複数の測定に伴う確率的な性質を考慮に入れる必要がある。 </p><h2 id="a0000000146">Using repeated measures ANOVA for analysis of pretest-posttest data with multiple posttest measurements (p.125-)</h2>
+<p>共分散分析を伴った線形混合モデル </p><table id="a0000000147" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000148">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0098.png" alt="$\displaystyle  Y_{ijk} = \mu + \alpha _ i + \tau _{j(i)} + \beta _ k + \alpha \beta _{ik} + \gamma (X_ j-\mu ) + e_{ijk}  $" style="vertical-align:-6px; width:377px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>48</span>)</span></td>
+</tr>
+</table><p> <img src="images/img-0099.png" alt="$ \gamma (X_ j-\mu )$" style="vertical-align:-4px; 
+                                     width:72px; 
+                                     height:18px" class="math gen" />が事前値と事後値の非独立性を表す部分。 Wolfinger(1997)によい適用例。 </p></div>
+
+
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000003">これは，“Analysis of pretest-posttest designs."(Bonate, 2000)に関するメモである。</li><li id="a0000000012">実際は，強平行測定が成り立っていないといけないので，これは再検査信頼性にはならないはず。</li><li id="a0000000017">学力の測定などだとこれは難しいと思う。同じテストだと練習効果が明らかに生じる。心理尺度などでも事前測定によって少しは系統的なバイアスが生じるはず。</li><li id="a0000000025">ここでは再検査信頼性は既知となっているが，一般にはこれは未知。また，事前事後で共通とされている平均やSDを未知であるから，これらを標本統計量で置きかえた場合の調整が現実的には必要。</li><li id="a0000000049">本当か?</li><li id="a0000000065">なぜ<img src="images/img-0100.png" alt="$\gamma &lt;1$" style="vertical-align:-3px; 
+                                     width:38px; 
+                                     height:15px" class="math gen" />のとき限定なのかよくわからない。<img src="images/img-0101.png" alt="$\gamma \neq 1$" style="vertical-align:-4px; 
+                                     width:38px; 
+                                     height:16px" class="math gen" />ならわかるが。</li><li id="a0000000067">本文中では<img src="images/img-0102.png" alt="$n/m \approx 0$" style="vertical-align:-4px; 
+                                     width:63px; 
+                                     height:16px" class="math gen" />のときとなっているが，逆であろう。</li><li id="a0000000083">回帰効果により，事前値が平均より高かった人は差が小さくなる(see Figure at p.33)。</li><li id="a0000000092"><img src="images/img-0103.png" alt="$\Delta = \mu + \tau + \rho z + e$" style="vertical-align:-3px; 
+                                     width:140px; 
+                                     height:15px" class="math gen" />の間違いでは？</li><li id="a0000000107">要確認</li><li id="a0000000137"><img src="images/img-0104.png" alt="$\mathit{Cov}(X, e) \neq 0$" style="vertical-align:-4px; 
+                                     width:100px; 
+                                     height:18px" class="math gen" />ではないのか。式の意味が不明。</li><li id="a0000000143">事前と事後でということか?</li>
+</ol>
+</div>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td class="navtitle" align="center">事前事後データの分析について<a href="#a0000000003" class="footnote"><sup class="footnotemark">1</sup></a></td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>
