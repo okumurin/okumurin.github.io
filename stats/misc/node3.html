@@ -1,0 +1,649 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="平均構造のあるモデル">
+<META NAME="keywords" CONTENT="misc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="misc.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="misc.html">
+<LINK REL="next" HREF="node4.html">
+<TITLE>平均構造のあるモデル</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html80"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html78"
+  HREF="misc.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html72"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html81"
+  HREF="node4.html">LOCF解析とITT分析</A>
+<B>Up:</B> <A NAME="tex2html79"
+  HREF="misc.html">研究法や分析法に関するメモ</A>
+<B> Previous:</B> <A NAME="tex2html73"
+  HREF="node2.html">適合度指標</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html82"
+  HREF="node3.html#SECTION00031000000000000000">狩野・三浦 (2003) 第6章</A>
+<LI><A NAME="tex2html83"
+  HREF="node3.html#SECTION00032000000000000000">豊田 (2014) 「R編」第5章</A>
+<LI><A NAME="tex2html84"
+  HREF="node3.html#SECTION00033000000000000000">豊田 (2014) 「R編」第6章</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00030000000000000000">
+平均構造のあるモデル</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00031000000000000000">
+狩野・三浦 (2003) 第6章</A>
+</H2>
+
+<P>
+多母集団同時分析：因子不変性 factorical invariance <A NAME="tex2html4"
+  HREF="footnode.html#foot236"><SUP><SPAN CLASS="arabic">4</SPAN></SUP></A>を確認する有力な方法。母集団間で因子平均を比較することができる。
+
+<P>
+
+<H3><A NAME="SECTION00031100000000000000">
+同一の因子構造とは</A>
+</H3>
+
+<P>
+「同一」といっても意味は様々：因子負荷だけが等しい，因子負荷・分散共分散の全てが等しい，など
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<DIV ALIGN="CENTER">
+<A NAME="239"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 3.1:</STRONG>
+因子不変性の検証</CAPTION>
+<TR><TD ALIGN="LEFT">モデル番号</TD>
+<TD ALIGN="LEFT">等値条件</TD>
+</TR>
+<TR><TD ALIGN="LEFT">0（配置不変 configural invariance）</TD>
+<TD ALIGN="LEFT">等値条件なし</TD>
+</TR>
+<TR><TD ALIGN="LEFT">1（測定不変 metric invariance）</TD>
+<TD ALIGN="LEFT">因子負荷が等しい</TD>
+</TR>
+<TR><TD ALIGN="LEFT">2</TD>
+<TD ALIGN="LEFT">因子負荷，共通因子の分散共分散が等しい</TD>
+</TR>
+<TR><TD ALIGN="LEFT">3</TD>
+<TD ALIGN="LEFT">因子負荷，独自因子の分散共分散が等しい</TD>
+</TR>
+<TR><TD ALIGN="LEFT">4</TD>
+<TD ALIGN="LEFT">因子負荷，共通因子の分散共分散，独自因子の分散共分散が等しい</TD>
+</TR>
+</TABLE>
+</DIV>
+<A NAME="tab17110601"></A>
+</DIV>
+<BR>
+<P>
+
+<H3><A NAME="SECTION00031200000000000000">
+因子不変性の検証</A>
+</H3>
+
+<P>
+母集団によって因子の分散・共分散が異なる可能性があるので，因子の分散ではなく任意の因子負荷を1に固定する。
+
+<P>
+標本サイズが大きいとモデルは棄却されるというカイ2乗検定の欠点はあるが，因子不変性の検証にあたっては，有意水準を調整したとしても測定不変（モデル1）は統計学的に確認したいところ。
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{はてな？}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="82" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{\bf{はてな？}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>カイ2乗検定ではなく，適合度指標によって因子不変性を確認してはいけないのか？
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\textbf{はてな？ここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="149" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img45.png"
+ ALT="\fbox{\textbf{はてな？ここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<H3><A NAME="SECTION00031300000000000000">
+平均に構造を考える</A>
+</H3>
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+因子平均の解析を行うにあたっては，平均構造のない多母集団同時分析が行われていて，少なくとも測定不変性<A NAME="tex2html6"
+  HREF="footnode.html#foot251"><SUP><SPAN CLASS="arabic">5</SPAN></SUP></A>が確認できていることが前提。
+</DIV>
+
+<P>
+平均を考えないときの回帰式（データは平均=0になるよう変換）：
+<P><!-- MATH
+ \begin{displaymath}
+V_2 = a_2 F_1 + e_1
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="118" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$\displaystyle V_2 = a_2 F_1 + e_1$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+E[F_1] = 0
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="79" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img47.png"
+ ALT="$\displaystyle E[F_1] = 0$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+平均を考えるときの回帰式：
+<P><!-- MATH
+ \begin{displaymath}
+V_2 = m_2 + a_2 F_1 + e_1 ~~(=m_2 1 + a_2 F_1 + e_1)
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="331" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\displaystyle V_2 = m_2 + a_2 F_1 + e_1&nbsp;&nbsp;(=m_2 1 + a_2 F_1 + e_1)$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+E[F_1] = \alpha_1
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="89" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img49.png"
+ ALT="$\displaystyle E[F_1] = \alpha_1$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+F_1 = \alpha_1 1 + d_1
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="112" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.png"
+ ALT="$\displaystyle F_1 = \alpha_1 1 + d_1$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+ただし，<SPAN CLASS="MATH"><IMG
+ WIDTH="27" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img51.png"
+ ALT="$ m_1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+は切片，<SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img52.png"
+ ALT="$ \alpha_1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+は因子平均，<SPAN CLASS="MATH"><IMG
+ WIDTH="21" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img53.png"
+ ALT="$ d_1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+は誤差変数。
+
+<P>
+すると，観測変数の平均は
+<P><!-- MATH
+ \begin{displaymath}
+E[V_2] = m_2 + a_2 E[F_1] = m_2 + a_2 \alpha_1
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="275" HEIGHT="34" ALIGN="MIDDLE" BORDER="0"
+ SRC="img54.png"
+ ALT="$\displaystyle E[V_2] = m_2 + a_2 E[F_1] = m_2 + a_2 \alpha_1$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+となる。
+
+<P>
+母集団が男女のように複数ある場合，
+<P><!-- MATH
+ \begin{displaymath}
+E[V_2^{(b)}] = m_2 + a_2 \alpha_1^{(b)}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="172" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img55.png"
+ ALT="$\displaystyle E[V_2^{(b)}] = m_2 + a_2 \alpha_1^{(b)}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+E[V_2^{(g)}] = m_2 + a_2 \alpha_1^{(b)}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="173" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.png"
+ ALT="$\displaystyle E[V_2^{(g)}] = m_2 + a_2 \alpha_1^{(b)}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+のように，切片は各群共通で因子平均が群間で異なるという仮定をおくことが多い<A NAME="tex2html7"
+  HREF="footnode.html#foot257"><SUP><SPAN CLASS="arabic">6</SPAN></SUP></A>。
+ただし，識別のために <!-- MATH
+ $\alpha_1^{(b)}=0$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="65" HEIGHT="45" ALIGN="MIDDLE" BORDER="0"
+ SRC="img57.png"
+ ALT="$ \alpha_1^{(b)}=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ などと固定する。
+
+<P>
+
+<H3><A NAME="SECTION00031400000000000000">
+因子平均の評価</A>
+</H3>
+
+<P>
+因子平均そのものの値は，標準偏差が考慮されていないのであまり意味がない。
+そこで，因子の標準偏差で標準化して，
+<P><!-- MATH
+ \begin{displaymath}
+\frac{\widehat{\alpha}_1^{(g)}}{\widehat{\Phi}_{11}^{(g)}}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="39" HEIGHT="69" ALIGN="MIDDLE" BORDER="0"
+ SRC="img58.png"
+ ALT="$\displaystyle \frac{\widehat{\alpha}_1^{(g)}}{\widehat{\Phi}_{11}^{(g)}}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+という効果量の形で評価するとよい。つまり，女子の因子平均は男子 (=0) と比べて標準偏差いくつ分大きい（小さい）という意味である。
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{はてな？}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="82" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{\bf{はてな？}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>因子分散が男女で大きく異なる場合は，女子の因子標準偏差のみを用いて標準化することに意味があるか疑問に感じる。
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\textbf{はてな？ここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="149" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img45.png"
+ ALT="\fbox{\textbf{はてな？ここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<H2><A NAME="SECTION00032000000000000000">
+豊田 (2014) 「R編」第5章</A>
+</H2>
+
+<P>
+<TT>lavaan</TT>の書式は，次の通り：
+
+<UL>
+<LI><TT>=~</TT>: 測定方程式
+</LI>
+<LI><TT>~</TT>: 構造方程式
+</LI>
+<LI><code>~~</code>: 共変関係
+</LI>
+</UL>
+
+<P>
+切片は，モデルに定数1を含むことで表現できる。
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+model &lt;- '
+          x6 ~ 1 + x2 + x4
+          x5 ~ 1 + x2 + x4 + x6
+          x5 ~~ x5; x6 ~~ x6'
+          
+model &lt;- '
+          f1=~x1+x2+x3+1*x4     # x4の負荷を1に固定
+          x1+x2+x3+x4 ~ 0*1     # 観測変数の切片を0に固定
+          x1~~x1; x2~~x2; x3~~x3; x4~~x4
+          f1~1  # 因子2に切片を設定
+          f1~~f1
+          
+          f2=~x5+x6+1*x7  # x7の負荷を1に固定
+          x5+x6+x7 ~ 0*1   # 観測変数の切片を0に固定
+          x5~~x5; x6~~x6; x7~~x7
+          f2~~f2
+          f2~1+f1'  # 因子2に切片を設定
+</PRE>
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00033000000000000000">
+豊田 (2014) 「R編」第6章</A>
+</H2>
+
+<P>
+母集団間で因子負荷に等値制約をおくことで初めて因子平均が比較できるようになる。
+
+<P>
+
+<H3><A NAME="SECTION00033100000000000000">
+等値制約</A>
+</H3>
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\textbf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="49" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img59.png"
+ ALT="\fbox{\textbf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>狩野・三浦 (2003) では，「平均構造のないモデル」での因子不変性を説明している。
+ここでは，「平均構造のあるモデル」での因子不変性の説明になっている。
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\textbf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="116" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img60.png"
+ ALT="\fbox{\textbf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+<BR><P></P>
+<DIV ALIGN="CENTER">
+
+<DIV ALIGN="CENTER">
+<A NAME="280"></A>
+<TABLE CELLPADDING=3 BORDER="1">
+<CAPTION><STRONG>表 3.2:</STRONG>
+等値制約</CAPTION>
+<TR><TD ALIGN="LEFT">モデル番号</TD>
+<TD ALIGN="LEFT">等値条件</TD>
+</TR>
+<TR><TD ALIGN="LEFT">配置不変モデル</TD>
+<TD ALIGN="LEFT">因子平均のみ両群0で共通（識別のため因子分散を両群1に固定）</TD>
+</TR>
+<TR><TD ALIGN="LEFT">弱測定不変モデル</TD>
+<TD ALIGN="LEFT">因子平均は両群0，因子負荷が等しい（切片と因子分散は異なる<A NAME="tex2html9"
+  HREF="footnode.html#foot284"><SUP><SPAN CLASS="arabic">7</SPAN></SUP></A>）</TD>
+</TR>
+<TR><TD ALIGN="LEFT">強測定不変モデル</TD>
+<TD ALIGN="LEFT">因子平均に差，因子負荷と切片が等しい（因子分散は異なる<A NAME="tex2html10"
+  HREF="footnode.html#foot285"><SUP><SPAN CLASS="arabic">8</SPAN></SUP></A>）</TD>
+</TR>
+<TR><TD ALIGN="LEFT">厳密な測定不変モデル</TD>
+<TD ALIGN="LEFT">因子平均に差，因子負荷と切片と誤差分散が等しい</TD>
+</TR>
+<TR><TD ALIGN="LEFT">全母数が等しいモデル</TD>
+<TD ALIGN="LEFT">因子分散以外（因子平均，因子負荷，切片，誤差分散）が等しい</TD>
+</TR>
+</TABLE>
+</DIV>
+<A NAME="tab17110602"></A>
+</DIV>
+<BR>
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\textbf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="49" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img59.png"
+ ALT="\fbox{\textbf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>狩野・三浦 (2003) では，因子不変性のチェックを適合度検定によって行っているが，本書の例では適合度指標によってチェックがなされている（CFI, TLI, AIC, BIC, RMSEA, SRMR）。
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\textbf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="116" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img60.png"
+ ALT="\fbox{\textbf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{はてな？}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="82" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="\fbox{\bf{はてな？}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>なぜ，因子分散は共通で因子平均が異なるモデルは検討しないのだろうか？（因子分散が異なれば，そもそも負荷を同じにしてもその意味は異なってしまう。）
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\textbf{はてな？ここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="149" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img45.png"
+ ALT="\fbox{\textbf{はてな？ここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<H3><A NAME="SECTION00033200000000000000">
+<TT>lavaan</TT>パッケージでの実行</A>
+</H3>
+
+<P>
+<TT>semTools</TT>パッケージの関数 <TT>measurementInvariance()</TT> で，配置不変モデルや測定不変モデルを検討できる。
+モデル比較の出力は，関数 <TT>compareFit()</TT> に結果を渡してやればよい。
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+model &lt;- 'f1 =~ V1+V2+V3+V4'  # モデルの指定
+
+out &lt;- measurementInvariance(model,      # モデル
+                             data=dat,   # データ
+                             group="C",  # グループ化変数
+                             strict=T,   # 厳密な測定不変モデルを検討するか
+                             quiet=T)    # モデル比較の結果を出力するか
+                             
+compareFit(out)  # モデル比較の結果を表示
+
+fit &lt;- lavaan(model, data=dat, group="C", 
+              group.equal=c("loadings", "intercepts", "residuals", "means")) # 因子負荷，切片，誤差分散，因子平均に等値制約
+</PRE>
+</DIV>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html80"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html78"
+  HREF="misc.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html72"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html81"
+  HREF="node4.html">LOCF解析とITT分析</A>
+<B>Up:</B> <A NAME="tex2html79"
+  HREF="misc.html">研究法や分析法に関するメモ</A>
+<B> Previous:</B> <A NAME="tex2html73"
+  HREF="node2.html">適合度指標</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-11-24</I>
+</ADDRESS>
+</BODY>
+</HTML>

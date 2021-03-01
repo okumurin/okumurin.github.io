@@ -1,0 +1,128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0026.html" rel="next" />
+<link href="sect0024.html" rel="prev" />
+<link href="sect0022.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>5.3 時変の予測変数</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="5.2 測定時点の数が異なる場合" href="sect0024.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="5 時間的な変数 TIME をより柔軟に扱う" href="sect0022.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="TIME の効果の再中心化" href="sect0026.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0024.html" class="sectref" rel="prev">測定時点の数が異なる場合</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0022.html" class="sectref" rel="parent">時間的な変数 <i class="itshape">TIME</i> をより柔軟に扱う</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0026.html" class="sectref" rel="next"><i class="itshape">TIME</i> の効果の再中心化</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h2 id="a0000000026">5.3 時変の予測変数</h2>
+<h3 id="a0000000107">5.3.1 事変の予測変数の主効果を含める</h3>
+<h4 id="a0000000108">分散成分</h4>
+<ul class="itemize">
+<li><p>時不変な予測変数を加えた場合: レベル2の分散成分は減少しても、レベル1の分散成分はあまり減少しない </p></li><li><p>時変な予測変数を加えた場合: レベル1も2も分散成分は変化しうる </p></li>
+</ul><p>※ただし、レベル2の分散成分の減少にはあまり意味がないことが多い。 </p><p>時変の予測変数を追加すると、レベル1のパラメータ <img src="images/img-0045.png" alt="$\pi _ i$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:10px" class="math gen" /> は意味が変わる。 </p><p><img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 追加前に比べて、レベル2の分散が増加することもある。 </p><h3 id="a0000000109">5.3.2 時変の予測変数の効果が時間とともに変化することを許容する</h3>
+<p>時変予測変数間の交互作用を入れれば良い。  </p><table id="a0000000110" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0046.png" alt="\begin{equation}  Y_{ij} = [\gamma _{00} + \gamma _{10} \textit{TIME}_{ij} + \gamma _{20} \textit{UNEMP}_{ij} + \gamma _{30} \underbrace{ \textit{UNEMP}_{ij} \times \textit{TIME}_{ij} }_{\text {interaction}}] + [\zeta _{0i} + \zeta _{1i} \textit{TIME}_{ij} + e_{ij}] \end{equation}" style="width:670px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.7</span>)</span></td>
+</tr>
+</table><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">はてな？</b></span> </p><p><i class="itshape">UNEMP</i> と <i class="itshape">TIME</i> の交互作用を考える際に、センタリングしておかなくて良いのだろうか？ </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">はてな？ここまで</b></span> </div></blockquote><h3 id="a0000000111">5.3.3 時変の予測変数を再中心化する</h3>
+<p>中心化は大きな関心を集めているテーマ（Kreft et al., 1995; Hofmann &amp; Gavin, 1998）。 </p><h4 id="a0000000112">全平均中心化</h4>
+<p>予測変数の全標本平均を引き算すること。 </p><p>ただし、測定時点と測定回数が人によって異なる場合、この「平均」には意味がないかもしれない。 </p><p><img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 実質的な意味のある定数で中心化することがよくある。 </p><h4 id="a0000000113">文脈内中心化（群平均の中心化）</h4>
+<p>個人ごとに与えられた定数で中心化すること。 </p><p>※ 内生性の解釈の問題が生じる。 </p><h3 id="a0000000114">5.3.4 重要な注意：逆方向因果の問題</h3>
+<h4 id="a0000000115">逆方向因果（内生性）</h4>
+<p><img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" /> と <img src="images/img-0048.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> に相関があるとき、どちらが原因で結果か断定できない問題。 縦断データだけで逆方向因果の問題が解決されるわけではない。 </p><p>予測変数の種類によってどれくらい問題が生じるかが異なる。 </p><ol class="enumerate">
+<li value="1"><p>確定した defined 変数 </p><ul class="itemize">
+<li><p>時変の予測変数の値があらかじめ決定している </p></li><li><p>ほとんどの場合は時間の関数 </p></li><li><p>逆方向因果は問題にならない </p></li>
+</ul></li><li value="2"><p>付属する ancillary 変数 </p><ul class="itemize">
+<li><p>時変の予測変数の値が参加者とは無関係な外部の確率的な過程によって（不規則に）決まる </p></li><li><p>被験者の生きている物理的もしくは社会的な環境の、変化しうる特性<a href="#a0000000116" class="footnote"><sup class="footnotemark">1</sup></a> </p></li><li><p>逆方向因果は問題にならない </p></li>
+</ul></li><li value="3"><p>文脈的な contextual 変数 </p><ul class="itemize">
+<li><p>確率的に値が決まる時変の予測変数だが、参加者と関係がある<a href="#a0000000117" class="footnote"><sup class="footnotemark">2</sup></a> </p></li><li><p>結果変数の値によって影響されることがあり、逆方向因果が問題になる </p></li>
+</ul></li><li value="4"><p>内的な internal 変数 </p><ul class="itemize">
+<li><p>個人の時間とともに潜在的に変化しうる時変の予測変数 </p></li><li><p>心理的、身体的、社会的な状態など<a href="#a0000000118" class="footnote"><sup class="footnotemark">3</sup></a> </p></li><li><p>逆方向因果が問題になる </p></li>
+</ul></li>
+</ol><p>解決の指針として、 </p><ol class="enumerate">
+<li value="1"><p>理論を指針して、最も厳しい批判を考える </p></li><li value="2"><p>予測変数について、1時点前の値を結果変数に対応させるようにする </p></li>
+</ol><p> など。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000116">その地域の失業率、天気、ランダムな処遇への割当など</li><li id="a0000000117">両親の離婚、通っている保育所の質、など</li><li id="a0000000118">気分、血圧、既婚/未婚など</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="5.2 測定時点の数が異なる場合" href="sect0024.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="5 時間的な変数 TIME をより柔軟に扱う" href="sect0022.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="TIME の効果の再中心化" href="sect0026.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0024.html" class="sectref" rel="prev">測定時点の数が異なる場合</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0022.html" class="sectref" rel="parent">時間的な変数 <i class="itshape">TIME</i> をより柔軟に扱う</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0026.html" class="sectref" rel="next"><i class="itshape">TIME</i> の効果の再中心化</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

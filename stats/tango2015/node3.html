@@ -1,0 +1,1304 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="分散分析モデルから治療効果を学ぶ">
+<META NAME="keywords" CONTENT="tango2015">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="tango2015.css">
+
+<LINK REL="next" HREF="node4.html">
+<LINK REL="previous" HREF="node2.html">
+<LINK REL="up" HREF="tango2015.html">
+<LINK REL="next" HREF="node4.html">
+<TITLE>分散分析モデルから治療効果を学ぶ</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html53"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html51"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html45"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html54"
+  HREF="node4.html">分散分析モデルから混合効果モデルへ</A>
+<B>Up:</B> <A NAME="tex2html52"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html46"
+  HREF="node2.html">動物実験データの解析</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html55"
+  HREF="node3.html#SECTION00031000000000000000">分散分析モデル</A>
+<LI><A NAME="tex2html56"
+  HREF="node3.html#SECTION00032000000000000000">split-plot design</A>
+<LI><A NAME="tex2html57"
+  HREF="node3.html#SECTION00033000000000000000">分散共分散構造のモデル</A>
+<LI><A NAME="tex2html58"
+  HREF="node3.html#SECTION00034000000000000000">分散共分散が薬剤群間で異なる分散分析モデル</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00030000000000000000">
+分散分析モデルから治療効果を学ぶ</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00031000000000000000">
+分散分析モデル</A>
+</H2>
+
+<P>
+古典的な <SPAN  CLASS="textit">split-plot design</SPAN> のANOVAを考える。
+経時的繰り返し測定デザインのために，
+
+<OL>
+<LI>時点間相関を考慮し
+</LI>
+<LI>欠測データを扱え
+</LI>
+<LI>よりすくない標本サイズ
+</LI>
+</OL>
+で実行できるよう混合効果モデルへ拡張することを視野に入れる。
+
+<P>
+薬剤<SPAN CLASS="MATH"><IMG
+ WIDTH="10" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img27.png"
+ ALT="$ i$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+を投与した群の個体<SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img28.png"
+ ALT="$ j$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+の時点<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img29.png"
+ ALT="$ k$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+のデータを<SPAN CLASS="MATH"><IMG
+ WIDTH="30" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img30.png"
+ ALT="$ y_{ijk}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+とすると，モデルは
+
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><!-- MATH
+ \begin{equation}
+y_{ijk}=\mu+\alpha_i+\beta_k+\gamma_{ik} + \epsilon_{ijk}
+\end{equation}
+ -->
+<TABLE CLASS="equation" CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="216" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img31.png"
+ ALT="$\displaystyle y_{ijk}=\mu+\alpha_i+\beta_k+\gamma_{ik} + \epsilon_{ijk}$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+(<SPAN CLASS="arabic">3</SPAN>.<SPAN CLASS="arabic">2</SPAN>)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+となる。
+
+<P>
+ただし，識別性のため回帰分析流に
+
+<UL>
+<LI><!-- MATH
+ $\alpha_1 = 0$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="51" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img32.png"
+ ALT="$ \alpha_1 = 0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+（対照群に対する比較とする）
+</LI>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="50" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img33.png"
+ ALT="$ \beta_0=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ （ベースライン時点に対する比較とする）
+</LI>
+<LI><!-- MATH
+ $\gamma_{1k}=0$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="56" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img34.png"
+ ALT="$ \gamma_{1k}=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+（<!-- MATH
+ $k=0,1,\dots,T$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="104" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img35.png"
+ ALT="$ k=0,1,\dots,T$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+）
+</LI>
+<LI><!-- MATH
+ $\gamma_{i0}=0$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="53" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$ \gamma_{i0}=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+（<!-- MATH
+ $i=1,\dots,G$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="87" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img37.png"
+ ALT="$ i=1,\dots,G$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+）
+</LI>
+</UL>
+と制約を置く<A NAME="tex2html1"
+  HREF="footnode.html#foot101"><SUP><SPAN CLASS="arabic">1</SPAN></SUP></A>。
+
+<P>
+このとき，
+
+<UL>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img38.png"
+ ALT="$ \alpha_i$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：群の効果（ベースライン時点<SPAN CLASS="MATH"><IMG
+ WIDTH="42" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img39.png"
+ ALT="$ k=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+における対照群に対する群間差）
+</LI>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="21" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img40.png"
+ ALT="$ \beta_k$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：時点の効果（対照群<SPAN CLASS="MATH"><IMG
+ WIDTH="39" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img41.png"
+ ALT="$ i=1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+におけるベースライン時点に対する変化の大きさ）
+</LI>
+<LI><!-- MATH
+ $\gamma_{ik}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="25" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$ \gamma_{ik}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：群 <SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img43.png"
+ ALT="$ \times$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ 時点の交互作用（ベースライン時点に対する変化の大きさが群によって異なる程度）
+</LI>
+</UL>
+が固定効果となる。
+
+<P>
+
+<H3><A NAME="SECTION00031100000000000000">
+薬剤の効果</A>
+</H3>
+
+<P>
+交互作用<!-- MATH
+ $\gamma_{ik}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="25" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$ \gamma_{ik}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+に関して，自由度<!-- MATH
+ $(G-1)\times T$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="87" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img44.png"
+ ALT="$ (G-1)\times T$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+のオムニバス検定（<SPAN CLASS="MATH"><IMG
+ WIDTH="25" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img45.png"
+ ALT="$ H_0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+: すべての<SPAN CLASS="MATH"><IMG
+ WIDTH="38" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img46.png"
+ ALT="$ (i,k)$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+について<!-- MATH
+ $\gamma_{ik}=0$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="54" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img47.png"
+ ALT="$ \gamma_{ik}=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+）よりも指向性の強い検定を行うことで，薬剤の効果を検証する必要がある。
+
+<P>
+そこで，個体<SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img28.png"
+ ALT="$ j$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+について，時点<SPAN CLASS="MATH">0</SPAN>
+<!-- MATHEND
+ 
+ -->
+に対する時点<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img29.png"
+ ALT="$ k$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+の差（CFB）
+<P><!-- MATH
+ \begin{displaymath}
+\textit{CFB}_{ijk} = y_{ijk} - y_{ij0}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="147" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img48.png"
+ ALT="$\displaystyle \textit{CFB}_{ijk} = y_{ijk} - y_{ij0}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+を考える。
+<P><!-- MATH
+ \begin{displaymath}
+E[y_{ijk}] = \mu + \alpha_i + \beta_k + \gamma_{ik}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="194" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img49.png"
+ ALT="$\displaystyle E[y_{ijk}] = \mu + \alpha_i + \beta_k + \gamma_{ik}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+E[y_{ij0}] = \mu + \alpha_i + \beta_0 + \gamma_{i0}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="192" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img50.png"
+ ALT="$\displaystyle E[y_{ij0}] = \mu + \alpha_i + \beta_0 + \gamma_{i0}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+であるから，
+<P><!-- MATH
+ \begin{displaymath}
+E[\textit{CFB}_{ijk}] = E[y_{ijk}-y_{ij0}] = (\beta_k - \beta_0) + (\gamma_{ik}-\gamma_{i0})
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="368" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img51.png"
+ ALT="$\displaystyle E[\textit{CFB}_{ijk}] = E[y_{ijk}-y_{ij0}] = (\beta_k - \beta_0) + (\gamma_{ik}-\gamma_{i0})$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+となる。
+つまり，時点<SPAN CLASS="MATH">0</SPAN>
+<!-- MATHEND
+ 
+ -->
+に対する時点<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img29.png"
+ ALT="$ k$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+の差は，（対照群における時点<SPAN CLASS="MATH">0</SPAN>
+<!-- MATHEND
+ 
+ -->
+に対する時点<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img29.png"
+ ALT="$ k$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+の差）に（その差の対照群に対する群間差）を加味したものだ，ということである。
+
+<P>
+時点<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img29.png"
+ ALT="$ k$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+におけるCFBの期待値について，実験群（<SPAN CLASS="MATH"><IMG
+ WIDTH="45" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img52.png"
+ ALT="$ i=m$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+）の対照群（<SPAN CLASS="MATH"><IMG
+ WIDTH="39" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img41.png"
+ ALT="$ i=1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+）に対する差を<!-- MATH
+ $\tau_{m1}^{(k)}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="31" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img53.png"
+ ALT="$ \tau_{m1}^{(k)}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+とすると，
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="31" HEIGHT="41" ALIGN="MIDDLE" BORDER="0"
+ SRC="img54.png"
+ ALT="$\displaystyle \tau_{m1}^{(k)}$"></SPAN></TD>
+<TD NOWRAP ALIGN="LEFT"><SPAN CLASS="MATH"><IMG
+ WIDTH="194" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img55.png"
+ ALT="$\displaystyle =E[\textit{CFB}_{mjk}]-E[\textit{CFB}_{1jk}]$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE">
+<TD>&nbsp;</TD>
+<TD NOWRAP ALIGN="LEFT"><SPAN CLASS="MATH"><IMG
+ WIDTH="403" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img56.png"
+ ALT="$\displaystyle = \{ (\beta_k - \beta_0) + (\gamma_{mk}-\gamma_{m0}) \} - \{ (\beta_k - \beta_0) + (\gamma_{1k}-\gamma_{10}) \}$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE">
+<TD>&nbsp;</TD>
+<TD NOWRAP ALIGN="LEFT"><SPAN CLASS="MATH"><IMG
+ WIDTH="202" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img57.png"
+ ALT="$\displaystyle = (\gamma_{mk}-\gamma_{m0}) - (\gamma_{1k}-\gamma_{10})$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+となる。
+これが，交互作用項から構成される薬剤効果の（時点<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img29.png"
+ ALT="$ k$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+における）大きさを表す指標となる。
+
+<P>
+また，評価期間全体を通じた薬剤効果は，
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="RIGHT"><SPAN CLASS="MATH"><IMG
+ WIDTH="30" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img58.png"
+ ALT="$\displaystyle \tau_{m1}$"></SPAN></TD>
+<TD NOWRAP ALIGN="LEFT"><SPAN CLASS="MATH"><IMG
+ WIDTH="91" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img59.png"
+ ALT="$\displaystyle = \frac{1}{T} \sum_{k=1}^T \tau_{m1}^{(k)}$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE">
+<TD>&nbsp;</TD>
+<TD NOWRAP ALIGN="LEFT"><SPAN CLASS="MATH"><IMG
+ WIDTH="259" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img60.png"
+ ALT="$\displaystyle = \frac{1}{T} \sum_{k=1}^T \{ (\gamma_{mk}-\gamma_{m0}) - (\gamma_{1k}-\gamma_{10}) \}$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+<TR VALIGN="MIDDLE">
+<TD>&nbsp;</TD>
+<TD NOWRAP ALIGN="LEFT"><SPAN CLASS="MATH"><IMG
+ WIDTH="491" HEIGHT="63" ALIGN="MIDDLE" BORDER="0"
+ SRC="img61.png"
+ ALT="$\displaystyle = \frac{1}{T} (\underbrace{T, -1, \dots, -1}_{T+1}, \underbrace{-...
+..._{1T}}_{T+1}, \underbrace{\gamma_{m0}, \gamma_{m1}, \dots, \gamma_{mT}}_{T+1})'$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+と線形対比を用いて表現できる。
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="\fbox{\bf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>交互作用項から構成される<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img62.png"
+ ALT="$ \tau$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+が求めたい薬剤効果であり，それが線形対比で表されるなら，<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img62.png"
+ ALT="$ \tau$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+を<SPAN CLASS="MATH"><IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img63.png"
+ ALT="$ \epsilon$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+のSDで標準化してやれば，標準化対比として効果量に使えそう。
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\bf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="107" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="\fbox{\bf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<H3><A NAME="SECTION00031200000000000000">
+一般化線形モデルの場合の解釈</A>
+</H3>
+
+<H4><A NAME="SECTION00031210000000000000">
+ロジスティック回帰</A>
+</H4>（対数オッズが連結関数）
+
+<UL>
+<LI>CFB：オッズの対数のベースラインからの差
+</LI>
+<LI><!-- MATH
+ $\exp [\textit{CFB}]$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="70" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img64.png"
+ ALT="$ \exp [\textit{CFB}]$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：ベースライン時点に対するオッズ比
+</LI>
+</UL>
+
+<P>
+
+<H4><A NAME="SECTION00031220000000000000">
+ポアソン回帰</A>
+</H4>（対数が連結関数）
+
+<UL>
+<LI>CFB：率の対数のベースライン時点からの差
+</LI>
+<LI><!-- MATH
+ $\exp [\textit{CFB}]$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="70" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img64.png"
+ ALT="$ \exp [\textit{CFB}]$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：ベースラインに対する率比 <SPAN  CLASS="textit">rate ratio</SPAN> 
+</LI>
+</UL>
+
+<P>
+
+<H2><A NAME="SECTION00032000000000000000">
+split-plot design</A>
+</H2>
+
+<P>
+測定値が独立もしくは複合対称で，正規分布に従い，分散の等質性が成り立っていれば，交互作用<!-- MATH
+ $\gamma_{ik}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="25" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$ \gamma_{ik}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+に関する検定は2要因混合デザインの分散分析によって行える<A NAME="tex2html2"
+  HREF="footnode.html#foot182"><SUP><SPAN CLASS="arabic">2</SPAN></SUP></A>。
+
+<P>
+一般には時点間相関があるためこの条件は成立せず，有意になりやすくなることが知られている。
+そこで，Greenhouse-GeisserもしくはHuynh-Feldtによる自由度修正項<SPAN CLASS="MATH"><IMG
+ WIDTH="11" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img63.png"
+ ALT="$ \epsilon$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+を得，自由度を<!-- MATH
+ $(G-1)T \epsilon$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="74" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img65.png"
+ ALT="$ (G-1)T \epsilon$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+，<!-- MATH
+ $(N-G)T \epsilon$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="81" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img66.png"
+ ALT="$ (N-G)T \epsilon$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+とした<SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img67.png"
+ ALT="$ F$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+分布を参照して検定を行う。
+
+<P>
+
+<H4><A NAME="SECTION00032010000000000000">
+Rによる分析（関数<TT>aov()</TT>によるオムニバス検定）</A>
+</H4>
+
+<P><PRE>
+&gt; ### 第3章：分散分析モデルから治療効果を学ぶ
+&gt; # データのロングフォーマットへの整形
+&gt; data2.1 &lt;- read.csv("tab2.1.dat")
+&gt; data2.1 &lt;- as.matrix(data2.1)
+&gt; data3.5 &lt;- rbind(data2.1[,c(1,2,3)], data2.1[,c(1,2,4)], data2.1[,c(1,2,5)], data2.1[,c(1,2,6)])
+&gt; colnames(data3.5) &lt;- c("id","group","y")
+&gt; data3.5 &lt;- as.data.frame(data3.5)
+&gt; data3.5 &lt;- data3.5[order(data3.5[,1]),]
+&gt; data3.5$week &lt;- rep(0:3)
+&gt; write.csv(data3.5, file="tab3.5.dat", row.names = F, quote = F)
+&gt; 
+&gt; # 分散分析モデルによる分析
+&gt; data3.5 &lt;- read.csv("tab3.5.dat")
+&gt; head(data3.5)
+  id group    y week
+1  1     1  7.5    0
+2  1     1  8.6    1
+3  1     1  6.9    2
+4  1     1  0.8    3
+5  2     1 10.6    0
+6  2     1 11.7    1
+&gt; data3.5$id &lt;- as.factor(data3.5$id)
+&gt; data3.5$group &lt;- as.factor(data3.5$group)
+&gt; data3.5$week &lt;- as.factor(data3.5$week)
+&gt; summary(data3.5)
+       id     group        y          week  
+ 1      : 4   0:24   Min.   : 0.500   0:12  
+ 2      : 4   1:24   1st Qu.: 8.075   1:12  
+ 3      : 4          Median : 9.500   2:12  
+ 4      : 4          Mean   : 9.167   3:12  
+ 5      : 4          3rd Qu.:11.350         
+ 6      : 4          Max.   :13.300         
+ (Other):24                                 
+&gt; 
+&gt; fit3.5.01 &lt;- aov(y~group*week+Error(id/week), data=data3.5) # 関数aov()を利用
+&gt; summary(fit3.5.01)
+
+Error: id
+          Df Sum Sq Mean Sq F value Pr(&gt;F)
+group      1  42.56   42.56    2.54  0.142
+Residuals 10 167.54   16.75               
+
+Error: id:week
+           Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+week        3 205.15   68.38  113.66  &lt; 2e-16 ***
+group:week  3  35.50   11.83   19.67 3.05e-07 ***
+Residuals  30  18.05    0.60                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</PRE>
+
+<P>
+
+<H4><A NAME="SECTION00032020000000000000">
+Rによる分析（<TT>car</TT>パッケージの関数<TT>Anova()</TT>）による球面性仮定の検証と自由度調整</A>
+</H4>
+
+<P><PRE>
+&gt; library(car) # 関数Anova()を利用
+&gt; data2.1 &lt;- read.csv("tab2.1.dat")
+&gt; fit2.1.03 &lt;- Anova(lm(as.matrix(data2.1[,3:6])~group, data=data2.1),
++                    idata=data.frame(week=factor(0:3)),
++                    idesign=~week, type="III")
+&gt; summary(fit2.1.03, multivariate=F)
+
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+                 SS num Df Error SS den Df        F    Pr(&gt;F)    
+(Intercept) 2452.28      1   167.54     10 146.3670 2.706e-07 ***
+group         42.56      1   167.54     10   2.5404     0.142    
+week          35.17      3    18.05     30  19.4875 3.337e-07 ***
+group:week    35.50      3    18.05     30  19.6676 3.051e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+/*** 分散分析表のweekのところ，aov()の結果と違うのはなぜなのか？ ***/ 
+
+Mauchly Tests for Sphericity
+
+           Test statistic    p-value
+week             0.011005 2.6448e-07
+group:week       0.011005 2.6448e-07
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+            GG eps Pr(&gt;F[GG])    
+week       0.36927  0.0008278 ***
+group:week 0.36927  0.0007995 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+              HF eps   Pr(&gt;F[HF])
+week       0.3818309 0.0007062995
+group:week 0.3818309 0.0006813689
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00033000000000000000">
+分散共分散構造のモデル</A>
+</H2>
+
+<P>
+
+<H4><A NAME="SECTION00033010000000000000">
+複合対称モデル compound symmetry / exchangeable model</A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\bm{\Sigma} = \sigma^2_E \bm{I} + \sigma^2_B \bm{J} = \sigma^2 \times \begin{pmatrix} 1 & \rho & \rho \\\rho & 1 & \rho \\\rho & \rho & 1 \end{pmatrix}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="261" HEIGHT="87" ALIGN="MIDDLE" BORDER="0"
+ SRC="img68.png"
+ ALT="$\displaystyle \bm{\Sigma} = \sigma^2_E \bm{I} + \sigma^2_B \bm{J} = \sigma^2 \t...
+...gin{pmatrix}1 &amp; \rho &amp; \rho  \rho &amp; 1 &amp; \rho  \rho &amp; \rho &amp; 1 \end{pmatrix}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\rho=\frac{\sigma_B^2}{\sigma_E^2 + \sigma_B^2}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="97" HEIGHT="55" ALIGN="MIDDLE" BORDER="0"
+ SRC="img69.png"
+ ALT="$\displaystyle \rho=\frac{\sigma_B^2}{\sigma_E^2 + \sigma_B^2}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H4><A NAME="SECTION00033020000000000000">
+1次自己回帰モデル first-order autoregressive model</A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\bm{\Sigma} = \sigma^2 \times \begin{pmatrix} 1 & \rho & \rho^2 \\\rho & 1 & \rho \\\rho^2 & \rho & 1 \end{pmatrix}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="174" HEIGHT="87" ALIGN="MIDDLE" BORDER="0"
+ SRC="img70.png"
+ ALT="$\displaystyle \bm{\Sigma} = \sigma^2 \times \begin{pmatrix}1 &amp; \rho &amp; \rho^2  \rho &amp; 1 &amp; \rho  \rho^2 &amp; \rho &amp; 1 \end{pmatrix}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H4><A NAME="SECTION00033030000000000000">
+一般自己回帰モデル general autoregressive model</A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\bm{\Sigma} = \sigma^2 \times \begin{pmatrix} 1 & \rho_1 & \rho_2 \\\rho_1 & 1 & \rho_1 \\\rho_2 & \rho_1 & 1 \end{pmatrix}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="181" HEIGHT="87" ALIGN="MIDDLE" BORDER="0"
+ SRC="img71.png"
+ ALT="$\displaystyle \bm{\Sigma} = \sigma^2 \times \begin{pmatrix}1 &amp; \rho_1 &amp; \rho_2  \rho_1 &amp; 1 &amp; \rho_1  \rho_2 &amp; \rho_1 &amp; 1 \end{pmatrix}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H4><A NAME="SECTION00033040000000000000">
+無構造モデル unstructured model</A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\bm{\Sigma} = \begin{pmatrix} \sigma_1^2 & \sigma_1 \sigma_2 \rho_1 & \sigma_1 \sigma_3 \rho_2 \\\sigma_2 \sigma_1 \rho_1 & \sigma_2^2 & \sigma_2 \sigma_3 \rho_3 \\\sigma_3 \sigma_1 \rho_2 & \sigma_3 \sigma_1 \rho_3 & \sigma_3^2 \end{pmatrix}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="242" HEIGHT="87" ALIGN="MIDDLE" BORDER="0"
+ SRC="img72.png"
+ ALT="$\displaystyle \bm{\Sigma} = \begin{pmatrix}\sigma_1^2 &amp; \sigma_1 \sigma_2 \rho_...
+... \sigma_3 \sigma_1 \rho_2 &amp; \sigma_3 \sigma_1 \rho_3 &amp; \sigma_3^2 \end{pmatrix}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H3><A NAME="SECTION00033100000000000000">
+Rによる分析（<TT>nlme</TT>パッケージにより母数推定，<TT>multcomp</TT>パッケージにより線形対比を構成）</A>
+</H3>
+
+<P>
+以下のスクリプトでは，共分散構造に複合対称性を仮定し，
+
+<OL>
+<LI>線形混合モデルによって群と時点の主効果，交互作用の検定（関数<TT>lme()</TT>）
+</LI>
+<LI>線形対比を利用することで，実験期間を通じた薬剤の効果を推定（関数<TT>glht()</TT>）
+</LI>
+</OL>
+という2つのプロセスを実行している。
+
+<P><PRE>
+&gt; # 混合効果モデルによる分析
+&gt; # [参考URL: https://stats.idre.ucla.edu/r/faq/how-can-i-test-contrasts-in-r/]
+&gt; data3.5 &lt;- read.csv("tab3.5.dat")
+&gt; head(data3.5)
+  id group    y week
+1  1     1  7.5    0
+2  1     1  8.6    1
+3  1     1  6.9    2
+4  1     1  0.8    3
+5  2     1 10.6    0
+6  2     1 11.7    1
+&gt; data3.5$id &lt;- as.factor(data3.5$id)
+&gt; data3.5$group &lt;- as.factor(data3.5$group)
+&gt; data3.5$week &lt;- as.factor(data3.5$week)
+&gt; 
+&gt; library(nlme)
+&gt; library(multcomp)
+&gt; fit3.5.02 &lt;- lme(y~group*week, data=data3.5, random=~1|id, 
++                  cor=corCompSymm()) # 複合対称
+&gt; summary(fit3.5.02)
+Linear mixed-effects model fit by REML
+ Data: data3.5 
+       AIC      BIC    logLik
+  162.7942 181.3719 -70.39709
+
+Random effects:
+ Formula: ~1 | id
+        (Intercept)  Residual
+StdDev:    2.009519 0.7756718       ### &lt;- それぞれ，sigma_Bとsigma_E
+
+Correlation Structure: Compound symmetry
+ Formula: ~1 | id 
+ Parameter estimate(s):
+Rho 
+  0 
+Fixed effects: y ~ group * week 
+                 Value Std.Error DF   t-value p-value
+(Intercept)  10.933333 0.8793779 30 12.433031  0.0000
+group1       -1.016667 1.2436282 10 -0.817500  0.4327
+week1         0.200000 0.4478343 30  0.446594  0.6584
+week2        -0.650000 0.4478343 30 -1.451430  0.1570
+week3        -2.850000 0.4478343 30 -6.363961  0.0000
+group1:week1  0.700000 0.6333333 30  1.105263  0.2778
+group1:week2 -0.400000 0.6333333 30 -0.631579  0.5324
+group1:week3 -3.766667 0.6333333 30 -5.947368  0.0000
+ Correlation: 
+             (Intr) group1 week1  week2  week3  grp1:1 grp1:2
+group1       -0.707                                          
+week1        -0.255  0.180                                   
+week2        -0.255  0.180  0.500                            
+week3        -0.255  0.180  0.500  0.500                     
+group1:week1  0.180 -0.255 -0.707 -0.354 -0.354              
+group1:week2  0.180 -0.255 -0.354 -0.707 -0.354  0.500       
+group1:week3  0.180 -0.255 -0.354 -0.354 -0.707  0.500  0.500
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-2.52875770 -0.31923631 -0.01832677  0.31261219  2.36953609 
+
+Number of Observations: 48
+Number of Groups: 12 
+
+&gt; cont &lt;- matrix(c(0,0,0,0,0,1/3,1/3,1/3),1) # 実験期間を通じた薬剤効果を検証（線形対比）
+  ### 対比は， (Intercept) group1 week1 week2 week3 group1:week1 group1:week2 group1:week3
+  ### について，最後3つの交互作用項の平均を出す形になっている。
+
+&gt; tau21 &lt;- glht(fit3.5.02, linfct=cont) # 線形対比の推定と検定
+&gt; summary(tau21)
+
+	 Simultaneous Tests for General Linear Hypotheses
+
+Fit: lme.formula(fixed = y ~ group * week, data = data3.5, random = ~1 | 
+    id, correlation = corCompSymm())
+
+Linear Hypotheses:
+       Estimate Std. Error z value Pr(&gt;|z|)  
+1 == 0  -1.1556     0.5171  -2.235   0.0254 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+(Adjusted p values reported -- single-step method)
+</PRE>
+
+<P>
+
+<H3><A NAME="SECTION00033200000000000000">
+分析結果の解釈</A>
+</H3>
+
+<P>
+まず，交互作用項の検定結果<PRE>
+                 Value Std.Error DF   t-value p-value
+group1:week1  0.700000 0.6333333 30  1.105263  0.2778
+group1:week2 -0.400000 0.6333333 30 -0.631579  0.5324
+group1:week3 -3.766667 0.6333333 30 -5.947368  0.0000
+</PRE>
+から，第3週目（<TT>week3</TT>）になって実験群（<TT>group1</TT>）の得点が対照群を有意に下回ったことがわかる。
+
+<P>
+また，線形対比の検定結果<PRE>
+       Estimate Std. Error z value Pr(&gt;|z|)  
+1 == 0  -1.1556     0.5171  -2.235   0.0254 *
+</PRE>
+から，実験期間3週間を通じて見ても，薬剤効果が有意であることがわかる。
+
+<P>
+
+<H3><A NAME="SECTION00033300000000000000">
+モデルの比較</A>
+</H3>
+
+<P>
+複合対称モデルと無構造モデルを比較する。
+
+<P><PRE>
+&gt; fit3.5.03 &lt;- lme(y~group*week, data=data3.5, random=~1|id, 
++                  weights=varIdent(form=~1|week), cor=corSymm()) # 無構造
+&gt; summary(fit3.5.03)
+Linear mixed-effects model fit by REML
+ Data: data3.5 
+       AIC      BIC    logLik
+  126.2606 158.3493 -44.13031
+
+Random effects:
+ Formula: ~1 | id
+        (Intercept) Residual
+StdDev:    1.410171 1.234335
+
+Correlation Structure: General
+ Formula: ~1 | id 
+ Parameter estimate(s):
+ Correlation: 
+  1     2     3    
+2 0.987            
+3 0.902 0.896      
+4 0.810 0.825 0.978
+Variance function:
+ Structure: Different standard deviations per stratum
+ Formula: ~1 | week 
+ Parameter estimates:
+        0         1         2         3 
+1.0000000 0.9515705 1.0837844 1.9698957 
+Fixed effects: y ~ group * week 
+                 Value Std.Error DF   t-value p-value
+(Intercept)  10.933333 0.7650890 30 14.290276  0.0000
+group1       -1.016667 1.0819992 10 -0.939619  0.3696
+week1         0.200000 0.0816497 30  2.449489  0.0204
+week2        -0.650000 0.2355842 30 -2.759099  0.0098
+week3        -2.850000 0.6552776 30 -4.349302  0.0001
+group1:week1  0.700000 0.1154701 30  6.062176  0.0000
+group1:week2 -0.400000 0.3331664 30 -1.200601  0.2393
+group1:week3 -3.766667 0.9267024 30 -4.064591  0.0003
+ Correlation: 
+             (Intr) group1 week1  week2  week3  grp1:1 grp1:2
+group1       -0.707                                          
+week1        -0.245  0.174                                   
+week2        -0.031  0.022  0.087                            
+week3         0.301 -0.213  0.059  0.848                     
+group1:week1  0.174 -0.245 -0.707 -0.061 -0.042              
+group1:week2  0.022 -0.031 -0.061 -0.707 -0.599  0.087       
+group1:week3 -0.213  0.301 -0.042 -0.599 -0.707  0.059  0.848
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-1.6625586 -0.8749273  0.1630891  0.5917894  1.6357343 
+
+Number of Observations: 48
+Number of Groups: 12 
+&gt; anova(fit3.5.02, fit3.5.03) # モデル比較（複合対称と無構造）
+          Model df      AIC      BIC    logLik   Test  L.Ratio p-value
+fit3.5.02     1 11 162.7942 181.3718 -70.39709                        
+fit3.5.03     2 19 126.2606 158.3493 -44.13031 1 vs 2 52.53356  &lt;.0001
+</PRE>
+無構造モデルのほうがAICが小さく，尤度比検定でも有意に当てはまりの良いことがわかる。
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="\fbox{\bf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>無構造モデルにおいて，<TT>weights=varIdent(form=&nbsp;1|week)</TT>がないと，各時点での分散はすべて共通となる。
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\bf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="107" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="\fbox{\bf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<H2><A NAME="SECTION00034000000000000000">
+分散共分散が薬剤群間で異なる分散分析モデル</A>
+</H2>
+
+<P>
+
+<H4><A NAME="SECTION00034010000000000000">
+Rによる分析（複合対称と無構造について，非等質分散を許すよう更新）</A>
+</H4>
+
+<P><PRE>
+&gt; fit3.5.04 &lt;- update(fit3.5.02, weights=varIdent(form=~1|week*group)) # 非等質分散（複合対称）
+&gt; summary(fit3.5.04)
+Linear mixed-effects model fit by REML
+ Data: data3.5 
+       AIC      BIC    logLik
+  127.2078 157.6076 -45.60389
+
+Random effects:
+ Formula: ~1 | id
+        (Intercept)  Residual
+StdDev:    1.792992 0.5628219
+
+Correlation Structure: Compound symmetry
+ Formula: ~1 | id 
+ Parameter estimate(s):
+      Rho 
+0.9318975 
+Variance function:
+ Structure: Different standard deviations per stratum
+ Formula: ~1 | week * group 
+ Parameter estimates:
+      0*1       1*1       2*1       3*1       0*0       1*0       2*0       3*0 
+1.0000000 1.0668706 1.8147248 3.7799262 0.7121732 0.5898116 1.7801219 3.4608610 
+Fixed effects: y ~ group * week 
+                 Value Std.Error DF   t-value p-value
+(Intercept)  10.933333 0.7500537 30 14.576735  0.0000
+group1       -1.016667 1.0729300 10 -0.947561  0.3657
+week1         0.200000 0.0617332 30  3.239747  0.0029
+week2        -0.650000 0.2633049 30 -2.468621  0.0195
+week3        -2.850000 0.6454479 30 -4.415538  0.0001
+group1:week1  0.700000 0.1082536 30  6.466298  0.0000
+group1:week2 -0.400000 0.3426703 30 -1.167303  0.2523
+group1:week3 -3.766667 0.9229200 30 -4.081249  0.0003
+ Correlation: 
+             (Intr) group1 week1  week2  week3  grp1:1 grp1:2
+group1       -0.699                                          
+week1        -0.132  0.092                                   
+week2         0.180 -0.126 -0.283                            
+week3         0.195 -0.136 -0.370  0.861                     
+group1:week1  0.075 -0.055 -0.570  0.162  0.211              
+group1:week2 -0.138  0.196  0.218 -0.768 -0.661  0.045       
+group1:week3 -0.136  0.230  0.258 -0.602 -0.699 -0.020  0.826
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-1.6731737 -0.6711173  0.1788739  0.6740406  1.5735003 
+
+Number of Observations: 48
+Number of Groups: 12 
+&gt; fit3.5.05 &lt;- update(fit3.5.03, weights=varIdent(form=~1|week*group), # 非等質分散（無構造）
++                     control=lmeControl(msMaxIter=100)) ### &lt;- 反復計算の上限を50から100に
+&gt; summary(fit3.5.05)
+Linear mixed-effects model fit by REML
+ Data: data3.5 
+       AIC      BIC    logLik
+  130.1504 168.9947 -42.07521
+
+Random effects:
+ Formula: ~1 | id
+        (Intercept) Residual
+StdDev:     1.41119 1.084442
+
+Correlation Structure: General
+ Formula: ~1 | id 
+ Parameter estimate(s):
+ Correlation: 
+  1     2     3    
+2 0.996            
+3 0.879 0.861      
+4 0.630 0.633 0.894
+Variance function:
+ Structure: Different standard deviations per stratum
+ Formula: ~1 | week * group 
+ Parameter estimates:
+     0*1      1*1      2*1      3*1      0*0      1*0      2*0      3*0 
+1.000000 0.772480 0.926708 1.793186 1.221182 1.172459 1.251134 2.118754 
+Fixed effects: y ~ group * week 
+                 Value Std.Error DF   t-value p-value
+(Intercept)  10.933333 0.7900664 30 13.838500  0.0000
+group1       -1.016667 1.0733670 10 -0.947175  0.3659
+week1         0.200000 0.0546186 30  3.661757  0.0010
+week2        -0.650000 0.2689841 30 -2.416500  0.0220
+week3        -2.850000 0.7303954 30 -3.901996  0.0005
+group1:week1  0.700000 0.1203652 30  5.815636  0.0000
+group1:week2 -0.400000 0.3423204 30 -1.168496  0.2518
+group1:week3 -3.766667 0.9576432 30 -3.933267  0.0005
+ Correlation: 
+             (Intr) group1 week1  week2  week3  grp1:1 grp1:2
+group1       -0.736                                          
+week1        -0.299  0.220                                   
+week2        -0.136  0.100 -0.190                            
+week3         0.047 -0.035  0.044  0.886                     
+group1:week1  0.136 -0.450 -0.454  0.086 -0.020              
+group1:week2  0.107 -0.177  0.150 -0.786 -0.696  0.087       
+group1:week3 -0.036  0.051 -0.034 -0.676 -0.763 -0.021  0.854
+
+Standardized Within-Group Residuals:
+       Min         Q1        Med         Q3        Max 
+-1.7161427 -0.6796890  0.1311425  0.7679186  1.4878487 
+
+Number of Observations: 48
+Number of Groups: 12 
+
+&gt; anova(fit3.5.04, fit3.5.05) # モデル比較
+          Model df      AIC      BIC    logLik   Test L.Ratio p-value
+fit3.5.04     1 18 127.2078 157.6076 -45.60389                       
+fit3.5.05     2 23 130.1504 168.9947 -42.07521 1 vs 2 7.05736  0.2164
+</PRE>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html53"
+  HREF="node4.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html51"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html45"
+  HREF="node2.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html54"
+  HREF="node4.html">分散分析モデルから混合効果モデルへ</A>
+<B>Up:</B> <A NAME="tex2html52"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html46"
+  HREF="node2.html">動物実験データの解析</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-10-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

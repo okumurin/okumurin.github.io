@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="start" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0008.html" rel="next" />
+<link href="sect0006.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>7 一般化線形混合モデル（GLMM）</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="6 GLMの応用範囲をひろげる" href="sect0006.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="マルコフ連鎖モンテカルロ法とベイズ統計モデル" href="sect0008.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0006.html" class="sectref" rel="prev">GLMの応用範囲をひろげる</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0008.html" class="sectref" rel="next">マルコフ連鎖モンテカルロ法とベイズ統計モデル</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000008">7 一般化線形混合モデル（GLMM）</h1>
+<p>データにばらつきをもたらす個体間の差異は、全てをデータとして定量化することはできない<a href="#a0000000093" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><h4 id="a0000000094">一般化線形混合モデル</h4>
+<p> 人間が測定できない、or しなかった個体差を組み込んだGLMであり、複数の確率分布を部品とする統計モデル。 </p><h2 id="a0000000095">7.1 例題：GLMでは説明できないカウントデータ</h2>
+<ul class="itemize">
+<li><p><img src="images/img-0069.png" alt="$i$" style="vertical-align:0px; 
+                                     width:5px; 
+                                     height:11px" class="math gen" /> : 観測個体番号 </p></li><li><p><img src="images/img-0085.png" alt="$n$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:7px" class="math gen" /> : 観察種子数（全個体統一） </p></li><li><p><img src="images/img-0071.png" alt="$y_ i$" style="vertical-align:-3px; 
+                                     width:12px; 
+                                     height:10px" class="math gen" /> : 生存種子数 </p></li><li><p><img src="images/img-0012.png" alt="$x_ i$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:10px" class="math gen" /> : 葉の数 </p></li>
+</ul><p> をもとに、 </p><table id="a0000000096" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000097">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0086.png" alt="$\displaystyle  \text {logit} (q_ i) = \beta _1 + \beta _2 x_ i  $" style="vertical-align:-4px; width:147px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.28</span>)</span></td>
+</tr><tr id="a0000000098">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0087.png" alt="$\displaystyle p(y_ i \mid \beta _1,\beta _2) = \begin{pmatrix}  n 
+
+\\ y_ i 
+
+\end{pmatrix} q_ i^{y_ i} (1-q_ i)^{n-y_ i}  $" style="vertical-align:-15px; width:257px; 
+                   height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.29</span>)</span></td>
+</tr>
+</table><p> なるモデルを考える。 </p><p><img src="images/img-0051.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> はたして妥当か？ </p><h2 id="a0000000099">7.2 過分散と個体差</h2>
+<p>全ての個体を（観測されていない説明変数については全て）均質と考え、どの個体の生存種子数についても同じ二項分布で説明できると仮定してモデルを当てはめると、データのばらつきはモデルから予測されたものよりも大きくなる。 </p><p>観測されていない個体差として、 </p><ul class="itemize">
+<li><p>生物的（個体差） </p></li><li><p>非生物的（場所差） </p></li>
+</ul><p> な要因によるものが挙げられる。 </p><p>すべて観測することが不可能であるなら、個体差や場所差を原因不明のまま統計モデルに取り込む必要がある。 </p><h2 id="a0000000100">7.3 一般化線形混合モデル</h2>
+<h3 id="a0000000101">7.3.1 個体差を表すパラメータの追加</h3>
+<table id="eq.glmm01" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0088.png" alt="\begin{equation}  \text {logi} (q_ i) = \beta _1 + \beta _2 x_ i + r_ i,~ ~ ~ ~ r_ i \sim N(0, s) \label{eq.glmm01} \end{equation}" style="width:291px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.30</span>)</span></td>
+</tr>
+</table><h2 id="a0000000102">7.4 一般化線形混合モデルの最尤推定</h2>
+<p>式(<a href="sect0007.html#eq.glmm01">7.30</a>) で最尤推定できるのは、<img src="images/img-0089.png" alt="$\beta _1, \beta _2, s$" style="vertical-align:-3px; 
+                                     width:55px; 
+                                     height:14px" class="math gen" /> の3つ。 <img src="images/img-0090.png" alt="$r_ i$" style="vertical-align:-3px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" /> については、個体ごとの尤度 <img src="images/img-0091.png" alt="$L_ i$" style="vertical-align:-3px; 
+                                     width:15px; 
+                                     height:14px" class="math gen" /> において積分消去してしまう。 </p><table id="a0000000103" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0092.png" alt="\begin{equation}  L_ i = \int _{-\infty }^{\infty } p(y_ i \mid \beta _1, \beta _2, r_ i) p(r_ i \mid s) d r_ i \end{equation}" style="width:262px; 
+                            height:39px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.31</span>)</span></td>
+</tr>
+</table><p> これは、モデル分布である二項分布と、個体差を表す正規分布とを混合していることに相当する。 </p><p>かつては<b class="bfseries">準尤度（quasi likelihood）</b>を用いていたが、現在では利用する利点がないので使われていない。 </p><h2 id="a0000000104">7.5 現実のデータ解析にはGLMMが必要</h2>
+<p>GLMMの考え方が必要になるかを決めるポイント </p><ul class="itemize">
+<li><p>同じ個体・場所などから何度もサンプリングしているか </p></li><li><p>個体差や場所差が識別できてしまうようなデータの取り方をしているか </p></li>
+</ul><h2 id="a0000000105">7.6 反復・擬似反復と統計モデルの関係</h2>
+<h4 id="a0000000106">反復（独立した反復）</h4>
+<p>各個体や場所からひとつだけのデータを取る。 </p><p>{A校のBさんから1回、C校のDさんから1回、E校のFさんから1回、...} </p><h4 id="a0000000107">擬似反復（pseudo replication）</h4>
+<p>同じ個体や場所から複数のデータを取る。 </p><p>{A校からBさん、Cさん、Dさん、... } {E校からFさん、Gさん、Hさん、...} </p><p>擬似反復の場合には個体差が推定可能であり、かつその影響を考慮しなければ推定結果に偏りが生じる。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000093">仮に説明変数が全て同じ値であったとしても、応答変数にはばらつきが発生する（原因不明の差異）。説明変数以外は全部均質というわけではないから。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="6 GLMの応用範囲をひろげる" href="sect0006.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="マルコフ連鎖モンテカルロ法とベイズ統計モデル" href="sect0008.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0006.html" class="sectref" rel="prev">GLMの応用範囲をひろげる</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0008.html" class="sectref" rel="next">マルコフ連鎖モンテカルロ法とベイズ統計モデル</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

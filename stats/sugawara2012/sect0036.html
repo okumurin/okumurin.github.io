@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0037.html" rel="next" />
+<link href="sect0035.html" rel="prev" />
+<link href="sect0035.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>8.1 一般的な共分散構造モデル</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="8 共分散構造分析を用いて変化のモデリングを行う" href="sect0035.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="8 共分散構造分析を用いて変化のモデリングを行う" href="sect0035.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="潜在成長モデリングの基礎" href="sect0037.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0035.html" class="sectref" rel="prev">共分散構造分析を用いて変化のモデリングを行う</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0035.html" class="sectref" rel="parent">共分散構造分析を用いて変化のモデリングを行う</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0037.html" class="sectref" rel="next">潜在成長モデリングの基礎</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h2 id="a0000000037">8.1 一般的な共分散構造モデル</h2>
+<h3 id="a0000000184">8.1.1 <img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" /> 測定モデル</h3>
+<p>外生的構成概念に関する観測変数 <img src="images/img-0116.png" alt="$X_1$" style="vertical-align:-3px; 
+                                     width:20px; 
+                                     height:14px" class="math gen" /> の <img src="images/img-0003.png" alt="$i$" style="vertical-align:0px; 
+                                     width:5px; 
+                                     height:11px" class="math gen" /> 番目の観測値について、 </p><table id="a0000000185" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0117.png" alt="\begin{equation}  X_{1i} = \tau _{x_1} + \lambda _{11}^ x \xi _{1i} + \delta _{1i} \end{equation}" style="width:172px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.14</span>)</span></td>
+</tr>
+</table><p> を考える。 </p><ul class="itemize">
+<li><p><img src="images/img-0118.png" alt="$\tau _{x_1}$" style="vertical-align:-4px; 
+                                     width:20px; 
+                                     height:11px" class="math gen" />: <img src="images/img-0119.png" alt="$X_{1i}$" style="vertical-align:-3px; 
+                                     width:25px; 
+                                     height:14px" class="math gen" /> の母集団平均、同じ構成概念に対する異なる指標の観測スコアが異なる平均を取ることができる </p></li><li><p><img src="images/img-0120.png" alt="$ \lambda _{11}^ x$" style="vertical-align:-4px; 
+                                     width:22px; 
+                                     height:15px" class="math gen" />: 尺度因子、ある構成概念が異なる尺度で測定されることが可能 </p></li><li><p><img src="images/img-0121.png" alt="$\xi _{1i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" />: （外生的な）構成概念の値 </p></li><li><p><img src="images/img-0122.png" alt="$\delta _{1i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" />: 指標 <img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" /> のうち、仮定された構成概念に依存しない部分 </p></li>
+</ul><p>外生的構成概念すべてについて測定モデルをまとめると、  </p><table id="a0000000186" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0123.png" alt="\begin{equation}  \bm@general \boldmath \m@ne \mv@bold \bm@command {X} = \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ x + \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ x \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } + \bm@general \boldmath \m@ne \mv@bold \bm@command {\delta } \end{equation}" style="width:135px; 
+                            height:14px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.4</span>)</span></td>
+</tr>
+</table><p> と表記できる。 ここで、<img src="images/img-0124.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\delta }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> の母分散共分散行列を <img src="images/img-0125.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Theta }_{\delta }$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> とおく。ここには、あらゆる構造を仮定することが可能。 </p><p>また、外生的構成概念 <img src="images/img-0126.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\xi }$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> については、平均 <img src="images/img-0127.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\kappa }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" />、母共分散行列 <img src="images/img-0128.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Phi }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:11px" class="math gen" /> を仮定する。 </p><h3 id="a0000000187">8.1.2 <img src="images/img-0048.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> 測定モデル</h3>
+<p>内生的構成概念に関する測定モデルを、  </p><table id="a0000000188" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0129.png" alt="\begin{equation}  \bm@general \boldmath \m@ne \mv@bold \bm@command {Y} = \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ y + \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ y \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } + \bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon } \end{equation}" style="width:132px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.11</span>)</span></td>
+</tr>
+</table><p> と表す。 また、<img src="images/img-0130.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon }$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の母共分散行列は <img src="images/img-0131.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Theta }_{\epsilon }$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> とする。 </p><p>外生的構成概念の場合と異なり、内生的構成概念の平均と分散は、構造モデルによって表現される。 </p><h3 id="a0000000189">8.1.3 構造モデル</h3>
+<p>外生的構成概念と内生的構成概念の関係性を、  </p><table id="a0000000190" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0132.png" alt="\begin{equation}  \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {\eta }}_{\text {endogenous factors}} = \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {\alpha }}_{\text {intercept}} + \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {\Gamma } \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi }}_{\text {loadings} \times \text {exogenous factors}} + \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {B} \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta }}_{\text {loadings} \times \text {endogenous factors}} + \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta }}_{\text {residuals}} \end{equation}" style="width:615px; 
+                            height:39px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.15</span>)</span></td>
+</tr>
+</table><p> と表す。 ただし、<img src="images/img-0133.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta }$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:14px" class="math gen" /> の母共分散行列は <img src="images/img-0134.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Psi }$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:11px" class="math gen" /> とする。 </p></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="8 共分散構造分析を用いて変化のモデリングを行う" href="sect0035.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="8 共分散構造分析を用いて変化のモデリングを行う" href="sect0035.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="潜在成長モデリングの基礎" href="sect0037.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0035.html" class="sectref" rel="prev">共分散構造分析を用いて変化のモデリングを行う</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0035.html" class="sectref" rel="parent">共分散構造分析を用いて変化のモデリングを行う</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0037.html" class="sectref" rel="next">潜在成長モデリングの基礎</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="基礎からのベイズ統計学" rel="start" />
+<link href="index.html" title="基礎からのベイズ統計学" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0002.html" rel="next" />
+<link href="index.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>4 メトロポリス・ヘイスティングス法</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="基礎からのベイズ統計学" href="index.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="基礎からのベイズ統計学" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="ハミルトニアンモンテカルロ法" href="sect0002.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">基礎からのベイズ統計学</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="index.html" class="sectref" rel="prev">基礎からのベイズ統計学</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">基礎からのベイズ統計学</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0002.html" class="sectref" rel="next">ハミルトニアンモンテカルロ法</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000002">4 メトロポリス・ヘイスティングス法</h1>
+<h2 id="a0000000008">4.1 事後分布からの乱数の発生</h2>
+<ul class="itemize">
+<li><p>確率分布が評価できても、それに従う乱数を発生させられるとは限らない。 </p></li><li><p>正規化定数が評価できないことの方が多い。 </p></li>
+</ul><p> <img src="images/img-0001.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 事後分布のカーネルだけを使い、乱数を発生させたい。 </p><h2 id="a0000000009">4.5 メトロポリス・ヘイスティングス法</h2>
+<h5 id="a0000000010">詳細釣り合い条件</h5>
+<p> マルコフ連鎖が定常分布に収束するための十分条件 </p><p><img src="images/img-0002.png" alt="$f(\theta )$" style="vertical-align:-4px; 
+                                     width:28px; 
+                                     height:18px" class="math gen" />が目標分布、<img src="images/img-0003.png" alt="$f(\theta ’ | \theta )$" style="vertical-align:-4px; 
+                                     width:46px; 
+                                     height:18px" class="math gen" />が遷移核であるとすると、 </p><table id="a0000000011" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0004.png" alt="\begin{equation}  f(\theta | \theta ’) f(\theta ’) = f(\theta ’ | \theta )f(\theta ) \end{equation}" style="width:184px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.18</span>)</span></td>
+</tr>
+</table><p> が成り立っていること<a href="#a0000000012" class="footnote"><sup class="footnotemark">1</sup></a>。 このとき、 </p><table id="a0000000013" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0005.png" alt="\begin{equation}  f(\theta )=\int f(\theta | \theta ’) f(\theta ’) d \theta ’ \end{equation}" style="width:177px; 
+                            height:37px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.19</span>)</span></td>
+</tr>
+</table><p> となる。 </p><p>遷移核<img src="images/img-0006.png" alt="$q(~ |~ )$" style="vertical-align:-4px; 
+                                     width:35px; 
+                                     height:18px" class="math gen" />を適当に設定すると、 </p><table id="a0000000014" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0007.png" alt="\begin{equation}  q(\theta | \theta ’) f(\theta ’) &gt; q(\theta ’ | \theta )f(\theta ) \end{equation}" style="width:181px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.20</span>)</span></td>
+</tr>
+</table><p> のように詳細釣り合い条件は満たされなくなる。 メトロポリス・ヘイスティングス法では、確率補正  </p><table id="a0000000015" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0008.png" alt="\begin{equation}  0 \leq r \left( = \frac{q(\theta ' | \theta )f(\theta )}{q(\theta | \theta ') f(\theta ')} \right) \leq 1 \end{equation}" style="width:199px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.24</span>)</span></td>
+</tr>
+</table><p> により詳細釣り合い条件が満たされるようにする。 </p><p>提案分布<img src="images/img-0009.png" alt="$q(a|\theta ^{(t)})$" style="vertical-align:-4px; 
+                                     width:57px; 
+                                     height:18px" class="math gen" />において  </p><table id="a0000000016" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0010.png" alt="\begin{equation}  q(a | \theta ^{(t)}) f(\theta ^{(t)}) &gt; q(\theta ^{(t)}| a)f(a) \end{equation}" style="width:217px; 
+                            height:19px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.27</span>)</span></td>
+</tr>
+</table><p> であれば、確率 </p><table id="a0000000017" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0011.png" alt="\begin{equation}  r = \frac{q(\theta ^{(t)}| a)f(a)}{q(a | \theta ^{(t)}) f(\theta ^{(t)})} \end{equation}" style="width:139px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.28</span>)</span></td>
+</tr>
+</table><p> で<img src="images/img-0012.png" alt="$\theta ^{(t+1)}=a$" style="vertical-align:0px; 
+                                     width:72px; 
+                                     height:14px" class="math gen" />とし、確率<img src="images/img-0013.png" alt="$1-r$" style="vertical-align:0px; 
+                                     width:35px; 
+                                     height:12px" class="math gen" />で<img src="images/img-0014.png" alt="$\theta ^{(t+1)}=\theta ^{(t)}$" style="vertical-align:0px; 
+                                     width:85px; 
+                                     height:14px" class="math gen" />とする。 </p><p>そうでなければ、常に<img src="images/img-0012.png" alt="$\theta ^{(t+1)}=a$" style="vertical-align:0px; 
+                                     width:72px; 
+                                     height:14px" class="math gen" />とする。 </p><p>ここで、一般に<img src="images/img-0015.png" alt="$f(~ )$" style="vertical-align:-4px; 
+                                     width:26px; 
+                                     height:18px" class="math gen" />は事後分布であるから、 </p><table id="a0000000018" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000019">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0016.png" alt="$\displaystyle  r  $" style="vertical-align:0px; width:8px; 
+                   height:7px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0017.png" alt="$\displaystyle = \frac{q(\theta ^{(t)}| \theta _ a)f(\theta _ a|x)}{q(\theta _ a | \theta ^{(t)}) f(\theta ^{(t)}|x)}  $" style="vertical-align:-16px; width:146px; 
+                   height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.29</span>)</span></td>
+</tr><tr id="a0000000020">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0018.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px; 
+                   height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0019.png" alt="$\displaystyle = \frac{q(\theta ^{(t)}| \theta _ a)\frac{f(x|\theta _ a)f(\theta _ a)}{f(x)}}{q(\theta _ a | \theta ^{(t)}) \frac{f(x|\theta ^{(t)})f(\theta ^{(t)})}{f(x)}}  $" style="vertical-align:-24px; width:178px; 
+                   height:56px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.30</span>)</span></td>
+</tr><tr id="a0000000021">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0018.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px; 
+                   height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0020.png" alt="$\displaystyle = \frac{q(\theta ^{(t)}| \theta _ a) f(x|\theta _ a)f(\theta _ a)}{q(\theta _ a | \theta ^{(t)}) f(x|\theta ^{(t)})f(\theta ^{(t)})}  $" style="vertical-align:-16px; width:193px; 
+                   height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.31</span>)</span></td>
+</tr>
+</table><p> となり、事後分布についてはカーネルのみ利用すれば良いことがわかる。 </p><h2 id="a0000000022">4.6 独立MH法</h2>
+<p>提案分布を単に無条件分布とすることも可能。 この場合、補正係数は  </p><table id="a0000000023" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0021.png" alt="\begin{equation}  r = \frac{q(\theta ^{(t)})f(a)}{q(a) f(\theta ^{(t)})} \end{equation}" style="width:110px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.33</span>)</span></td>
+</tr>
+</table><p> となる。 もし提案分布が区間<img src="images/img-0022.png" alt="$[0,1]$" style="vertical-align:-5px; 
+                                     width:29px; 
+                                     height:18px" class="math gen" />の一様分布なら、補正係数は  </p><table id="a0000000024" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0023.png" alt="\begin{equation}  r = \frac{f(a)}{f(\theta ^{(t)})} \end{equation}" style="width:80px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.35</span>)</span></td>
+</tr>
+</table><p> と簡略化される。 </p><h2 id="a0000000025">4.7 ランダムウォークMH法</h2>
+<p>候補の提案を、対象な分布からの実現値<img src="images/img-0024.png" alt="$e$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" />を利用して、 </p><table id="a0000000026" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0025.png" alt="\begin{equation}  a = \theta ^{(t)}+e \end{equation}" style="width:82px; 
+                            height:17px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.36</span>)</span></td>
+</tr>
+</table><p> とする。 この場合、提案分布が </p><table id="a0000000027" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0026.png" alt="\begin{equation}  q(a|\theta ^{(t)}) = q(\theta ^{(t)}|a) \end{equation}" style="width:138px; 
+                            height:19px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.37</span>)</span></td>
+</tr>
+</table><p> となるため、補正係数は常に </p><table id="a0000000028" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0023.png" alt="\begin{equation}  r = \frac{f(a)}{f(\theta ^{(t)})} \end{equation}" style="width:80px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.38</span>)</span></td>
+</tr>
+</table><p> となる。 </p><div id="figeq4-37" class="figure"><center> 
+<img src="images/img-0027.png" alt="\includegraphics[width=8cm]{figeq437.png}" style="width:8cm" /> <div class="caption"><b>Figure 4.1</b>: <span>対象分布により<img src="images/img-0028.png" alt="$q(a|\theta ^{(t)}) = q(\theta ^{(t)}|a)$" style="vertical-align:-4px; 
+                                     width:139px; 
+                                     height:18px" class="math gen" />となる理由</span></div>  </center></div><h2 id="a0000000029">4.8 生成量・研究仮説が正しい確率</h2>
+<h5 id="a0000000030">生成量</h5>
+<p> 事後分布からのサンプル<img src="images/img-0029.png" alt="$\theta ^{(t)}$" style="vertical-align:0px; 
+                                     width:22px; 
+                                     height:14px" class="math gen" />の関数<img src="images/img-0030.png" alt="$g(\theta ^{(t)})$" style="vertical-align:-4px; 
+                                     width:44px; 
+                                     height:18px" class="math gen" /> </p><p>研究仮説 <img src="images/img-0031.png" alt="$U$" style="vertical-align:0px; 
+                                     width:12px; 
+                                     height:11px" class="math gen" /> について  </p><table id="a0000000031" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0032.png" alt="\begin{equation}  u^{(t)} = g(\theta ^{(t)})= \begin{cases}  1 ~ ~ ~ U\text { is TRUE}\\ 0 ~ ~ ~ U\text { is FALSE} \end{cases} \end{equation}" style="width:241px; 
+                            height:50px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.44</span>)</span></td>
+</tr>
+</table><p> とすると、<img src="images/img-0033.png" alt="$u^{(t)}$" style="vertical-align:0px; 
+                                     width:24px; 
+                                     height:14px" class="math gen" />の平均は<img src="images/img-0034.png" alt="$E[U|\bm@general \boldmath \m@ne \mv@bold \bm@command {x}]$" style="vertical-align:-5px; 
+                                     width:48px; 
+                                     height:18px" class="math gen" />のEAP推定量で、研究仮説が正しい確率の評価を与えてくれる。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000012">ある時点で<img src="images/img-0035.png" alt="$\theta $" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" />が<img src="images/img-0036.png" alt="$\theta ’$" style="vertical-align:0px; 
+                                     width:12px; 
+                                     height:13px" class="math gen" />の<img src="images/img-0037.png" alt="$a$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" />倍起こりやすいとすると、<img src="images/img-0038.png" alt="$\theta ’ \rightarrow \theta $" style="vertical-align:0px; 
+                                     width:46px; 
+                                     height:13px" class="math gen" />は<img src="images/img-0039.png" alt="$\theta \rightarrow \theta ’$" style="vertical-align:0px; 
+                                     width:46px; 
+                                     height:13px" class="math gen" />より<img src="images/img-0037.png" alt="$a$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" />倍起こりやすい。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="基礎からのベイズ統計学" href="index.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="基礎からのベイズ統計学" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="ハミルトニアンモンテカルロ法" href="sect0002.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">基礎からのベイズ統計学</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="index.html" class="sectref" rel="prev">基礎からのベイズ統計学</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">基礎からのベイズ統計学</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0002.html" class="sectref" rel="next">ハミルトニアンモンテカルロ法</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

@@ -1,0 +1,588 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="動物実験データの解析">
+<META NAME="keywords" CONTENT="tango2015">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="tango2015.css">
+
+<LINK REL="next" HREF="node3.html">
+<LINK REL="previous" HREF="node1.html">
+<LINK REL="up" HREF="tango2015.html">
+<LINK REL="next" HREF="node3.html">
+<TITLE>動物実験データの解析</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html40"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html38"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html32"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html41"
+  HREF="node3.html">分散分析モデルから治療効果を学ぶ</A>
+<B>Up:</B> <A NAME="tex2html39"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html33"
+  HREF="node1.html">経時的繰り返し測定デザインとは</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html42"
+  HREF="node2.html#SECTION00021000000000000000">解析例1：時点ごとの2群比較</A>
+<LI><A NAME="tex2html43"
+  HREF="node2.html#SECTION00022000000000000000">解析例2：CFB（change from baseline）を利用</A>
+<LI><A NAME="tex2html44"
+  HREF="node2.html#SECTION00023000000000000000">解析例3：ベースライン得点を共変量としたANCOVA</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00020000000000000000">
+動物実験データの解析</A>
+</H1>
+
+<P>
+以下の2種類の薬剤を比較した動物実験の検査データを用いる。
+
+<P>
+
+<H4><A NAME="SECTION00020010000000000000">
+本文の表2.1をRで表示させたもの</A>
+</H4><PRE>
+&gt; data2.1 &lt;- read.csv("tab2.1.dat")
+&gt; data2.1
+   id group   t0   t1   t2   t3
+1   1     1  7.5  8.6  6.9  0.8
+2   2     1 10.6 11.7  8.8  1.6
+3   3     1 12.4 13.0 11.0  5.6
+4   4     1 11.5 12.6 11.1  7.5
+5   5     1  8.3  8.9  6.8  0.5
+6   6     1  9.2 10.1  8.6  3.8
+7   7     0 13.3 13.3 12.9 11.1
+8   8     0 10.7 10.8 10.7  9.3
+9   9     0 12.5 12.7 12.0 10.1
+10 10     0  8.4  8.7  8.1  5.7
+11 11     0  9.4  9.6  8.0  3.8
+12 12     0 11.3 11.7 10.0  8.5
+</PRE>
+
+<P>
+<IMG
+  WIDTH="650" HEIGHT="325" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig2_1.png"
+ ALT="Image fig2_1">
+
+<P>
+
+<H2><A NAME="SECTION00021000000000000000">
+解析例1：時点ごとの2群比較</A>
+</H2>
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="\fbox{\bf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>時点ごとのデータを比較するのは，時点間相関が大きいときは検定力が低くなる。（要チェック）
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\bf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="107" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="\fbox{\bf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A NAME="SECTION00021010000000000000">
+Rによる分析</A>
+</H4><PRE>
+&gt; # 解析例1：測定時点ごとにt検定（表2.2）
+&gt; t.test(t0~group, data=data2.1, var.equal=T)
+
+	Two Sample t-test
+
+data:  t0 by group
+t = 0.93962, df = 10, p-value = 0.3696
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.394178  3.427511
+sample estimates:
+mean in group 0 mean in group 1 
+      10.933333        9.916667 
+
+&gt; t.test(t1~group, data=data2.1, var.equal=T)
+
+	Two Sample t-test
+
+data:  t1 by group
+t = 0.29886, df = 10, p-value = 0.7712
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -2.044238  2.677571
+sample estimates:
+mean in group 0 mean in group 1 
+       11.13333        10.81667 
+
+&gt; t.test(t2~group, data=data2.1, var.equal=T)
+
+	Two Sample t-test
+
+data:  t2 by group
+t = 1.2624, df = 10, p-value = 0.2355
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.083806  3.917140
+sample estimates:
+mean in group 0 mean in group 1 
+      10.283333        8.866667 
+
+&gt; t.test(t3~group, data=data2.1, var.equal=T)
+
+	Two Sample t-test
+
+data:  t3 by group
+t = 2.9475, df = 10, p-value = 0.0146
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 1.167419 8.399247
+sample estimates:
+mean in group 0 mean in group 1 
+       8.083333        3.300000
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00022000000000000000">
+解析例2：CFB（change from baseline）を利用</A>
+</H2>
+
+<P>
+
+<H4><A NAME="SECTION00022010000000000000">
+Rによる分析</A>
+</H4>
+
+<P><PRE>
+&gt; # 解析例2：CFB (change from baseline)
+&gt; attach(data2.1)
+&gt; data2.1$diff01 &lt;- t0-t1
+&gt; data2.1$diff02 &lt;- t0-t2
+&gt; data2.1$diff03 &lt;- t0-t3
+&gt; detach(data2.1)
+&gt; 
+&gt; t.test(diff01~group, data=data2.1, var.equal=T)
+
+	Two Sample t-test
+
+data:  diff01 by group
+t = 6.0622, df = 10, p-value = 0.0001216
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ 0.4427167 0.9572833
+sample estimates:
+mean in group 0 mean in group 1 
+           -0.2            -0.9 
+
+&gt; t.test(diff02~group, data=data2.1, var.equal=T)
+
+	Two Sample t-test
+
+data:  diff02 by group
+t = -1.2006, df = 10, p-value = 0.2576
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -1.1423415  0.3423415
+sample estimates:
+mean in group 0 mean in group 1 
+           0.65            1.05 
+
+&gt; t.test(diff03~group, data=data2.1, var.equal=T)
+
+	Two Sample t-test
+
+data:  diff03 by group
+t = -4.0646, df = 10, p-value = 0.00227
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -5.831489 -1.701845
+sample estimates:
+mean in group 0 mean in group 1 
+       2.850000        6.616667
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION00023000000000000000">
+解析例3：ベースライン得点を共変量としたANCOVA</A>
+</H2>
+
+<P>
+多施設共同臨床試験では，評価項目のベースラインデータ，施設，ベースライン時点のその他の交絡因子などを共変量として調整するANCOVAが常套手段となっている。
+
+<P>
+評価時点のデータ <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ y$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ をベースラインデータ <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ x$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ で調整するのと，CFB（<SPAN CLASS="MATH"><IMG
+ WIDTH="58" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img15.png"
+ ALT="$ =y-x$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+）をベースラインデータ <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ x$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ で調整するのでは，<SPAN  CLASS="textbf">調整された効果の大きさ</SPAN> <SPAN  CLASS="textit">adjusted effect size</SPAN> は同じであることに注意。
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="\fbox{\bf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>
+共変量を<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ x$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+，グループ変数を <SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img16.png"
+ ALT="$ z$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ とする。
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>評価時点のデータを用いた
+</BLOCKQUOTE><P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="138" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img17.png"
+ ALT="$\displaystyle y=\beta_0 + \beta_1 x + \beta_2 z$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P><BLOCKQUOTE>
+に対してCFBを用いた
+</BLOCKQUOTE><P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><!-- MATH
+ \begin{equation*}
+y-x=\beta_0^* + \beta_1^* x + \beta_2^* z
+\end{equation*}
+ -->
+<TABLE CLASS="equation*" CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="170" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="$\displaystyle y-x=\beta_0^* + \beta_1^* x + \beta_2^* z$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P><BLOCKQUOTE>
+を考えると，
+</BLOCKQUOTE><P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><!-- MATH
+ \begin{equation*}
+y=\beta_0^* + (1+\beta_1^*) x + \beta_2^* z \\
+\end{equation*}
+ -->
+<TABLE CLASS="equation*" CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="181" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$\displaystyle y=\beta_0^* + (1+\beta_1^*) x + \beta_2^* z  $"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+&nbsp;&nbsp;&nbsp;</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P><BLOCKQUOTE>
+であるから，
+</BLOCKQUOTE>
+<UL>
+<LI><!-- MATH
+ $\beta_0=\beta_0^*$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="59" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img20.png"
+ ALT="$ \beta_0=\beta_0^*$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：<SPAN CLASS="MATH"><IMG
+ WIDTH="42" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$ x=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ のときの統制群（<SPAN CLASS="MATH"><IMG
+ WIDTH="41" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img22.png"
+ ALT="$ z=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+）の<SPAN CLASS="MATH"><IMG
+ WIDTH="34" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$ E[y]$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</LI>
+<LI><!-- MATH
+ $\beta_2=\beta_2^*$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="59" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \beta_2=\beta_2^*$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：<SPAN CLASS="MATH"><IMG
+ WIDTH="42" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$ x=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ のときの <!-- MATH
+ $E[y_1]-E[y_0]$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="96" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img25.png"
+ ALT="$ E[y_1]-E[y_0]$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ （調整された効果の大きさ）
+</LI>
+<LI><!-- MATH
+ $\beta_1=1+\beta_1^*$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="86" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img26.png"
+ ALT="$ \beta_1=1+\beta_1^*$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img14.png"
+ ALT="$ x$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+の1増加に対応する <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img13.png"
+ ALT="$ y$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ の増加
+</LI>
+</UL><BLOCKQUOTE>
+となる。
+
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\bf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="107" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="\fbox{\bf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<H4><A NAME="SECTION00023010000000000000">
+Rによる分析</A>
+</H4>
+
+<P><PRE>
+&gt; # 解析例3：ANCOVA
+&gt; fit2.1.01 &lt;- glm(t3~group+t0+group:t0, data=data2.1) # 交互作用あり
+&gt; summary(fit2.1.01)
+
+Call:
+glm(formula = t3 ~ group + t0 + group:t0, data = data2.1)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-2.50792  -0.69923  -0.07727   1.09259   2.32798  
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)  
+(Intercept)  -6.5516     4.5683  -1.434   0.1894  
+group1       -1.8732     6.0917  -0.307   0.7663  
+t0            1.3386     0.4130   3.241   0.0119 *
+group1:t0    -0.1562     0.5751  -0.272   0.7928  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 2.901406)
+
+    Null deviance: 147.649  on 11  degrees of freedom
+Residual deviance:  23.211  on  8  degrees of freedom
+AIC: 51.971
+
+Number of Fisher Scoring iterations: 2
+
+&gt; fit2.1.02 &lt;- glm(t3~group+t0, data=data2.1) # 有意でない交互作用を外す
+&gt; summary(fit2.1.02)
+
+Call:
+glm(formula = t3 ~ group + t0, data = data2.1)
+
+Deviance Residuals: 
+     Min        1Q    Median        3Q       Max  
+-2.55964  -0.78068   0.04258   0.95311   2.20815  
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)   
+(Intercept)  -5.6709     3.0484  -1.860  0.09577 . 
+group1       -3.5044     0.9717  -3.606  0.00569 **
+t0            1.2580     0.2722   4.621  0.00125 **
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for gaussian family taken to be 2.602817)
+
+    Null deviance: 147.649  on 11  degrees of freedom
+Residual deviance:  23.425  on  9  degrees of freedom
+AIC: 50.081
+
+Number of Fisher Scoring iterations: 2
+
+&gt; 
+&gt; par(mfrow=c(1,1))
+&gt; plot(t3~t0, data=data2.1[1:6,], xlim=c(0,15),ylim=c(0,15), pch=1, xlab="", ylab="")
+&gt; par(new=T)
+&gt; plot(t3~t0, data=data2.1[7:12,], xlim=c(0,15),ylim=c(0,15), pch=2, xlab="Week 0", ylab="Week 3")
+&gt; lines(data2.1$t0[1:6],predict(fit2.1.02)[1:6])
+&gt; lines(data2.1$t0[7:12],predict(fit2.1.02)[7:12])
+</PRE>
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="315" HEIGHT="355" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig2_4.png"
+ ALT="Image fig2_4">
+
+</DIV>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html40"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html38"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html32"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html41"
+  HREF="node3.html">分散分析モデルから治療効果を学ぶ</A>
+<B>Up:</B> <A NAME="tex2html39"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html33"
+  HREF="node1.html">経時的繰り返し測定デザインとは</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-10-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

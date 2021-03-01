@@ -1,0 +1,164 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0033.html" rel="next" />
+<link href="sect0031.html" rel="prev" />
+<link href="sect0031.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>7.1 変化についての「標準的な」定式化</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="7 マルチレベルモデルの誤差共分散構造を検討する" href="sect0031.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="7 マルチレベルモデルの誤差共分散構造を検討する" href="sect0031.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="合成モデルにおける誤差分散共分散行列" href="sect0033.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0031.html" class="sectref" rel="prev">マルチレベルモデルの誤差共分散構造を検討する</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0031.html" class="sectref" rel="parent">マルチレベルモデルの誤差共分散構造を検討する</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0033.html" class="sectref" rel="next">合成モデルにおける誤差分散共分散行列</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h2 id="a0000000033">7.1 変化についての「標準的な」定式化</h2>
+<p>今、以下のモデルを考える。 </p><table id="a0000000155" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000156">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0091.png" alt="$\displaystyle  Y_{ij} = \pi _{0i} + \pi _{1i} \textit{TIME}_ j + e_{ij}  $" style="vertical-align:-5px; width:196px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.14</span>)</span></td>
+</tr><tr id="a0000000157">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0092.png" alt="$\displaystyle e_{ij} \overset {\textit{iid}}{\sim } N(0, \sigma ^2_ e) \notag  $" style="vertical-align:-4px; width:104px; 
+                   height:22px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000158">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0093.png" alt="$\displaystyle \pi _{0i} = \gamma _{00} + \gamma _{01} (\textit{COG}_ i-\overline{\textit{COG}}) + \zeta _{0i} \notag  $" style="vertical-align:-4px; width:261px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000159">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0094.png" alt="$\displaystyle \pi _{1i} = \gamma _{10} + \gamma _{11} (\textit{COG}_ i-\overline{\textit{COG}}) + \zeta _{1i} \notag  $" style="vertical-align:-4px; width:261px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000160">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0095.png" alt="$\displaystyle \begin{bmatrix}  \zeta _{0i} 
+
+\\ \zeta _{1i} 
+
+\end{bmatrix} \overset {\textit{iid}}{\sim } N \left( \begin{bmatrix}  0 
+
+\\ 0 
+
+\end{bmatrix} , \begin{bmatrix}  \sigma _0^2 
+
+&amp;  \sigma _{01} 
+
+\\ \sigma _{10} 
+
+&amp;  \sigma _1^2 
+
+\end{bmatrix} \right) \notag  $" style="vertical-align:-15px; width:214px; 
+                   height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="7 マルチレベルモデルの誤差共分散構造を検討する" href="sect0031.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="7 マルチレベルモデルの誤差共分散構造を検討する" href="sect0031.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="合成モデルにおける誤差分散共分散行列" href="sect0033.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0031.html" class="sectref" rel="prev">マルチレベルモデルの誤差共分散構造を検討する</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0031.html" class="sectref" rel="parent">マルチレベルモデルの誤差共分散構造を検討する</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0033.html" class="sectref" rel="next">合成モデルにおける誤差分散共分散行列</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

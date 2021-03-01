@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="start" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+
+<link href="sect0010.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>11 空間構造のある階層ベイズモデル</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="10 階層ベイズモデル" href="sect0010.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0010.html" class="sectref" rel="prev">階層ベイズモデル</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000012">11 空間構造のある階層ベイズモデル</h1>
+<p>ここまでの場所差は、それぞれ独立に決まると仮定してきた。 しかし、植木鉢のように違いが影響を及ぼさないものではなく、区画を区切ったもののように、隣り合ったものについてはよく似た環境で独立とはいえないような場合はどうすればよいのか？ </p><p><img src="images/img-0051.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 場所差の<b class="bfseries">空間相関（spatial correlation）</b>を考慮 </p><p>空間相関...距離の遠近に依存して、場所の類似性が弱くなったり強くなったりする傾向 </p><h2 id="a0000000147">11.1 例題：一次元空間上の個体数分布</h2>
+<p>50個の調査区画が1本の直線上に等間隔に配置されており、生物の個体数を記録したとする。 </p><p><img src="images/img-0051.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 調査区画ごとに個体数を並べると、なだらかにへんかしていることがわかる。 </p><p><img src="images/img-0051.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> なだらかに変化する局所密度を考える。（隣り合う区画はよく似ている。） </p><h2 id="a0000000148">11.2 階層ベイズモデルに空間構造を組み込む</h2>
+<p>区画 <img src="images/img-0130.png" alt="$j$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> における個体数を </p><table id="a0000000149" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0133.png" alt="\begin{equation}  \log \lambda _ j = \beta + r_ j \end{equation}" style="width:105px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>11.47</span>)</span></td>
+</tr>
+</table><p> とおく。 ただし、<img src="images/img-0134.png" alt="$r_ j$" style="vertical-align:-5px; 
+                                     width:12px; 
+                                     height:12px" class="math gen" /> は（特に隣り合った区画同士では）独立な分布に従うと仮定できそうにはない。 </p><p>そこで、 </p><ul class="itemize">
+<li><p>区間の場所差は「近傍」区間の場所差にしか影響されない </p></li><li><p>区間 <img src="images/img-0130.png" alt="$j$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> の「近傍」は有限個 <img src="images/img-0135.png" alt="$n_ j$" style="vertical-align:-5px; 
+                                     width:15px; 
+                                     height:12px" class="math gen" /> であり、分析者が指定する </p></li><li><p>「近傍」の影響は<img src="images/img-0136.png" alt="$1/n_ j$" style="vertical-align:-5px; 
+                                     width:30px; 
+                                     height:17px" class="math gen" /> </p></li>
+</ul><p> なる仮定をおいてみる。 </p><h4 id="a0000000150">条件つき自己回帰（CAR）モデル</h4>
+<p> 仮に<img src="images/img-0137.png" alt="$n_ j=2$" style="vertical-align:-5px; 
+                                     width:47px; 
+                                     height:17px" class="math gen" />とし、 </p><table id="a0000000151" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000152">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0138.png" alt="$\displaystyle  p(r_ j \mid \mu _ j, s) = \sqrt{\frac{n_ j}{2 \pi s^2}} \exp \left\{  -\frac{(r_ j-\mu )^2}{2 s^2 / n_ j} \right\}   $" style="vertical-align:-17px; width:295px; 
+                   height:42px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>11.48</span>)</span></td>
+</tr><tr id="a0000000153">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0139.png" alt="$\displaystyle \mu _ j = \frac{r_{j-1}+r_{j+1}}{2}  $" style="vertical-align:-11px; width:125px; 
+                   height:34px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>11.49</span>)</span></td>
+</tr>
+</table><p> つまり </p><table id="a0000000154" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0140.png" alt="\begin{equation}  p(\{  r_ j \}  \mid s) \propto \exp \left\{  -\frac{1}{2 s^2} \sum _{j \sim j'} (r_ j-r_ j’)^2 \right\}  \end{equation}" style="width:292px; 
+                            height:60px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>11.50</span>)</span></td>
+</tr>
+</table><p> を考えてみる（<b class="bfseries">intrinsic Gaussian CAR モデル</b>）。 </p><h2 id="a0000000155">11.3 空間統計モデルをデータにあてはめる</h2>
+<h4 id="a0000000156">BUGSのコード</h4>
+<blockquote class="quote"> <small class="small"><pre>
+model{
+  for(j in 1:N.site){
+    Y[j] ~ dpois(mean[j])
+    log(mean[j]) &lt;- beta + r[j]
+  }
+  r[r:N.site] ~ car.normal(Adj[], Weights[], Num[], tau)
+  beta ~ dnorm(0, 1.0E-4)
+  tau &lt;- 1 / (s*s)
+  s ~ dunif(0, 1.0E+4)
+}
+</pre> </small> </blockquote><h2 id="a0000000157">11.4 空間統計モデルが作り出す確率場</h2>
+<h4 id="a0000000158">確率場</h4>
+<p> 相互作用する確率変数で埋め尽くされた空間のこと </p><h2 id="a0000000159">11.5 空間相関モデルと欠測のある観測データ</h2>
+<p>観測データの欠測部分を予測する用途にも空間相関モデルを用いることができる。 </p></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="10 階層ベイズモデル" href="sect0010.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0010.html" class="sectref" rel="prev">階層ベイズモデル</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

@@ -1,0 +1,782 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="混合効果モデルへのベイジアンアプローチ">
+<META NAME="keywords" CONTENT="tango2015">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="tango2015.css">
+
+<LINK REL="next" HREF="node9.html">
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="up" HREF="tango2015.html">
+<LINK REL="next" HREF="node9.html">
+<TITLE>混合効果モデルへのベイジアンアプローチ</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html115"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html113"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html107"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html116"
+  HREF="node9.html">潜在プロファイルモデル</A>
+<B>Up:</B> <A NAME="tex2html114"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html108"
+  HREF="node7.html">臨床試験への混合効果モデル：ポアソン回帰モデル</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html117"
+  HREF="node8.html#SECTION000101000000000000000">ソフトウェア</A>
+<LI><A NAME="tex2html118"
+  HREF="node8.html#SECTION000102000000000000000">無情報事前分布と信用区間</A>
+<LI><A NAME="tex2html119"
+  HREF="node8.html#SECTION000103000000000000000">混合効果正規線形モデル Model V のベイジアンモデル</A>
+<LI><A NAME="tex2html120"
+  HREF="node8.html#SECTION000104000000000000000">混合効果ロジスティック回帰モデル Model IV のベイジアンモデル</A>
+<LI><A NAME="tex2html121"
+  HREF="node8.html#SECTION000105000000000000000">混合効果Poisson回帰モデル Model V のベイジアンモデル</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION000100000000000000000">
+混合効果モデルへのベイジアンアプローチ</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION000101000000000000000">
+ソフトウェア</A>
+</H2>
+
+<P>
+WinBUGSはすでに開発が終了しているということで，テキストではOpenBUGSが用いられている。
+
+<P>
+また，治療効果を一定とするモデルIVとVを取り上げる。
+
+<P>
+
+<H2><A NAME="SECTION000102000000000000000">
+無情報事前分布と信用区間</A>
+</H2>
+
+<P>
+<DL>
+<DT><STRONG> 位置パラメータで<!-- MATH
+ $-\infty \leq \theta \leq \infty$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="99" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img199.png"
+ ALT="$ -\infty \leq \theta \leq \infty$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</STRONG></DT>
+<DD>: 
+
+<UL>
+<LI><!-- MATH
+ $p(\theta) \propto C$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="66" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img200.png"
+ ALT="$ p(\theta) \propto C$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ 
+</LI>
+<LI>improper にならないように <!-- MATH
+ $p(\theta) = N(0, 100^2)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="127" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img201.png"
+ ALT="$ p(\theta) = N(0, 100^2)$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ などとすることが多い
+</LI>
+</UL>
+</DD>
+<DT><STRONG> 尺度パラメータで<!-- MATH
+ $0 < \theta \leq \infty$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="78" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img202.png"
+ ALT="$ 0 &lt; \theta \leq \infty$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</STRONG></DT>
+<DD>: 
+
+<UL>
+<LI><!-- MATH
+ $p(\log \theta) \propto C$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="89" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img203.png"
+ ALT="$ p(\log \theta) \propto C$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ すなわち <!-- MATH
+ $p(\theta) \propto 1 / \theta$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="77" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img204.png"
+ ALT="$ p(\theta) \propto 1 / \theta$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</LI>
+<LI>improper にならないように <!-- MATH
+ $p(1/\theta) = \mathrm{Gamma} (0.001, 0.001)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="216" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img205.png"
+ ALT="$ p(1/\theta) = \mathrm{Gamma} (0.001, 0.001)$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ などとすることが多い
+</LI>
+</UL>
+</DD>
+</DL>
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+<!-- MATH
+ $p(\theta) \propto 1 / \theta$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="77" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img204.png"
+ ALT="$ p(\theta) \propto 1 / \theta$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ とする。
+このとき，<!-- MATH
+ $\log \theta = \phi$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="66" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img206.png"
+ ALT="$ \log \theta = \phi$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ とすると，<!-- MATH
+ $\theta = \exp \phi$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="70" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img207.png"
+ ALT="$ \theta = \exp \phi$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ である。よって，
+<P><!-- MATH
+ \begin{displaymath}
+p(\phi) \left |  \frac{d \theta}{d \phi} \right |  \propto  \frac{1}{\exp \phi}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="130" HEIGHT="54" ALIGN="MIDDLE" BORDER="0"
+ SRC="img208.png"
+ ALT="$\displaystyle p(\phi) \left \vert \frac{d \theta}{d \phi} \right \vert \propto \frac{1}{\exp \phi}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+\Leftrightarrow p(\phi) \exp \phi \propto \frac{1}{\exp \phi}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="155" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+ SRC="img209.png"
+ ALT="$\displaystyle \Leftrightarrow p(\phi) \exp \phi \propto \frac{1}{\exp \phi}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+すなわち
+<P><!-- MATH
+ \begin{displaymath}
+p(\phi) \propto C
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="68" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img210.png"
+ ALT="$\displaystyle p(\phi) \propto C$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+である。
+（see 松原望「ベイズ統計学概説」培風館, P.105）
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION000103000000000000000">
+混合効果正規線形モデル Model V のベイジアンモデル</A>
+</H2>
+
+<P>
+
+<UL>
+<LI>BtheBデータを利用
+</LI>
+<LI>治療期間中の効果は一定
+</LI>
+<LI>ベースラインと治療効果の個人差を仮定（互いに独立）
+</LI>
+</UL>
+
+<P>
+
+<H4><A NAME="SECTION000103010000000000000">
+Rのbrmsパッケージを用いた推定</A>
+</H4>
+
+<P><PRE>
+&gt; data7.2$post &lt;- as.numeric(data7.2$visit!=0)
+&gt; library(brms)
+&gt; set.seed(1234)
+&gt; fit7.2brms &lt;- brm(bdi~drug+length+treatment*post+(1+post||subject), 
++                   data=data7.2, 
++                   warmup=1e3, iter=1e4, chains=4, 
++                   control=list(adapt_delta=0.95))
+Compiling the C++ model
+Start sampling
+
+SAMPLING FOR MODEL 'gaussian(identity) brms-model' NOW (CHAIN 1).
+
+Gradient evaluation took 8.2e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.82 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 4.06337 seconds (Warm-up)
+               27.9731 seconds (Sampling)
+               32.0365 seconds (Total)
+
+
+SAMPLING FOR MODEL 'gaussian(identity) brms-model' NOW (CHAIN 2).
+
+Gradient evaluation took 5.9e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.59 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 3.76127 seconds (Warm-up)
+               28.5285 seconds (Sampling)
+               32.2898 seconds (Total)
+
+
+SAMPLING FOR MODEL 'gaussian(identity) brms-model' NOW (CHAIN 3).
+
+Gradient evaluation took 9.5e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.95 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 3.84243 seconds (Warm-up)
+               28.917 seconds (Sampling)
+               32.7595 seconds (Total)
+
+
+SAMPLING FOR MODEL 'gaussian(identity) brms-model' NOW (CHAIN 4).
+
+Gradient evaluation took 6.2e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.62 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 3.87251 seconds (Warm-up)
+               29.7055 seconds (Sampling)
+               33.578 seconds (Total)
+
+ 警告メッセージ: 
+Rows containing NAs were excluded from the model 
+&gt; summary(fit7.2brms, waic=T)
+ Family: gaussian(identity) 
+Formula: bdi ~ drug + length + treatment * post + (1 + post || subject) 
+   Data: data7.2 (Number of observations: 380) 
+Samples: 4 chains, each with iter = 10000; warmup = 1000; thin = 1; 
+         total post-warmup samples = 36000
+    ICs: LOO = NA; WAIC = 2492.44; R2 = NA
+ 
+Group-Level Effects: 
+~subject (Number of levels: 100) 
+              Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+sd(Intercept)     8.73      0.80     7.26    10.43      18554 1.00
+sd(post)          6.11      0.90     4.37     7.92      12725 1.00
+
+Population-Level Effects: 
+               Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+Intercept         21.18      1.96    17.32    25.03      28616 1.00
+drug               3.77      2.09    -0.38     7.90      26269 1.00
+length             3.62      1.99    -0.26     7.57      26154 1.00
+treatment         -2.62      2.14    -6.82     1.57      28632 1.00
+post              -6.38      1.31    -8.97    -3.80      36000 1.00
+treatment:post    -2.52      1.81    -6.04     1.04      36000 1.00
+
+Family Specific Parameters: 
+      Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+sigma     5.39      0.28     4.87     5.97      11961 1.00
+
+Samples were drawn using sampling(NUTS). For each parameter, Eff.Sample 
+is a crude measure of effective sample size, and Rhat is the potential 
+scale reduction factor on split chains (at convergence, Rhat = 1).
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION000104000000000000000">
+混合効果ロジスティック回帰モデル Model IV のベイジアンモデル</A>
+</H2>
+
+<P>
+
+<UL>
+<LI>respiratory データを利用
+</LI>
+<LI>治療中の効果は一定，ベースラインの個人差のみ考慮
+</LI>
+<LI><TT>family=binomial</TT> だとエラーが出るので <TT>family=bernoulli()</TT> で実行<A NAME="tex2html6"
+  HREF="footnode.html#foot1168"><SUP><SPAN CLASS="arabic">6</SPAN></SUP></A>
+</LI>
+</UL>
+
+<P>
+
+<H4><A NAME="SECTION000104010000000000000">
+Rのbrmsパッケージを用いた推定</A>
+</H4>
+
+<P><PRE>
+&gt; data8.1$post &lt;- as.numeric(data8.1$month!=0)
+&gt; fit8.4brms &lt;- brm(status~centre+gender+age+treatment*post+(1|subject), 
++                   data=data8.1, family=bernoulli(), 
++                   warmup = 1e3, iter = 1e4, chains = 4,
++                   control = list(adapt_delta=0.95))
+Compiling the C++ model
+Start sampling
+
+SAMPLING FOR MODEL 'bernoulli(logit) brms-model' NOW (CHAIN 1).
+
+Gradient evaluation took 8.8e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.88 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 3.87847 seconds (Warm-up)
+               19.4662 seconds (Sampling)
+               23.3447 seconds (Total)
+
+
+SAMPLING FOR MODEL 'bernoulli(logit) brms-model' NOW (CHAIN 2).
+
+Gradient evaluation took 7.7e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.77 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 4.70598 seconds (Warm-up)
+               19.2472 seconds (Sampling)
+               23.9531 seconds (Total)
+
+
+SAMPLING FOR MODEL 'bernoulli(logit) brms-model' NOW (CHAIN 3).
+
+Gradient evaluation took 7.4e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.74 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 4.09635 seconds (Warm-up)
+               20.965 seconds (Sampling)
+               25.0614 seconds (Total)
+
+
+SAMPLING FOR MODEL 'bernoulli(logit) brms-model' NOW (CHAIN 4).
+
+Gradient evaluation took 8.1e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.81 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 4.33334 seconds (Warm-up)
+               19.2005 seconds (Sampling)
+               23.5338 seconds (Total)
+
+&gt; summary(fit8.4brms, waic=T)
+ Family: bernoulli(logit) 
+Formula: status ~ centre + gender + age + treatment * post + (1 | subject) 
+   Data: data8.1 (Number of observations: 555) 
+Samples: 4 chains, each with iter = 10000; warmup = 1000; thin = 1; 
+         total post-warmup samples = 36000
+    ICs: LOO = NA; WAIC = 500.97; R2 = NA
+ 
+Group-Level Effects: 
+~subject (Number of levels: 111) 
+              Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+sd(Intercept)     2.73      0.40     2.04     3.58      11648 1.00
+
+Population-Level Effects: 
+               Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+Intercept         -0.31      0.95    -2.19     1.55      15309 1.00
+centre2            2.13      0.66     0.90     3.50      13932 1.00
+gender            -0.44      0.82    -2.06     1.17      14007 1.00
+age               -0.03      0.02    -0.08     0.02      14251 1.00
+treatment         -0.15      0.79    -1.70     1.41      17641 1.00
+post              -0.11      0.42    -0.94     0.72      36000 1.00
+treatment:post     2.20      0.65     0.93     3.49      36000 1.00
+
+Samples were drawn using sampling(NUTS). For each parameter, Eff.Sample 
+is a crude measure of effective sample size, and Rhat is the potential 
+scale reduction factor on split chains (at convergence, Rhat = 1).
+</PRE>
+
+<P>
+
+<H2><A NAME="SECTION000105000000000000000">
+混合効果Poisson回帰モデル Model V のベイジアンモデル</A>
+</H2>
+
+<P>
+
+<UL>
+<LI>epilepsy データを利用
+</LI>
+<LI>治療期間中の効果は一定，ベースラインと効果の個人差を考慮（互いに独立）
+</LI>
+</UL>
+
+<P>
+
+<H4><A NAME="SECTION000105010000000000000">
+Rのbrmsパッケージを用いた推定</A>
+</H4>
+
+<P><PRE>
+&gt; data9.1$post &lt;- as.numeric(data9.1$period!=0)
+&gt; # モデルV（data9.1）
+&gt; fit9.5brms &lt;- brm(seizure~age+treatment*post+(1+post||subject)+offset(log(time)),
++                   data=data9.1, family=poisson(), 
++                   warmup = 1e3, iter = 1e4, chains = 4,
++                   control = list(adapt_delta=0.95)) 
+Compiling the C++ model
+Start sampling
+
+SAMPLING FOR MODEL 'poisson(log) brms-model' NOW (CHAIN 1).
+
+Gradient evaluation took 0.00012 seconds
+1000 transitions using 10 leapfrog steps per transition would take 1.2 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 10.9855 seconds (Warm-up)
+               49.5231 seconds (Sampling)
+               60.5086 seconds (Total)
+
+
+SAMPLING FOR MODEL 'poisson(log) brms-model' NOW (CHAIN 2).
+
+Gradient evaluation took 9.1e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.91 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 10.5611 seconds (Warm-up)
+               48.0834 seconds (Sampling)
+               58.6445 seconds (Total)
+
+
+SAMPLING FOR MODEL 'poisson(log) brms-model' NOW (CHAIN 3).
+
+Gradient evaluation took 9.2e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.92 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 10.743 seconds (Warm-up)
+               50.9709 seconds (Sampling)
+               61.7139 seconds (Total)
+
+
+SAMPLING FOR MODEL 'poisson(log) brms-model' NOW (CHAIN 4).
+
+Gradient evaluation took 9.4e-05 seconds
+1000 transitions using 10 leapfrog steps per transition would take 0.94 seconds.
+Adjust your expectations accordingly!
+
+
+Iteration:    1 / 10000 [  0%]  (Warmup)
+Iteration: 1000 / 10000 [ 10%]  (Warmup)
+Iteration: 1001 / 10000 [ 10%]  (Sampling)
+Iteration: 2000 / 10000 [ 20%]  (Sampling)
+Iteration: 3000 / 10000 [ 30%]  (Sampling)
+Iteration: 4000 / 10000 [ 40%]  (Sampling)
+Iteration: 5000 / 10000 [ 50%]  (Sampling)
+Iteration: 6000 / 10000 [ 60%]  (Sampling)
+Iteration: 7000 / 10000 [ 70%]  (Sampling)
+Iteration: 8000 / 10000 [ 80%]  (Sampling)
+Iteration: 9000 / 10000 [ 90%]  (Sampling)
+Iteration: 10000 / 10000 [100%]  (Sampling)
+
+ Elapsed Time: 11.8627 seconds (Warm-up)
+               49.7769 seconds (Sampling)
+               61.6396 seconds (Total)
+
+&gt; summary(fit9.5brms)
+ Family: poisson(log) 
+Formula: seizure ~ age + treatment * post + (1 + post || subject) + offset(log(time)) 
+   Data: data9.1 (Number of observations: 295) 
+Samples: 4 chains, each with iter = 10000; warmup = 1000; thin = 1; 
+         total post-warmup samples = 36000
+    ICs: LOO = NA; WAIC = NA; R2 = NA
+ 
+Group-Level Effects: 
+~subject (Number of levels: 59) 
+              Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+sd(Intercept)     0.75      0.08     0.61     0.91       9818 1.00
+sd(post)          0.52      0.07     0.40     0.66      14113 1.00
+
+Population-Level Effects: 
+                        Estimate Est.Error l-95% CI u-95% CI Eff.Sample Rhat
+Intercept                   1.63      0.50     0.63     2.61       6528 1.00
+age                        -0.02      0.02    -0.05     0.01       6791 1.00
+treatmentProgabide          0.03      0.20    -0.37     0.43       5872 1.00
+post                        0.01      0.11    -0.22     0.24      11939 1.00
+treatmentProgabide:post    -0.31      0.16    -0.62     0.00      12646 1.00
+
+Samples were drawn using sampling(NUTS). For each parameter, Eff.Sample 
+is a crude measure of effective sample size, and Rhat is the potential 
+scale reduction factor on split chains (at convergence, Rhat = 1).
+</PRE>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html115"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html113"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html107"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html116"
+  HREF="node9.html">潜在プロファイルモデル</A>
+<B>Up:</B> <A NAME="tex2html114"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html108"
+  HREF="node7.html">臨床試験への混合効果モデル：ポアソン回帰モデル</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-10-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

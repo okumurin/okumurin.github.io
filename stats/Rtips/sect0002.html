@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="Rの利用に関する備忘録" rel="start" />
+<link href="index.html" title="Rの利用に関する備忘録" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0003.html" rel="next" />
+<link href="sect0001.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>2 psych</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="1 デフォルトの関数" href="sect0001.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="Rの利用に関する備忘録" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="miceadds: Some additional multiple imputation functions, especially for ‘mice’" href="sect0003.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">Rの利用に関する備忘録</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0001.html" class="sectref" rel="prev">デフォルトの関数</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">Rの利用に関する備忘録</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0003.html" class="sectref" rel="next">miceadds: Some additional multiple imputation functions, especially for ‘<tt class="ttfamily">mice</tt>’</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000003">2 psych</h1>
+<h2 id="a0000000014">2.1 <tt class="ttfamily">fa()</tt></h2>
+<p> 因子分析を実行する関数。 </p><ul class="itemize">
+<li><p><tt class="ttfamily">r</tt>：相関行列、共分散行列、ローデータ行列 </p></li><li><p><tt class="ttfamily">nfactors</tt>：因子数 </p></li><li><p><tt class="ttfamily">n.obs</tt>：サンプルサイズ（相関行列を指定した場合に必要） </p></li><li><p><tt class="ttfamily">rotate</tt>：因子の回転 </p><ul class="itemize">
+<li><p>直交回転：<tt class="ttfamily">"none", "varimax", "quartimax"</tt> など </p></li><li><p>斜交回転：<tt class="ttfamily">"promax", "oblimin", "geominQ"</tt> など </p></li>
+</ul></li><li><p><tt class="ttfamily">fm</tt>：解の推定法 </p><ul class="itemize">
+<li><p><tt class="ttfamily">"minres"</tt>：OLS </p></li><li><p><tt class="ttfamily">"wls"</tt>：WLS </p></li><li><p><tt class="ttfamily">"gls"</tt>：GLS </p></li><li><p><tt class="ttfamily">"ml"</tt>：最尤法 </p></li>
+</ul></li><li><p><tt class="ttfamily">missing</tt>：<tt class="ttfamily">TRUE</tt> にすれば、欠測部分が中央値もしくは平均で代入される。指定しなければ、ペアワイズ除去される。 </p></li><li><p><tt class="ttfamily">impute</tt>：欠測の代入（<tt class="ttfamily">"median", "mean"</tt>） </p></li>
+</ul><p> 分析結果のうち、因子負荷は <tt class="ttfamily">$loadings</tt>、共通性は <tt class="ttfamily">$communality</tt>、複雑性は <tt class="ttfamily">$complexity</tt>、因子間相関は <tt class="ttfamily">$Phi</tt> に格納される。 </p><p>因子負荷行列と因子間相関行列は、因子番号が自動的に入れ替えられて表示される。 抽出された因子の順序に従って表示させるには、 </p><blockquote class="quote"> <pre>
+fact$loadings[1:32,order(colnames(fact$loadings))]
+fact$Phi[order(rownames(fact$Phi)),order(colnames(fact$Phi))]
+</pre> </blockquote><p> などとする必要がある<a href="#a0000000015" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><h2 id="a0000000016">2.2 <tt class="ttfamily">reverse.code()</tt></h2>
+<p> 逆転項目の処理をする関数。 </p><ul class="itemize">
+<li><p><tt class="ttfamily">keys</tt>：逆転処理する変数を指定（<tt class="ttfamily">1</tt> と <tt class="ttfamily">-1</tt> からなり、<tt class="ttfamily">-1</tt> を指定した項目が逆転される） </p></li><li><p><tt class="ttfamily">items</tt>：対象となるデータを指定 </p></li>
+</ul><p> 例えば、 </p><blockquote class="quote"> <pre>
+data03[,1:10] &lt;- reverse.code(keys=c(1,1,1,1,1,-1,-1,-1,-1,-1), items=data03[,1:10])
+</pre> </blockquote><p> とすれば 10 項目のうち後半 5 項目が逆転処理される。 </p><h2 id="a0000000017">2.3 <tt class="ttfamily">scrub()</tt></h2>
+<p> 最大値と最小値から外れた異常値を除去するための関数。 </p><ul class="itemize">
+<li><p><tt class="ttfamily">x</tt>：データ行列 </p></li><li><p><tt class="ttfamily">where</tt>：チェックする変数（変数名か列数） </p></li><li><p><tt class="ttfamily">min</tt>：取りうる最小値 </p></li><li><p><tt class="ttfamily">max</tt>：取りうる最大値 </p></li>
+</ul><p> 例えば、 </p><blockquote class="quote"> <pre>
+data01[,14:30] &lt;- scrub(data01[,14:30],min=1,max=4)
+</pre> </blockquote><p> とすれば、<tt class="ttfamily">data01</tt> のうち 14-30列の項目について、最小値 1 から 最大値 4 に収まらない値は <tt class="ttfamily">NA</tt> に置き換えられる。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000015"><tt class="ttfamily">fact</tt> に因子分析結果を代入、項目数 32 とする。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="1 デフォルトの関数" href="sect0001.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="Rの利用に関する備忘録" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="miceadds: Some additional multiple imputation functions, especially for ‘mice’" href="sect0003.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">Rの利用に関する備忘録</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0001.html" class="sectref" rel="prev">デフォルトの関数</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">Rの利用に関する備忘録</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0003.html" class="sectref" rel="next">miceadds: Some additional multiple imputation functions, especially for ‘<tt class="ttfamily">mice</tt>’</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="start" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0003.html" rel="next" />
+<link href="sect0001.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>2 確率分布と統計モデルの最尤推定</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="1 データを理解するために統計モデルを作る" href="sect0001.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="一般化線形モデル（GLM）" href="sect0003.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0001.html" class="sectref" rel="prev">データを理解するために統計モデルを作る</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0003.html" class="sectref" rel="next">一般化線形モデル（GLM）</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000003">2 確率分布と統計モデルの最尤推定</h1>
+<h2 id="a0000000014">2.1 例題：種子数の統計モデリング</h2>
+<h4 id="a0000000015">Rによるヒストグラム</h4>
+<p> <tt class="ttfamily">breaks=</tt> で、<img src="images/img-0002.png" alt="$-0.5$" style="vertical-align:0px; 
+                                     width:33px; 
+                                     height:13px" class="math gen" />から区間<img src="images/img-0003.png" alt="$1$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:12px" class="math gen" />ずつに区切ったヒストグラムを描く。 </p><blockquote class="quote"> <small class="small"><pre>
+hist(data, breaks=seq(-0.5, 9.5, 1))
+</pre> </small> </blockquote><h2 id="a0000000016">2.3 ポアソン分布とは何か？</h2>
+<p> どのようなデータに対してポアソン分布によるモデル化を行うか。 </p><ol class="enumerate">
+<li value="1"><p>データが非負の整数である（カウントデータ） </p></li><li value="2"><p>下限はゼロみたいだが上限はよくわからない </p></li><li value="3"><p>データでは平均と分散がだいたい等しい </p></li>
+</ol><p> 上記に加えて、独立性や均質性も成り立っていること。 </p><h2 id="a0000000017">2.5 統計モデルの要点：乱数発生・推定・予測</h2>
+<p>統計モデルの良さを評価する上では、<b class="bfseries">予測の良さ</b>（推定されたモデルが新しく得られたデータにどれくらいよく当てはまるか）という考え方が重要になる。 </p><h4 id="a0000000018">予測の良さの検証（validation）</h4>
+<ol class="enumerate">
+<li value="1"><p>データは人間には見えない真の統計モデルから発生している </p></li><li value="2"><p>たまたま得られたデータからある統計モデルを仮定しパラメータを推定する </p></li><li value="3"><p>推定されたモデル分布が新たに得られるデータ分布をどれくらい予測できるか評価する </p></li>
+</ol><h2 id="a0000000019">2.6 確率分布の選び方</h2>
+<ul class="itemize">
+<li><p>説明したい量は離散か連続か？ </p></li><li><p>説明したい量の範囲は？ </p></li><li><p>説明したい量の標本平均と標本分散の関係は？ </p></li>
+</ul></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="1 データを理解するために統計モデルを作る" href="sect0001.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="一般化線形モデル（GLM）" href="sect0003.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0001.html" class="sectref" rel="prev">データを理解するために統計モデルを作る</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0003.html" class="sectref" rel="next">一般化線形モデル（GLM）</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

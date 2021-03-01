@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="心理学のためのサンプルサイズ設計入門" rel="start" />
+<link href="index.html" title="心理学のためのサンプルサイズ設計入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0002.html" rel="next" />
+<link href="index.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>2 検定力分析に基づくサンプルサイズ設計（杉澤）</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="心理学のためのサンプルサイズ設計入門" href="index.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="心理学のためのサンプルサイズ設計入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="信頼区間に基づくサンプルサイズ設計（石井）" href="sect0002.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">心理学のためのサンプルサイズ設計入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="index.html" class="sectref" rel="prev">心理学のためのサンプルサイズ設計入門</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">心理学のためのサンプルサイズ設計入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0002.html" class="sectref" rel="next">信頼区間に基づくサンプルサイズ設計（石井）</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000002">2 検定力分析に基づくサンプルサイズ設計（杉澤）</h1>
+<h2 id="a0000000008">2.2 検定のロジックと検定力を考慮することの重要性</h2>
+<h3 id="a0000000009">検定力について考えるための問題</h3>
+<blockquote class="quote"><p> [1] 赤玉と白玉が100個入っている袋からランダムに1つ取り出したところ、赤玉だった。 袋の中身が </p><ol class="enumerate">
+<li value="1"><p>赤玉5個、白玉95個 </p></li><li value="2"><p>赤玉80個、白玉20個 </p></li>
+</ol><p>のいずれかとしたら、どちらだと考えるか。（<img src="images/img-0001.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 多分、2番）  </p><p>[2] また、 袋の中身が </p><ol class="enumerate">
+<li value="1"><p>赤玉5個、白玉95個 </p></li><li value="2"><p>赤玉6個、白玉94個 </p></li>
+</ol><p>のいずれかとしたら、どちらだと考えるか。（<img src="images/img-0001.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 強いて言うなら2番か？） </p></blockquote><p>検定力は低いが有意な結果が得られた、というのは後者の状態。 </p><p><img src="images/img-0001.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 帰無仮説のみに注目するのではなく、「帰無仮説のもとでは得られにくく、かつ、対立仮説のもとでは得られやすい結果」が得られたときに帰無仮説を棄却するという、多くの人が直感的に行う判断と同じロジックを取っている。 </p><h2 id="a0000000010">2.3 検定力分析の方法</h2>
+<h3 id="a0000000011">2.3.4 母集団において期待される効果量</h3>
+<p>Cohen (1992) では、 </p><ul class="itemize">
+<li><p>測定尺度に依存しない </p></li><li><p>連続量である </p></li><li><p>0以上の値を取る </p></li><li><p>帰無仮説のもとでは0となる </p></li>
+</ul><p> 性質を持つものとして、8種類の検定について効果量の指標を定義。 </p><div id="tab.cohen1992" class="table"> <div class="caption"><b>Table 2.1</b>: <span>効果量の定義</span></div> <center> <table class="tabular" cellspacing="0">
+<tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 検定の種類 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 効果量の指標 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 小 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 中 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 大 </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p><img src="images/img-0002.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" />検定 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> <img src="images/img-0003.png" alt="$d=\frac{m_ A-m_ B}{\sigma }$" style="vertical-align:-6px; 
+                                     width:86px; 
+                                     height:17px" class="math gen" /> </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 0.20 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 0.50 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 0.80 </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:center"><p>無相関検定 </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0004.png" alt="$r$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> 0.10 </p></td>
+
+    
+    <td style="text-align:center"><p> 0.30 </p></td>
+
+    
+    <td style="text-align:center"><p> 0.50 </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:center"><p>カイ2乗検定 </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0005.png" alt="$w=\sqrt{\sum _{i=1}^ k \frac{(P_{1i}-P_{0i})^2}{P_{0i}}}$" style="vertical-align:-10px; 
+                                     width:164px; 
+                                     height:31px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> 0.10 </p></td>
+
+    
+    <td style="text-align:center"><p> 0.30 </p></td>
+
+    
+    <td style="text-align:center"><p> 0.50 </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:center"><p>分散分析 </p></td>
+
+    
+    <td style="text-align:center"><p> <img src="images/img-0006.png" alt="$f=\frac{\sigma _ m}{\sigma }$" style="vertical-align:-6px; 
+                                     width:52px; 
+                                     height:17px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> 0.10 </p></td>
+
+    
+    <td style="text-align:center"><p> 0.25 </p></td>
+
+    
+    <td style="text-align:center"><p> 0.40 </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p>重回帰分析 </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> <img src="images/img-0007.png" alt="$f^2 = \frac{R^2}{1-R^2}$" style="vertical-align:-5px; 
+                                     width:74px; 
+                                     height:23px" class="math gen" /> </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> 0.02 </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> 0.15 </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> 0.35 </p></td>
+
+</tr>
+</table> </center>  </div><h2 id="a0000000012">2.5 Rによる検定力分析の実行</h2>
+<h3 id="a0000000013">2.5.4 1要因分散分析</h3>
+<p>パッケージ <tt class="ttfamily">pwr</tt> の関数 <tt class="ttfamily">pwr.anova.test()</tt> を用いて、 </p><blockquote class="quote"> <pre>
+pwr.anova.test(k=3, sig.level=0.01, f=0.25, power=0.8)
+</pre> </blockquote><p> とすると、3群の比較、有意水準0.01、効果量0.25、検定力0.8で検定を行うためのサンプルサイズ（群あたり）が得られる。 </p><h3 id="a0000000014">2.5.5 2要因分散分析</h3>
+<p> パッケージ <tt class="ttfamily">pwr</tt> の関数 <tt class="ttfamily">pwr.f2.test()</tt> を用いて、 </p><blockquote class="quote"> <pre>
+pwr.f2.test(u=1, f2=0.25^2, power=0.8)
+</pre> </blockquote><p> とする。<img src="images/img-0008.png" alt="$u$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" />は分子の自由度。 </p><p>必要なサンプルサイズは、アウトプット </p><blockquote class="quote"> <pre>
+     Multiple regression power calculation 
+
+              u = 1
+              v = 125.5312
+             f2 = 0.0625
+      sig.level = 0.05
+          power = 0.8
+</pre> </blockquote><p> に分母の自由度<img src="images/img-0009.png" alt="$v$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" />として報告される。 分母の自由度が </p><table id="a0000000015" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0010.png" alt="\[ (\text {n of levels in A}) \times (\text {n of level in B}) \times (n-1) \]" style="width:327px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> によって求められることから、逆算して<img src="images/img-0011.png" alt="$n$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:7px" class="math gen" />を求める。 </p><p>重回帰分析の場合も、<img src="images/img-0012.png" alt="$u=1$" style="vertical-align:0px; 
+                                     width:38px; 
+                                     height:12px" class="math gen" />, <img src="images/img-0013.png" alt="$v=N-p-1$" style="vertical-align:-3px; 
+                                     width:102px; 
+                                     height:15px" class="math gen" />であることを利用すれば同じ。 </p></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="心理学のためのサンプルサイズ設計入門" href="index.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="心理学のためのサンプルサイズ設計入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="信頼区間に基づくサンプルサイズ設計（石井）" href="sect0002.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">心理学のためのサンプルサイズ設計入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="index.html" class="sectref" rel="prev">心理学のためのサンプルサイズ設計入門</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">心理学のためのサンプルサイズ設計入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0002.html" class="sectref" rel="next">信頼区間に基づくサンプルサイズ設計（石井）</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

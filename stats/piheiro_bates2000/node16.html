@@ -1,0 +1,611 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="不等分散性をモデル化するための分散関数">
+<META NAME="keywords" CONTENT="piheiro_bates2000">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="piheiro_bates2000.css">
+
+<LINK REL="next" HREF="node17.html">
+<LINK REL="previous" HREF="node15.html">
+<LINK REL="up" HREF="node14.html">
+<LINK REL="next" HREF="node17.html">
+<TITLE>不等分散性をモデル化するための分散関数</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html191"
+  HREF="node17.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html189"
+  HREF="node14.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html183"
+  HREF="node15.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html192"
+  HREF="node17.html">依存性をモデル化する相関構造</A>
+<B>Up:</B> <A NAME="tex2html190"
+  HREF="node14.html">基本的な線形混合効果モデルの拡張</A>
+<B> Previous:</B> <A NAME="tex2html184"
+  HREF="node15.html">拡張モデルの一般式</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><UL>
+<LI><A NAME="tex2html193"
+  HREF="node16.html#SECTION00052010000000000000">分散関数</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html194"
+  HREF="node16.html#SECTION00052100000000000000"><TT>nlme</TT>の分散関数：<TT>varFunc</TT>クラス</A>
+<UL>
+<LI><A NAME="tex2html195"
+  HREF="node16.html#SECTION00052110000000000000"><TT>varFixed</TT></A>
+<LI><A NAME="tex2html196"
+  HREF="node16.html#SECTION00052120000000000000"><TT>varIdent</TT></A>
+<LI><A NAME="tex2html197"
+  HREF="node16.html#SECTION00052130000000000000"><TT>varPower</TT></A>
+<LI><A NAME="tex2html198"
+  HREF="node16.html#SECTION00052140000000000000"><TT>varExp</TT></A>
+<LI><A NAME="tex2html199"
+  HREF="node16.html#SECTION00052150000000000000"><TT>varConstPower</TT></A>
+<LI><A NAME="tex2html200"
+  HREF="node16.html#SECTION00052160000000000000"><TT>varComb</TT></A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00052000000000000000">
+不等分散性をモデル化するための分散関数</A>
+</H2>
+
+<P>
+
+<H4><A NAME="SECTION00052010000000000000">
+分散関数</A>
+</H4>
+共変量を使用することでグループ内誤差の分散構造 <!-- MATH
+ $\sigma^2 \bm{\Lambda}_i$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="39" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img17.png"
+ ALT="$ \sigma^2 \bm{\Lambda}_i$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ をモデル化する。
+
+<P>
+一般的な分散関数モデルは以下の通り：
+<P><!-- MATH
+ \begin{displaymath}
+\mathrm{Var} (\epsilon_{ij} | \bm{b}_i) = \sigma^2 g^2 (\mu_{ij}, \bm{v}_{ij}, \bm{\delta}), ~~~~ (i=1,\dots, M,~ j=1,\dots,n_i)
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="433" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img18.png"
+ ALT="$\displaystyle \mathrm{Var} (\epsilon_{ij} \vert \bm{b}_i) = \sigma^2 g^2 (\mu_{ij}, \bm{v}_{ij}, \bm{\delta}),&nbsp;&nbsp;&nbsp;&nbsp; (i=1,\dots, M,&nbsp; j=1,\dots,n_i)$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+ただし，<SPAN CLASS="MATH"><IMG
+ WIDTH="29" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img19.png"
+ ALT="$ g(\cdot)$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ は分散関数で，
+
+<UL>
+<LI><!-- MATH
+ $\mu_{ij} = \mathrm{E} [y_{ij} | \bm{b}_i]$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="103" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img20.png"
+ ALT="$ \mu_{ij} = \mathrm{E} [y_{ij} \vert \bm{b}_i]$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ （<!-- MATH
+ $\bm{\delta}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$ \bm{\delta}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ は連続量とする）
+</LI>
+<LI><!-- MATH
+ $\bm{v}_{ij}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$ \bm{v}_{ij}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：分散共変量ベクトル
+</LI>
+<LI><!-- MATH
+ $\bm{\delta}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$ \bm{\delta}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+：分散パラメータ
+</LI>
+</UL>
+である。
+
+<P>
+ただし，計算の際には <SPAN CLASS="MATH"><IMG
+ WIDTH="25" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img23.png"
+ ALT="$ \mu_{ij}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ を <!-- MATH
+ $\widehat{\mu}_{ij} = \bm{x}_{ij}^T \bm{\beta} + \bm{z}_{ij}^T \widehat{\bm{b}}_i$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="132" HEIGHT="39" ALIGN="MIDDLE" BORDER="0"
+ SRC="img24.png"
+ ALT="$ \widehat{\mu}_{ij} = \bm{x}_{ij}^T \bm{\beta} + \bm{z}_{ij}^T \widehat{\bm{b}}_i$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ で置き換えて
+<P><!-- MATH
+ \begin{displaymath}
+\mathrm{Var} (\epsilon_{ij} | \bm{b}_i) \approx \sigma^2 g^2 (\widehat{\mu}_{ij}, \bm{v}_{ij}, \bm{\delta}), ~~~~ (i=1,\dots, M,~ j=1,\dots,n_i)
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="433" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img25.png"
+ ALT="$\displaystyle \mathrm{Var} (\epsilon_{ij} \vert \bm{b}_i) \approx \sigma^2 g^2 ...
+...dehat{\mu}_{ij}, \bm{v}_{ij}, \bm{\delta}),&nbsp;&nbsp;&nbsp;&nbsp; (i=1,\dots, M,&nbsp; j=1,\dots,n_i)$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+と近似する。
+反復計算によってこれを行うことを，<SPAN  CLASS="textbf">疑似最尤推定法</SPAN> <SPAN  CLASS="textit">pseudo-likelihood estimation</SPAN> や，<SPAN  CLASS="textbf">疑似制約付き最尤推定法</SPAN> <SPAN  CLASS="textit">pseudo-restricted-likelihood estimation</SPAN> と呼ぶ<A NAME="tex2html3"
+  HREF="footnode.html#foot627"><SUP><SPAN CLASS="arabic">3</SPAN></SUP></A>。
+
+<P>
+
+<H3><A NAME="SECTION00052100000000000000">
+<TT>nlme</TT>の分散関数：<TT>varFunc</TT>クラス</A>
+</H3>
+
+<P>
+主な引数：
+
+<UL>
+<LI><TT>value</TT>：分散パラメータ <!-- MATH
+ $\bm{\delta}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$ \bm{\delta}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ に相当
+</LI>
+<LI><TT>form</TT>：共変量ベクトル <!-- MATH
+ $\bm{v}_{ij}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img22.png"
+ ALT="$ \bm{v}_{ij}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ に相当
+</LI>
+</UL>
+
+<P>
+以下の4段階で用いる：
+
+<OL>
+<LI>分散関数の定義 （<TT>vf1 &lt;- varFunc()</TT>）
+</LI>
+<LI>初期化 （<TT>vf1 &lt;- Initialize(vf1, data = data01)</TT>）
+</LI>
+<LI>重みの表示 （<TT>varWeight(vf1)</TT>）
+</LI>
+<LI>モデルへの投入（<TT>lme(…, weights = vf1, …)</TT>）
+</LI>
+</OL>
+
+<P>
+
+<H4><A NAME="SECTION00052110000000000000">
+<TT>varFixed</TT></A>
+</H4>
+パラメータなしにただ1つの分散共変量で分散関数を表す。
+
+<P>
+例えば，
+<P><!-- MATH
+ \begin{displaymath}
+\mathrm{Var} (\epsilon_{ij}) = \sigma^2 X_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="121" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img26.png"
+ ALT="$\displaystyle \mathrm{Var} (\epsilon_{ij}) = \sigma^2 X_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+と <TT>x</TT> に対して直線的に増加するとすれば，分散関数は
+<P><!-- MATH
+ \begin{displaymath}
+g(X_{ij}) = \sqrt{X_{ij}}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="111" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img27.png"
+ ALT="$\displaystyle g(X_{ij}) = \sqrt{X_{ij}}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+となり，
+<PRE>
+&gt; vf1 &lt;- varFixed(~x)
+</PRE>
+と表現できる。
+
+<P>
+
+<H4><A NAME="SECTION00052120000000000000">
+<TT>varIdent</TT></A>
+</H4>
+
+<P>
+層別化変数 <SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img28.png"
+ ALT="$ s$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ の各レベルのために異なった分散を持つようなモデルを表す。
+<P><!-- MATH
+ \begin{displaymath}
+\mathrm{Var} (\epsilon_{ij}) = \sigma^2 \delta_{ij}^2
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="115" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img29.png"
+ ALT="$\displaystyle \mathrm{Var} (\epsilon_{ij}) = \sigma^2 \delta_{ij}^2$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+となり，対応する分散関数は
+<P><!-- MATH
+ \begin{displaymath}
+g(s_{ij}, \bm{\delta}) = \delta_{s_{ij}}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="105" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img30.png"
+ ALT="$\displaystyle g(s_{ij}, \bm{\delta}) = \delta_{s_{ij}}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+となる。
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img31.png"
+ ALT="\fbox{\bf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>
+<!-- MATH
+ $\bm{\delta}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$ \bm{\delta}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ パラメータについては，分散に対して2乗のオーダーであることに注意。SDに対しては1乗のオーダーになる。
+<BR><TT>lme()</TT> で返されるのはあくまで <!-- MATH
+ $\bm{\delta}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img21.png"
+ ALT="$ \bm{\delta}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ である。
+
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\bf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="107" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img32.png"
+ ALT="\fbox{\bf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+層別化変数を <TT>s</TT> とすると，
+<PRE>
+&gt; vf1 &lt;- varIdent(form = ~ 1 | s)
+</PRE>
+のように指定する。
+
+<P>
+
+<H4><A NAME="SECTION00052130000000000000">
+<TT>varPower</TT></A>
+</H4>
+
+<P>
+分散共変量の絶対値に従い分散が増減するケースをモデル化できる：
+<P><!-- MATH
+ \begin{displaymath}
+\mathrm{Var} (\epsilon_{ij}) = \sigma^2 |v_{ij}|^{2\delta}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="138" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img33.png"
+ ALT="$\displaystyle \mathrm{Var} (\epsilon_{ij}) = \sigma^2 \vert v_{ij}\vert^{2\delta}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+分散関数は，
+<P><!-- MATH
+ \begin{displaymath}
+g(v_{ij}, \delta) = |v_{ij}|^{\delta}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="114" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img34.png"
+ ALT="$\displaystyle g(v_{ij}, \delta) = \vert v_{ij}\vert^{\delta}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+である。
+<SPAN CLASS="MATH"><IMG
+ WIDTH="52" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img35.png"
+ ALT="$ v_{ij}=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ と仮定できるような場合は使用すべきでない。
+
+<P>
+例えば，
+<PRE>
+&gt; vf1 &lt;- varIPower(value = 0, form = ~ fitted(.)) # デフォルト
+&gt; vf1 &lt;- varIPower(1) # value（つまり\delta）の初期値が1
+</PRE>
+のように指定する。
+
+<P>
+
+<H4><A NAME="SECTION00052140000000000000">
+<TT>varExp</TT></A>
+</H4>
+
+<P>
+分散モデルは，
+<P><!-- MATH
+ \begin{displaymath}
+\mathrm{Var} (\epsilon_{ij}) = \sigma^2 \exp(2\delta v_{ij})
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="171" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img36.png"
+ ALT="$\displaystyle \mathrm{Var} (\epsilon_{ij}) = \sigma^2 \exp(2\delta v_{ij})$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+であり，分散関数は，
+<P><!-- MATH
+ \begin{displaymath}
+g(v_{ij}, \delta) = \exp(\delta v_{ij})
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="143" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img37.png"
+ ALT="$\displaystyle g(v_{ij}, \delta) = \exp(\delta v_{ij})$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+である。
+
+<P>
+例えば，
+<PRE>
+&gt; vf1 &lt;- varIExp(form = ~ x | Sex) # Sex によってxとの指数関数的関係が異なる
+&gt; vf1 &lt;- varIExp(form = ~ x | Sex, fixed = c(Female = 0)) # Female の分散は一定に固定
+</PRE>
+のように指定する。
+
+<P>
+
+<H4><A NAME="SECTION00052150000000000000">
+<TT>varConstPower</TT></A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\mathrm{Var} (\epsilon_{ij}) = \sigma^2 \left ( \delta_1 + |v_{ij}|^{\delta_2} \right )^2
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="196" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img38.png"
+ ALT="$\displaystyle \mathrm{Var} (\epsilon_{ij}) = \sigma^2 \left ( \delta_1 + \vert v_{ij}\vert^{\delta_2} \right )^2$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+g(v_{ij}, \bm{\delta}) = \delta_1 + |v_{ij}|^{\delta_2}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="155" HEIGHT="36" ALIGN="MIDDLE" BORDER="0"
+ SRC="img39.png"
+ ALT="$\displaystyle g(v_{ij}, \bm{\delta}) = \delta_1 + \vert v_{ij}\vert^{\delta_2}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H4><A NAME="SECTION00052160000000000000">
+<TT>varComb</TT></A>
+</H4>
+
+<P>
+対応する分散関数をかけ合わせることにより複数の分散モデルを組み合わせることができる。
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html191"
+  HREF="node17.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html189"
+  HREF="node14.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html183"
+  HREF="node15.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html192"
+  HREF="node17.html">依存性をモデル化する相関構造</A>
+<B>Up:</B> <A NAME="tex2html190"
+  HREF="node14.html">基本的な線形混合効果モデルの拡張</A>
+<B> Previous:</B> <A NAME="tex2html184"
+  HREF="node15.html">拡張モデルの一般式</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Okumura <BR>
+2017-10-27</I>
+</ADDRESS>
+</BODY>
+</HTML>

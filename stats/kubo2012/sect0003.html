@@ -1,0 +1,212 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="start" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0004.html" rel="next" />
+<link href="sect0002.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>3 一般化線形モデル（GLM）</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="2 確率分布と統計モデルの最尤推定" href="sect0002.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="GLMのモデル選択" href="sect0004.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0002.html" class="sectref" rel="prev">確率分布と統計モデルの最尤推定</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0004.html" class="sectref" rel="next">GLMのモデル選択</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000004">3 一般化線形モデル（GLM）</h1>
+<h2 id="a0000000020">3.4 ポアソン回帰の統計モデル</h2>
+<h4 id="a0000000021">データ</h4>
+<ul class="itemize">
+<li><p><tt class="ttfamily">y</tt>：種子数 </p></li><li><p><tt class="ttfamily">x</tt>：個体の体サイズ<a href="#a0000000022" class="footnote"><sup class="footnotemark">1</sup></a> </p></li><li><p><tt class="ttfamily">f</tt>：施肥処理（統制群 <tt class="ttfamily">C</tt> or 実験群 <tt class="ttfamily">T</tt>） </p></li>
+</ul><p><small class="small"><pre>
+&gt; d &lt;- read.csv("data3a.csv")
+&gt; head(d,n=5)
+   y     x f
+1  6  8.31 C
+2  6  9.44 C
+3  6  9.50 C
+4 12  9.07 C
+5 10 10.16 C
+</pre> </small> </p><h3 id="a0000000023">3.4.1 線形予測子と対数リンク関数</h3>
+<p> 平均種子数が個体ごとに異なり、それが体サイズだけに依存すると考える（施肥処理はとりあえず無視する）。 </p><p>その上で、モデルを </p><table id="a0000000024" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0004.png" alt="\begin{equation}  p(y_ i \mid \lambda _ i) = \frac{\lambda _ i^{y_ i} \exp (-\lambda _ i)}{y_ i !} \end{equation}" style="width:181px; 
+                            height:40px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.1</span>)</span></td>
+</tr>
+</table><p> ただし、 </p><table id="a0000000025" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0005.png" alt="\begin{equation}  \lambda _ i = \exp (\beta _1 + \beta _2 x_ i) \end{equation}" style="width:142px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.2</span>)</span></td>
+</tr>
+</table><p> とする。 つまり、平均種子数は<b class="bfseries">リンク関数</b>と<b class="bfseries">線形予測子</b>を用いて </p><table id="a0000000026" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0006.png" alt="\begin{equation}  \log \lambda _ i = \beta _1 + \beta _2 x_ i \end{equation}" style="width:128px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.3</span>)</span></td>
+</tr>
+</table><p> と表せる。 </p><ul class="itemize">
+<li><p>平均を <img src="images/img-0007.png" alt="$\exp $" style="vertical-align:-3px; 
+                                     width:25px; 
+                                     height:11px" class="math gen" /> でモデル化しておけば、非負となり都合が良い。 </p></li><li><p>要因の効果が積で表される。 </p></li>
+</ul><h4 id="a0000000027">正準リンク関数</h4>
+<ul class="itemize">
+<li><p>対数リンク関数：ポアソン回帰 </p></li><li><p>ロジットリンク関数：ロジスティック回帰 </p></li>
+</ul><h3 id="a0000000028">3.4.2 あてはめとあてはまりの良さ</h3>
+<p>モデルの対数尤度は、 </p><table id="a0000000029" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0008.png" alt="\begin{equation}  \log L(\beta _1, \beta _2) = \sum _ i \log \frac{\lambda _ i^{y_ i} \exp (-\lambda _ i)}{y_ i !} \end{equation}" style="width:256px; 
+                            height:45px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.4</span>)</span></td>
+</tr>
+</table><p> となる。 </p><h4 id="a0000000030">Rによるあてはめ</h4>
+<p> <tt class="ttfamily">glm()</tt> 関数でポアソン分布を指定<a href="#a0000000031" class="footnote"><sup class="footnotemark">2</sup></a>。 正式には <tt class="ttfamily">family=poisson(link="log")</tt> と指定しなくてはいけないが、ポアソン分布を指定した場合はデフォルトで対数リンク関数が用いられる。 </p><p><small class="small"><pre>
+&gt; fit &lt;- glm(y~x, data=d, family=poisson)
+&gt; summary(fit)
+
+Call:
+glm(formula = y ~ x, family = poisson, data = d)
+
+Deviance Residuals: 
+    Min       1Q   Median       3Q      Max  
+-2.3679  -0.7348  -0.1775   0.6987   2.3760  
+
+Coefficients:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)  1.29172    0.36369   3.552 0.000383 ***
+x            0.07566    0.03560   2.125 0.033580 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+(Dispersion parameter for poisson family taken to be 1)
+
+    Null deviance: 89.507  on 99  degrees of freedom
+Residual deviance: 84.993  on 98  degrees of freedom
+AIC: 474.77
+
+Number of Fisher Scoring iterations: 4
+</pre> </small> <tt class="ttfamily">fit</tt> の中身は、<tt class="ttfamily">names(fit)</tt> や <tt class="ttfamily">str(fit)</tt> で見られる。後者の方が詳細。 </p><p><tt class="ttfamily">z value</tt> は<b class="bfseries">Wald統計量</b>で、最尤推定値 / SE。 </p><h4 id="a0000000032">最大対数尤度</h4>
+<p> パラメータ値が最尤推定値となっているときの対数尤度。 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; logLik(fit)
+'log Lik.' -235.3863 (df=2)
+</pre> </small> </blockquote><h3 id="a0000000033">3.6.1 対数リンク関数のわかりやすさ：かけ算される効果</h3>
+<p>個体のサイズ <img src="images/img-0009.png" alt="$\texttt{x}$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" /> と施肥処理 <img src="images/img-0010.png" alt="$f$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:14px" class="math gen" /> を説明変数とすると、モデルは </p><table id="a0000000034" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0011.png" alt="\begin{equation*}  \lambda _ i = \exp (1.26)\times \exp (0.08 x_ i) \times \exp (-0.032) \end{equation*}" style="width:314px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> と推測される。 </p><ul class="itemize">
+<li><p><img src="images/img-0012.png" alt="$x_ i$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:10px" class="math gen" /> が <img src="images/img-0003.png" alt="$1$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:12px" class="math gen" /> 増えると、<img src="images/img-0013.png" alt="$\lambda _ i$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:14px" class="math gen" /> は <img src="images/img-0014.png" alt="$\exp (0.08 \times 1) \approx 1.083$" style="vertical-align:-4px; 
+                                     width:155px; 
+                                     height:18px" class="math gen" /> 倍に増える。 </p></li><li><p>肥料をやることで種子数の平均が <img src="images/img-0015.png" alt="$\exp (-0.032) \approx 0.9685$" style="vertical-align:-4px; 
+                                     width:156px; 
+                                     height:18px" class="math gen" /> 倍になる。 </p></li>
+</ul><p>データと予測値のプロットを表したものが図 <a href="sect0003.html#fig0308">3.8</a>。 この図では分かりにくいが、2つの曲線の幅は、右に行くほど広くなっている。 </p><div id="fig0308" class="figure"><center> 
+<img src="images/img-0016.png" alt="\includegraphics[width=10cm]{fig0308.png}" style="width:10cm" /> <div class="caption"><b>Figure 3.8</b>: <span>ポアソン回帰の当てはめ</span></div>  </center></div><p>本書は、変数変換によってではなく <img src="images/img-0017.png" alt="$y$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" /> の構造に合わせて適切な確率分布を選んでモデリングを行うという方針をとる。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000022"><img src="images/img-0012.png" alt="$x_ i$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:10px" class="math gen" />は測定誤差が全くないと仮定している。これを無視することで生じるバイアスを避けるには、説明変数 <img src="images/img-0012.png" alt="$x_ i$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:10px" class="math gen" /> も統計モデル化する必要がある。</li><li id="a0000000031">説明変数として施肥処理 <tt class="ttfamily">f</tt> のような因子型を含める場合も、<tt class="ttfamily">y~x+f</tt> のようにすればよい。ただし、<tt class="ttfamily">f</tt> がちゃんと因子型になっているか、<tt class="ttfamily">class(d$f)</tt> で確認しておくこと。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="2 確率分布と統計モデルの最尤推定" href="sect0002.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="GLMのモデル選択" href="sect0004.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0002.html" class="sectref" rel="prev">確率分布と統計モデルの最尤推定</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0004.html" class="sectref" rel="next">GLMのモデル選択</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

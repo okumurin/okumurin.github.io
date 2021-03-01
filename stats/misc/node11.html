@@ -1,0 +1,40 @@
+
+<H2><A NAME="SECTION00042000000000000000">
+Rによる解析</A>
+</H2>
+
+<P>
+主成分分析は、関数 <TT>princomp()</TT> で実行できる<A NAME="tex2html4"
+  HREF="footnode.html#foot166"><SUP>4</SUP></A>。
+引数として、
+
+<UL>
+<LI><TT>x</TT> :  データフレーム
+</LI>
+<LI><TT>cor</TT> : 相関係数行列を用いるときは <tex2html_image_mark>#tex2html_wrap_inline1648#
+<tex2html_verbatim_mark>mathend000# に指定（デフォルトは <TT>F</TT> であり、分散共分散行列を用いることになっている）
+</LI>
+<LI><TT>scores</TT> : 主成分得点を算出する場合は <TT>T</TT>（デフォルト）
+</LI>
+</UL>
+を指定する。
+
+<P>
+結果には、以下の内容が含まれる。
+
+<UL>
+<LI><TT>$loadings</TT> : 主成分負荷量（固有ベクトル）
+</LI>
+<LI><TT>$scores</TT> : 主成分得点（平均ゼロになるよう変換ずみ）
+</LI>
+</UL>
+
+<P>
+これを用いて、<TT>data01</TT> からてこ比を算出し、平均の2倍を超えるケースを除いたデータ <TT>data01.omit</TT> を作成するには、次のようにすれば良い。
+
+<P>
+<BLOCKQUOTE>
+</BLOCKQUOTE><PRE><tex2html_verbatim_mark>verbatim10#</PRE><BLOCKQUOTE>
+</BLOCKQUOTE>
+
+<P>

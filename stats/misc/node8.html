@@ -1,0 +1,280 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="てこ比：主成分分析による多変量外れ値の検出">
+<META NAME="keywords" CONTENT="misc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="misc.css">
+
+<LINK REL="next" HREF="node9.html">
+<LINK REL="previous" HREF="node7.html">
+<LINK REL="up" HREF="misc.html">
+<LINK REL="next" HREF="node9.html">
+<TITLE>てこ比：主成分分析による多変量外れ値の検出</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html139"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html137"
+  HREF="misc.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html131"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html140"
+  HREF="node9.html">多変量分散分析</A>
+<B>Up:</B> <A NAME="tex2html138"
+  HREF="misc.html">研究法や分析法に関するメモ</A>
+<B> Previous:</B> <A NAME="tex2html132"
+  HREF="node7.html">と</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html141"
+  HREF="node8.html#SECTION00081000000000000000">てこ比</A>
+<LI><A NAME="tex2html142"
+  HREF="node8.html#SECTION00082000000000000000">Rによる解析</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00080000000000000000">
+てこ比：主成分分析による多変量外れ値の検出</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00081000000000000000">
+てこ比</A>
+</H2>
+
+<P>
+多変量外れ値を検出するために、主成分分析を利用して<SPAN  CLASS="textbf">てこ比</SPAN> <SPAN  CLASS="textit">leverage</SPAN> を各ケースについて計算することが有効<A NAME="tex2html19"
+  HREF="footnode.html#foot491"><SUP><SPAN CLASS="arabic">17</SPAN></SUP></A>。
+
+<P>
+
+<H4><A NAME="SECTION00081010000000000000">
+てこ比</A>
+</H4>
+全ての主成分に関する標準化された主成分得点の平方和を標本サイズで割ったもの。
+
+<P>
+変数の数を <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img122.png"
+ ALT="$ p$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+、標本サイズを <SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img80.png"
+ ALT="$ N$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+、 <SPAN CLASS="MATH"><IMG
+ WIDTH="13" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img123.png"
+ ALT="$ j$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ 番目（<!-- MATH
+ $j=1,\dots,p$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="92" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img124.png"
+ ALT="$ j=1,\dots,p$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+）の標準化された主成分得点を <!-- MATH
+ $\tilde{f}^{(j)}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="32" HEIGHT="40" ALIGN="MIDDLE" BORDER="0"
+ SRC="img125.png"
+ ALT="$ \tilde{f}^{(j)}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ とすると、
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><!-- MATH
+ \begin{equation}
+\textit{LEVERAGE} = \frac{\tilde{f}^{(1)2}+\tilde{f}^{(2)2} + \dots + \tilde{f}^{(p)2}}{N}
+\end{equation}
+ -->
+<TABLE CLASS="equation" CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="320" HEIGHT="64" ALIGN="MIDDLE" BORDER="0"
+ SRC="img126.png"
+ ALT="$\displaystyle \textit{LEVERAGE} = \frac{\tilde{f}^{(1)2}+\tilde{f}^{(2)2} + \dots + \tilde{f}^{(p)2}}{N}$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+(<SPAN CLASS="arabic">8</SPAN>.<SPAN CLASS="arabic">7</SPAN>)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+である。
+
+<P>
+一般に、
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><TABLE CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="166" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img127.png"
+ ALT="$\displaystyle 0 \leq \textit{LEVERAGE} \leq 1$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+(<SPAN CLASS="arabic">8</SPAN>.<SPAN CLASS="arabic">8</SPAN>)</TD></TR>
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="146" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img128.png"
+ ALT="$\displaystyle \overline{\textit{LEVERAGE}} = \frac{p}{N}$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+(<SPAN CLASS="arabic">8</SPAN>.<SPAN CLASS="arabic">9</SPAN>)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+である。
+
+<P>
+てこ比の値が大きいほど全体の傾向から外れており、平均の2倍を超えるケース
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><!-- MATH
+ \begin{equation}
+\textit{LEVERAGE} > 2 \times \frac{p}{N}
+\end{equation}
+ -->
+<TABLE CLASS="equation" CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="175" HEIGHT="46" ALIGN="MIDDLE" BORDER="0"
+ SRC="img129.png"
+ ALT="$\displaystyle \textit{LEVERAGE} &gt; 2 \times \frac{p}{N}$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+(<SPAN CLASS="arabic">8</SPAN>.<SPAN CLASS="arabic">10</SPAN>)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+もしくは値が0.5を上回るケース
+<P></P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay"><!-- MATH
+ \begin{equation}
+\textit{LEVERAGE} > 0.5
+\end{equation}
+ -->
+<TABLE CLASS="equation" CELLPADDING="0" WIDTH="100%" ALIGN="CENTER">
+<TR VALIGN="MIDDLE">
+<TD NOWRAP ALIGN="CENTER"><SPAN CLASS="MATH"><IMG
+ WIDTH="148" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img130.png"
+ ALT="$\displaystyle \textit{LEVERAGE} &gt; 0.5$"></SPAN></TD>
+<TD NOWRAP CLASS="eqno" WIDTH="10" ALIGN="RIGHT">
+(<SPAN CLASS="arabic">8</SPAN>.<SPAN CLASS="arabic">11</SPAN>)</TD></TR>
+</TABLE></DIV>
+<BR CLEAR="ALL"><P></P>
+を外れ値とすることが多い。
+
+<P>
+
+<H2><A NAME="SECTION00082000000000000000">
+Rによる解析</A>
+</H2>
+
+<P>
+主成分分析は、関数 <TT>princomp()</TT> で実行できる<A NAME="tex2html20"
+  HREF="footnode.html#foot521"><SUP><SPAN CLASS="arabic">18</SPAN></SUP></A>。
+引数として、
+
+<UL>
+<LI><TT>x</TT> :  データフレーム
+</LI>
+<LI><TT>cor</TT> : 相関係数行列を用いるときは <SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img131.png"
+ ALT="$ T$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ に指定（デフォルトは <TT>F</TT> であり、分散共分散行列を用いることになっている）
+</LI>
+<LI><TT>scores</TT> : 主成分得点を算出する場合は <TT>T</TT>（デフォルト）
+</LI>
+</UL>
+を指定する。
+
+<P>
+結果には、以下の内容が含まれる。
+
+<UL>
+<LI><TT>$loadings</TT> : 主成分負荷量（固有ベクトル）
+</LI>
+<LI><TT>$scores</TT> : 主成分得点（平均ゼロになるよう変換ずみ）
+</LI>
+</UL>
+
+<P>
+これを用いて、<TT>data01</TT> からてこ比を算出し、平均の2倍を超えるケースを除いたデータ <TT>data01.omit</TT> を作成するには、次のようにすれば良い。
+
+<P><PRE>
+&gt; prin &lt;- princomp(x=data01, cor=T) # 相関行列を用いた主成分分析
+&gt; std.prin &lt;- scale(prin$scores) # 標準化された主成分得点を算出
+&gt; leverage &lt;- apply(std.prin^2, 1, sum)/dim(std.prin)[1] # てこ比の算出
+&gt; is.out &lt;- (leverage &gt; 2*mean(leverate)); sum(is.out) # 外れ値とその数
+&gt; data01.omit &lt;- data01[is.out!=T,] # 外れ値を除去したデータ
+</PRE>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html139"
+  HREF="node9.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html137"
+  HREF="misc.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html131"
+  HREF="node7.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html140"
+  HREF="node9.html">多変量分散分析</A>
+<B>Up:</B> <A NAME="tex2html138"
+  HREF="misc.html">研究法や分析法に関するメモ</A>
+<B> Previous:</B> <A NAME="tex2html132"
+  HREF="node7.html">と</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-11-24</I>
+</ADDRESS>
+</BODY>
+</HTML>

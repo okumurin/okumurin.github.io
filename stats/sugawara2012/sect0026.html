@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0027.html" rel="next" />
+<link href="sect0025.html" rel="prev" />
+<link href="sect0022.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>5.4 TIME の効果の再中心化</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="5.3 時変の予測変数" href="sect0025.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="5 時間的な変数 TIME をより柔軟に扱う" href="sect0022.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="非連続あるいは非線形の変化のモデリング" href="sect0027.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0025.html" class="sectref" rel="prev">時変の予測変数</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0022.html" class="sectref" rel="parent">時間的な変数 <i class="itshape">TIME</i> をより柔軟に扱う</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0027.html" class="sectref" rel="next">非連続あるいは非線形の変化のモデリング</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h2 id="a0000000027">5.4 <i class="itshape">TIME</i> の効果の再中心化</h2>
+<p>時間変数を <img src="images/img-0049.png" alt="$T$" style="vertical-align:0px; 
+                                     width:12px; 
+                                     height:11px" class="math gen" /> と表し、定数 <img src="images/img-0050.png" alt="$c$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> で中心化することを考える。 </p><table id="a0000000119" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000120">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0051.png" alt="$\displaystyle  Y_{ij} = \pi _{0i} + \pi _{1i} (T_{ij} -c) + e_{ij} \notag  $" style="vertical-align:-5px; width:207px; 
+                   height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000121">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0052.png" alt="$\displaystyle \pi _{0i} = \gamma _{00} + \gamma _{01} \textit{TREAT}_ i + \zeta _{0i}  $" style="vertical-align:-3px; width:211px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.12</span>)</span></td>
+</tr><tr id="a0000000122">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0053.png" alt="$\displaystyle \pi _{1i} = \gamma _{10} + \gamma _{11} \textit{TREAT}_ i + \zeta _{1i} \notag  $" style="vertical-align:-3px; width:211px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p>なるモデルを考える。 このとき、<img src="images/img-0054.png" alt="$\textit{Var} (\zeta _{0j}) = \sigma _0^2$" style="vertical-align:-5px; 
+                                     width:95px; 
+                                     height:19px" class="math gen" /> が <img src="images/img-0050.png" alt="$c$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> によって変化するのと合わせて、<img src="images/img-0018.png" alt="$\zeta _{0i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> と <img src="images/img-0019.png" alt="$\zeta _{1i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> の共分散も（結果的に相関も）大きく変化する（Rogosa &amp; Willett, 1985）。 </p><p>切片と傾きの相関が強くなりすぎると、安定した推定値を得られにくくなる。 </p><p><img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 切片パラメータの必要性をなくすような <img src="images/img-0050.png" alt="$c$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> を探すことも有効。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p> 上記のモデルについて、中心化定数 <img src="images/img-0050.png" alt="$c$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の値と <img src="images/img-0018.png" alt="$\zeta _{0i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> と <img src="images/img-0019.png" alt="$\zeta _{1i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> の相関の変化について図的に描いたものが図<a href="sect0026.html#fig0505">5.1</a>。 </p><div id="fig0505" class="figure"><center> 
+<img src="images/img-0055.png" alt="\includegraphics[width=12cm]{fig0505.png}" style="width:12cm" /> <div class="caption"><b>Figure 5.1</b>: <span>中心化定数とレベル2の残差相関の変化</span></div>  </center></div><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモここまで</b></span> </div></blockquote><p>次のようなモデルを考えることで、初期状態と最終状態に対する問いに同時に応えることができる。 </p><table id="a0000000123" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000124">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0056.png" alt="$\displaystyle  Y_{ij} = \pi _{0i} \left( \frac{\textit{T}_{\textit{max}} - \textit{T}_{ij}}{\textit{T}_{\textit{max}} - \textit{T}_{\textit{min}}} \right) + \pi _{1i} \left( \frac{\textit{T}_{ij} - \textit{T}_{\textit{min}} }{\textit{T}_{\textit{max}} - \textit{T}_{\textit{min}}} \right) + e_{ij} \notag  $" style="vertical-align:-15px; width:394px; 
+                   height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000125">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0052.png" alt="$\displaystyle \pi _{0i} = \gamma _{00} + \gamma _{01} \textit{TREAT}_ i + \zeta _{0i}  $" style="vertical-align:-3px; width:211px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.13</span>)</span></td>
+</tr><tr id="a0000000126">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0053.png" alt="$\displaystyle \pi _{1i} = \gamma _{10} + \gamma _{11} \textit{TREAT}_ i + \zeta _{1i} \notag  $" style="vertical-align:-3px; width:211px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> すると、 </p><ul class="itemize">
+<li><p><img src="images/img-0057.png" alt="$\pi _{0i}$" style="vertical-align:-3px; 
+                                     width:20px; 
+                                     height:10px" class="math gen" />: 初期値 </p></li><li><p><img src="images/img-0058.png" alt="$\pi _{1i}$" style="vertical-align:-3px; 
+                                     width:20px; 
+                                     height:10px" class="math gen" />: 最終値 </p></li>
+</ul><p> となる。  </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">はてな？</b></span> </p><p><i class="itshape">TIME</i> が人によってばらばらである場合、「初期値」とか「最終値」はあくまでサンプル全体での値であるから、「その人の初期値」「その人の最終値」というわけではない。外挿となる可能性が高いのではないか。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">はてな？ここまで</b></span> </div></blockquote><p>  このモデルは、上記の <img src="images/img-0059.png" alt="$T_{ij}$" style="vertical-align:-5px; 
+                                     width:20px; 
+                                     height:16px" class="math gen" /> を <img src="images/img-0050.png" alt="$c$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> でセンタリングしたモデルとまったく同じ乖離度を持つ。 </p></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="5.3 時変の予測変数" href="sect0025.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="5 時間的な変数 TIME をより柔軟に扱う" href="sect0022.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="非連続あるいは非線形の変化のモデリング" href="sect0027.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0025.html" class="sectref" rel="prev">時変の予測変数</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0022.html" class="sectref" rel="parent">時間的な変数 <i class="itshape">TIME</i> をより柔軟に扱う</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0027.html" class="sectref" rel="next">非連続あるいは非線形の変化のモデリング</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

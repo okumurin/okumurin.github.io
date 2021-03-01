@@ -1,0 +1,181 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0039.html" rel="next" />
+<link href="sect0037.html" rel="prev" />
+<link href="sect0035.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>8.3 変数横断的な変化の分析</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="8.2 潜在成長モデリングの基礎" href="sect0037.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="8 共分散構造分析を用いて変化のモデリングを行う" href="sect0035.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="潜在成長モデリングの拡張" href="sect0039.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0037.html" class="sectref" rel="prev">潜在成長モデリングの基礎</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0035.html" class="sectref" rel="parent">共分散構造分析を用いて変化のモデリングを行う</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0039.html" class="sectref" rel="next">潜在成長モデリングの拡張</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h2 id="a0000000039">8.3 変数横断的な変化の分析</h2>
+<h3 id="a0000000205">8.3.1 <img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />、<img src="images/img-0048.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> 測定モデルの両方で個々人の変化をモデリングする</h3>
+<p>内生的構成概念も、それを予測する外生的構成概念も個人内で変化している場合、 </p><p>測定モデルは </p><table id="a0000000206" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000207">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0150.png" alt="$\displaystyle  \bm@general \boldmath \m@ne \mv@bold \bm@command {X} = \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ x + \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ x \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } + \bm@general \boldmath \m@ne \mv@bold \bm@command {\delta }  $" style="vertical-align:-3px; width:135px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000208">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0151.png" alt="$\displaystyle \bm@general \boldmath \m@ne \mv@bold \bm@command {Y} = \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ y + \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ y \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } + \bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon }  $" style="vertical-align:-5px; width:132px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> と表すとして、<img src="images/img-0124.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\delta }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> の共分散行列 <img src="images/img-0125.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Theta }_{\delta }$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> と <img src="images/img-0130.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon }$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の共分散行列 <img src="images/img-0131.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Theta }_{\epsilon }$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> に加え、<img src="images/img-0124.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\delta }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> と <img src="images/img-0130.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon }$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の共分散行列 <img src="images/img-0152.png" alt="$\Phi _{\delta \epsilon } (= \text {diag}\{  \sigma _{\delta _ i \epsilon _ i} \} )$" style="vertical-align:-4px; 
+                                     width:132px; 
+                                     height:18px" class="math gen" /> を指定する必要がある。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p>この共分散行列は、外生的構成概念における測定モデルの誤差と内生的構成概念における測定モデルの誤差間の相関関係を表したもの。仮にすべてゼロとおいたとしても、分析自体は行えるはず。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモここまで</b></span> </div></blockquote><h3 id="eq.0827">8.3.2 構造モデルで変化の軌跡間の関係性をモデリングする</h3>
+<p>今、外生的構成変数と内生的構成概念が1つずつあるモデルを考える。 外生的構成変数の切片と傾きを <img src="images/img-0153.png" alt="$[\pi ’_{0i}, \pi ’_{1i}]^ T$" style="vertical-align:-5px; 
+                                     width:68px; 
+                                     height:19px" class="math gen" />、内生的構成概念の切片と傾きを <img src="images/img-0154.png" alt="$[\pi _{0i}, \pi _{1i}]^ T$" style="vertical-align:-5px; 
+                                     width:68px; 
+                                     height:19px" class="math gen" /> とおく。 </p><p>すると、切片から切片、切片から傾き、傾きから切片、傾きから傾き、へのパス係数を <img src="images/img-0155.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Gamma }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:11px" class="math gen" /> に含んだモデル </p><table id="a0000000209" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0156.png" alt="\begin{equation*} \begin{array}{ccccccccccc}\begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp; =&amp; \begin{bmatrix}  \mu _{\pi _{0i}} 
+
+\\ \mu _{\pi _{1i}} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  \gamma _{\pi _0 \pi '_0} 
+
+&amp;  \gamma _{\pi _0 \pi '_1} 
+
+\\ \gamma _{\pi _1 \pi '_0} 
+
+&amp;  \gamma _{\pi _1 \pi '_1} 
+
+\end{bmatrix}&amp; \begin{bmatrix}  \pi ’_{0i} 
+
+\\ \pi ’_{1i} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  0 
+
+&amp;  0 
+
+\\ 0 
+
+&amp;  0 
+
+\end{bmatrix}&amp; \begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  \zeta _{0i} 
+
+\\ \zeta _{1i} 
+
+\end{bmatrix} \label{eq.0827} \\ \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp; = &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\alpha } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Gamma } &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {B} &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta } \\ \end{array}\end{equation*}" style="width:572px; 
+                            height:58px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> を考えれば良い。 </p></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="8.2 潜在成長モデリングの基礎" href="sect0037.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="8 共分散構造分析を用いて変化のモデリングを行う" href="sect0035.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="潜在成長モデリングの拡張" href="sect0039.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0037.html" class="sectref" rel="prev">潜在成長モデリングの基礎</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0035.html" class="sectref" rel="parent">共分散構造分析を用いて変化のモデリングを行う</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0039.html" class="sectref" rel="next">潜在成長モデリングの拡張</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

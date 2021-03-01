@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="plasTeX - http://plastex.sf.net/">
+<!-- Sitemap 1.0 -->
+</head>
+<body>
+<object type="text/site properties">
+   <param name="Auto Generated" value="Yes">
+</object>
+<ul>
+    <li><object type="text/sitemap">
+        <param name="Name" value="R&#12398;&#21033;&#29992;&#12395;&#38306;&#12377;&#12427;&#20633;&#24536;&#37682;">
+        <param name="Local" value="index.html">
+        
+    </object></li>
+    <ul>
+      
+      <li><object type="text/sitemap">
+          <param name="Name" value="&#12487;&#12501;&#12457;&#12523;&#12488;&#12398;&#38306;&#25968;">
+          <param name="Local" value="sect0001.html">
+          <param name="ImageNumber" value="11">
+      </object></li>
+      
+      
+      <li><object type="text/sitemap">
+          <param name="Name" value="psych">
+          <param name="Local" value="sect0002.html">
+          <param name="ImageNumber" value="11">
+      </object></li>
+      
+      
+      <li><object type="text/sitemap">
+          <param name="Name" value="miceadds: Some additional multiple imputation functions, especially for &#8216;mice&#8217;">
+          <param name="Local" value="sect0003.html">
+          <param name="ImageNumber" value="11">
+      </object></li>
+      
+      
+      <li><object type="text/sitemap">
+          <param name="Name" value="mice: Multivariate imputation by chained equations">
+          <param name="Local" value="sect0004.html">
+          <param name="ImageNumber" value="11">
+      </object></li>
+      
+      
+    </ul>
+</ul>
+</body>
+</html>

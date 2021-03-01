@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="統計分析に関するメモ" rel="start" />
+<link href="index.html" title="統計分析に関するメモ" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+
+<link href="index.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>1 てこ比：主成分分析による多変量外れ値の検出</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="統計分析に関するメモ" href="index.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="統計分析に関するメモ" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">統計分析に関するメモ</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="index.html" class="sectref" rel="prev">統計分析に関するメモ</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">統計分析に関するメモ</a></span>
+
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000002">1 てこ比：主成分分析による多変量外れ値の検出</h1>
+<h2 id="a0000000003">1.1 てこ比</h2>
+<p>多変量外れ値を検出するために、主成分分析を利用して<b class="bfseries">てこ比</b> <i class="itshape">leverage</i> を各ケースについて計算することが有効<a href="#a0000000004" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><h4 id="a0000000005">てこ比</h4>
+<p> 全ての主成分に関する標準化された主成分得点の平方和を標本サイズで割ったもの。 </p><p>変数の数を <img src="images/img-0001.png" alt="$p$" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" />、標本サイズを <img src="images/img-0002.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" />、 <img src="images/img-0003.png" alt="$j$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> 番目（<img src="images/img-0004.png" alt="$j=1,\dots ,p$" style="vertical-align:-3px; 
+                                     width:84px; 
+                                     height:15px" class="math gen" />）の標準化された主成分得点を <img src="images/img-0005.png" alt="$\tilde{f}^{(j)}$" style="vertical-align:-3px; 
+                                     width:24px; 
+                                     height:19px" class="math gen" /> とすると、 </p><table id="a0000000006" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0006.png" alt="\begin{equation}  \textit{LEVERAGE} = \frac{\tilde{f}^{(1)2}+\tilde{f}^{(2)2} + \dots + \tilde{f}^{(p)2}}{N} \end{equation}" style="width:301px; 
+                            height:39px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>1.1</span>)</span></td>
+</tr>
+</table><p> である。 </p><p>一般に、 </p><table id="a0000000007" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000008">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0007.png" alt="$\displaystyle  0 \leq \textit{LEVERAGE} \leq 1  $" style="vertical-align:-2px; width:153px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>1.2</span>)</span></td>
+</tr><tr id="a0000000009">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0008.png" alt="$\displaystyle \overline{\textit{LEVERAGE}} = \frac{p}{N}  $" style="vertical-align:-12px; width:133px; 
+                   height:30px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>1.3</span>)</span></td>
+</tr>
+</table><p> である。 </p><p>てこ比の値が大きいほど全体の傾向から外れており、平均の2倍を超えるケース </p><table id="a0000000010" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0009.png" alt="\begin{equation}  \textit{LEVERAGE} &gt; 2 \times \frac{p}{N} \end{equation}" style="width:161px; 
+                            height:30px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>1.4</span>)</span></td>
+</tr>
+</table><p> もしくは値が0.5を上回るケース </p><table id="a0000000011" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0010.png" alt="\begin{equation}  \textit{LEVERAGE} &gt; 0.5 \end{equation}" style="width:135px; 
+                            height:13px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>1.5</span>)</span></td>
+</tr>
+</table><p> を外れ値とすることが多い。 </p><h2 id="a0000000012">1.2 Rによる解析</h2>
+<p>主成分分析は、関数 <tt class="ttfamily">princomp()</tt> で実行できる<a href="#a0000000013" class="footnote"><sup class="footnotemark">2</sup></a>。 引数として、 </p><ul class="itemize">
+<li><p><tt class="ttfamily">x</tt> : データフレーム </p></li><li><p><tt class="ttfamily">cor</tt> : 相関係数行列を用いるときは <img src="images/img-0011.png" alt="$T$" style="vertical-align:0px; 
+                                     width:12px; 
+                                     height:11px" class="math gen" /> に指定（デフォルトは <tt class="ttfamily">F</tt> であり、分散共分散行列を用いることになっている） </p></li><li><p><tt class="ttfamily">scores</tt> : 主成分得点を算出する場合は <tt class="ttfamily">T</tt>（デフォルト） </p></li>
+</ul><p> を指定する。 </p><p>結果には、以下の内容が含まれる。 </p><ul class="itemize">
+<li><p><tt class="ttfamily">$loadings</tt> : 主成分負荷量（固有ベクトル） </p></li><li><p><tt class="ttfamily">$scores</tt> : 主成分得点（平均ゼロになるよう変換ずみ） </p></li>
+</ul><p>これを用いて、<tt class="ttfamily">data01</tt> からてこ比を算出し、平均の2倍を超えるケースを除いたデータ <tt class="ttfamily">data01.omit</tt> を作成するには、次のようにすれば良い。 </p><blockquote class="quote"> <pre>
+&gt; prin &lt;- princomp(x=data01, cor=T) # 相関行列を用いた主成分分析
+&gt; std.prin &lt;- scale(prin$scores) # 標準化された主成分得点を算出
+&gt; leverage &lt;- apply(std.prin^2, 1, sum)/dim(std.prin)[1] # てこ比の算出
+&gt; is.out &lt;- (leverage &gt; 2*mean(leverate)); sum(is.out) # 外れ値とその数
+&gt; data01.omit &lt;- data01[is.out!=T,] # 外れ値を除去したデータ
+</pre> </blockquote></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000004">柳井晴夫・緒方裕光 (2006). SPSSによる統計データ解析 現代数学社 P.191</li><li id="a0000000013">金明哲 (2007). Rによるデータサイエンス 森北出版株式会社 P.69</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="統計分析に関するメモ" href="index.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="統計分析に関するメモ" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">統計分析に関するメモ</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="index.html" class="sectref" rel="prev">統計分析に関するメモ</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">統計分析に関するメモ</a></span>
+
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

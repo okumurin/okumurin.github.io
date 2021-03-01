@@ -1,0 +1,591 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="Rの利用に関する備忘録" rel="start" />
+<link href="index.html" title="Rの利用に関する備忘録" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+
+<link href="sect0003.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>4 mice: Multivariate imputation by chained equations</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 miceadds: Some additional multiple imputation functions, especially for ‘mice’" href="sect0003.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="Rの利用に関する備忘録" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">Rの利用に関する備忘録</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0003.html" class="sectref" rel="prev">miceadds: Some additional multiple imputation functions, especially for ‘<tt class="ttfamily">mice</tt>’</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">Rの利用に関する備忘録</a></span>
+
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000005">4 mice: Multivariate imputation by chained equations</h1>
+<h2 id="a0000000024">4.1 紹介</h2>
+<p>不完全な多変量データを補完するためのパッケージ (van Buuren &amp; Groothuis-Oudshoorn, 2011)<a href="#a0000000025" class="footnote"><sup class="footnotemark">1</sup></a> </p><p>多変量データの補完には、joint modeling (JM) と fully conditional specification (FCS)<a href="#a0000000026" class="footnote"><sup class="footnotemark">2</sup></a> とが知られているが、このパッケージは後者を行うもの。 </p><h2 id="a0000000027">4.2 一般的枠組み</h2>
+<h3 id="a0000000028">4.2.1 表記</h3>
+<ul class="itemize">
+<li><p><img src="images/img-0010.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> を <img src="images/img-0011.png" alt="$p$" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" /> 変量データとして、変数 <img src="images/img-0012.png" alt="$j$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> の観測部分と欠測部分をそれぞれ <img src="images/img-0013.png" alt="$Y_ j^{\text {obs}}$" style="vertical-align:-7px; 
+                                     width:32px; 
+                                     height:21px" class="math gen" /> と <img src="images/img-0014.png" alt="$Y_ j^{\text {mis}}$" style="vertical-align:-7px; 
+                                     width:33px; 
+                                     height:21px" class="math gen" /> </p></li><li><p><img src="images/img-0015.png" alt="$m$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:7px" class="math gen" /> を代入数、<img src="images/img-0016.png" alt="$h$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> 番目の代入データセットを <img src="images/img-0017.png" alt="$Y^{(h)}$" style="vertical-align:0px; 
+                                     width:30px; 
+                                     height:14px" class="math gen" />（<img src="images/img-0018.png" alt="$h=1,\dots ,m$" style="vertical-align:-3px; 
+                                     width:90px; 
+                                     height:15px" class="math gen" />） </p></li><li><p>変数 <img src="images/img-0012.png" alt="$j$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> を除いたデータセットを <img src="images/img-0019.png" alt="$Y_{-j}$" style="vertical-align:-5px; 
+                                     width:25px; 
+                                     height:16px" class="math gen" /> </p></li><li><p>興味のある量を <img src="images/img-0020.png" alt="$Q$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:14px" class="math gen" /> </p></li>
+</ul><h3 id="a0000000029">4.2.2 多重代入法のモジュラーアプローチ</h3>
+<ol class="enumerate">
+<li value="1"><p>多重代入の実行：<tt class="ttfamily">mice()</tt> で実行し、代入されたデータ（<img src="images/img-0021.png" alt="$Y^{(1)},\dots ,Y^{(m)}$" style="vertical-align:-3px; 
+                                     width:102px; 
+                                     height:17px" class="math gen" />）は <tt class="ttfamily">mids</tt> クラスで保存 </p></li><li value="2"><p>代入されたデータによる分析：<tt class="ttfamily">with.mids()</tt> で実行、結果（<img src="images/img-0022.png" alt="$\hat{Q}^{(1)},\dots ,\hat{Q}^{(m)}$" style="vertical-align:-3px; 
+                                     width:101px; 
+                                     height:20px" class="math gen" />）は <tt class="ttfamily">mira</tt> クラスで保存 </p></li><li value="3"><p>分析結果の統合：<tt class="ttfamily">pool()</tt> で実行、結果（<img src="images/img-0023.png" alt="$\bar{Q}$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:18px" class="math gen" />）は <tt class="ttfamily">mipo</tt> クラスで保存 </p></li>
+</ol><h3 id="a0000000030">4.2.3 MICE アルゴリズム</h3>
+<p><b class="bfseries">連鎖方程式</b> <i class="itshape">chained equations</i> によって、多変量データの代入に係る様々な問題<a href="#a0000000031" class="footnote"><sup class="footnotemark">3</sup></a>に対処 </p><p>多変量の完全データ <img src="images/img-0010.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> は未知のパラメータ <img src="images/img-0024.png" alt="$\theta $" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> のみによって発生するとする。 今、 <img src="images/img-0025.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" /> 番目の連鎖方程式を考えると、Gibbs sampler </p><table id="a0000000032" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000033">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0026.png" alt="$\displaystyle  \theta _1^{*(t)}  $" style="vertical-align:-5px; width:29px; 
+                   height:22px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0027.png" alt="$\displaystyle \sim P(\theta _1 \mid Y_1^{\text {obs}}, Y_2^{(t-1)},\dots , Y_ p^{(t-1)})  $" style="vertical-align:-6px; width:240px; 
+                   height:23px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.4</span>)</span></td>
+</tr><tr id="a0000000034">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0028.png" alt="$\displaystyle Y_1^{*(t)}  $" style="vertical-align:-5px; width:34px; 
+                   height:22px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0029.png" alt="$\displaystyle \sim P(Y_1 \mid Y_1^{\text {obs}}, Y_2^{(t-1)},\dots , Y_ p^{(t-1)},\theta _1^{*(t)})  $" style="vertical-align:-6px; width:281px; 
+                   height:23px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.5</span>)</span></td>
+</tr><tr id="a0000000035">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0003.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px; 
+                   height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0030.png" alt="$\displaystyle \vdots \notag  $" style="vertical-align:0px; width:2px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000036">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0031.png" alt="$\displaystyle \theta _ p^{*(t)}  $" style="vertical-align:-6px; width:29px; 
+                   height:21px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0032.png" alt="$\displaystyle \sim P(\theta _ p \mid Y_ p^{\text {obs}}, Y_2^{(t)},\dots , Y_{p-1}^{(t)})  $" style="vertical-align:-7px; width:211px; 
+                   height:24px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.6</span>)</span></td>
+</tr><tr id="a0000000037">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0033.png" alt="$\displaystyle Y_ p^{*(t)}  $" style="vertical-align:-6px; width:34px; 
+                   height:21px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0034.png" alt="$\displaystyle \sim P(Y_ p \mid Y_ p^{\text {obs}}, Y_2^{(t-1)},\dots , Y_ p^{(t)},\theta _ p^{*(t)})  $" style="vertical-align:-6px; width:264px; 
+                   height:23px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.7</span>)</span></td>
+</tr>
+</table><p> となる。 ただし、<img src="images/img-0035.png" alt="$Y_ j^{(t)} = (Y_ j^{\text {obs}},Y_ j^{*(t)})$" style="vertical-align:-7px; 
+                                     width:140px; 
+                                     height:24px" class="math gen" /> は <img src="images/img-0025.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" /> 番目の繰り返しにおける代入値である。 </p><p>通常のMCMCと異なり、10-20回程度の更新で収束する。 </p><h3 id="a0000000038">4.2.4 簡単な例</h3>
+<h4 id="a0000000039">欠測データの検査</h4>
+<p>データが <tt class="ttfamily">data01</tt> に <tt class="ttfamily">data frame</tt> として格納されているとする。 このとき、 </p><blockquote class="quote"> <small class="small"><pre>
+md.pattern(data01)
+</pre> </small> </blockquote><p> で各欠測パターンとその人数の内訳を、 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; md.pairs(data01)
+$rr
+     x1  x2  x3  y  
+x1   25  16  17  15
+x2   16  16  16  13
+x3   17  16  17  14
+y    15  13  14  15
+
+$rm
+     x1  x2  x3  y  
+x1    0   9   8  10
+x2    0   0   0   3
+x3    0   1   0   3
+y     0   2   1   0
+
+$mr
+     x1  x2  x3  y  
+x1    0   0   0   0
+x2    9   0   1   2
+x3    8   0   0   1
+y    10   3   3   0
+
+$mm
+     x1  x2  x3  y  
+x1    0   0   0   0
+x2    0   9   8   7
+x3    0   8   8   7
+y     0   7   7  10
+</pre> </small> </blockquote><p> で「変数 <img src="images/img-0036.png" alt="$\times $" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:8px" class="math gen" /> 変数」形式の行列で欠測パターンを出力することができる。 <tt class="ttfamily">r</tt> は観測、<tt class="ttfamily">m</tt> は欠測を表す。 例えば、<tt class="ttfamily">(x2, y)</tt> の組み合わせでは、双方とも欠測のなかったケースが 13、前者が欠測で後者は欠測がないケースが 3 あった、といったことがわかる。 </p><h4 id="a0000000040">代入値の作成</h4>
+<p>データ <tt class="ttfamily">data01</tt> から代入値を発生させて <tt class="ttfamily">imp</tt> に代入し結果を閲覧するには、関数 <tt class="ttfamily">mice()</tt> を用いて </p><blockquote class="quote"> <small class="small"><pre>
+imp &lt;- mice(data01, seed=23109)
+print(imp)
+</pre> </small> </blockquote><p> のようにする<a href="#a0000000041" class="footnote"><sup class="footnotemark">4</sup></a>。 </p><p>デフォルトでは、代入の数は <img src="images/img-0037.png" alt="$m=5$" style="vertical-align:0px; 
+                                     width:44px; 
+                                     height:13px" class="math gen" />。 もし代入回数を増やしたいのであれば、引数として <tt class="ttfamily">m=50</tt> のように追加する。 </p><p>また、Gibbs sampler の更新回数は <tt class="ttfamily">maxit</tt> で指定できる。 デフォルトでは5回。 </p><h4 id="a0000000042">代入値のチェック</h4>
+<p>負のカウント値、妊娠中の男性など、代入によってありえないデータが発生していないかチェックすること。 代入結果が <tt class="ttfamily">imp</tt> に格納されており、変数 <img src="images/img-0038.png" alt="$x$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" /> の代入結果をチェックしたいなら、 </p><blockquote class="quote"> <small class="small"><pre>
+imp$imp$x
+</pre> </small> </blockquote><p> で代入値が行列（欠測ケースID <img src="images/img-0036.png" alt="$\times $" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:8px" class="math gen" /> 代入回数）で表示される。 </p><p>全変数の代入済みデータセットは、関数 <tt class="ttfamily">complete()</tt> で返される。 代入結果が <tt class="ttfamily">imp</tt> に格納されているとすると、例えば2回目の代入済みデータセットは、 </p><blockquote class="quote"> <small class="small"><pre>
+complete(imp, 2)
+</pre> </small> </blockquote><p> で返される。 </p><p>また、代入された全てのデータを一気に縦につなげて表示させるには、 </p><blockquote class="quote"> <small class="small"><pre>
+complete(imp, "long")
+</pre> </small> </blockquote><p> と指定する。 </p><h4 id="a0000000043">代入済みデータの分析</h4>
+<p>代入済みの各データセットに分析を行うには、関数 <tt class="ttfamily">with.mids()</tt> を用いる。 </p><p>例えば、<tt class="ttfamily">imp</tt> に代入された変数 <tt class="ttfamily">y,x1,x2</tt> を用いて回帰分析を行うのだとすると、 </p><blockquote class="quote"> <small class="small"><pre>
+fit &lt;- with(imp, lm(y~x1+x2))
+</pre> </small> </blockquote><p> でよい。 </p><center> <span style="border: 1px solid black"><b class="bfseries">!?</b></span>   <tt class="ttfamily">with.mid()</tt> でなく、ただの <tt class="ttfamily">with()</tt> でよいのか？    <span style="border: 1px solid black"><b class="bfseries">!?</b></span> </center><p>この結果をプールして表示させるには、 </p><blockquote class="quote"> <small class="small"><pre>
+print(pool(fit))
+summary(pool(fit))
+</pre> </small> </blockquote><p> などとする。 すると、 </p><blockquote class="quote"> <small class="small"><pre>
+              est    se    t    df Pr(&gt;|t|)   lo 95  hi 95 nmis  fmi lambda
+(Intercept)  5.96 74.53 0.08  9.22     0.94 -162.04 173.96   NA 0.46   0.36
+x1          29.73 14.88 2.00  4.33     0.11  -10.37  69.82    0 0.73   0.63
+x2           5.14  2.19 2.35 12.91     0.04    0.41   9.87    9 0.33   0.23
+</pre> </small> </blockquote><p> のような出力が得られる。 </p><p>出力について、 </p><ul class="itemize">
+<li><p><tt class="ttfamily">fmi</tt> は <i class="itshape">the fraction of missing information</i> </p></li><li><p><tt class="ttfamily">rambda</tt> は欠測データに帰属できる分散の割合（<img src="images/img-0039.png" alt="$\lambda = (B+B/m)/T$" style="vertical-align:-4px; 
+                                     width:133px; 
+                                     height:18px" class="math gen" />） </p></li>
+</ul><p> である（Rubin, 1987）。 </p><h2 id="a0000000044">4.3 代入モデル</h2>
+<h3 id="a0000000045">4.3.1 7つの選択肢</h3>
+<p>以下のことを<b class="bfseries">常に</b>考慮する必要がある。 </p><ol class="enumerate">
+<li value="1"><p>MAR が仮定できるか、それとも MNAR になっているか。MICE は両方扱えるが、後者なら代入値の発生に追加のモデリング仮定が必要となる。 </p></li><li value="2"><p>代入モデルの形式（代入される変数の尺度に応じて） </p></li><li value="3"><p>代入に用いる説明変数の選択 </p></li><li value="4"><p>他の変数の関数になっている変数を代入すべきかどうか </p></li><li value="5"><p>代入される変数の順番 </p></li><li value="6"><p>初期値と更新回数、収束の確認手段 </p></li><li value="7"><p>代入回数 <img src="images/img-0015.png" alt="$m$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:7px" class="math gen" /> </p></li>
+</ol><h3 id="a0000000046">4.3.2 一変量の代入法</h3>
+<p>一変量の代入法は表 <a href="sect0004.html#tab.univariate.imputation">4.1</a> の通り。 この名前を、代入すべき変数の列ごとに <tt class="ttfamily">mice()</tt> 内の引数 <tt class="ttfamily">method=</tt> で指定する。 </p><p>もし <tt class="ttfamily">method="norm"</tt> のように一つだけ指定すれば全ての変数がその方法で代入される。 </p><p>一方、<tt class="ttfamily">method=c("","norm","pmm","mean")</tt> のように列ごとに異なる代入法を指定することもできる<a href="#a0000000047" class="footnote"><sup class="footnotemark">5</sup></a>。 </p><div id="tab.univariate.imputation" class="table"> <center> <div class="caption"><b>Table 4.1</b>: <span>一変量の代入法</span></div> <table class="tabular" cellspacing="0">
+<tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:left"><p>方法 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:left"><p> 意味 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:left"><p> 尺度のタイプ </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> デフォルト </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:left"><p><tt class="ttfamily">pmm</tt> </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:left"><p> Predictive mean matching </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:left"><p> numeric </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> Y </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:left"><p><tt class="ttfamily">norm</tt> </p></td>
+
+    
+    <td style="text-align:left"><p> Bayesian linear regression </p></td>
+
+    
+    <td style="text-align:left"><p> numeric </p></td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+</tr><tr>
+
+    
+    <td style="text-align:left"><p><tt class="ttfamily">norm.nob</tt> </p></td>
+
+    
+    <td style="text-align:left"><p> Linear regression, non-Bayesian </p></td>
+
+    
+    <td style="text-align:left"><p> numeric </p></td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+</tr><tr>
+
+    
+    <td style="text-align:left"><p><tt class="ttfamily">mean</tt> </p></td>
+
+    
+    <td style="text-align:left"><p> Unconditional mean imputation </p></td>
+
+    
+    <td style="text-align:left"><p> numeric </p></td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+</tr><tr>
+
+    
+    <td style="text-align:left"><p><tt class="ttfamily">2L.norm</tt> </p></td>
+
+    
+    <td style="text-align:left"><p> Two-level linear model </p></td>
+
+    
+    <td style="text-align:left"><p> numeric </p></td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+</tr><tr>
+
+    
+    <td style="text-align:left"><p><tt class="ttfamily">logreg</tt> </p></td>
+
+    
+    <td style="text-align:left"><p> Logistic regression </p></td>
+
+    
+    <td style="text-align:left"><p> factor, 2 levels </p></td>
+
+    
+    <td style="text-align:center"><p> Y </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:left"><p><tt class="ttfamily">polyreg</tt> </p></td>
+
+    
+    <td style="text-align:left"><p> Multinomial logit model </p></td>
+
+    
+    <td style="text-align:left"><p> factor, <img src="images/img-0040.png" alt="$&gt;$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:9px" class="math gen" />2 levels </p></td>
+
+    
+    <td style="text-align:center"><p> Y </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:left"><p><tt class="ttfamily">polr</tt> </p></td>
+
+    
+    <td style="text-align:left"><p> Ordered logit model </p></td>
+
+    
+    <td style="text-align:left"><p> ordered, <img src="images/img-0040.png" alt="$&gt;$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:9px" class="math gen" />2 levels </p></td>
+
+    
+    <td style="text-align:center"><p> Y </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:left"><p><tt class="ttfamily">lda</tt> </p></td>
+
+    
+    <td style="text-align:left"><p> Linear discriminant analysis </p></td>
+
+    
+    <td style="text-align:left"><p> factor </p></td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+</tr><tr>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:left"><p><tt class="ttfamily">sample</tt> </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:left"><p> Random sample from the observed data </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:left"><p> any </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center">&nbsp;</td>
+
+</tr>
+</table> </center>  </div><p>各変数の型については、<tt class="ttfamily">str(data01)</tt> のように確認する。 </p><h3 id="a0000000048">4.3.3 説明変数の選択</h3>
+<p>代入対象となる変数ごとに、説明変数の組を指定することができる。 </p><p>代入結果が <tt class="ttfamily">imp</tt> に格納されているとき、どの変数がどの変数によって説明されているかは、次のように確かめられる<a href="#a0000000049" class="footnote"><sup class="footnotemark">6</sup></a>。 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; imp$predictorMatrix
+    x1  x2  x3   y
+x1   0   0   0   0
+x2   1   0   1   1
+x3   1   1   0   1
+ y   1   1   1   0
+</pre> </small> </blockquote><p> 行が代入対象となる変数、列が説明変数を表す。値が 1 であればその説明変数が使われたことを、0 であれば使われなかったことを表す。 この例では、<tt class="ttfamily">x1</tt> は欠測がないので代入の対象となっておらず、<tt class="ttfamily">x2</tt> は <tt class="ttfamily">x1, x3, y</tt> を説明変数として代入されていることがわかる。 </p><h4 id="a0000000050">説明変数の除去</h4>
+<p>仮に <tt class="ttfamily">x2</tt> を説明変数に用いたくなかったとする。 この場合、 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; pred &lt;- imp$predictorMatrix # あるいは imp$pred
+&gt; pred[, "x2"] &lt;- 0 # x2 の列を全て0にする
+&gt; imp &lt;- mice(data01, pred=pred)
+</pre> </small> </blockquote><p> でよい。 </p><h4 id="a0000000051">代入のスキップ</h4>
+<p>仮に、<tt class="ttfamily">x2</tt> を代入対象としたくなかったとする。 この場合、 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; meth &lt;- imp$meth
+&gt; meth["x2"] &lt;- "" # x2 の代入方法を空欄にする
+&gt; imp &lt;- mice(data01, meth=meth)
+</pre> </small> </blockquote><p> で代入がスキップされる。 </p><p>時間をかけずに <tt class="ttfamily">imp</tt> を作成したい場合、更新回数をゼロとした代入を実行すれば良い。 これには、<tt class="ttfamily">mice()</tt> に引数 <tt class="ttfamily">maxit = 0</tt> を指定する。 これで、大きなデータでも長い時間かけずに <tt class="ttfamily">imp$pred</tt> や <tt class="ttfamily">imp$meth</tt> を得て編集できる。 </p><h4 id="a0000000052">マルチレベルデータへの代入</h4>
+<ul class="itemize">
+<li><p>JM法：Schafer &amp; Yucel (2002); Yucel (2008); Goldstein et al. (2009) など </p></li><li><p>FCS法：Jacobusse (2005) など </p></li>
+</ul><p> MICE では、van Buuren (2010) を改良した手法を採用しており、Kasim &amp; Raudenbush (1998) による、級内誤差分散の変動を許す線形マルチレベルモデルに対する Gibbs sampler を実行する。 </p><p>Hox (2002) のデータ <tt class="ttfamily">popmis</tt> を用いる。 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; head(popmis,5)
+  pupil school popular sex texp const teachpop
+1     1      1      NA   1   24     1        7
+2     2      1      NA   0   24     1        7
+3     3      1       7   1   24     1        6
+4     4      1      NA   1   24     1        6
+5     5      1      NA   1   24     1        7
+</pre> </small> </blockquote><p> ここで、 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; md.pattern(popmis)
+     pupil school sex texp const teachpop popular    
+1152     1      1   1    1     1        1       1   0
+ 848     1      1   1    1     1        1       0   1
+         0      0   0    0     0        0     848 848
+</pre> </small> </blockquote><p> より、欠測は <tt class="ttfamily">popular</tt> にのみある（848ケース）ことがわかる。 </p><p>さて、ここでは </p><ul class="itemize">
+<li><p><tt class="ttfamily">school</tt>: 集団を表す変数 </p></li><li><p><tt class="ttfamily">sex</tt>: 性別（1 or 0）（レベル1の変数） </p></li><li><p><tt class="ttfamily">texp</tt>: 教師の経験（レベル2の変数） </p></li><li><p><tt class="ttfamily">const</tt>: 切片（全員1） </p></li>
+</ul><p> の4変数を説明変数として、 </p><ul class="itemize">
+<li><p><tt class="ttfamily">popular</tt>: 人気（レベル1の変数） </p></li>
+</ul><p> の欠測を代入したいとする。 </p><p><tt class="ttfamily">predictorMatrix</tt> では、 </p><ul class="itemize">
+<li><p><img src="images/img-0041.png" alt="$0$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:12px" class="math gen" />: 説明変数に用いない </p></li><li><p><img src="images/img-0042.png" alt="$1$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:12px" class="math gen" />: 説明変数に用いる </p></li><li><p><img src="images/img-0043.png" alt="$2$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:12px" class="math gen" />: ランダム変数 </p></li><li><p><img src="images/img-0044.png" alt="$-2$" style="vertical-align:0px; 
+                                     width:20px; 
+                                     height:12px" class="math gen" />: 集団を表す変数（1つだけ指定可能） </p></li>
+</ul><p> と指定することになっており、代入法は <tt class="ttfamily">2l.norm</tt> を用いることになる（<tt class="ttfamily">method</tt> で指定）。 </p><p>もし、<tt class="ttfamily">popular</tt> について </p><table id="a0000000053" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000054">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0045.png" alt="$\displaystyle  \textit{POPULAR}_{ij}  $" style="vertical-align:-5px; width:91px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0046.png" alt="$\displaystyle = \underbrace{\gamma _0 + u_{0j}}_{\text {random}}+ \underbrace{\gamma _1 + u_{1j} \times \textit{SEX}_{ij}}_{\text {random}} + \underbrace{\gamma _1 \times \textit{TEXP}_ j}_{\text {fixed}} + r_{ij}  $" style="vertical-align:-28px; width:360px; 
+                   height:39px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.8</span>)</span></td>
+</tr>
+</table><p> のように予測を行うなら、 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; imp &lt;- mice(popmis, maxit = 0)
+&gt; pred &lt;- ini$pred
+&gt; pred["popular", ] &lt;- c(0, -2, 0, 2, 1, 2, 0)
+&gt; imp &lt;- mice(popmis, meth = c("", "", "2l.norm", "", "", "", ""), 
++ pred = pred, maxit = 1, seed = 71152)
+</pre> </small> </blockquote><p> のように <tt class="ttfamily">predictorMatrix</tt> を指定すれば良い。 </p><center> <span style="border: 1px solid black"><b class="bfseries">!?</b></span>   レベル2の説明変数や、所属グループIDを代入することはできないのか？    <span style="border: 1px solid black"><b class="bfseries">!?</b></span> </center><h4 id="a0000000055">説明変数の選択についてのアドバイス</h4>
+<p>変数の数が数百にも及ぶような場合、多重共線性や計算上の問題により、全ての変数を説明変数として用いることは難しい。 せいぜい15から25変数くらいが妥当なところか。 </p><p>van Buuren et al. (1999) による、説明変数選択の手続き </p><ol class="enumerate">
+<li value="1"><p>代入後分析モデルに登場する変数は全て含める </p></li><li value="2"><p>欠測の発生に関係している変数を全て含める </p></li><li value="3"><p>分散説明率の高い説明変数を含める（それを含めることで代入の不確実性が減るなら入れる） </p></li><li value="4"><p>2 と 3 に該当するものでも、欠測の多すぎる説明変数は取り除く </p></li>
+</ol><h4 id="a0000000056">説明変数の簡便な選択法</h4>
+<p>変数間の相関関係をチェックする。 ペアワイズ除去した変数間の相関行列や、欠測の有無と観測値の相関行列など。 後者なら、 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; cor(y = data01, x = !is.na(data01), use = "pair")
+       x1     x2     x3    y  
+x1      NA     NA     NA    NA
+x2   0.086     NA  0.139 0.053
+x3   0.008     NA     NA 0.045
+y   -0.040 -0.012 -0.107    NA
+</pre> </small> </blockquote><p> とすると、<tt class="ttfamily">data01</tt> の各変数について、ある変数の値と別の変数の欠測の有無との相関（点双列相関）行列が返される<a href="#a0000000057" class="footnote"><sup class="footnotemark">7</sup></a>。 上の例では、<tt class="ttfamily">x2</tt> の欠測と <tt class="ttfamily">x1</tt> の観測値には <img src="images/img-0047.png" alt="$r=.008$" style="vertical-align:0px; 
+                                     width:59px; 
+                                     height:12px" class="math gen" /> の相関があるということになる。 </p><p>また、代入対象となる変数が欠測で予測に用いる変数が観測であるケースが、代入可能となる変数が欠測で予測に用いる変数が観測であるケースと欠測であるケースの合計に対してどれくらい存在するかを算出して参照することもできる。予測に用いる変数に欠測が多ければ、そもそも説明変数として用いるほどの情報を持っていないということで外す。 </p><p>関数 <tt class="ttfamily">quickpred()</tt> によって、以上の基準を用いて説明変数行列 <tt class="ttfamily">predictorMatrix</tt> を自動的に指定することができる。 例えば、 </p><blockquote class="quote"> <small class="small"><pre>
+imp &lt;- mice(data01, pred = quickpred(data01, minpuc = 0.25, include = "x1"))
+</pre> </small> </blockquote><p> のようにすれば、予測に用いることのできるケースの割合が 0.25 以上の説明変数を自動的に含むこと、また <tt class="ttfamily">x1</tt> は常に含むこと、が指定できる。 </p><p><tt class="ttfamily">quickpred()</tt> の引数としては、<tt class="ttfamily">mincor</tt>（点双列相関の最小値）、<tt class="ttfamily">minpuc</tt>（予測に利用できるケースの割合の最小値）、<tt class="ttfamily">include, exclude</tt>（使用 or 不使用）がある。 </p><h3 id="a0000000058">4.3.4 受動的代入法</h3>
+<p>変数変換を伴う代入について、大きく以下の2つがある。 </p><ul class="itemize">
+<li><p>不完全データを元のまま代入してから、完全データを変数変換する </p></li><li><p>不完全データを変数変換してから、変換後のデータを代入する </p></li>
+</ul><p> 一方、代入アルゴリズムの中で変換前の変数と変換後の変数の双方が必要になる場合、<b class="bfseries">受動的代入法</b> <i class="itshape">passive imputation</i> を用いることで、異なる変換同士の一貫性を保つことができる。 </p><p>例えば、<tt class="ttfamily">x1</tt> を予測するには、<tt class="ttfamily">x2</tt> よりも <tt class="ttfamily">log(x2)</tt> の方が適切だと考えたとする。 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; data01 &lt;- cbind(data01, logx2 = log(x2)) # 変数を変換して追加
+&gt; ini &lt;- mice(data01, max=0, print=F)
+&gt; meth &lt;- ini$meth # 代入方法を指定する行列
+&gt; meth["logx2"] &lt;- "~log(x2)" # logx2 については、x2 を変換したものであることを明記
+&gt; pred &lt;- ini$pred # 説明変数を指定する行列
+&gt; pred[c("x2","x3","y"), "logx2"] &lt;- 0  # x2, x3, y は logx2 を予測に用いない
+&gt; pred["x1", "x2"] &lt;- 0 # x1 の予測には x2 は用いない（logx2 がある）
+&gt; imp &lt;- mice(data01, meth=meth, pred=pred, seed=38788, print=F)
+</pre> </small> </blockquote><p> とすればよい。 新たな（欠測入りの）<tt class="ttfamily">log(x2)</tt> は <tt class="ttfamily">x1</tt> の代入にのみ用いられ、それ以外の変数の代入には <tt class="ttfamily">x2</tt> が用いられることになる。 </p><h2 id="a0000000059">4.4 MICE の実行</h2>
+<h3 id="a0000000060">4.4.3 収束診断</h3>
+<p><tt class="ttfamily">mice()</tt> が返した値を <tt class="ttfamily">plot()</tt> にわたしてやれば良い。 例えば、 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; imp &lt;- mice(data01, seed=23109,maxit=20)
+&gt; plot(imp,c("b1","b2","b3"))
+</pre> </small> </blockquote><p> とすれば、変数 <tt class="ttfamily">b1, b2, b3</tt> の更新回ごとの代入値の平均とSDが図<a href="sect0004.html#figmiceconvergence">4.1</a>のようにプロットされる<a href="#a0000000061" class="footnote"><sup class="footnotemark">8</sup></a>。 </p><blockquote class="quote"> <span style="border: 1px solid black"><b class="bfseries">!?</b></span>   「更新回ごとの代入値の平均とSD」の意味がよくわからない。 Gibbs sampler の各更新では、候補値が1つではなく複数サンプリングされるのだろうか？    <span style="border: 1px solid black"><b class="bfseries">!?</b></span> </blockquote><div id="figmiceconvergence" class="figure"><center> 
+<img src="images/img-0048.png" alt="\includegraphics[width=15cm]{figmiceconvergence.png}" style="width:15cm" /> <div class="caption"><b>Figure 4.1</b>: <span>収束診断</span></div>  </center></div><h3 id="a0000000062">4.4.5 代入値のチェック</h3>
+<p>元の不完全データの分布と、代入値を含む完全データの分布を描いてチェックしてみる。 例えば、 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; densityplot(imp,~age+b1)
+</pre> </small> </blockquote><p> で変数 <tt class="ttfamily">age, b1</tt> の分布が描画される（図<a href="sect0004.html#figmicecheckimputations">4.2</a>）。 </p><div id="figmicecheckimputations" class="figure"><center> 
+<img src="images/img-0049.png" alt="\includegraphics[width=15cm]{figmicecheckimputations.png}" style="width:15cm" /> <div class="caption"><b>Figure 4.2</b>: <span>代入値のチェック</span></div>  </center></div><p>また、<b class="bfseries">傾向スコア</b> <i class="itshape">propensity score</i> を条件付けたもとでの観測値と代入値の分布を比較することもある。 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; x1.na &lt;- is.na(data01$x1) # x1 の欠測の有無を格納
+&gt; fit.x1 &lt;- with(imp, glm(x1.na~x2+x3+y, family=binomial)) # x1 の欠測を完全データから予測
+&gt; ps &lt;- rep(rowMeans(sapply(fit.x1$analyses, fitted.values)), 6) # 傾向スコア（5つ分を平均）
+&gt; xyplot(imp, x1~ps|.imp) # プロット
+</pre> </small> </blockquote><h2 id="a0000000063">4.5 MICE 実行後</h2>
+<h3 id="a0000000064">4.5.1 データの繰り返し分析</h3>
+<p>関数 <tt class="ttfamily">with.mids()</tt><a href="#a0000000065" class="footnote"><sup class="footnotemark">9</sup></a> により各データセットを分析し、<tt class="ttfamily">pool()</tt> で出力を統合する。 </p><h3 id="a0000000066">4.5.2 結果の統合</h3>
+<p>関数 <tt class="ttfamily">pool()</tt> は、<tt class="ttfamily">coef()</tt> と <tt class="ttfamily">vcov()</tt> メソッドを両方持っているオブジェクトであれば、どんなものにでも適用できる。 また、<tt class="ttfamily">nlme</tt> パッケージの <tt class="ttfamily">lme</tt> クラスにも対応している。 </p><ul class="itemize">
+<li><p><tt class="ttfamily">pool.scalar()</tt> : 単一の推定値を統合する </p></li><li><p><tt class="ttfamily">pool.r.squared</tt> : <img src="images/img-0050.png" alt="$R^2$" style="vertical-align:0px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" />、自由度調整済み <img src="images/img-0050.png" alt="$R^2$" style="vertical-align:0px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> を統合する </p></li><li><p><tt class="ttfamily">poo.compare()</tt> : ネストされたモデルの比較を行う（ワルド検定、尤度比検定） </p></li>
+</ul></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000025">https://www.jstatsoft.org/article/view/v045i03</li><li id="a0000000026">別名、multivariate imputation by chained equations (MICE)</li><li id="a0000000031">予測に使うデータそのものに欠測がある、2値変数と連続変数など異なるタイプが混在している、現実的にありえない組み合わせ（妊娠している父親など）が生じる、などなど。</li><li id="a0000000041"><tt class="ttfamily">seed</tt> は乱数発生の種。なお、<tt class="ttfamily">mice()</tt> 実行時に収束結果など出力させないためには、引数 <tt class="ttfamily">print=F</tt> を指定すれば良い。</li><li id="a0000000047"><tt class="ttfamily">""</tt> とされた変数は、不完全であっても代入されない。なお、欠測のない変数は自動的に代入対象から除外される。</li><li id="a0000000049"><tt class="ttfamily">predictorMatrix</tt> は <tt class="ttfamily">pred</tt> と省略できる。</li><li id="a0000000057"><tt class="ttfamily">!is.na()</tt>は、欠測でなければTRUE、欠測であればFALSEを返す。</li><li id="a0000000061">シミュレーションによる検討では、5-10回程度の更新で収束するとのこと。</li><li id="a0000000065"><tt class="ttfamily">with()</tt> だけでもOK。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 miceadds: Some additional multiple imputation functions, especially for ‘mice’" href="sect0003.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="Rの利用に関する備忘録" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">Rの利用に関する備忘録</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0003.html" class="sectref" rel="prev">miceadds: Some additional multiple imputation functions, especially for ‘<tt class="ttfamily">mice</tt>’</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">Rの利用に関する備忘録</a></span>
+
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

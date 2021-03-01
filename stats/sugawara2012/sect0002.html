@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0003.html" rel="next" />
+<link href="sect0001.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>2 時間についての縦断データの探索</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="1 時間による変化を検討する際の枠組み" href="sect0001.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="変化についてのマルチレベルモデルの紹介" href="sect0003.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0001.html" class="sectref" rel="prev">時間による変化を検討する際の枠組み</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0003.html" class="sectref" rel="next">変化についてのマルチレベルモデルの紹介</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000003">2 時間についての縦断データの探索</h1>
+<h2 id="a0000000017">2.1 縦断データセットを作る</h2>
+<h3 id="a0000000018">2.1.1 個人レベルデータセット（多変量フォーマット）</h3>
+<p> 各行が各ヒトに相当（ヒト <img src="images/img-0001.png" alt="$\times $" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:8px" class="math gen" /> 測定回ごとの値、属性変数など） </p><p><b class="bfseries">経験的成長記録</b>が目で見て簡単に確認できるが、 </p><ul class="itemize">
+<li><p>時点間の相関行列を算出しても、それは各時点間での順位の安定性を表しているに過ぎない </p></li><li><p>時間に関する情報が変数名に含まれているので、分析に使えない </p></li><li><p>測定時点の回数あるいは間隔が個人間で異なると役に立たない </p></li><li><p>予測変数が時間とともに変化するようなものであった場合、手に負えない<a href="#a0000000019" class="footnote"><sup class="footnotemark">1</sup></a> </p></li>
+</ul><h3 id="a0000000020">2.1.2 個人−時間データセット（単変量フォーマット）</h3>
+<p> 各行が各測定時点のデータに相当 <img src="images/img-0002.png" alt="$\leftarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> <b class="bfseries">こちらの形式にすること</b> </p><p>以下の４つのタイプの変数が含まれる。 </p><ol class="enumerate">
+<li value="1"><p>個人を識別する変数 </p></li><li value="2"><p>時間を識別する変数 </p></li><li value="3"><p>結果変数 </p></li><li value="4"><p>予測変数 </p></li>
+</ol><h2 id="a0000000021">2.2 個人の時間による変化の記述的分析</h2>
+<h3 id="a0000000022">2.2.1 経験的成長プロット</h3>
+<p>個別に結果変数と時点をプロットする。 ランダムに何人かを選択するか、重要な変数で層化して抽出するとよい。 </p><h3 id="a0000000023">2.2.2 個人の経験的成長記録の要約に曲線を使う</h3>
+<h4 id="a0000000024">ノンパラメトリック・アプローチ</h4>
+<ul class="itemize">
+<li><p>スプライン平滑化 </p></li><li><p>Loess 平滑化 </p></li><li><p>カーネル平滑化 </p></li><li><p>移動平均 </p></li>
+</ul><h4 id="a0000000025">パラメトリック・アプローチ</h4>
+<p>個人ごとのデータに最小２乗法による回帰モデルを当てはめる。（関数形を決める） </p><h2 id="a0000000026">2.3 変化の個人差を探る</h2>
+<h3 id="a0000000027">2.3.1 全員分の平滑化曲線を検討する</h3>
+<ol class="enumerate">
+<li value="1"><p>各測定時点での平均を用いて平滑化曲線を描く<a href="#a0000000028" class="footnote"><sup class="footnotemark">2</sup></a> </p></li><li value="2"><p>各個人の平滑化曲線を重ねて描く </p></li>
+</ol><h2 id="a0000000029">2.4 最小二乗法によって推定された変化率の精度と信頼性を改善する</h2>
+<h4 id="a0000000030">精度</h4>
+<p>OLS 推定による変化率の精度は、 </p><ol class="enumerate">
+<li value="1"><p>残差分散（予測値と観測値とのズレ） </p></li><li value="2"><p>観測回数とその間隔 </p></li>
+</ol><p> に依存する。 つまり、個人 <img src="images/img-0003.png" alt="$i$" style="vertical-align:0px; 
+                                     width:5px; 
+                                     height:11px" class="math gen" /> の OLS 推定における変化率の標本分散は、 </p><table id="a0000000031" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0004.png" alt="\begin{equation}  \frac{\sigma _{\epsilon i}^2}{\sum _{j=1}^{T} (t_{ij}-\bar{t}_ i)^2} = \frac{\sigma ^2_{\epsilon i}}{\textit{CSST}_ i} \end{equation}" style="width:186px; 
+                            height:47px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>2.1</span>)</span></td>
+</tr>
+</table><p> である。 測定時点がより多様化すれば、変化の測定精度はより高くなる。 </p><ol class="enumerate">
+<li value="1"><p>測定時点を平均より離れたところまで拡大する </p></li><li value="2"><p>測定時点を増やす </p></li>
+</ol><h4 id="a0000000032">信頼性</h4>
+<p> 精度は個人レベルで、信頼性はグループレベルで意味がある。 </p><p>仮に完全に釣り合い型データであって、個人の残差は独立に共通の分散 <img src="images/img-0005.png" alt="$\sigma ^2_{\epsilon }$" style="vertical-align:-4px; 
+                                     width:16px; 
+                                     height:18px" class="math gen" /> の分布から得られたものであるとすると、OLS 推定による変化率の信頼性は、 </p><table id="a0000000033" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0006.png" alt="\begin{equation}  \frac{\sigma ^2_{\textit{trueslope}}}{\sigma ^2_{\textit{trueslope}} + \frac{\sigma ^2_{\epsilon }}{\textit{CSST}}} \end{equation}" style="width:123px; 
+                            height:50px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>2.2</span>)</span></td>
+</tr>
+</table><p> と定義される。 この量は、 </p><ul class="itemize">
+<li><p>変化率の精度（の逆数） </p></li><li><p>真の変化率の分散 </p></li>
+</ul><p> の双方に左右される。 つまり、個人の変化率の推定精度と変化の異質性とが交絡している。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p>変化率の信頼性を算出することが（グループレベルでも）どのような意義を生むのか、よくわからない。 </p><p>テストであれば、個人差を識別すること自体が目的であるので、そもそも真の得点に個人差が含まれないことには意味がない。 つまり、個人差がないことで信頼性が低くなること自体には、テスト得点の個人差は誤差由来でしかないといえる。 </p><p>一方、変化の個人差については、それがあることが大前提なのではなく、あるとすればどれくらいあるのか現状を把握することが目的である。 結果的に変化率に個人差がほとんどなければ、それはそれで現実を反映した知見であるのだから、そのことによって信頼性が低くても問題とは言えないと思う。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </div></blockquote></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000019">時不変 <i class="itshape">time invariant</i> な変数なら良いが、時変の予測変数 <i class="itshape">time-varying predictors</i> が含まれていれば、それごとに列を加えなくてはいけない。</li><li id="a0000000028">「平均の軌跡」であって、「軌跡の平均」ではない。曲線の平均と平均の曲線が一致するのは、パラメータに対して線形である場合（直線、２次曲線、３次曲線など）のみ。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="1 時間による変化を検討する際の枠組み" href="sect0001.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="変化についてのマルチレベルモデルの紹介" href="sect0003.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0001.html" class="sectref" rel="prev">時間による変化を検討する際の枠組み</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0003.html" class="sectref" rel="next">変化についてのマルチレベルモデルの紹介</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

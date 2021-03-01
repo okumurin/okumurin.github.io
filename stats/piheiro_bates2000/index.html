@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="S-PLUSによる混合効果モデル解析">
+<META NAME="keywords" CONTENT="piheiro_bates2000">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="piheiro_bates2000.css">
+
+<LINK REL="next" HREF="node1.html">
+<TITLE>S-PLUSによる混合効果モデル解析</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html4"
+  HREF="node1.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png">   <BR>
+<B> Next:</B> <A NAME="tex2html5"
+  HREF="node1.html">線形混合効果モデル：基本概念と例</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+
+<P>
+
+<H1 ALIGN=CENTER>S-PLUSによる混合効果モデル解析</H1>
+<P ALIGN=CENTER><STRONG>J. C. ピネイロ／D. M. ベイツ，緒方宏泰（監訳）</STRONG>
+</P>
+<BR><P ALIGN=CENTER><B>Date:</B> 平成29年10月27日</P>
+
+<HR>
+
+<P>
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html6"
+  HREF="node1.html">線形混合効果モデル：基本概念と例</A>
+<UL>
+<LI><A NAME="tex2html7"
+  HREF="node1.html#SECTION00011000000000000000"><TT>lme</TT>による変量効果モデルのあてはめ</A>
+<LI><A NAME="tex2html8"
+  HREF="node1.html#SECTION00012000000000000000">モデルのあてはまりのチェック</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html9"
+  HREF="node2.html">線形混合効果モデルの理論と計算方法</A>
+<UL>
+<LI><A NAME="tex2html10"
+  HREF="node2.html#SECTION00021000000000000000">シングルレベルのグループ化</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html11"
+  HREF="node3.html">グループ化データの構造</A>
+<UL>
+<LI><A NAME="tex2html12"
+  HREF="node3.html#SECTION00031000000000000000">変数関係式とその構成要素</A>
+<LI><A NAME="tex2html13"
+  HREF="node3.html#SECTION00032000000000000000">データの図示</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html14"
+  HREF="node4.html">線形混合効果モデルのあてはめ</A>
+<UL>
+<LI><A NAME="tex2html15"
+  HREF="node4.html#SECTION00041000000000000000"><TT>lm</TT>および<TT>lmList</TT>での線形モデルのあてはめ</A>
+<LI><A NAME="tex2html16"
+  HREF="node4.html#SECTION00042000000000000000"><TT>lme</TT>による線形混合効果モデルのあてはめ</A>
+<LI><A NAME="tex2html17"
+  HREF="node4.html#SECTION00043000000000000000">変量効果のためのパターン化された分散共分散行列：<TT>pdMat</TT>クラス</A>
+<LI><A NAME="tex2html18"
+  HREF="node4.html#SECTION00044000000000000000">あてはめモデルの確認</A>
+</UL>
+<BR>
+<LI><A NAME="tex2html19"
+  HREF="node5.html">基本的な線形混合効果モデルの拡張</A>
+<UL>
+<LI><A NAME="tex2html20"
+  HREF="node5.html#SECTION00051000000000000000">拡張モデルの一般式</A>
+<LI><A NAME="tex2html21"
+  HREF="node5.html#SECTION00052000000000000000">不等分散性をモデル化するための分散関数</A>
+<LI><A NAME="tex2html22"
+  HREF="node5.html#SECTION00053000000000000000">依存性をモデル化する相関構造</A>
+<LI><A NAME="tex2html23"
+  HREF="node5.html#SECTION00054000000000000000">分析例</A>
+</UL></UL>
+<!--End of Table of Child-Links-->
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html4"
+  HREF="node1.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up_g.png"> 
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev_g.png">   <BR>
+<B> Next:</B> <A NAME="tex2html5"
+  HREF="node1.html">線形混合効果モデル：基本概念と例</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-10-27</I>
+</ADDRESS>
+</BODY>
+</HTML>

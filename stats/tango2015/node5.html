@@ -1,0 +1,860 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="臨床試験への混合効果モデル：正規線形回帰モデル">
+<META NAME="keywords" CONTENT="tango2015">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="tango2015.css">
+
+<LINK REL="next" HREF="node6.html">
+<LINK REL="up" HREF="tango2015.html">
+<LINK REL="next" HREF="node6.html">
+<TITLE>臨床試験への混合効果モデル：正規線形回帰モデル</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html75"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html73"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html69"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html76"
+  HREF="node6.html">臨床試験への混合効果モデル：ロジスティック回帰モデル</A>
+<B>Up:</B> <A NAME="tex2html74"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html70"
+  HREF="node4.html">分散分析モデルから混合効果モデルへ</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html77"
+  HREF="node5.html#SECTION00071000000000000000">認知行動療法の効果に関するRCTのデータ</A>
+<LI><A NAME="tex2html78"
+  HREF="node5.html#SECTION00072000000000000000">オリジナルデータの解析</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00070000000000000000">
+臨床試験への混合効果モデル：正規線形回帰モデル</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00071000000000000000">
+認知行動療法の効果に関するRCTのデータ</A>
+</H2>
+
+<P>
+まずは，データの読み込みとロングフォーマットへの整形。
+ロングフォーマットへの整形は，Rの関数<TT>reshape()</TT>で実行できる。
+
+<P>
+なお，整形後のデータについては，
+
+<UL>
+<LI>subject：被験者id
+</LI>
+<LI>drug：抗うつ薬利用の有無（あり=1，なし=0）
+</LI>
+<LI>length：治療開始までのうつ病の期間（6ヶ月未満=0，6ヶ月以上=1）
+</LI>
+<LI>treatment：心理療法（認知行動療法=1，通常の心理療法=0）
+</LI>
+<LI>visit：測定時点（月）
+</LI>
+<LI>bdi：Beckのうつ病評価尺度IIのスコア
+</LI>
+</UL>
+が変数である。
+
+<P><PRE>
+&gt; ### 第7章：臨床試験への混合効果モデル：正規線形回帰モデル
+&gt; # 表7.1のデータ
+&gt; data("BtheB", package="HSAUR")
+&gt; data7.1 &lt;- BtheB; rm(BtheB)
+&gt; head(data7.1)
+  drug length treatment bdi.pre bdi.2m bdi.4m bdi.6m bdi.8m
+1   No    &gt;6m       TAU      29      2      2     NA     NA
+2  Yes    &gt;6m     BtheB      32     16     24     17     20
+3  Yes    &lt;6m       TAU      25     20     NA     NA     NA
+4   No    &gt;6m     BtheB      21     17     16     10      9
+5  Yes    &gt;6m     BtheB      26     23     NA     NA     NA
+6  Yes    &lt;6m     BtheB       7      0      0      0      0
+&gt; 
+&gt; # 表7.1のデータを表7.2のロングフォーマットに変換
+&gt; data7.1$subject &lt;- as.numeric(row.names(data7.1))
+&gt; nobs &lt;- nrow(data7.1)
+&gt; data7.2 &lt;- reshape(data7.1, idvar="subject", 
++                    varying=c("bdi.pre","bdi.2m","bdi.4m","bdi.6m","bdi.8m"), 
++                    direction="long")
+&gt; data7.2$visit &lt;- rep(c(0,2,4,6,8), rep(nobs,5))
+&gt; data7.2$drug &lt;- as.numeric(data7.2$drug=="Yes")
+&gt; data7.2$length &lt;- as.numeric(data7.2$length=="&gt;6m")
+&gt; data7.2$treatment &lt;- as.numeric(data7.2$treatment=="BtheB")
+&gt; data7.2 &lt;- data7.2[,-5]
+&gt; data7.2 &lt;- data7.2[order(x=data7.2$subject),]
+&gt; row.names(data7.2) &lt;- seq(1,nobs*5,1)
+&gt; head(data7.2, n=10)
+   drug length treatment subject bdi visit
+1     0      1         0       1  29     0
+2     0      1         0       1   2     2
+3     0      1         0       1   2     4
+4     0      1         0       1  NA     6
+5     0      1         0       1  NA     8
+6     1      1         1       2  32     0
+7     1      1         1       2  16     2
+8     1      1         1       2  24     4
+9     1      1         1       2  17     6
+10    1      1         1       2  20     8
+</PRE>
+
+<P>
+以下の図は，各個人の反応プロファイルを群ごとに色分けして示したもの。
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="394" HEIGHT="274" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig7_1.png"
+ ALT="Image fig7_1">
+
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00072000000000000000">
+オリジナルデータの解析</A>
+</H2>
+
+<P>
+欠測のメカニズムがMARである限り，尤度に基づく解析では欠測メカニズムを無視できる。
+
+<P>
+
+<H3><A NAME="SECTION00072100000000000000">
+モデルI：RMモデル（治療効果は時点によって異なり，ベースラインの個体差は考慮）</A>
+</H3>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+y_{ij} | b_{0i}= \beta_0 + b_{0i} + \beta_1 x_{1i} + \sum_{k=1}^T \beta_{2k} z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="470" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img127.png"
+ ALT="$\displaystyle y_{ij} \vert b_{0i}= \beta_0 + b_{0i} + \beta_1 x_{1i} + \sum_{k=...
+...} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+ただし，<SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img128.png"
+ ALT="$ \bm{w}_i'$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+は共変量ベクトルであり，
+<P><!-- MATH
+ \begin{displaymath}
+x_{1i} = \text{treatment (1 or 0)}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="42" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img129.png"
+ ALT="$\displaystyle x_{1i} =$">&nbsp; &nbsp;treatment (1 or 0)
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+z_{kij} = \begin{cases}1 & k=j \\0 & k \neq j \end{cases}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="128" HEIGHT="73" ALIGN="MIDDLE" BORDER="0"
+ SRC="img130.png"
+ ALT="$\displaystyle z_{kij} = \begin{cases}1 &amp; k=j  0 &amp; k \neq j \end{cases}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+とする。
+これは，複合対称性を仮定したモデルに他ならない。
+
+<P>
+
+<H3><A NAME="SECTION00072200000000000000">
+モデルII：RMモデル（治療効果は時点によって異なり，ベースラインと治療期間を通じて共通の個体差を考慮）</A>
+</H3>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+y_{ij} | (b_{0i}, b_{1i})= \beta_0 + b_{0i} + b_{1i} x_{2ij} + \beta_1 x_{1i} + \sum_{k=1}^T \beta_{2k} z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="573" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img131.png"
+ ALT="$\displaystyle y_{ij} \vert (b_{0i}, b_{1i})= \beta_0 + b_{0i} + b_{1i} x_{2ij} ...
+...} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+ただし，
+<P><!-- MATH
+ \begin{displaymath}
+x_{2ij} =  \begin{cases}1 & j > 0 \\0 & j = 0 \end{cases}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="129" HEIGHT="73" ALIGN="MIDDLE" BORDER="0"
+ SRC="img132.png"
+ ALT="$\displaystyle x_{2ij} = \begin{cases}1 &amp; j &gt; 0  0 &amp; j = 0 \end{cases}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+とする。
+
+<P>
+
+<H3><A NAME="SECTION00072300000000000000">
+モデルIII：RMモデル（治療効果は時点によって異なり，ベースラインと治療時点によって異なる個体差を考慮）</A>
+</H3>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+y_{ij} | \bm{b}_{i}= \beta_0 + b_{0i} + \beta_1 x_{1i} + \sum_{k=1}^T (\beta_{2k} + b_{1ik} ) z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="520" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img133.png"
+ ALT="$\displaystyle y_{ij} \vert \bm{b}_{i}= \beta_0 + b_{0i} + \beta_1 x_{1i} + \sum...
+...} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+これは，明らかに無構造モデルである。
+
+<P>
+
+<H3><A NAME="SECTION00072400000000000000">
+モデルIV：RMモデル（治療効果は期間を通じて一定で，個体差はベースラインのみ考慮）</A>
+</H3>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+y_{ij} | b_{0i}= \beta_0 + b_{0i} + \beta_1 x_{1i} + \beta_{2}  x_{2ij} + \beta_{3} x_{1i} x_{2ij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="407" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img134.png"
+ ALT="$\displaystyle y_{ij} \vert b_{0i}= \beta_0 + b_{0i} + \beta_1 x_{1i} + \beta_{2} x_{2ij} + \beta_{3} x_{1i} x_{2ij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H3><A NAME="SECTION00072500000000000000">
+モデルV：RMモデル（治療効果は期間を通じて一定で，ベースラインの個体差と治療効果の個体差を考慮）</A>
+</H3>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+y_{ij} | (b_{0i}, b_{1i})= \beta_0 + b_{0i} + \beta_1 x_{1i} + (\beta_{2}+b_{1i})  x_{2ij} + \beta_{3} x_{1i} x_{2ij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="495" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img135.png"
+ ALT="$\displaystyle y_{ij} \vert (b_{0i}, b_{1i})= \beta_0 + b_{0i} + \beta_1 x_{1i} ...
+...b_{1i}) x_{2ij} + \beta_{3} x_{1i} x_{2ij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H3><A NAME="SECTION00072600000000000000">
+治療群間で分散共分散が異なるモデル</A>
+</H3>
+
+<P>
+分散共分散行列
+<P><!-- MATH
+ \begin{displaymath}
+\bm{\Sigma}_i = \sigma^2_E \bm{I} + \bm{Z}_i \bm{\Phi} \bm{Z}_i'
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="141" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img136.png"
+ ALT="$\displaystyle \bm{\Sigma}_i = \sigma^2_E \bm{I} + \bm{Z}_i \bm{\Phi} \bm{Z}_i'$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+について，<!-- MATH
+ $\sigma^2_E$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="24" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img137.png"
+ ALT="$ \sigma^2_E$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+，<!-- MATH
+ $(\sigma^2_{B0}, \sigma^2_{B1}, \rho_B)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="103" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img138.png"
+ ALT="$ (\sigma^2_{B0}, \sigma^2_{B1}, \rho_B)$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+が群間で異なると設定するモデルもあり。
+
+<P>
+
+<H3><A NAME="SECTION00072700000000000000">
+モデルII.B：ANCOVAモデル（ベースラインと治療期間を通じて一定の個人差を考慮）</A>
+</H3>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+y_{ij} \mid b_{i(\text{Ancova})} = \beta_0 +  b_{i(\text{Ancova})} + \theta y_{i0} + \beta_1 x_{1i} + \sum_{k=1}^T \beta_{2k} z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} +  \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="614" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img139.png"
+ ALT="$\displaystyle y_{ij} \mid b_{i(\text{Ancova})} = \beta_0 + b_{i(\text{Ancova})}...
+...} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H3><A NAME="SECTION00072800000000000000">
+モデルIII.B：ANCOVAモデル（ベースラインと治療時点によって異なる個人差を考慮）</A>
+</H3>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+y_{ij} \mid \bm{b}_{i(\text{Ancova})} = \beta_0 +  b_{0i(\text{Ancova})} + \theta y_{i0} + \beta_1 x_{1i} + \sum_{k=1}^T (\beta_{2k} + b_{ki(\text{Ancova})} )z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} +  \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="720" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img140.png"
+ ALT="$\displaystyle y_{ij} \mid \bm{b}_{i(\text{Ancova})} = \beta_0 + b_{0i(\text{Anc...
+...} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H3><A NAME="SECTION00072900000000000000">
+Rでの分析例（モデルIIとモデルII.B）</A>
+</H3>
+
+<P><PRE>
+&gt; # モデルII
+&gt; library(nlme)
+&gt; library(multcomp)
+&gt; data7.2$post &lt;- as.numeric(data7.2$visit!=0)
+&gt; head(data7.2)
+  drug length treatment subject bdi visit post
+1    0      1         0       1  29     0    0
+2    0      1         0       1   2     2    1
+3    0      1         0       1   2     3    1
+4    0      1         0       1  NA     5    1
+5    0      1         0       1  NA     8    1
+6    1      1         1       2  32     0    0
+&gt; fit7.5II &lt;- lme(bdi~drug+length+treatment*visit, data=data7.2, na.action = na.omit,
++                 random=list(subject=pdDiag(~1+post))) # 独立を仮定
+&gt; summary(fit7.5II)
+Linear mixed-effects model fit by REML
+ Data: data7.2 
+       AIC     BIC    logLik
+  2628.098 2686.72 -1299.049
+
+Random effects:
+ Formula: ~1 + post | subject
+ Structure: Diagonal
+        (Intercept)     post Residual
+StdDev:    8.678929 6.047061 5.141823
+
+Fixed effects: bdi ~ drug + length + treatment * visit 
+                       Value Std.Error  DF   t-value p-value
+(Intercept)        21.088261  1.914752 272 11.013575  0.0000
+drug                3.921710  2.045169  96  1.917548  0.0581
+length              3.754381  1.945105  96  1.930169  0.0565
+treatment1         -2.689515  2.100615  96 -1.280346  0.2035
+visit2             -4.491750  1.406598 272 -3.193344  0.0016
+visit3             -6.107822  1.491920 272 -4.093934  0.0001
+visit5             -7.675642  1.573180 272 -4.879062  0.0000
+visit8            -10.471545  1.631783 272 -6.417240  0.0000
+treatment1:visit2  -3.335173  1.923171 272 -1.734205  0.0840
+treatment1:visit3  -3.000558  2.071731 272 -1.448334  0.1487
+treatment1:visit5  -2.294237  2.194987 272 -1.045216  0.2969
+treatment1:visit8  -0.276918  2.256689 272 -0.122710  0.9024
+ Correlation: 
+                  (Intr) drug   length trtmn1 visit2 visit3 visit5 visit8 trt1:2 trt1:3 trt1:5
+drug              -0.383                                                                      
+length            -0.571  0.136                                                               
+treatment1        -0.432 -0.275 -0.018                                                        
+visit2            -0.201  0.008 -0.011  0.184                                                 
+visit3            -0.184  0.005 -0.020  0.174  0.663                                          
+visit5            -0.173  0.002 -0.020  0.166  0.629  0.635                                   
+visit8            -0.167  0.002 -0.019  0.160  0.606  0.613  0.609                            
+treatment1:visit2  0.147 -0.006  0.008 -0.260 -0.731 -0.485 -0.460 -0.443                     
+treatment1:visit3  0.134 -0.005  0.013 -0.242 -0.477 -0.720 -0.458 -0.441  0.653              
+treatment1:visit5  0.125 -0.003  0.013 -0.229 -0.451 -0.455 -0.717 -0.436  0.617  0.625       
+treatment1:visit8  0.122 -0.003  0.011 -0.222 -0.438 -0.443 -0.440 -0.723  0.600  0.608  0.605
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-2.45704660 -0.49613860 -0.07318302  0.39930402  3.51956210 
+
+Number of Observations: 380
+Number of Groups: 100 
+&gt; cont1 &lt;- matrix(c(0,0,0,0,0,0,0,0,1/4,1/4,1/4,1/4),1) 
+&gt; meanCFB &lt;- glht(fit7.5II, linfct=cont1)
+&gt; summary(meanCFB)
+
+	 Simultaneous Tests for General Linear Hypotheses
+
+Fit: lme.formula(fixed = bdi ~ drug + length + treatment * visit, 
+    data = data7.2, random = list(subject = pdDiag(~1 + post)), 
+    na.action = na.omit)
+
+Linear Hypotheses:
+       Estimate Std. Error z value Pr(&gt;|z|)
+1 == 0   -2.227      1.783  -1.249    0.212
+(Adjusted p values reported -- single-step method)
+</PRE>
+
+<P><PRE>
+&gt; # モデルII.B
+&gt; # ベースラインを共変量にするため新たな変数として分離
+&gt; data7.5 &lt;- data7.2[data7.2$visit!=0,-7]
+&gt; data7.5$bdi0 &lt;- rep(data7.2[data7.2$visit==0, 5], each=4)
+&gt; head(data7.5)
+  drug length treatment subject bdi visit bdi0
+2    0      1         0       1   2     2   29
+3    0      1         0       1   2     3   29
+4    0      1         0       1  NA     5   29
+5    0      1         0       1  NA     8   29
+7    1      1         1       2  16     2   32
+8    1      1         1       2  24     3   32
+&gt; fit7.5II.B &lt;- lme(bdi~drug+length+bdi0+treatment*visit, data=data7.5, na.action=na.omit,
++                   random=~1|subject)
+&gt; summary(fit7.5II.B)
+Linear mixed-effects model fit by REML
+ Data: data7.5 
+       AIC      BIC    logLik
+  1874.498 1921.229 -924.2489
+
+Random effects:
+ Formula: ~1 | subject
+        (Intercept) Residual
+StdDev:    7.235249 5.035954
+
+Fixed effects: bdi ~ drug + length + bdi0 + treatment * visit 
+                      Value Std.Error  DF   t-value p-value
+(Intercept)        4.794906 2.3116064 177  2.074274  0.0395
+drug              -2.768131 1.7795471  92 -1.555526  0.1233
+length             0.254582 1.6891280  92  0.150718  0.8805
+bdi0               0.639741 0.0802142  92  7.975414  0.0000
+treatment1        -3.032446 1.8849111  92 -1.608801  0.1111
+visit3            -1.590460 1.1684857 177 -1.361130  0.1752
+visit5            -3.134647 1.2669005 177 -2.474264  0.0143
+visit8            -5.919046 1.3358691 177 -4.430858  0.0000
+treatment1:visit3  0.323857 1.6342995 177  0.198163  0.8431
+treatment1:visit5  0.972302 1.7818248 177  0.545678  0.5860
+treatment1:visit8  2.992397 1.8540355 177  1.613991  0.1083
+ Correlation: 
+                  (Intr) drug   length bdi0   trtmn1 visit3 visit5 visit8 trt1:3 trt1:5
+drug              -0.074                                                               
+length            -0.239  0.158                                                        
+bdi0              -0.682 -0.236 -0.241                                                 
+treatment1        -0.425 -0.298 -0.010  0.114                                          
+visit3            -0.202 -0.013 -0.041  0.015  0.258                                   
+visit5            -0.186 -0.022 -0.044  0.020  0.241  0.447                            
+visit8            -0.173 -0.021 -0.038  0.013  0.229  0.424  0.431                     
+treatment1:visit3  0.147  0.003  0.024 -0.010 -0.341 -0.715 -0.319 -0.303              
+treatment1:visit5  0.128  0.009  0.024 -0.003 -0.315 -0.317 -0.711 -0.306  0.440       
+treatment1:visit8  0.124  0.008  0.016 -0.001 -0.302 -0.305 -0.310 -0.720  0.423  0.431
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-2.51845659 -0.48526818 -0.08484032  0.39867171  3.63234421 
+
+Number of Observations: 280
+Number of Groups: 97 
+&gt; cont1 &lt;- matrix(c(0,0,0,0,1,0,0,0,1/4,1/4,1/4),1) 
+&gt; meanCFB &lt;- glht(fit7.5II.B, linfct=cont1)
+&gt; summary(meanCFB)
+
+	 Simultaneous Tests for General Linear Hypotheses
+
+Fit: lme.formula(fixed = bdi ~ drug + length + bdi0 + treatment * 
+    visit, data = data7.5, random = ~1 | subject, na.action = na.omit)
+
+Linear Hypotheses:
+       Estimate Std. Error z value Pr(&gt;|z|)
+1 == 0   -1.960      1.746  -1.123    0.262
+(Adjusted p values reported -- single-step method)
+</PRE>
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="\fbox{\bf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>RMモデルとANCOVAモデルでは，治療効果に相当する母数が異なることに注意。
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>RMモデルの場合：
+</BLOCKQUOTE>
+<UL>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img141.png"
+ ALT="$ \beta_3$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+すなわち「群<SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img43.png"
+ ALT="$ \times$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+時点」の交互作用項
+</LI>
+<LI>ベースライン時点に対して結果変数が示す効果の大きさが処置群では対照群に比べてどれくらい大きいか
+</LI>
+</UL>
+<P>
+<BLOCKQUOTE>ANCOVAモデルの場合：
+</BLOCKQUOTE>
+<UL>
+<LI><!-- MATH
+ $\beta_1+\beta_3$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="56" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img142.png"
+ ALT="$ \beta_1+\beta_3$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+すなわち「群」の主効果<SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img143.png"
+ ALT="$ +$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+「群<SPAN CLASS="MATH"><IMG
+ WIDTH="17" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img43.png"
+ ALT="$ \times$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+時点」の交互作用項
+</LI>
+<LI>ベースライン時点のデータは共変量になっているので，<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img141.png"
+ ALT="$ \beta_3$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+を「ベースライン時点に対して」と解釈することはできない
+</LI>
+<LI><SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$ \beta_1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+は，「ベースライン時点での得点が同じ被験者における群の効果」であり，これは当然処置効果に含まれるべきものである（ただし，全観測期間を通じて共通であることに注意）
+</LI>
+<LI>ここに「治療開始時点に対して治療期間の各時点における効果の大きさが処置群では対照群に比べてどれくらい大きいか」を示す<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img141.png"
+ ALT="$ \beta_3$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+が入ってくる
+</LI>
+<LI>よって，この2つを合わせたものが「ベースライン時点での得点を統制した場合の対照群に対する処置群の差」を表すものになる
+</LI>
+<LI>当然，<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$ \beta_1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+はベースライン時点も含めた群の効果であるので，<!-- MATH
+ $\beta_1+\beta_3$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="56" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img142.png"
+ ALT="$ \beta_1+\beta_3$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+を処置効果として見た場合，すでに見たようにベースラインにおける群間差<SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img75.png"
+ ALT="$ \xi$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+がバイアスとしてかかってくることになる
+</LI>
+</UL><BLOCKQUOTE>
+
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\bf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="107" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="\fbox{\bf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{メモ}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="46" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="\fbox{\bf{メモ}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>RMモデルとANCOVAモデルでは，線形対比の構成方法が異なることに注意。
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>治療期間が4時点あるとすると，これを通じた平均的効果の大きさを求めたい場合，
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>RMモデルでは
+</BLOCKQUOTE><P><!-- MATH
+ \begin{displaymath}
+\frac{1}{4}(\beta_{31}+\beta_{32}+\beta_{33}+\beta_{34})
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="177" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+ SRC="img144.png"
+ ALT="$\displaystyle \frac{1}{4}(\beta_{31}+\beta_{32}+\beta_{33}+\beta_{34})$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P><BLOCKQUOTE>
+でよいが，
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>ANCOVAモデルでは<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img76.png"
+ ALT="$ \beta_1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+を考慮しなくてはいけないのに加え，対比を
+</BLOCKQUOTE><P><!-- MATH
+ \begin{displaymath}
+\beta_1 + \frac{1}{4}(\beta_{32}+\beta_{33}+\beta_{34})
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="170" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+ SRC="img145.png"
+ ALT="$\displaystyle \beta_1 + \frac{1}{4}(\beta_{32}+\beta_{33}+\beta_{34})$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P><BLOCKQUOTE>
+とする必要がある（母数が3つだからと言って3で割ってはいけない）
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>治療期間の時点1における効果<!-- MATH
+ $\beta_{31}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="27" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img146.png"
+ ALT="$ \beta_{31}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+はベースライン扱いになるため常に0になり出力はされないが，これも本当は足されなければならない。
+
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\bf{メモここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="107" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img12.png"
+ ALT="\fbox{\bf{メモここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html75"
+  HREF="node6.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html73"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html69"
+  HREF="node4.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html76"
+  HREF="node6.html">臨床試験への混合効果モデル：ロジスティック回帰モデル</A>
+<B>Up:</B> <A NAME="tex2html74"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html70"
+  HREF="node4.html">分散分析モデルから混合効果モデルへ</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-10-05</I>
+</ADDRESS>
+</BODY>
+</HTML>

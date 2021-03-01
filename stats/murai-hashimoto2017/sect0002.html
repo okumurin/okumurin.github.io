@@ -1,0 +1,335 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="心理学のためのサンプルサイズ設計入門" rel="start" />
+<link href="index.html" title="心理学のためのサンプルサイズ設計入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0003.html" rel="next" />
+<link href="sect0001.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>3 信頼区間に基づくサンプルサイズ設計（石井）</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="2 検定力分析に基づくサンプルサイズ設計（杉澤）" href="sect0001.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="心理学のためのサンプルサイズ設計入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="認知心理学研究におけるサンプルサイズ設計（井関）" href="sect0003.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">心理学のためのサンプルサイズ設計入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0001.html" class="sectref" rel="prev">検定力分析に基づくサンプルサイズ設計（杉澤）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">心理学のためのサンプルサイズ設計入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0003.html" class="sectref" rel="next">認知心理学研究におけるサンプルサイズ設計（井関）</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000003">3 信頼区間に基づくサンプルサイズ設計（石井）</h1>
+<h2 id="a0000000016">3.2 1群の平均値差の場合</h2>
+<p>1群の母平均のCIは </p><table id="a0000000017" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0014.png" alt="\begin{equation}  [ \overline{X} - t_1 s \sqrt{1/N}, \overline{X} + t_1 s \sqrt{1/N} ] \end{equation}" style="width:221px; 
+                            height:21px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.1</span>)</span></td>
+</tr>
+</table><p> なので、<img src="images/img-0015.png" alt="$t_1 s \sqrt{1/N}$" style="vertical-align:-6px; 
+                                     width:68px; 
+                                     height:21px" class="math gen" /> がCIの半幅<a href="#a0000000018" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><p>ここで、<img src="images/img-0015.png" alt="$t_1 s \sqrt{1/N}$" style="vertical-align:-6px; 
+                                     width:68px; 
+                                     height:21px" class="math gen" /> をデータ分布のSD <img src="images/img-0016.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の何倍に抑えたいか考える。 すると、 </p><table id="a0000000019" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0017.png" alt="\begin{equation}  h_1 = \frac{t_1 s \sqrt{1/N}}{s} = t_1 \sqrt{1/N} \end{equation}" style="width:194px; 
+                            height:38px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.2</span>)</span></td>
+</tr>
+</table><p> を一定の値 <img src="images/img-0018.png" alt="$h$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> 以下にするような <img src="images/img-0019.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" /> を求めればよい。 </p><p>つまり、 </p><table id="a0000000020" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0020.png" alt="\begin{equation}  N \geq \frac{t_1^2}{h} \end{equation}" style="width:53px; 
+                            height:37px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.3</span>)</span></td>
+</tr>
+</table><p> をみたす最小の <img src="images/img-0019.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" /> が求めるサンプルサイズとなる。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p><img src="images/img-0021.png" alt="$t_1$" style="vertical-align:-3px; 
+                                     width:12px; 
+                                     height:13px" class="math gen" /> にも自由度として <img src="images/img-0019.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" /> が含まれているので、探索的に解く必要がある。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモここまで</b></span> </div></blockquote><h3 id="a0000000021"><img src="images/img-0018.png" alt="$h$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> はいくらであればよいのか？</h3>
+<p><img src="images/img-0022.png" alt="$h = 0.5$" style="vertical-align:0px; 
+                                     width:51px; 
+                                     height:13px" class="math gen" /> が一つの目安。 </p><ol class="enumerate">
+<li value="1"><p>相対評価では 1<i class="itshape">SD</i> <img src="images/img-0023.png" alt="$(= \pm 0.5 s)$" style="vertical-align:-4px; 
+                                     width:70px; 
+                                     height:18px" class="math gen" /> を区切りの目安としていた </p></li><li value="2"><p><img src="images/img-0018.png" alt="$h$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> をあまりに小さくすると、実質的に同等のものを異なるものとして主張しかねない </p><ul class="itemize">
+<li><p>2群の平均値差については、<img src="images/img-0024.png" alt="$h=1/3 s$" style="vertical-align:-4px; 
+                                     width:61px; 
+                                     height:16px" class="math gen" /> までの違いは同等とみなすことが多い　<span style="border: 1px solid black">□ 要チェック</span> </p></li>
+</ul></li>
+</ol><h3 id="a0000000022">CI の半幅が <img src="images/img-0016.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の <img src="images/img-0025.png" alt="$1/2$" style="vertical-align:-4px; 
+                                     width:23px; 
+                                     height:16px" class="math gen" /> に収まる（<img src="images/img-0026.png" alt="$h=0.5$" style="vertical-align:0px; 
+                                     width:51px; 
+                                     height:13px" class="math gen" />）とはどういう意味か？</h3>
+<p>母集団平均について、帰無仮説 <img src="images/img-0027.png" alt="$H_0: \mu = \mu _0$" style="vertical-align:-3px; 
+                                     width:83px; 
+                                     height:14px" class="math gen" /> を考えたとき、 </p><table id="a0000000023" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0028.png" alt="\[  \mid \overline{X} - \mu _0 \mid &lt; 0.5 s \Leftrightarrow \frac{\mid \overline{X} - \mu _0 \mid }{s} &lt; 0.5 \]" style="width:260px; 
+                            height:37px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> であれば、<img src="images/img-0029.png" alt="$H_0$" style="vertical-align:-3px; 
+                                     width:20px; 
+                                     height:14px" class="math gen" /> は棄却されない。 </p><div class="figure"><center>
+<img src="images/img-0030.png" alt="\includegraphics[width=12cm]{figch3h05.png}" style="width:12cm" /> </center></div><h2 id="a0000000024">3.3 対応のない2群の平均値差</h2>
+<p>平均値差のCIは、 </p><table id="a0000000025" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0031.png" alt="\begin{equation}  \left[\overline{X}_1 - \overline{X}_2 - t_* s_* \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}, ~  \overline{X}_1 - \overline{X}_2 + t_* s_* \sqrt{\frac{1}{n_1}+\frac{1}{n_2}}\right] \end{equation}" style="width:412px; 
+                            height:42px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.4</span>)</span></td>
+</tr>
+</table><p> である。 ここで、<img src="images/img-0032.png" alt="$n_1=n_2=n$" style="vertical-align:-3px; 
+                                     width:89px; 
+                                     height:10px" class="math gen" />, <img src="images/img-0033.png" alt="$s_1=s_2=s_*$" style="vertical-align:-3px; 
+                                     width:88px; 
+                                     height:10px" class="math gen" /> と仮定すると<a href="#a0000000026" class="footnote"><sup class="footnotemark">2</sup></a>、  </p><table id="eq.0306" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0034.png" alt="\begin{equation}  n \geq \frac{2 t_*^2}{h^2} \label{eq.0306} \end{equation}" style="width:56px; 
+                            height:37px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.6</span>)</span></td>
+</tr>
+</table><p> によってサンプルサイズを決定できる。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p> CI の半幅は <img src="images/img-0035.png" alt="$t_* s_* \sqrt{2/n}$" style="vertical-align:-6px; 
+                                     width:72px; 
+                                     height:21px" class="math gen" /> なので、これを <img src="images/img-0036.png" alt="$s_*$" style="vertical-align:-3px; 
+                                     width:14px; 
+                                     height:10px" class="math gen" /> の何倍に抑えたいか考えるとすると、 </p><table id="a0000000027" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0037.png" alt="\[ h_* = \frac{t_* s_* \sqrt{2/n}}{s_*} = t_* \sqrt{n/2} \]" style="width:194px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> となる。 これを <img src="images/img-0011.png" alt="$n$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:7px" class="math gen" /> について解けばよい。  </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモここまで</b></span> </div></blockquote><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">はてな？</b></span> </p><p> 分散について、母集団値を <img src="images/img-0038.png" alt="$\sigma ^2_1 = \sigma ^2_2$" style="vertical-align:-4px; 
+                                     width:55px; 
+                                     height:18px" class="math gen" /> とおくのは仮定の話なので納得できるが、現実に得られるデータについて <img src="images/img-0039.png" alt="$s^2_1 = s^2_2$" style="vertical-align:-4px; 
+                                     width:51px; 
+                                     height:18px" class="math gen" /> とおくのは無理があるのでは。 </p><p>本文では、等分散が仮定できないときは大きい方の <i class="itshape">SD</i> にもとづいて <img src="images/img-0018.png" alt="$h$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> を決めるとある。しかし、そもそも等分散でなくても、<img src="images/img-0036.png" alt="$s_*$" style="vertical-align:-3px; 
+                                     width:14px; 
+                                     height:10px" class="math gen" /> を基準に考えているのであれば式 (<a href="sect0002.html#eq.0306">3.6</a>) は成り立つはず。  </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">はてな？ここまで</b></span> </div></blockquote><h3 id="a0000000028">CIの半幅の<img src="images/img-0036.png" alt="$s_*$" style="vertical-align:-3px; 
+                                     width:14px; 
+                                     height:10px" class="math gen" />に対する比 <img src="images/img-0026.png" alt="$h=0.5$" style="vertical-align:0px; 
+                                     width:51px; 
+                                     height:13px" class="math gen" /> の解釈</h3>
+<p>母集団平均の差について帰無仮説 <img src="images/img-0040.png" alt="$H_0: \mu _{\text {diff}}=\mu _{\text {diff}_0}$" style="vertical-align:-4px; 
+                                     width:121px; 
+                                     height:15px" class="math gen" /> を考えたとき、<img src="images/img-0041.png" alt="$\mu _{\text {diff}_0} \in [\mu _{\text {diff}_ L}, \mu _{\text {diff}_ U}]$" style="vertical-align:-5px; 
+                                     width:149px; 
+                                     height:18px" class="math gen" /> であれば棄却されない。 つまり、</p><table id="a0000000029" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0042.png" alt="\[ \mid \mu _{\text {diff}_0} \mid &lt; 0.5 s_* \Leftrightarrow \frac{\mid \mu _{\text {diff}_0} \mid }{s_*} &lt; 0.5 \]" style="width:235px; 
+                            height:39px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> であれば、<img src="images/img-0029.png" alt="$H_0$" style="vertical-align:-3px; 
+                                     width:20px; 
+                                     height:14px" class="math gen" /> は棄却されない。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p>要は、平均値差のCIの下限と上限と標本平均との比が 0.5 に収まるようなサンプルサイズを決定するということ。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモここまで</b></span> </div></blockquote><h2 id="a0000000030">3.4 対応のある2群の平均値差</h2>
+<p>平均値差のCIは、 </p><table id="a0000000031" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0043.png" alt="\begin{equation}  \left[\overline{X}_1 - \overline{X}_2 - t_ d s_ d \sqrt{1/N}, ~  \overline{X}_1 - \overline{X}_2 + t_ d s_ d \sqrt{1/N}\right] \end{equation}" style="width:346px; 
+                            height:30px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.7</span>)</span></td>
+</tr>
+</table><p> である。 2群の標本分散について <img src="images/img-0044.png" alt="$s_1^2=s_2^2=s^2$" style="vertical-align:-4px; 
+                                     width:88px; 
+                                     height:18px" class="math gen" /> と仮定すると、  </p><table id="a0000000032" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0045.png" alt="\begin{equation}  N \geq \frac{2(1-r)t_ d^2}{h^2} \end{equation}" style="width:111px; 
+                            height:37px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.9</span>)</span></td>
+</tr>
+</table><p> を満たす最小の<img src="images/img-0019.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" />が、CIの半幅の<img src="images/img-0016.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" />に対する割合<img src="images/img-0018.png" alt="$h$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" />にもとづくサンプルサイズ。 2群の相関係数<img src="images/img-0004.png" alt="$r$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" />が小さいほど必要な<img src="images/img-0019.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" />は大きくなる<a href="#a0000000033" class="footnote"><sup class="footnotemark">3</sup></a>。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p> CIの半幅は <img src="images/img-0046.png" alt="$t_ d s_ d \sqrt{1/N}$" style="vertical-align:-6px; 
+                                     width:77px; 
+                                     height:21px" class="math gen" /> なので、これを<img src="images/img-0016.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" />の何倍に抑えたいか考えると、 </p><table id="a0000000034" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0047.png" alt="\[ h_* = \frac{t_ d s_ d \sqrt{1/N}}{s} = \frac{t_ d \sqrt{s_1^2+s_2^2 - 2 r s_1 s_2} \sqrt{1/N}}{s} = \frac{t_ d s \sqrt{2(1-r)/N}}{s} = t_ d \sqrt{\frac{2(1-r)}{N}} \]" style="width:599px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> となる。 これを<img src="images/img-0019.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" />について解けばよい。  </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモここまで</b></span> </div></blockquote><h3 id="a0000000035">CIの半幅の<img src="images/img-0016.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" />に対する比 <img src="images/img-0026.png" alt="$h=0.5$" style="vertical-align:0px; 
+                                     width:51px; 
+                                     height:13px" class="math gen" /> の解釈</h3>
+<blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p>基本は対応のない2群と同じ。平均値差のCIの下限と上限と標本平均との比が0.5に収まるようなサンプルサイズを決定することになる。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモここまで</b></span> </div></blockquote><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">はてな？</b></span> </p><p>CIの半幅と<img src="images/img-0048.png" alt="$s_ d$" style="vertical-align:-3px; 
+                                     width:15px; 
+                                     height:10px" class="math gen" />との比をもとに<img src="images/img-0019.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" />を決定することもできる。その場合、<img src="images/img-0049.png" alt="$s_1^2 \neq s_2^2$" style="vertical-align:-4px; 
+                                     width:51px; 
+                                     height:18px" class="math gen" /> であってもよい。ただし、「群内の<i class="itshape">SD</i>で標準化された平均値差」としての効果量ではなくなるので、<img src="images/img-0018.png" alt="$h$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" />の意味はより不明確になる。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">はてな？ここまで</b></span> </div></blockquote><h2 id="a0000000036">3.5 相関係数</h2>
+<p>変換 <img src="images/img-0050.png" alt="$z=\text {arctanh } r$" style="vertical-align:0px; 
+                                     width:99px; 
+                                     height:13px" class="math gen" /> を考えたとき、<img src="images/img-0004.png" alt="$r$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" />のCIは </p><table id="a0000000037" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0051.png" alt="\begin{equation}  \left[ \text {tanh}\left(z-z_0 \sqrt{\frac{1}{N-3}} \right), \text {tanh} \left(z+z_0 \sqrt{\frac{1}{N-3}} \right) \right] \end{equation}" style="width:362px; 
+                            height:51px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.10</span>)</span></td>
+</tr>
+</table><p> となる。 このCIは<img src="images/img-0004.png" alt="$r$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" />を中心に非対称であるので、CIの半幅はCI幅の1/2と考え、 </p><table id="a0000000038" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0052.png" alt="\[ \frac{\text {tanh} \left(z+z_0 \sqrt{\frac{1}{N-3}} \right) - \text {tanh} \left(z-z_0 \sqrt{\frac{1}{N-3}} \right)}{2} &lt; h_* \]" style="width:359px; 
+                            height:48px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> を考える。 これを解くことで、必要な<img src="images/img-0019.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" />が得られる。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000018"><img src="images/img-0053.png" alt="$s^2$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:14px" class="math gen" /> は不偏分散であることに注意。</li><li id="a0000000026"><img src="images/img-0054.png" alt="$s_1^2, s_2^2$" style="vertical-align:-4px; 
+                                     width:36px; 
+                                     height:18px" class="math gen" /> は不偏分散。</li><li id="a0000000033">負になることは考慮しない。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="2 検定力分析に基づくサンプルサイズ設計（杉澤）" href="sect0001.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="心理学のためのサンプルサイズ設計入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="認知心理学研究におけるサンプルサイズ設計（井関）" href="sect0003.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">心理学のためのサンプルサイズ設計入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0001.html" class="sectref" rel="prev">検定力分析に基づくサンプルサイズ設計（杉澤）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">心理学のためのサンプルサイズ設計入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0003.html" class="sectref" rel="next">認知心理学研究におけるサンプルサイズ設計（井関）</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0015.html" rel="next" />
+<link href="sect0013.html" rel="prev" />
+<link href="sect0013.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>4.2 合成的な定式化</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="4 変化についてのマルチレベルモデルのデータ分析" href="sect0013.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="4 変化についてのマルチレベルモデルのデータ分析" href="sect0013.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="推定法（再考）" href="sect0015.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0013.html" class="sectref" rel="prev">変化についてのマルチレベルモデルのデータ分析</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0013.html" class="sectref" rel="parent">変化についてのマルチレベルモデルのデータ分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0015.html" class="sectref" rel="next">推定法（再考）</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h2 id="a0000000015">4.2 合成的な定式化</h2>
+<table id="a0000000065" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0013.png" alt="\begin{equation}  Y_{ij} = \pi _{0i} + \pi _{1i} \textit{TIME}_{ij} + e_{ij} \end{equation}" style="width:202px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.5</span>)</span></td>
+</tr>
+</table><p> と </p><table id="a0000000066" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000067">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0014.png" alt="$\displaystyle  \pi _{0i} = \gamma _{00} + \gamma _{01} \textit{COA}_ i + \zeta _{0i}  $" style="vertical-align:-3px; width:189px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.6</span>)</span></td>
+</tr><tr id="a0000000068">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0015.png" alt="$\displaystyle \pi _{1i} = \gamma _{10} + \gamma _{11} \textit{COA}_ i + \zeta _{1i}  $" style="vertical-align:-3px; width:189px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.7</span>)</span></td>
+</tr>
+</table><p> を合成すると、 </p><table id="a0000000069" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0016.png" alt="\begin{equation}  Y_{ij} = [\gamma _{00} + \gamma _{10} \textit{TIME}_{ij} + \gamma _{01} \textit{COA}_ i + \gamma _{11} (\textit{COA}_ i \times \textit{TIME}_{ij})] + [\zeta _{0i} + \zeta _{1i} \textit{TIME}_{ij} + e_{ij}] \end{equation}" style="width:616px; 
+                            height:19px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.8</span>)</span></td>
+</tr>
+</table><p> となる。 </p><p>この合成残差 <img src="images/img-0017.png" alt="$[\zeta _{0i} + \zeta _{1i} \textit{TIME}_{ij} + e_{ij}]$" style="vertical-align:-5px; 
+                                     width:160px; 
+                                     height:18px" class="math gen" /> を見ると、時不偏な残差 <img src="images/img-0018.png" alt="$\zeta _{0i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> と <img src="images/img-0019.png" alt="$\zeta _{1i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> があることで、測定機会ごとの残差は個人内で自己相関していて等分散が仮定できないということが分かる。 </p></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="4 変化についてのマルチレベルモデルのデータ分析" href="sect0013.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="4 変化についてのマルチレベルモデルのデータ分析" href="sect0013.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="推定法（再考）" href="sect0015.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0013.html" class="sectref" rel="prev">変化についてのマルチレベルモデルのデータ分析</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0013.html" class="sectref" rel="parent">変化についてのマルチレベルモデルのデータ分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0015.html" class="sectref" rel="next">推定法（再考）</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

@@ -1,0 +1,341 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0005.html" rel="next" />
+<link href="sect0003.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>4 変化についてのマルチレベルモデルのデータ分析</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 変化についてのマルチレベルモデルの紹介" href="sect0003.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="時間的な変数 TIME をより柔軟に扱う" href="sect0005.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0003.html" class="sectref" rel="prev">変化についてのマルチレベルモデルの紹介</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0005.html" class="sectref" rel="next">時間的な変数 <i class="itshape">TIME</i> をより柔軟に扱う</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000005">4 変化についてのマルチレベルモデルのデータ分析</h1>
+<p>加工されていない変数に非線形モデルを当てはめるより、変換した変数に線形モデルを当てはめた方が、分析はしばしば明確なものになる。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p>データをやたら変換してからモデルに当てはめるのではなく、モデルによってデータの性質を表現するべきであるとする久保 (2012) とは対照的な意見だ。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </div></blockquote><h2 id="a0000000043">4.2 合成的な定式化</h2>
+<table id="a0000000044" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0013.png" alt="\begin{equation}  Y_{ij} = \pi _{0i} + \pi _{1i} \textit{TIME}_{ij} + e_{ij} \end{equation}" style="width:202px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.5</span>)</span></td>
+</tr>
+</table><p> と </p><table id="a0000000045" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000046">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0014.png" alt="$\displaystyle  \pi _{0i} = \gamma _{00} + \gamma _{01} \textit{COA}_ i + \zeta _{0i}  $" style="vertical-align:-3px; width:189px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.6</span>)</span></td>
+</tr><tr id="a0000000047">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0015.png" alt="$\displaystyle \pi _{1i} = \gamma _{10} + \gamma _{11} \textit{COA}_ i + \zeta _{1i}  $" style="vertical-align:-3px; width:189px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.7</span>)</span></td>
+</tr>
+</table><p> を合成すると、 </p><table id="a0000000048" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0016.png" alt="\begin{equation}  Y_{ij} = [\gamma _{00} + \gamma _{10} \textit{TIME}_{ij} + \gamma _{01} \textit{COA}_ i + \gamma _{11} (\textit{COA}_ i \times \textit{TIME}_{ij})] + [\zeta _{0i} + \zeta _{1i} \textit{TIME}_{ij} + e_{ij}] \end{equation}" style="width:616px; 
+                            height:19px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.8</span>)</span></td>
+</tr>
+</table><p> となる。 </p><p>この合成残差 <img src="images/img-0017.png" alt="$[\zeta _{0i} + \zeta _{1i} \textit{TIME}_{ij} + e_{ij}]$" style="vertical-align:-5px; 
+                                     width:160px; 
+                                     height:18px" class="math gen" /> を見ると、時不偏な残差 <img src="images/img-0018.png" alt="$\zeta _{0i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> と <img src="images/img-0019.png" alt="$\zeta _{1i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> があることで、測定機会ごとの残差は個人内で自己相関していて等分散が仮定できないということが分かる。 </p><h2 id="a0000000049">4.3 推定法（再考）</h2>
+<h3 id="a0000000050">4.3.1 一般化最小二乗推定 GLS</h3>
+<p>OLS よりも残差に複雑な仮定をおくことが可能だが、真の誤差共分散行列の中身について知る必要がある。 そこで、 </p><ol class="enumerate">
+<li value="1"><p>OLS によってあてはめたモデルから残差を算出し、誤差共分散行列を推定 </p></li><li value="2"><p>推定された誤差共分散行列を真のものと見なしてモデルを再当てはめ（固定効果とSEを算出） </p></li>
+</ol><p> という2段階のアプローチを繰り返すことを考える（<b class="bfseries">反復一般化最小二乗法</b> <i class="itshape">IGLS</i>）。 </p><h3 id="a0000000051">4.3.2 完全最尤推定 <i class="itshape">FML</i> と制限付き最尤推定 <i class="itshape">RML</i></h3>
+<h4 id="a0000000052">FML</h4>
+<p> 標本データを観測する尤度を最大化する母数を求める。 </p><p>分散成分の FML 推定値は、固定効果の FML 推定値を含んだ形で与えられる。 </p><p><img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 固定効果の値を既知として扱うことになる。 </p><p><img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 分散成分の推定において、本来考えるべきであった固定効果の分の自由度を無視してしまう。 </p><p><img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 分散成分の過小推定（<img src="images/img-0021.png" alt="$N-1$" style="vertical-align:0px; 
+                                     width:42px; 
+                                     height:12px" class="math gen" /> で割るべきところを <img src="images/img-0022.png" alt="$N$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:11px" class="math gen" /> で割っているようなもの。） </p><p>モデル全体の当てはまりを検証できるので、適合度検定は固定効果も変量効果も両方対象にすることができる。 </p><h4 id="a0000000053">RML</h4>
+<p>標本データではなく、標本残差を観測する尤度を最大化する分散共分散を求める。 つまり、 </p><p>固定効果の推定 <img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 残差の算出 <img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> この残差は、どのような分散成分のもとで最も得られやすいのか？ </p><p>を考えるということ。 </p><p>ただし、RML が FML よりも一方的に優れていることは証明されていない。 </p><p>残差部分の当てはまりのみを議論しているので、適合度検定は変量効果しか対象にすることはできない。 </p><h2 id="a0000000054">4.4 2つの無条件マルチレベルモデル</h2>
+<h3 id="a0000000055">4.4.1 無条件平均モデル</h3>
+<p>単に結果変数の変動を記述するもの。 どのレベルにも予測変数は含まれない。 </p><table id="a0000000056" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000057">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0023.png" alt="$\displaystyle  Y_{ij} = \pi _{0i} + e_{ij}  $" style="vertical-align:-5px; width:103px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.7</span>)</span></td>
+</tr><tr id="a0000000058">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0024.png" alt="$\displaystyle \pi _{0i} = \gamma _{00} + \zeta _{0i}  $" style="vertical-align:-3px; width:104px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.8</span>)</span></td>
+</tr>
+</table><p> 引き続き分析を行う価値があるだけの十分な変動がそのレベルにおいて見られているか確認する。 </p><h4 id="a0000000059">級内相関係数</h4>
+<ol class="enumerate">
+<li value="1"><p>個人間変動が全体に占める割合を評価する </p></li><li value="2"><p>合成無条件平均モデルの残差の自己相関の大きさを要約する </p></li>
+</ol><table id="a0000000060" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0025.png" alt="\begin{equation}  \rho = \frac{\sigma _0^2}{\sigma _0^2 + \sigma _ e^2} \end{equation}" style="width:89px; 
+                            height:42px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.9</span>)</span></td>
+</tr>
+</table><p>無条件平均モデルでは、残差の自己相関係数は級内相関係数に等しい。 </p><table id="a0000000061" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0026.png" alt="\begin{equation*}  \textit{Cor}(Y_{ij}, Y_{ij'}) = \frac{\textit{Cov}(Y_{ij}, Y_{ij'})}{\textit{SD}(Y_{ij}) \textit{SD} (Y_{ij'})} = \frac{\sigma _0^2}{\sigma _0^2 + \sigma _ e^2} = \rho \end{equation*}" style="width:348px; 
+                            height:42px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h3 id="a0000000062">4.4.2 無条件成長モデル</h3>
+<p>レベル1モデルに予測変数 <i class="itshape">TIME</i> を導入する。  </p><table id="a0000000063" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000064">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0027.png" alt="$\displaystyle  Y_{ij} = \pi _{0i} + \pi _{1i} \textit{TIME}_{ij} + e_{ij} \notag  $" style="vertical-align:-5px; width:201px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000065">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0024.png" alt="$\displaystyle \pi _{0i} = \gamma _{00} + \zeta _{0i}  $" style="vertical-align:-3px; width:104px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.10</span>)</span></td>
+</tr><tr id="a0000000066">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0028.png" alt="$\displaystyle \pi _{1i} = \gamma _{10} + \zeta _{1i} \notag  $" style="vertical-align:-3px; width:104px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p>すると、合成された残差は <img src="images/img-0029.png" alt="$\zeta _{0i} + \zeta _{1i} \textit{TIME}_{ij} + e_{ij}$" style="vertical-align:-5px; 
+                                     width:153px; 
+                                     height:16px" class="math gen" /> であるから、<b class="bfseries">異分散性</b>と<b class="bfseries">自己相関</b>が導き出される<a href="#a0000000067" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><h3 id="a0000000068">4.4.3 分散説明率の定量化</h3>
+<h4 id="a0000000069">擬 <img src="images/img-0030.png" alt="$R^2$" style="vertical-align:0px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> 統計量 <i class="itshape">pseudo-<img src="images/img-0030.png" alt="$R^2$" style="vertical-align:0px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> statistics</i></h4>
+<p>2つの方法がある。 </p><ol class="enumerate">
+<li value="1"><p>各個人の各時点での結果変数の予測値を計算し、観測値と予測値の相関を2乗する </p></li><li value="2"><p>予測変数を追加することで <img src="images/img-0031.png" alt="$\hat{\sigma }^2_ e$" style="vertical-align:-4px; 
+                                     width:16px; 
+                                     height:18px" class="math gen" /> がどれくらい減少したか、追加前の値との比を取る（<b class="bfseries">残差分散減少率</b>） </p></li>
+</ol><h2 id="a0000000070">4.5 モデル構築のための実践的データ分析</h2>
+<ul class="itemize">
+<li><p>主たる予測変数と、統制したい予測変数を区別すること </p></li><li><p>予測変数を投入したあとの残差分散を<b class="bfseries">偏分散</b> <i class="itshape">partial variance</i> や <b class="bfseries">条件付き分散</b> <i class="itshape">conditional variance</i> と呼ぶ </p></li>
+</ul><h3 id="a0000000071">4.5.4 予測変数の中心化</h3>
+<ul class="itemize">
+<li><p>時不変の変数を中心化する場合、標本平均を引くことが一般的だが、現実的に意味のある定数で中心化することが重要。 </p></li><li><p>ダミー変数であっても、平均（平均的な対象者）に意味があれば中心化することもある。 </p></li><li><p>レベル2の予測変数を全て中心化しておけば（レベル1の予測変数が <i class="itshape">TIME</i> のみであれば）切片は無条件成長モデルに一致する。<img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> レベル2の予測変数は、2値変数でも全て中心化してしまうことが多い。 </p></li>
+</ul><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p>標本平均や標本比率などを用いて中心化する場合、その値の信頼性や標本変動によって切片の有意味性は変化すると思う。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </div></blockquote><h2 id="a0000000072">4.6 乖離度統計量 <i class="itshape">deviance statistics</i> を用いたモデルの比較</h2>
+<h4 id="a0000000073">乖離度統計量</h4>
+<table id="a0000000074" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0032.png" alt="\begin{equation}  D = -2 \textit{LL}_{\text {current model}} \end{equation}" style="width:159px; 
+                            height:15px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.11</span>)</span></td>
+</tr>
+</table><ul class="itemize">
+<li><p>双方のモデルが同じデータを用いて推定されており<a href="#a0000000075" class="footnote"><sup class="footnotemark">2</sup></a> </p></li><li><p>片方のモデルがもう片方にネスとしている </p></li>
+</ul><p> 場合、乖離度統計量を比較することができる。 </p><h4 id="a0000000076">情報量規準</h4>
+<p>ネストしていないモデルを比較する場合、AIC や BIC を用いる。 </p><ul class="itemize">
+<li><p>AIC: モデルに含まれるパラメータの数<a href="#a0000000077" class="footnote"><sup class="footnotemark">3</sup></a>に基づいてペナルティを課す </p></li><li><p>BIC: パラメータの数と標本サイズ<a href="#a0000000078" class="footnote"><sup class="footnotemark">4</sup></a>に基づいてペナルティを課す </p></li>
+</ul><h2 id="a0000000079">4.7 複合仮説のワルド検定</h2>
+<p>帰無仮説を <img src="images/img-0033.png" alt="$H_0: \bm@general \boldmath \m@ne \mv@bold \bm@command {C \gamma }’ = \bm@general \boldmath \m@ne \mv@bold \bm@command {0}$" style="vertical-align:-3px; 
+                                     width:94px; 
+                                     height:16px" class="math gen" /> のように一般線形仮説の形で表し、パラメータの重み付き線形結合の2乗をその分散の推定値と比較する。 なお、分散成分の複合帰無仮説の検定に利用することは推奨されない。 </p><blockquote class="quote"> <span style="border: 1px solid black"><b class="bf">メモ</b></span> 一般線形仮説のワルド検定については要確認。 <span style="border: 1px solid black"><b class="bf">メモ</b></span> </blockquote><h2 id="a0000000080">4.8 モデルの仮定の許容度の評価</h2>
+<p>得られた結果の妥当性は、モデルを当てはめる際の仮定をどれくらい許容できるかに依存する。 </p><ul class="itemize">
+<li><p>関数形: 結果変数と予測変数の散布図を各レベルで描いてみる </p></li><li><p>正規性: </p><ul class="itemize">
+<li><p>素残差 <img src="images/img-0034.png" alt="$\hat{e}_{ij}, \zeta _{0i}, \zeta _{1i}$" style="vertical-align:-5px; 
+                                     width:71px; 
+                                     height:18px" class="math gen" /> について、各値とそれに対応する正規スコアとの散布図（<b class="bfseries">正規確率プロット</b>）を描画する（<img src="images/img-0020.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 線形性から逸脱していないか？） </p></li><li><p>標準化残差をプロットする（正規分布に従っているなら、約95%が中心 <img src="images/img-0035.png" alt="$\pm 2 \textit{SD}$" style="vertical-align:0px; 
+                                     width:42px; 
+                                     height:12px" class="math gen" /> 以内に収まるはず） </p></li>
+</ul></li><li><p>等分散性: 予測変数と素残差のプロット </p></li>
+</ul><h2 id="a0000000081">4.9 経験ベイズ推定値</h2>
+<p>以下の2つの方法がある。 </p><ol class="enumerate">
+<li value="1"><p>OLS 推定値と母平均の推定値の重み付き平均 </p></li><li value="2"><p>個人の予測変数から平均的な軌跡を得て、そこにレベル2の残差を加える </p></li>
+</ol><table id="a0000000082" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000083">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0036.png" alt="$\displaystyle  \tilde{\pi }_{0i} = \hat{\pi }_{0i} + \hat{\zeta }_{0i}  $" style="vertical-align:-3px; width:103px; 
+                   height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.21</span>)</span></td>
+</tr><tr id="a0000000084">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0037.png" alt="$\displaystyle \tilde{\pi }_{1i} = \hat{\pi }_{1i} + \hat{\zeta }_{1i} \notag  $" style="vertical-align:-3px; width:103px; 
+                   height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p>属性を共有する他者からの情報を利用することで（borrowing strength）、個人の推定値が正確なものになる。 </p><p>経験ベイズ推定値では不偏性は犠牲になるが、OLS よりも精度は良い。 </p><p>ただし、推定値の質はモデル適合の質に大きく依存する。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000067">時変な変数 <i class="itshape">TIME</i> によって分散が左右されること、また時不変な残差成分 <img src="images/img-0038.png" alt="$\zeta _{0i}, \zeta _{1i}$" style="vertical-align:-3px; 
+                                     width:44px; 
+                                     height:14px" class="math gen" /> が存在することによる。</li><li id="a0000000075">欠測のあるデータの利用には特に注意。</li><li id="a0000000077">FML では全パラメータ、RML では分散成分のみ。</li><li id="a0000000078">人数なのか観測回数なのか定かではない。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 変化についてのマルチレベルモデルの紹介" href="sect0003.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="時間的な変数 TIME をより柔軟に扱う" href="sect0005.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0003.html" class="sectref" rel="prev">変化についてのマルチレベルモデルの紹介</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0005.html" class="sectref" rel="next">時間的な変数 <i class="itshape">TIME</i> をより柔軟に扱う</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

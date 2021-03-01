@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="lmおよびlmListでの線形モデルのあてはめ">
+<META NAME="keywords" CONTENT="piheiro_bates2000">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="piheiro_bates2000.css">
+
+<LINK REL="next" HREF="node11.html">
+<LINK REL="previous" HREF="node9.html">
+<LINK REL="up" HREF="node9.html">
+<LINK REL="next" HREF="node11.html">
+<TITLE>lmおよびlmListでの線形モデルのあてはめ</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html126"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html124"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html118"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html127"
+  HREF="node11.html">lmeによる線形混合効果モデルのあてはめ</A>
+<B>Up:</B> <A NAME="tex2html125"
+  HREF="node9.html">線形混合効果モデルのあてはめ</A>
+<B> Previous:</B> <A NAME="tex2html119"
+  HREF="node9.html">線形混合効果モデルのあてはめ</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html128"
+  HREF="node10.html#SECTION00041100000000000000">グループごとの<TT>lm</TT>のあてはめ：関数<TT>lmList</TT></A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H2><A NAME="SECTION00041000000000000000">
+<TT>lm</TT>および<TT>lmList</TT>での線形モデルのあてはめ</A>
+</H2>
+
+<P>
+被験者によってグループ化されたデータ <TT>Orthodont</TT> に対し，以下のように3つのモデルをあてはめてみる。
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; library(nlme)
+&gt; data(Orthodont)
+&gt; library(lattice)
+&gt; fm1 &lt;- lm(distance ~ age, Orthodont)
+&gt; fm2 &lt;- update(fm1, formula = distance ~ Sex*age)
+&gt; fm3 &lt;- update(fm2, formula = . ~ . - Sex)
+&gt; summary(fm3)
+
+Call:
+lm(formula = distance ~ age + Sex:age, data = Orthodont)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-5.7424 -1.2424 -0.1893  1.2681  5.2669 
+
+Coefficients:
+              Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)   16.76111    1.08613  15.432  &lt; 2e-16 ***
+age            0.74767    0.09807   7.624 1.16e-11 ***
+age:SexFemale -0.21473    0.03923  -5.474 3.02e-07 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 2.249 on 105 degrees of freedom
+Multiple R-squared:  0.4215,	Adjusted R-squared:  0.4105 
+F-statistic: 38.26 on 2 and 105 DF,  p-value: 3.31e-13
+</PRE>
+</DIV>
+
+<P>
+モデル <TT>fm3</TT> について，診断プロットを描画してみる。
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; par(mfrow=c(2,2))
+&gt; plot(fm3)
+</PRE>
+</DIV>
+
+<P>
+<IMG
+  WIDTH="630" HEIGHT="630" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig0401.png"
+ ALT="Image fig0401">
+
+<P>
+Q-Qプロットから，標準化残差は正規分布よりいくぶん裾が広いことがわかる。
+
+<P>
+次に，被験者ごとの残差プロット（箱ひげ図）を描画してみる。
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; bwplot(getGroups(Orthodont) ~ resid(fm3))
+</PRE>
+</DIV>
+
+<P>
+<IMG
+  WIDTH="630" HEIGHT="630" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig0402.png"
+ ALT="Image fig0402">
+
+<P>
+被験者によって残差の分布が大きく異なり，同じ被験者は同じ方向の残差を持つ傾向にある。
+
+<P>
+<!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="15" ALIGN="BOTTOM" BORDER="0"
+ SRC="img3.png"
+ ALT="$ \rightarrow$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ 「個体効果」を考慮する必要性を示している。
+
+<P>
+
+<H3><A NAME="SECTION00041100000000000000">
+グループごとの<TT>lm</TT>のあてはめ：関数<TT>lmList</TT></A>
+</H3>
+
+<P>
+データ <TT>Orthodonto</TT> は <TT>groupedData</TT> クラスなので，<TT>lmList</TT> の <TT>formula</TT> にグループ化変数を指定する（<TT>| Subject</TT>）必要はない。
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+ <PRE>
+&gt; fm4 &lt;- lmList(distance ~ age, Orthodont)
+&gt; fm4
+Call:
+  Model: distance ~ age | Subject 
+   Data: Orthodont 
+
+Coefficients:
+    (Intercept)   age
+M16       16.95 0.550
+M05       13.65 0.850
+M02       14.85 0.775
+M11       20.05 0.325
+M07       14.95 0.800
+M08       19.75 0.375
+M03       16.00 0.750
+M12       13.25 1.000
+M13        2.80 1.950
+M14       19.10 0.525
+M09       14.40 0.975
+M15       13.50 1.125
+M06       18.95 0.675
+M04       24.70 0.175
+M01       17.30 0.950
+M10       21.25 0.750
+F10       13.55 0.450
+F09       18.10 0.275
+F06       17.00 0.375
+F01       17.25 0.375
+F05       19.60 0.275
+F07       16.95 0.550
+F02       14.20 0.800
+F08       21.45 0.175
+F03       14.40 0.850
+F04       19.65 0.475
+F11       18.95 0.675
+
+Degrees of freedom: 108 total; 54 residual
+Residual standard error: 1.31004
+</PRE>
+</DIV>
+
+<P>
+ここで，切片と傾きを <TT>pairs</TT> によってプロットしてみる。
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+ <PRE>
+&gt; pairs(fm4)
+</PRE>
+</DIV>
+
+<P>
+<IMG
+  WIDTH="630" HEIGHT="630" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig0403.png"
+ ALT="Image fig0403">
+
+<P>
+切片と傾きの相関が（外れ値を考慮しても）かなり高いことがわかる。
+
+<P>
+これは，説明変数 <TT>age</TT> が中心化されていないため，切片が <TT>age = 0</TT> の予測値を表していることと関連している（初期値と成長のスピードは強く相関している）。
+
+<P>
+これを解消するため，<TT>age</TT> を11で中心化してみる。
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+ <PRE>
+&gt; fm5 &lt;- lmList(distance ~ I(age-11), Orthodont)
+&gt; fm5
+Call:
+  Model: distance ~ I(age - 11) | Subject 
+   Data: Orthodont 
+
+Coefficients:
+    (Intercept) I(age - 11)
+M16      23.000       0.550
+M05      23.000       0.850
+M02      23.375       0.775
+M11      23.625       0.325
+M07      23.750       0.800
+M08      23.875       0.375
+M03      24.250       0.750
+M12      24.250       1.000
+M13      24.250       1.950
+M14      24.875       0.525
+M09      25.125       0.975
+M15      25.875       1.125
+M06      26.375       0.675
+M04      26.625       0.175
+M01      27.750       0.950
+M10      29.500       0.750
+F10      18.500       0.450
+F09      21.125       0.275
+F06      21.125       0.375
+F01      21.375       0.375
+F05      22.625       0.275
+F07      23.000       0.550
+F02      23.000       0.800
+F08      23.375       0.175
+F03      23.750       0.850
+F04      24.875       0.475
+F11      26.375       0.675
+
+Degrees of freedom: 108 total; 54 residual
+Residual standard error: 1.31004
+&gt; pairs(fm5)
+</PRE>
+</DIV>
+
+<P>
+すると，切片と傾きのプロットは次のようになり，相関が解消される。
+
+<P>
+<IMG
+  WIDTH="630" HEIGHT="630" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig0404.png"
+ ALT="Image fig0404">
+
+<P>
+次に，これら切片と傾きの信頼区間を算出してみる。
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+ <PRE>
+&gt; intervals(fm5)
+, , (Intercept)
+
+       lower   est.    upper
+M16 21.68676 23.000 24.31324
+M05 21.68676 23.000 24.31324
+M02 22.06176 23.375 24.68824
+M11 22.31176 23.625 24.93824
+M07 22.43676 23.750 25.06324
+M08 22.56176 23.875 25.18824
+M03 22.93676 24.250 25.56324
+M12 22.93676 24.250 25.56324
+M13 22.93676 24.250 25.56324
+M14 23.56176 24.875 26.18824
+M09 23.81176 25.125 26.43824
+M15 24.56176 25.875 27.18824
+M06 25.06176 26.375 27.68824
+M04 25.31176 26.625 27.93824
+M01 26.43676 27.750 29.06324
+M10 28.18676 29.500 30.81324
+F10 17.18676 18.500 19.81324
+F09 19.81176 21.125 22.43824
+F06 19.81176 21.125 22.43824
+F01 20.06176 21.375 22.68824
+F05 21.31176 22.625 23.93824
+F07 21.68676 23.000 24.31324
+F02 21.68676 23.000 24.31324
+F08 22.06176 23.375 24.68824
+F03 22.43676 23.750 25.06324
+F04 23.56176 24.875 26.18824
+F11 25.06176 26.375 27.68824
+
+, , I(age - 11)
+
+          lower  est.     upper
+M16 -0.03729682 0.550 1.1372968
+M05  0.26270318 0.850 1.4372968
+M02  0.18770318 0.775 1.3622968
+M11 -0.26229682 0.325 0.9122968
+M07  0.21270318 0.800 1.3872968
+M08 -0.21229682 0.375 0.9622968
+M03  0.16270318 0.750 1.3372968
+M12  0.41270318 1.000 1.5872968
+M13  1.36270318 1.950 2.5372968
+M14 -0.06229682 0.525 1.1122968
+M09  0.38770318 0.975 1.5622968
+M15  0.53770318 1.125 1.7122968
+M06  0.08770318 0.675 1.2622968
+M04 -0.41229682 0.175 0.7622968
+M01  0.36270318 0.950 1.5372968
+M10  0.16270318 0.750 1.3372968
+F10 -0.13729682 0.450 1.0372968
+F09 -0.31229682 0.275 0.8622968
+F06 -0.21229682 0.375 0.9622968
+F01 -0.21229682 0.375 0.9622968
+F05 -0.31229682 0.275 0.8622968
+F07 -0.03729682 0.550 1.1372968
+F02  0.21270318 0.800 1.3872968
+F08 -0.41229682 0.175 0.7622968
+F03  0.26270318 0.850 1.4372968
+F04 -0.11229682 0.475 1.0622968
+F11  0.08770318 0.675 1.2622968
+</PRE>
+</DIV>
+
+<P>
+図にするとわかりやすい。
+切片の個体間変動を特に考慮する必要があることが明らかである。
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; plot(intervals(fm5))
+</PRE>
+</DIV>
+
+<P>
+<IMG
+  WIDTH="630" HEIGHT="630" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig0405.png"
+ ALT="Image fig0405">
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html126"
+  HREF="node11.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html124"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html118"
+  HREF="node9.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html127"
+  HREF="node11.html">lmeによる線形混合効果モデルのあてはめ</A>
+<B>Up:</B> <A NAME="tex2html125"
+  HREF="node9.html">線形混合効果モデルのあてはめ</A>
+<B> Previous:</B> <A NAME="tex2html119"
+  HREF="node9.html">線形混合効果モデルのあてはめ</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Okumura <BR>
+2017-10-27</I>
+</ADDRESS>
+</BODY>
+</HTML>

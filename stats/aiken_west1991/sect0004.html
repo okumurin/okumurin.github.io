@@ -1,0 +1,437 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="Multiple Regression: Testing and Interpreting Interactions" rel="start" />
+<link href="index.html" title="Multiple Regression: Testing and Interpreting Interactions" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+
+<link href="sect0003.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>4 高次の関係性を構築する</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 3変数の交互作用" href="sect0003.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="Multiple Regression: Testing and Interpreting Interactions" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">Multiple Regression: Testing and Interpreting Interactions</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0003.html" class="sectref" rel="prev">3変数の交互作用</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">Multiple Regression: Testing and Interpreting Interactions</a></span>
+
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000005">4 高次の関係性を構築する</h1>
+<ul class="itemize">
+<li><p><b class="bfseries">効果（effect）</b>：ANOVAと同様、ばらつきを発生させる要因 </p></li><li><p><b class="bfseries">要素（component）</b>：特定の予測項（<img src="images/img-0094.png" alt="$X^2Z$" style="vertical-align:0px; 
+                                     width:34px; 
+                                     height:14px" class="math gen" />など） </p></li>
+</ul><h2 id="a0000000085">4.1 モデル</h2>
+<table id="eq.regcurve01" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000086">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0001.png" alt="$\displaystyle  \hat{Y}  $" style="vertical-align:0px; width:13px; 
+                   height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0095.png" alt="$\displaystyle = b_1 X + b_2 X^2 + b_0 \label{eq.regcurve01}  $" style="vertical-align:-3px; width:136px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.41</span>)</span></td>
+</tr><tr id="a0000000087">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0096.png" alt="$\displaystyle \hat{Y}  $" style="vertical-align:0px; width:13px; 
+                   height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0097.png" alt="$\displaystyle = b_1 X + b_2 X^2 + b_3 Z + b_0  $" style="vertical-align:-3px; width:184px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.42</span>)</span></td>
+</tr><tr id="a0000000088">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0096.png" alt="$\displaystyle \hat{Y}  $" style="vertical-align:0px; width:13px; 
+                   height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0098.png" alt="$\displaystyle = b_1 X + b_2 X^2 + b_3 Z + b_4 XZ + b_0  $" style="vertical-align:-3px; width:246px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.43</span>)</span></td>
+</tr><tr id="a0000000089">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0096.png" alt="$\displaystyle \hat{Y}  $" style="vertical-align:0px; width:13px; 
+                   height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0099.png" alt="$\displaystyle = b_1 X + b_2 X^2 + b_3 Z + b_4 XZ + b_5 X^2Z + b_0  $" style="vertical-align:-3px; width:316px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.44</span>)</span></td>
+</tr>
+</table><p> それぞれ、<img src="images/img-0006.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />から<img src="images/img-0005.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />への回帰を<img src="images/img-0011.png" alt="$Z_ L, Z_ M, Z_ H$" style="vertical-align:-3px; 
+                                     width:83px; 
+                                     height:14px" class="math gen" />で評価することを考えると、 </p><ol class="enumerate">
+<li value="1"><p>1つの2次曲線 </p></li><li value="2"><p>平行な複数の2次曲線 </p></li><li value="3"><p>平行ではないが形状は等しい複数の2次曲線 </p></li><li value="4"><p>形状の異なる複数の2次曲線 </p></li>
+</ol><p> となる。 また、<img src="images/img-0068.png" alt="$XZ$" style="vertical-align:0px; 
+                                     width:27px; 
+                                     height:11px" class="math gen" />の項が入ってくると、<img src="images/img-0006.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />から<img src="images/img-0009.png" alt="$Z$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:11px" class="math gen" />への回帰を<img src="images/img-0100.png" alt="$X_ L, X_ M, X_ H$" style="vertical-align:-3px; 
+                                     width:92px; 
+                                     height:14px" class="math gen" />で評価すると、これらの回帰直線は同一点で交わらなくなる。 </p><h2 id="a0000000090">4.2 ANOVAとMR（重回帰）</h2>
+<ul class="itemize">
+<li><p>ANOVAでは曲線的な関係性が3水準以上あれば自動で含まれるのに対し、MRではどの項を含めるべきか指定する必要がある。 </p></li><li><p>ANOVAの主効果も、直交多項式によって線形、2次の各自由度1のコンポーネントに分解することができる。 </p></li>
+</ul><h2 id="a0000000091">4.3 単純傾斜</h2>
+<p><b class="bfseries"><img src="images/img-0006.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />の<img src="images/img-0005.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />への回帰における単純傾斜とは、回帰式の<img src="images/img-0005.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />に関する1次の偏微分である。</b> </p><p>上記の定義は、1次の項だけ含まれたモデルにも当てはまる。 例えば、式(<a href="sect0004.html#eq.regcurve01">4.41</a>)は </p><table id="a0000000092" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000093">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0001.png" alt="$\displaystyle  \hat{Y}  $" style="vertical-align:0px; width:13px; 
+                   height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0101.png" alt="$\displaystyle = (b_1 + b_2 X)X + b_0  $" style="vertical-align:-4px; width:142px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.45</span>)</span></td>
+</tr>
+</table><p> と変形できるが、<img src="images/img-0102.png" alt="$b_1 + b_2 X$" style="vertical-align:-3px; 
+                                     width:63px; 
+                                     height:14px" class="math gen" />は単純傾斜<b class="bfseries">ではない</b>。 この場合は、 </p><table id="a0000000094" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0103.png" alt="\begin{equation}  \frac{\partial \hat{Y}}{\partial X} = b_1 + 2 b_2 X \end{equation}" style="width:121px; 
+                            height:40px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.46</span>)</span></td>
+</tr>
+</table><p> が単純傾斜。 </p><p>このとき<img src="images/img-0007.png" alt="$b_1$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:14px" class="math gen" />は<img src="images/img-0104.png" alt="$X=0$" style="vertical-align:0px; 
+                                     width:45px; 
+                                     height:12px" class="math gen" />のときの単純傾斜であるから、もし<img src="images/img-0105.png" alt="$b_1 &gt;0$" style="vertical-align:-3px; 
+                                     width:44px; 
+                                     height:15px" class="math gen" />なら、回帰曲線は<img src="images/img-0005.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />の平均付近で正に傾いている（増加傾向にある）と判断できる。 </p><h2 id="a0000000095">4.4 単純傾斜の検定</h2>
+<p>単純傾斜について各<img src="images/img-0106.png" alt="$SE$" style="vertical-align:0px; 
+                                     width:23px; 
+                                     height:11px" class="math gen" />を算出し<img src="images/img-0107.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" />統計量を計算して検定を行うこともできる。 また、<img src="images/img-0005.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />や<img src="images/img-0009.png" alt="$Z$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:11px" class="math gen" />について加算変換を施すことで、<img src="images/img-0007.png" alt="$b_1$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:14px" class="math gen" />を単純傾斜として検定することもできる。 </p><p>例えば、 </p><table id="a0000000096" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000097">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0001.png" alt="$\displaystyle  \hat{Y}  $" style="vertical-align:0px; width:13px; 
+                   height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0099.png" alt="$\displaystyle = b_1 X + b_2 X^2 + b_3 Z + b_4 XZ + b_5 X^2Z + b_0  $" style="vertical-align:-3px; width:316px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.47</span>)</span></td>
+</tr><tr id="a0000000098">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0003.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px; 
+                   height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0108.png" alt="$\displaystyle = (b_1 + b_4 Z) X + (b_2 + b_5 Z) X^2 + b_3 Z + b_0  $" style="vertical-align:-4px; width:304px; 
+                   height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.48</span>)</span></td>
+</tr>
+</table><p> と変換でき、<img src="images/img-0006.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />の<img src="images/img-0005.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />に対する単純傾斜は、 </p><table id="a0000000099" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000100">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0109.png" alt="$\displaystyle  \frac{\partial \hat{Y}}{\partial X} = b_1 + b_4 Z + 2(b_2+b_5Z)X  $" style="vertical-align:-12px; width:228px; 
+                   height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.49</span>)</span></td>
+</tr>
+</table><p> となる。 このとき、<img src="images/img-0007.png" alt="$b_1$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:14px" class="math gen" />が<img src="images/img-0110.png" alt="$X=0, Z=0$" style="vertical-align:-3px; 
+                                     width:95px; 
+                                     height:15px" class="math gen" />の場合の単純傾斜に相当することを考えると、ある<img src="images/img-0111.png" alt="$CV_ X$" style="vertical-align:-3px; 
+                                     width:34px; 
+                                     height:14px" class="math gen" />および<img src="images/img-0055.png" alt="$CV_ Z$" style="vertical-align:-3px; 
+                                     width:33px; 
+                                     height:14px" class="math gen" />における単純傾斜を知りたければ、 </p><table id="a0000000101" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000102">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0112.png" alt="$\displaystyle  X_{CV} = X-CV_ X  $" style="vertical-align:-3px; width:127px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.50</span>)</span></td>
+</tr><tr id="a0000000103">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0113.png" alt="$\displaystyle Z_{CV} = Z-CV_ Z  $" style="vertical-align:-3px; width:120px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.51</span>)</span></td>
+</tr>
+</table><p> と変換した上で </p><table id="a0000000104" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000105">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0001.png" alt="$\displaystyle  \hat{Y}  $" style="vertical-align:0px; width:13px; 
+                   height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0114.png" alt="$\displaystyle = b_1’ X _{CV}+ b_2’ X_{CV}^2 + b_3’ Z_{CV} + b_4’ X_{CV}Z_{CV} + b_5’ X_{CV}^2Z_{CV} + b_0’  $" style="vertical-align:-4px; width:446px; 
+                   height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.52</span>)</span></td>
+</tr>
+</table><p> を当てはめれば、 </p><table id="a0000000106" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000107">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0115.png" alt="$\displaystyle  \frac{\partial \hat{Y}}{\partial X} = b_1’ + b_4’ Z_{CV} + 2(b_2’+b_5’ Z_{CV})X_{CV}  $" style="vertical-align:-12px; width:289px; 
+                   height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.53</span>)</span></td>
+</tr>
+</table><p> における<img src="images/img-0116.png" alt="$b_1’$" style="vertical-align:-4px; 
+                                     width:13px; 
+                                     height:17px" class="math gen" />は、<img src="images/img-0117.png" alt="$X_{CV}=0, Z_{CV}=0$" style="vertical-align:-3px; 
+                                     width:136px; 
+                                     height:15px" class="math gen" />つまり<img src="images/img-0118.png" alt="$X=CV_ X, Z=CV_ Z$" style="vertical-align:-3px; 
+                                     width:147px; 
+                                     height:14px" class="math gen" />における単純傾斜に等しいことになる。 </p><h2 id="a0000000108">4.5 高次の項を含める際の注意点</h2>
+<p>高次の項同士は、センタリングがなされていても強く相関している場合があり、多重共線性を引き起こす可能性がある<a href="#a0000000109" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><p>ここでは独立変数の積や2次項を考えて曲線的な関係性を考えたが、回帰係数自体を </p><table id="a0000000110" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000111">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0119.png" alt="$\displaystyle  X^* = \log X  $" style="vertical-align:-3px; width:83px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.54</span>)</span></td>
+</tr><tr id="a0000000112">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0120.png" alt="$\displaystyle Z^* = Z^{1/2}  $" style="vertical-align:0px; width:73px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.55</span>)</span></td>
+</tr>
+</table><p> などとして1次の項のみ、もしくは<img src="images/img-0121.png" alt="$X^* Z^*$" style="vertical-align:0px; 
+                                     width:41px; 
+                                     height:12px" class="math gen" />を独立変数とした回帰分析を実行することや、 </p><table id="a0000000113" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0122.png" alt="\begin{equation}  Q=b_0 K^{b_1} L^{b_2} u \end{equation}" style="width:112px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.56</span>)</span></td>
+</tr>
+</table><p> を </p><table id="a0000000114" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0123.png" alt="\begin{equation}  \log Q = \log b_0 + b_1 \log K + b_2 \log L + \log u \end{equation}" style="width:302px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.57</span>)</span></td>
+</tr>
+</table><p> などとすることもできる。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000109">例えば<img src="images/img-0124.png" alt="$XZ^2$" style="vertical-align:0px; 
+                                     width:33px; 
+                                     height:14px" class="math gen" />と<img src="images/img-0094.png" alt="$X^2Z$" style="vertical-align:0px; 
+                                     width:34px; 
+                                     height:14px" class="math gen" />など。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 3変数の交互作用" href="sect0003.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="Multiple Regression: Testing and Interpreting Interactions" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">Multiple Regression: Testing and Interpreting Interactions</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0003.html" class="sectref" rel="prev">3変数の交互作用</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">Multiple Regression: Testing and Interpreting Interactions</a></span>
+
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

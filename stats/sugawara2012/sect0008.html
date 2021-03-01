@@ -1,0 +1,541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+
+<link href="sect0007.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>8 共分散構造分析を用いて変化のモデリングを行う</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="7 マルチレベルモデルの誤差共分散構造を検討する" href="sect0007.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0007.html" class="sectref" rel="prev">マルチレベルモデルの誤差共分散構造を検討する</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000009">8 共分散構造分析を用いて変化のモデリングを行う</h1>
+<h2 id="a0000000180">8.1 一般的な共分散構造モデル</h2>
+<h3 id="a0000000181">8.1.1 <img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" /> 測定モデル</h3>
+<p>外生的構成概念に関する観測変数 <img src="images/img-0116.png" alt="$X_1$" style="vertical-align:-3px; 
+                                     width:20px; 
+                                     height:14px" class="math gen" /> の <img src="images/img-0003.png" alt="$i$" style="vertical-align:0px; 
+                                     width:5px; 
+                                     height:11px" class="math gen" /> 番目の観測値について、 </p><table id="a0000000182" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0117.png" alt="\begin{equation}  X_{1i} = \tau _{x_1} + \lambda _{11}^ x \xi _{1i} + \delta _{1i} \end{equation}" style="width:172px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.14</span>)</span></td>
+</tr>
+</table><p> を考える。 </p><ul class="itemize">
+<li><p><img src="images/img-0118.png" alt="$\tau _{x_1}$" style="vertical-align:-4px; 
+                                     width:20px; 
+                                     height:11px" class="math gen" />: <img src="images/img-0119.png" alt="$X_{1i}$" style="vertical-align:-3px; 
+                                     width:25px; 
+                                     height:14px" class="math gen" /> の母集団平均、同じ構成概念に対する異なる指標の観測スコアが異なる平均を取ることができる </p></li><li><p><img src="images/img-0120.png" alt="$ \lambda _{11}^ x$" style="vertical-align:-4px; 
+                                     width:22px; 
+                                     height:15px" class="math gen" />: 尺度因子、ある構成概念が異なる尺度で測定されることが可能 </p></li><li><p><img src="images/img-0121.png" alt="$\xi _{1i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" />: （外生的な）構成概念の値 </p></li><li><p><img src="images/img-0122.png" alt="$\delta _{1i}$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" />: 指標 <img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" /> のうち、仮定された構成概念に依存しない部分 </p></li>
+</ul><p>外生的構成概念すべてについて測定モデルをまとめると、  </p><table id="a0000000183" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0123.png" alt="\begin{equation}  \bm@general \boldmath \m@ne \mv@bold \bm@command {X} = \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ x + \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ x \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } + \bm@general \boldmath \m@ne \mv@bold \bm@command {\delta } \end{equation}" style="width:135px; 
+                            height:14px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.4</span>)</span></td>
+</tr>
+</table><p> と表記できる。 ここで、<img src="images/img-0124.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\delta }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> の母分散共分散行列を <img src="images/img-0125.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Theta }_{\delta }$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> とおく。ここには、あらゆる構造を仮定することが可能。 </p><p>また、外生的構成概念 <img src="images/img-0126.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\xi }$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> については、平均 <img src="images/img-0127.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\kappa }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" />、母共分散行列 <img src="images/img-0128.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Phi }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:11px" class="math gen" /> を仮定する。 </p><h3 id="a0000000184">8.1.2 <img src="images/img-0048.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> 測定モデル</h3>
+<p>内生的構成概念に関する測定モデルを、  </p><table id="a0000000185" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0129.png" alt="\begin{equation}  \bm@general \boldmath \m@ne \mv@bold \bm@command {Y} = \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ y + \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ y \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } + \bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon } \end{equation}" style="width:132px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.11</span>)</span></td>
+</tr>
+</table><p> と表す。 また、<img src="images/img-0130.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon }$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の母共分散行列は <img src="images/img-0131.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Theta }_{\epsilon }$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> とする。 </p><p>外生的構成概念の場合と異なり、内生的構成概念の平均と分散は、構造モデルによって表現される。 </p><h3 id="a0000000186">8.1.3 構造モデル</h3>
+<p>外生的構成概念と内生的構成概念の関係性を、  </p><table id="a0000000187" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0132.png" alt="\begin{equation}  \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {\eta }}_{\text {endogenous factors}} = \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {\alpha }}_{\text {intercept}} + \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {\Gamma } \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi }}_{\text {loadings} \times \text {exogenous factors}} + \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {B} \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta }}_{\text {loadings} \times \text {endogenous factors}} + \underbrace{\bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta }}_{\text {residuals}} \end{equation}" style="width:615px; 
+                            height:39px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.15</span>)</span></td>
+</tr>
+</table><p> と表す。 ただし、<img src="images/img-0133.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta }$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:14px" class="math gen" /> の母共分散行列は <img src="images/img-0134.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Psi }$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:11px" class="math gen" /> とする。 </p><h2 id="a0000000188">8.2 潜在成長モデリングの基礎</h2>
+<ul class="itemize">
+<li><p>Meredith &amp; Tisak (1984; 1990), Tisak &amp; Meredith (1990) による開発 </p></li><li><p>McArdle らによる拡張、心理・社会学への応用 </p></li><li><p>Muthén らによる、時間構造化されていないデータや欠測値の扱いに関する開発 </p></li>
+</ul><p>潜在成長モデルを当てはめるには、多変量フォーマットに則った個人データセットの形で用意すること。 </p><p>つまり、時間構造化されたデータが最も扱いやすく、望ましい。 </p><h3 id="a0000000189">8.2.1 レベル1モデルの <img src="images/img-0048.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> 測定モデルへの移植</h3>
+<p>今、レベル1モデルとして  </p><table id="a0000000190" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0135.png" alt="\begin{equation}  Y_{ij} = \pi _{0i} + \pi _{1i} t_ j + e_{ij} \end{equation}" style="width:158px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.19</span>)</span></td>
+</tr>
+</table><p> を考える。 </p><p>これは、仮に3時点あるとすると  </p><table id="a0000000191" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0136.png" alt="\begin{equation}  \begin{array}{cccccccc}\begin{bmatrix}  Y_{i1} 
+
+\\ Y_{i2} 
+
+\\ Y_{i3} 
+
+\end{bmatrix}&amp;  = &amp; \begin{bmatrix}  0 
+
+\\ 0 
+
+\\ 0 
+
+\end{bmatrix}&amp;  + &amp; \begin{bmatrix}  1 
+
+&amp;  t_1 
+
+\\ 1 
+
+&amp;  t_2 
+
+\\ 1 
+
+&amp;  t_3 
+
+\end{bmatrix}&amp; \begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp;  + &amp; \begin{bmatrix}  e_{i1} 
+
+\\ e_{i2} 
+
+\\ e_{i3} 
+
+\end{bmatrix}\\ \bm@general \boldmath \m@ne \mv@bold \bm@command {Y} &amp;  = &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ y &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ y &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon } \\ \end{array} \end{equation}" style="width:361px; 
+                            height:78px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.21</span>)</span></td>
+</tr>
+</table><p> と <img src="images/img-0048.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> 測定モデルの形で書ける。 ただし、負荷 <img src="images/img-0137.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ y$" style="vertical-align:-5px; 
+                                     width:19px; 
+                                     height:16px" class="math gen" /> はデータとして固定されていることに注意。 この固定された負荷に合うように、<img src="images/img-0138.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\eta }$" style="vertical-align:-3px; 
+                                     width:9px; 
+                                     height:10px" class="math gen" /> が調整されることになる。 </p><h3 id="a0000000192">8.2.2 レベル2モデルの構造モデルへの移植</h3>
+<h4 id="a0000000193">無条件成長モデル</h4>
+<p>今、レベル2モデルを説明変数のない無条件成長モデルとすると、  </p><table id="a0000000194" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0139.png" alt="\begin{equation}  \begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix} = \begin{bmatrix}  \mu _{\pi _{0i}} 
+
+\\ \mu _{\pi _{1i}} 
+
+\end{bmatrix} + \begin{bmatrix}  \zeta _{0i} 
+
+\\ \zeta _{1i} 
+
+\end{bmatrix} \end{equation}" style="width:158px; 
+                            height:40px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.26</span>)</span></td>
+</tr>
+</table><p> は </p><table id="eq.0827" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0140.png" alt="\begin{equation}  \begin{array}{ccccccccccc}\begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp; =&amp; \begin{bmatrix}  \mu _{\pi _{0i}} 
+
+\\ \mu _{\pi _{1i}} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  0 
+
+&amp;  0 
+
+\\ 0 
+
+&amp;  0 
+
+\end{bmatrix}&amp; \begin{bmatrix}  0 
+
+\\ 0 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  0 
+
+&amp;  0 
+
+\\ 0 
+
+&amp;  0 
+
+\end{bmatrix}&amp; \begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  \zeta _{0i} 
+
+\\ \zeta _{1i} 
+
+\end{bmatrix} \label{eq.0827} \\ \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp; = &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\alpha } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Gamma } &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {B} &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta } \\ \end{array} \end{equation}" style="width:500px; 
+                            height:57px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.27</span>)</span></td>
+</tr>
+</table><p> と表すことができる。 </p><h4 id="eq.0827"><img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" /> 測定モデルへの時不変な予測変数の追加（レベル2の説明変数）</h4>
+<p>今、レベル2を予測変数 <img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" /> を含んだモデルにすることを考える。 すなわち、 </p><table id="a0000000195" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000196">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0141.png" alt="$\displaystyle  \pi _{0i} = \mu _{\pi _{0i}} + \gamma _{\pi _0} X_ i + \zeta _{0i}  $" style="vertical-align:-4px; width:174px; 
+                   height:15px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000197">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0142.png" alt="$\displaystyle \pi _{1i} = \mu _{\pi _{1i}} + \gamma _{\pi _1} X_ i + \zeta _{1i}  $" style="vertical-align:-4px; width:174px; 
+                   height:15px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> である。これは、 </p><table id="a0000000198" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000199">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0143.png" alt="$\displaystyle \begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix} = \begin{bmatrix}  \mu _{\pi _{0i}} 
+
+\\ \mu _{\pi _{1i}} 
+
+\end{bmatrix} + \begin{bmatrix}  \gamma _{\pi _0} 
+
+\\ \gamma _{\pi _1} 
+
+\end{bmatrix} X_ i + \begin{bmatrix}  \zeta _{0i} 
+
+\\ \zeta _{1i} 
+
+\end{bmatrix} $" style="vertical-align:-15px; width:241px; 
+                   height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> とも表わせるから、式 (<a href="sect0008.html#eq.0827">8.27</a>) に合わせると、 </p><table id="a0000000200" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0144.png" alt="\begin{equation*} \begin{array}{ccccccccccc}\begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp; =&amp; \begin{bmatrix}  \mu _{\pi _{0i}} 
+
+\\ \mu _{\pi _{1i}} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  \gamma _{\pi _0} 
+
+\\ \gamma _{\pi _1} 
+
+\end{bmatrix}&amp; \begin{bmatrix}  X_ i 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  0 
+
+&amp;  0 
+
+\\ 0 
+
+&amp;  0 
+
+\end{bmatrix}&amp; \begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  \zeta _{0i} 
+
+\\ \zeta _{1i} 
+
+\end{bmatrix} \label{eq.0827} \\ \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp; = &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\alpha } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Gamma } &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {B} &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta } \\ \end{array}\end{equation*}" style="width:498px; 
+                            height:57px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> と表すことができる。 </p><p>すると、<img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" /> 測定モデルとして  </p><table id="a0000000201" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0145.png" alt="\begin{equation}  \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {X} }_{X_ i} = \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ x }_{0} + \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ x }_{1} \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } }_{X_ i} + \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {\delta } }_{0} \end{equation}" style="width:212px; 
+                            height:39px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.31</span>)</span></td>
+</tr>
+</table><p> ただし <img src="images/img-0146.png" alt="$\text {Mean}(\bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta }) = \bm@general \boldmath \m@ne \mv@bold \bm@command {\kappa }, \text {Cov}(\bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta }) = \bm@general \boldmath \m@ne \mv@bold \bm@command {\Phi }$" style="vertical-align:-4px; 
+                                     width:186px; 
+                                     height:18px" class="math gen" />、もしくは、 </p><table id="a0000000202" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0147.png" alt="\begin{equation*}  \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {X} }_{X_ i} = \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ x }_{\mu _ x} + \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ x }_{1} \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } }_{X_ i-\mu _ x} + \underbrace{ \bm@general \boldmath \m@ne \mv@bold \bm@command {\delta } }_{0} \end{equation*}" style="width:224px; 
+                            height:39px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> を考えているとすれば良いことになる。 後者の方法では、<img src="images/img-0148.png" alt="$\text {Mean}(X_ i) = \tau _ x (= \mu _ x)$" style="vertical-align:-4px; 
+                                     width:157px; 
+                                     height:18px" class="math gen" /> と指定しており、<img src="images/img-0149.png" alt="$X_ i$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> が右辺において中心化されていることになる。 </p><h2 id="a0000000203">8.3 変数横断的な変化の分析</h2>
+<h3 id="a0000000204">8.3.1 <img src="images/img-0047.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />、<img src="images/img-0048.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> 測定モデルの両方で個々人の変化をモデリングする</h3>
+<p>内生的構成概念も、それを予測する外生的構成概念も個人内で変化している場合、 </p><p>測定モデルは </p><table id="a0000000205" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000206">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0150.png" alt="$\displaystyle  \bm@general \boldmath \m@ne \mv@bold \bm@command {X} = \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ x + \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ x \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } + \bm@general \boldmath \m@ne \mv@bold \bm@command {\delta }  $" style="vertical-align:-3px; width:135px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000207">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0151.png" alt="$\displaystyle \bm@general \boldmath \m@ne \mv@bold \bm@command {Y} = \bm@general \boldmath \m@ne \mv@bold \bm@command {\tau }_ y + \bm@general \boldmath \m@ne \mv@bold \bm@command {\Lambda }_ y \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } + \bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon }  $" style="vertical-align:-5px; width:132px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> と表すとして、<img src="images/img-0124.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\delta }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> の共分散行列 <img src="images/img-0125.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Theta }_{\delta }$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> と <img src="images/img-0130.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon }$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の共分散行列 <img src="images/img-0131.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Theta }_{\epsilon }$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> に加え、<img src="images/img-0124.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\delta }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" /> と <img src="images/img-0130.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\epsilon }$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の共分散行列 <img src="images/img-0152.png" alt="$\Phi _{\delta \epsilon } (= \text {diag}\{  \sigma _{\delta _ i \epsilon _ i} \} )$" style="vertical-align:-4px; 
+                                     width:132px; 
+                                     height:18px" class="math gen" /> を指定する必要がある。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bf">メモ</b></span> </p><p>この共分散行列は、外生的構成概念における測定モデルの誤差と内生的構成概念における測定モデルの誤差間の相関関係を表したもの。仮にすべてゼロとおいたとしても、分析自体は行えるはず。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bf">メモここまで</b></span> </div></blockquote><h3 id="eq.0827">8.3.2 構造モデルで変化の軌跡間の関係性をモデリングする</h3>
+<p>今、外生的構成変数と内生的構成概念が1つずつあるモデルを考える。 外生的構成変数の切片と傾きを <img src="images/img-0153.png" alt="$[\pi ’_{0i}, \pi ’_{1i}]^ T$" style="vertical-align:-5px; 
+                                     width:68px; 
+                                     height:19px" class="math gen" />、内生的構成概念の切片と傾きを <img src="images/img-0154.png" alt="$[\pi _{0i}, \pi _{1i}]^ T$" style="vertical-align:-5px; 
+                                     width:68px; 
+                                     height:19px" class="math gen" /> とおく。 </p><p>すると、切片から切片、切片から傾き、傾きから切片、傾きから傾き、へのパス係数を <img src="images/img-0155.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Gamma }$" style="vertical-align:0px; 
+                                     width:10px; 
+                                     height:11px" class="math gen" /> に含んだモデル </p><table id="a0000000208" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0156.png" alt="\begin{equation*} \begin{array}{ccccccccccc}\begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp; =&amp; \begin{bmatrix}  \mu _{\pi _{0i}} 
+
+\\ \mu _{\pi _{1i}} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  \gamma _{\pi _0 \pi '_0} 
+
+&amp;  \gamma _{\pi _0 \pi '_1} 
+
+\\ \gamma _{\pi _1 \pi '_0} 
+
+&amp;  \gamma _{\pi _1 \pi '_1} 
+
+\end{bmatrix}&amp; \begin{bmatrix}  \pi ’_{0i} 
+
+\\ \pi ’_{1i} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  0 
+
+&amp;  0 
+
+\\ 0 
+
+&amp;  0 
+
+\end{bmatrix}&amp; \begin{bmatrix}  \pi _{0i} 
+
+\\ \pi _{1i} 
+
+\end{bmatrix}&amp; +&amp; \begin{bmatrix}  \zeta _{0i} 
+
+\\ \zeta _{1i} 
+
+\end{bmatrix} \label{eq.0827} \\ \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp; = &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\alpha } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Gamma } &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\xi } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {B} &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\eta } &amp;  + &amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\zeta } \\ \end{array}\end{equation*}" style="width:572px; 
+                            height:58px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p> を考えれば良い。 </p><h2 id="a0000000209">8.4 潜在成長モデリングの拡張</h2>
+<h4 id="a0000000210">不規則な間隔で収集されたデータ</h4>
+<p>行列 <img src="images/img-0157.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\lambda }_ y$" style="vertical-align:-5px; 
+                                     width:16px; 
+                                     height:16px" class="math gen" /> と <img src="images/img-0158.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\lambda }_ x$" style="vertical-align:-3px; 
+                                     width:16px; 
+                                     height:14px" class="math gen" /> の負荷を適切な値に指定すれば良い。 </p><h4 id="a0000000211">媒介効果の検討</h4>
+<p>行列 <img src="images/img-0159.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {B}$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" /> を導入することで、内生的構成概念を互いに予測し合うことが可能になる。 </p></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="7 マルチレベルモデルの誤差共分散構造を検討する" href="sect0007.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0007.html" class="sectref" rel="prev">マルチレベルモデルの誤差共分散構造を検討する</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

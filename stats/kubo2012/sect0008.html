@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="start" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0009.html" rel="next" />
+<link href="sect0007.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>8 マルコフ連鎖モンテカルロ法とベイズ統計モデル</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="7 一般化線形混合モデル（GLMM）" href="sect0007.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="GLMのベイズモデル化と事後分布の推定" href="sect0009.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0007.html" class="sectref" rel="prev">一般化線形混合モデル（GLMM）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0009.html" class="sectref" rel="next">GLMのベイズモデル化と事後分布の推定</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000009">8 マルコフ連鎖モンテカルロ法とベイズ統計モデル</h1>
+<h2 id="a0000000108">8.2 ふらふら試行錯誤による最尤推定</h2>
+<p>尤度を最大化する <img src="images/img-0093.png" alt="$q$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" /> を求めたいとする。このとき、 </p><ol class="enumerate">
+<li value="1"><p>初期値を設定する <img src="images/img-0094.png" alt="$q^{(0)}$" style="vertical-align:-3px; 
+                                     width:24px; 
+                                     height:17px" class="math gen" /> </p></li><li value="2"><p><img src="images/img-0095.png" alt="$q^{(t+1)}$" style="vertical-align:-3px; 
+                                     width:39px; 
+                                     height:17px" class="math gen" /> の候補として、<img src="images/img-0096.png" alt="$q^{(t)}$" style="vertical-align:-3px; 
+                                     width:22px; 
+                                     height:17px" class="math gen" />の右隣か左隣の値をランダムに選び、更新値の候補 <img src="images/img-0097.png" alt="$q’$" style="vertical-align:-3px; 
+                                     width:12px; 
+                                     height:16px" class="math gen" /> とする </p></li><li value="3"><p>対数尤度を評価し、<img src="images/img-0098.png" alt="$\log L(q’) &gt; \log L(q^{(t)})$" style="vertical-align:-4px; 
+                                     width:154px; 
+                                     height:18px" class="math gen" /> なら、<img src="images/img-0099.png" alt="$q^{(t+1)}=q’$" style="vertical-align:-3px; 
+                                     width:75px; 
+                                     height:17px" class="math gen" /> とする </p></li>
+</ol><h2 id="a0000000109">8.3 メトロポリス法</h2>
+<p>上記のアルゴリズムに、 </p><ol class="enumerate">
+<li value="4"><p>対数尤度を評価し、<img src="images/img-0100.png" alt="$\log L(q’) &lt; \log L(q^{(t)})$" style="vertical-align:-4px; 
+                                     width:154px; 
+                                     height:18px" class="math gen" /> であっても、<img src="images/img-0101.png" alt="$r=L(q’) / L(q^{(t)})$" style="vertical-align:-4px; 
+                                     width:122px; 
+                                     height:18px" class="math gen" /> の確率で <img src="images/img-0099.png" alt="$q^{(t+1)}=q’$" style="vertical-align:-3px; 
+                                     width:75px; 
+                                     height:17px" class="math gen" /> とする </p></li>
+</ol><p> を追加する。 </p><p>もし<b class="bfseries">詳細釣り合い条件</b> </p><table id="a0000000110" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0102.png" alt="\begin{equation}  p(q^{\text {new}} \mid \bm@general \boldmath \m@ne \mv@bold \bm@command {Y}) p(q^{\text {new}} \rightarrow q) = p(q \mid \bm@general \boldmath \m@ne \mv@bold \bm@command {Y}) p(q \rightarrow q^{\text {new}}) \end{equation}" style="width:333px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.32</span>)</span></td>
+</tr>
+</table><p> が成り立っていれば、 </p><table id="a0000000111" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000112">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0103.png" alt="$\displaystyle  \sum _ q p(q^{\text {new}} \mid \bm@general \boldmath \m@ne \mv@bold \bm@command {Y}) p(q^{\text {new}} \rightarrow q) = \sum _ q p(q \mid \bm@general \boldmath \m@ne \mv@bold \bm@command {Y}) p(q \rightarrow q^{\text {new}})  $" style="vertical-align:-21px; width:384px; 
+                   height:37px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.33</span>)</span></td>
+</tr><tr id="a0000000113">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0104.png" alt="$\displaystyle p(q^{\text {new}} \mid \bm@general \boldmath \m@ne \mv@bold \bm@command {Y}) = \sum _ q p(q \mid \bm@general \boldmath \m@ne \mv@bold \bm@command {Y}) p(q \rightarrow q^{\text {new}})  $" style="vertical-align:-21px; width:273px; 
+                   height:37px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.34</span>)</span></td>
+</tr>
+</table><p> となる。 ただし、 </p><table id="a0000000114" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000115">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0105.png" alt="$\displaystyle  p(q \mid \bm@general \boldmath \m@ne \mv@bold \bm@command {Y})  $" style="vertical-align:-4px; width:56px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0106.png" alt="$\displaystyle = \frac{L(q)}{\sum _ q L(q)}  $" style="vertical-align:-19px; width:78px; 
+                   height:44px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.35</span>)</span></td>
+</tr><tr id="a0000000116">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0025.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px; 
+                   height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0107.png" alt="$\displaystyle \propto L(q)  $" style="vertical-align:-4px; width:47px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.36</span>)</span></td>
+</tr>
+</table><p> なる<b class="bfseries">定常分布</b>であるとする。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bfseries">補足</b></span> </p><p>更新によって尤度が改善されない場合について考えると、 </p><table id="a0000000117" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000118">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0108.png" alt="$\displaystyle  p(q \rightarrow q^{\text {new}}) = 0.5 \times \frac{L(q^{\text {new}})}{L(q)} (= 0.5 r)  $" style="vertical-align:-16px; width:269px; 
+                   height:41px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.37</span>)</span></td>
+</tr><tr id="a0000000119">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0109.png" alt="$\displaystyle p(q^{\text {new}} \rightarrow q) = 0.5 \times 1  $" style="vertical-align:-4px; width:158px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.38</span>)</span></td>
+</tr>
+</table><p> を整理すると、 </p><table id="a0000000120" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0110.png" alt="\begin{equation}  L(q^{\text {new}}) p(q^{\text {new}} \rightarrow q) = L(q) p(q \rightarrow q^{\text {new}}) \end{equation}" style="width:282px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>8.39</span>)</span></td>
+</tr>
+</table><p> となる。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bfseries">補足ここまで</b></span> </div></blockquote><p>初期値から一定期間を経て <img src="images/img-0093.png" alt="$q$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" /> のサンプリングが安定してくれば、それを<b class="bfseries">定常分布</b>からのサンプリングとみなすことができる。 </p><blockquote class="quote"><p> <span style="border: 1px solid black"><b class="bfseries">メモ</b></span> </p><p>更新値を受容する確率に従って <img src="images/img-0093.png" alt="$q$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" /> を更新し続けていくと、それによって得られた値自体が尤度 <img src="images/img-0111.png" alt="$L(q)$" style="vertical-align:-4px; 
+                                     width:30px; 
+                                     height:18px" class="math gen" /> に比例した <img src="images/img-0093.png" alt="$q$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" /> の事後分布からのサンプルに等しい。 </p><div style="text-align:right"> <span style="border: 1px solid black"><b class="bfseries">メモここまで</b></span> </div></blockquote></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="7 一般化線形混合モデル（GLMM）" href="sect0007.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="GLMのベイズモデル化と事後分布の推定" href="sect0009.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0007.html" class="sectref" rel="prev">一般化線形混合モデル（GLMM）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0009.html" class="sectref" rel="next">GLMのベイズモデル化と事後分布の推定</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

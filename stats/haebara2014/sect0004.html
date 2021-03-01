@@ -1,0 +1,260 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="続・心理統計学の基礎" rel="start" />
+<link href="index.html" title="続・心理統計学の基礎" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0005.html" rel="next" />
+<link href="sect0003.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>4 マルチレベル分析</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 対比分析" href="sect0003.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="続・心理統計学の基礎" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="メタ分析" href="sect0005.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">続・心理統計学の基礎</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0003.html" class="sectref" rel="prev">対比分析</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">続・心理統計学の基礎</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0005.html" class="sectref" rel="next">メタ分析</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000005">4 マルチレベル分析</h1>
+<h2 id="a0000000215">4.1 センタリング</h2>
+<h3 id="a0000000216">ランダム係数モデル</h3>
+<p>レベル1モデルの独立変数<img src="images/img-0271.png" alt="$x$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" />は、集団平均でセンタリングする。 </p><table id="a0000000217" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000218">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0272.png" alt="$\displaystyle  y_{ij}  $" style="vertical-align:-5px; width:18px; 
+                   height:12px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0273.png" alt="$\displaystyle = \beta _{0j} + \beta _{1j} (x_{ij} - \bar{x}_{.j}) + r_{ij}  $" style="vertical-align:-5px; width:195px; 
+                   height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.126</span>)</span></td>
+</tr><tr id="a0000000219">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0274.png" alt="$\displaystyle \beta _{0j}  $" style="vertical-align:-5px; width:21px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0275.png" alt="$\displaystyle = \gamma _{00} + u_{0j}  $" style="vertical-align:-5px; width:81px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.127</span>)</span></td>
+</tr><tr id="a0000000220">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0276.png" alt="$\displaystyle \beta _{1j}  $" style="vertical-align:-5px; width:21px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0277.png" alt="$\displaystyle = \gamma _{10} + u_{1j}  $" style="vertical-align:-5px; width:81px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.128</span>)</span></td>
+</tr>
+</table><p>各パラメータは、 </p><ul class="itemize">
+<li><p><img src="images/img-0278.png" alt="$\beta _{0j}$" style="vertical-align:-5px; 
+                                     width:21px; 
+                                     height:16px" class="math gen" /> 各集団における<img src="images/img-0090.png" alt="$y$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" />の平均 </p><ul class="itemize">
+<li><p><img src="images/img-0279.png" alt="$\gamma _{00}$" style="vertical-align:-3px; 
+                                     width:22px; 
+                                     height:10px" class="math gen" /> 母集団全体での平均 </p></li>
+</ul></li><li><p><img src="images/img-0280.png" alt="$\beta _{1j}$" style="vertical-align:-5px; 
+                                     width:21px; 
+                                     height:16px" class="math gen" /> 各集団における回帰直線の傾き </p><ul class="itemize">
+<li><p><img src="images/img-0281.png" alt="$\gamma _{10}$" style="vertical-align:-3px; 
+                                     width:22px; 
+                                     height:10px" class="math gen" /> 集団内回帰直線の母集団平均 </p></li>
+</ul></li>
+</ul><p> となる。 </p><h3 id="a0000000221">ランダム効果の共分散分析モデル</h3>
+<p>レベル1モデルの独立変数は、全体平均でセンタリングする。 </p><table id="a0000000222" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000223">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0272.png" alt="$\displaystyle  y_{ij}  $" style="vertical-align:-5px; width:18px; 
+                   height:12px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0282.png" alt="$\displaystyle = \beta _{0j} + \beta _{1j} (x_{ij} - \bar{x}_{..}) + r_{ij}  $" style="vertical-align:-5px; width:192px; 
+                   height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.129</span>)</span></td>
+</tr><tr id="a0000000224">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0274.png" alt="$\displaystyle \beta _{0j}  $" style="vertical-align:-5px; width:21px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0275.png" alt="$\displaystyle = \gamma _{00} + u_{0j}  $" style="vertical-align:-5px; width:81px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.130</span>)</span></td>
+</tr><tr id="a0000000225">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0276.png" alt="$\displaystyle \beta _{1j}  $" style="vertical-align:-5px; width:21px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0283.png" alt="$\displaystyle = \gamma _{10}  $" style="vertical-align:-3px; width:38px; 
+                   height:10px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.131</span>)</span></td>
+</tr>
+</table><p>各パラメータは、 </p><ul class="itemize">
+<li><p><img src="images/img-0278.png" alt="$\beta _{0j}$" style="vertical-align:-5px; 
+                                     width:21px; 
+                                     height:16px" class="math gen" /> <img src="images/img-0271.png" alt="$x$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" />の全体平均における各集団の<img src="images/img-0090.png" alt="$y$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" />の予測値（調整済み平均） </p><ul class="itemize">
+<li><p><img src="images/img-0279.png" alt="$\gamma _{00}$" style="vertical-align:-3px; 
+                                     width:22px; 
+                                     height:10px" class="math gen" /> <img src="images/img-0271.png" alt="$x$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" />の全体平均における各集団の<img src="images/img-0090.png" alt="$y$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" />の予測値の平均 </p></li>
+</ul></li><li><p><img src="images/img-0284.png" alt="$\beta _{1j} (= \gamma _{10})$" style="vertical-align:-5px; 
+                                     width:74px; 
+                                     height:19px" class="math gen" /> 全ての集団に共通の集団内回帰直線 </p></li>
+</ul><p> となる。 </p><p>このとき、ランダム係数モデルにおける<img src="images/img-0281.png" alt="$\gamma _{10}$" style="vertical-align:-3px; 
+                                     width:22px; 
+                                     height:10px" class="math gen" />とランダム効果の共分散分析モデルにおける<img src="images/img-0281.png" alt="$\gamma _{10}$" style="vertical-align:-3px; 
+                                     width:22px; 
+                                     height:10px" class="math gen" />の値は一致しない。 これを解消するには、共分散分析モデルの切片に集団平均でセンタリングした<img src="images/img-0271.png" alt="$x$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:7px" class="math gen" />を加え、 </p><table id="a0000000226" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0285.png" alt="\begin{equation}  \beta _{0j} = \gamma _{00} + \gamma _{01} \bar{x}_{.j} + u_{0j} \end{equation}" style="width:173px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.132</span>)</span></td>
+</tr>
+</table><p> とする必要がある<a href="#a0000000227" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><h2 id="a0000000228">4.2 モデルの比較</h2>
+<p>尤度比検定は、制限付き最尤法でなく通常の最尤法の結果に適用される。 ただし、ランダム効果の部分のみが異なる形で入れ子関係にあるモデルについては、制限付き最尤法において尤度比検定を行うこともできる。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000227">Raudenbush &amp; Bryk (2002, pp.135-141)</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 対比分析" href="sect0003.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="続・心理統計学の基礎" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="メタ分析" href="sect0005.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">続・心理統計学の基礎</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0003.html" class="sectref" rel="prev">対比分析</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">続・心理統計学の基礎</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0005.html" class="sectref" rel="next">メタ分析</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

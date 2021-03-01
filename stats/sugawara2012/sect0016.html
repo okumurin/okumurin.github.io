@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0017.html" rel="next" />
+<link href="sect0015.html" rel="prev" />
+<link href="sect0013.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>4.4 2つの無条件マルチレベルモデル</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="4.3 推定法（再考）" href="sect0015.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="4 変化についてのマルチレベルモデルのデータ分析" href="sect0013.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="モデル構築のための実践的データ分析" href="sect0017.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0015.html" class="sectref" rel="prev">推定法（再考）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0013.html" class="sectref" rel="parent">変化についてのマルチレベルモデルのデータ分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0017.html" class="sectref" rel="next">モデル構築のための実践的データ分析</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h2 id="a0000000017">4.4 2つの無条件マルチレベルモデル</h2>
+<h3 id="a0000000074">4.4.1 無条件平均モデル</h3>
+<p>単に結果変数の変動を記述するもの。 どのレベルにも予測変数は含まれない。 </p><table id="a0000000075" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000076">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0023.png" alt="$\displaystyle  Y_{ij} = \pi _{0i} + e_{ij}  $" style="vertical-align:-5px; width:103px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.7</span>)</span></td>
+</tr><tr id="a0000000077">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0024.png" alt="$\displaystyle \pi _{0i} = \gamma _{00} + \zeta _{0i}  $" style="vertical-align:-3px; width:104px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.8</span>)</span></td>
+</tr>
+</table><p> 引き続き分析を行う価値があるだけの十分な変動がそのレベルにおいて見られているか確認する。 </p><h4 id="a0000000078">級内相関係数</h4>
+<ol class="enumerate">
+<li value="1"><p>個人間変動が全体に占める割合を評価する </p></li><li value="2"><p>合成無条件平均モデルの残差の自己相関の大きさを要約する </p></li>
+</ol><table id="a0000000079" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0025.png" alt="\begin{equation}  \rho = \frac{\sigma _0^2}{\sigma _0^2 + \sigma _ e^2} \end{equation}" style="width:89px; 
+                            height:42px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.9</span>)</span></td>
+</tr>
+</table><p>無条件平均モデルでは、残差の自己相関係数は級内相関係数に等しい。 </p><table id="a0000000080" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0026.png" alt="\begin{equation*}  \textit{Cor}(Y_{ij}, Y_{ij'}) = \frac{\textit{Cov}(Y_{ij}, Y_{ij'})}{\textit{SD}(Y_{ij}) \textit{SD} (Y_{ij'})} = \frac{\sigma _0^2}{\sigma _0^2 + \sigma _ e^2} = \rho \end{equation*}" style="width:348px; 
+                            height:42px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h3 id="a0000000081">4.4.2 無条件成長モデル</h3>
+<p>レベル1モデルに予測変数 <i class="itshape">TIME</i> を導入する。  </p><table id="a0000000082" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000083">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0027.png" alt="$\displaystyle  Y_{ij} = \pi _{0i} + \pi _{1i} \textit{TIME}_{ij} + e_{ij} \notag  $" style="vertical-align:-5px; width:201px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000084">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0024.png" alt="$\displaystyle \pi _{0i} = \gamma _{00} + \zeta _{0i}  $" style="vertical-align:-3px; width:104px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>4.10</span>)</span></td>
+</tr><tr id="a0000000085">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0028.png" alt="$\displaystyle \pi _{1i} = \gamma _{10} + \zeta _{1i} \notag  $" style="vertical-align:-3px; width:104px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><p>すると、合成された残差は <img src="images/img-0029.png" alt="$\zeta _{0i} + \zeta _{1i} \textit{TIME}_{ij} + e_{ij}$" style="vertical-align:-5px; 
+                                     width:153px; 
+                                     height:16px" class="math gen" /> であるから、<b class="bfseries">異分散性</b>と<b class="bfseries">自己相関</b>が導き出される<a href="#a0000000086" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><h3 id="a0000000087">4.4.3 分散説明率の定量化</h3>
+<h4 id="a0000000088">擬 <img src="images/img-0030.png" alt="$R^2$" style="vertical-align:0px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> 統計量 <i class="itshape">pseudo-<img src="images/img-0030.png" alt="$R^2$" style="vertical-align:0px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" /> statistics</i></h4>
+<p>2つの方法がある。 </p><ol class="enumerate">
+<li value="1"><p>各個人の各時点での結果変数の予測値を計算し、観測値と予測値の相関を2乗する </p></li><li value="2"><p>予測変数を追加することで <img src="images/img-0031.png" alt="$\hat{\sigma }^2_ e$" style="vertical-align:-4px; 
+                                     width:16px; 
+                                     height:18px" class="math gen" /> がどれくらい減少したか、追加前の値との比を取る（<b class="bfseries">残差分散減少率</b>） </p></li>
+</ol></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000086">時変な変数 <i class="itshape">TIME</i> によって分散が左右されること、また時不変な残差成分 <img src="images/img-0032.png" alt="$\zeta _{0i}, \zeta _{1i}$" style="vertical-align:-3px; 
+                                     width:44px; 
+                                     height:14px" class="math gen" /> が存在することによる。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="4.3 推定法（再考）" href="sect0015.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="4 変化についてのマルチレベルモデルのデータ分析" href="sect0013.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="モデル構築のための実践的データ分析" href="sect0017.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0015.html" class="sectref" rel="prev">推定法（再考）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="sect0013.html" class="sectref" rel="parent">変化についてのマルチレベルモデルのデータ分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0017.html" class="sectref" rel="next">モデル構築のための実践的データ分析</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

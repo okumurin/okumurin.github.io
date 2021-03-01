@@ -1,0 +1,190 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="続・心理統計学の基礎" rel="start" />
+<link href="index.html" title="続・心理統計学の基礎" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+
+<link href="sect0004.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>5 メタ分析</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="4 マルチレベル分析" href="sect0004.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="続・心理統計学の基礎" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">続・心理統計学の基礎</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0004.html" class="sectref" rel="prev">マルチレベル分析</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">続・心理統計学の基礎</a></span>
+
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000006">5 メタ分析</h1>
+<h2 id="a0000000229">5.1 標準化平均値差の統合</h2>
+<p>標準化された平均値差<img src="images/img-0286.png" alt="$g_ i$" style="vertical-align:-3px; 
+                                     width:12px; 
+                                     height:10px" class="math gen" />の近似的分散は、式 (<a href="sect0002.html#eq.segapprox">2.20</a>) に示したように </p><table id="a0000000230" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0287.png" alt="\begin{equation}  v_ i \approx \frac{n_{1i}+n_{2i}}{n_{1i} n_{2i}} + \frac{g_ i^2}{2(n_{1i}+n_{2i}-2)} \end{equation}" style="width:242px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.133</span>)</span></td>
+</tr>
+</table><p> で<a href="#a0000000231" class="footnote"><sup class="footnotemark">1</sup></a>、これを用いて </p><table id="a0000000232" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0288.png" alt="\begin{equation}  (g_ i - 1.96 \sqrt{v_ i},~  g_ i + 1.96 \sqrt{v_ i}) \end{equation}" style="width:205px; 
+                            height:19px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.134</span>)</span></td>
+</tr>
+</table><p> で研究<img src="images/img-0289.png" alt="$i$" style="vertical-align:0px; 
+                                     width:5px; 
+                                     height:11px" class="math gen" />の効果量のCIを求められる<a href="#a0000000233" class="footnote"><sup class="footnotemark">2</sup></a>。 </p><h2 id="a0000000234">5.2 等質性の検討</h2>
+<p>平均値差<img src="images/img-0286.png" alt="$g_ i$" style="vertical-align:-3px; 
+                                     width:12px; 
+                                     height:10px" class="math gen" />の近似的分散の逆数を<img src="images/img-0290.png" alt="$w_ i = 1/v_ i$" style="vertical-align:-4px; 
+                                     width:67px; 
+                                     height:16px" class="math gen" />とし、母集団効果量<img src="images/img-0021.png" alt="$\delta $" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" />を </p><table id="a0000000235" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0291.png" alt="\begin{equation}  \hat{\delta } = \frac{\sum _{i=1}^ k w_ i g_ i}{\sum _{i=1}^ k w_ i} \end{equation}" style="width:106px; 
+                            height:47px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.135</span>)</span></td>
+</tr>
+</table><p> によって推定する。 </p><p>このとき、 </p><table id="a0000000236" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0292.png" alt="\begin{equation}  Q = \sum _{i=1}^ k w_ i (g_ i - \hat{\delta })^2 \end{equation}" style="width:140px; 
+                            height:48px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.136</span>)</span></td>
+</tr>
+</table><p> が、<img src="images/img-0293.png" alt="$H_0: \delta _ i = \delta ~  \text {for~ all~ }i$" style="vertical-align:-3px; 
+                                     width:148px; 
+                                     height:16px" class="math gen" />の下で、自由度<img src="images/img-0294.png" alt="$k-1$" style="vertical-align:0px; 
+                                     width:35px; 
+                                     height:12px" class="math gen" />のカイ2乗分布に従うことを利用して、等質性の検定を行う。 </p><p>また、<img src="images/img-0295.png" alt="$\delta _ i$" style="vertical-align:-3px; 
+                                     width:11px; 
+                                     height:14px" class="math gen" />の分散<img src="images/img-0296.png" alt="$\tau ^2$" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:14px" class="math gen" />は、モーメント法により </p><table id="a0000000237" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0297.png" alt="\begin{equation}  \hat{\tau }^2 = \frac{Q-(k-1)}{\sum _{i=1}^ k w_ i -(\sum _{i=1}^ k w_ i^2)/(\sum _{i=1}^ k w_ i)} \end{equation}" style="width:278px; 
+                            height:45px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.137</span>)</span></td>
+</tr>
+</table><p> と推定できる。 </p><p>ランダム効果モデルによって<img src="images/img-0298.png" alt="$\hat{\mu }_{\delta }$" style="vertical-align:-3px; 
+                                     width:16px; 
+                                     height:16px" class="math gen" />が推定された場合、 </p><table id="a0000000238" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0299.png" alt="\begin{equation}  \hat{\mu }_{\delta } \pm 1.96 \times \hat{\tau } \end{equation}" style="width:96px; 
+                            height:16px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>5.138</span>)</span></td>
+</tr>
+</table><p> を効果量の“95% plausible value interval" と呼ぶ<a href="#a0000000239" class="footnote"><sup class="footnotemark">3</sup></a>。 つまり、<img src="images/img-0295.png" alt="$\delta _ i$" style="vertical-align:-3px; 
+                                     width:11px; 
+                                     height:14px" class="math gen" />の95%はこの範囲に含まれるだろうということ。 </p><div class="table"> <center> <table class="tabular" cellspacing="0">
+<tr>
+
+    
+    <td style="border-top-style:solid; border-left:1px solid black; border-right:1px solid black; border-top-color:black; border-top-width:1px; text-align:left"><p> <b class="bfseries">メモ</b> </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-bottom-style:solid; border-bottom-width:1px; border-left:1px solid black; border-right:1px solid black; text-align:left; border-bottom-color:black"><p><small class="small">テキストでは、固定効果モデルによる<img src="images/img-0300.png" alt="$\hat{\delta }$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:17px" class="math gen" />を利用して<img src="images/img-0295.png" alt="$\delta _ i$" style="vertical-align:-3px; 
+                                     width:11px; 
+                                     height:14px" class="math gen" />の含まれる範囲を例示しているが、これは混乱を招く。 <span class="normalsize"></span></small></p></td>
+
+</tr>
+</table> </center> </div></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000231">Kline (2004, p.108)</li><li id="a0000000233">Hedges &amp; Olkin (1985, Chapter 5) は、<img src="images/img-0021.png" alt="$\delta $" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:11px" class="math gen" />の不偏推定量<img src="images/img-0301.png" alt="$g_{\mathrm{adj}}$" style="vertical-align:-5px; 
+                                     width:25px; 
+                                     height:12px" class="math gen" />を提示し、その近似的分散が<img src="images/img-0302.png" alt="$\frac{n_1+n_2}{n_1 n_2} + \frac{g_{\mathrm{adj}}^2}{2(n_1+n_2)}$" style="vertical-align:-9px; 
+                                     width:120px; 
+                                     height:30px" class="math gen" />で与えられることを示している。</li><li id="a0000000239">Cooper et al. (2009, p.302) （Chapter 16 by Raudenbush）</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="4 マルチレベル分析" href="sect0004.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="続・心理統計学の基礎" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">続・心理統計学の基礎</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0004.html" class="sectref" rel="prev">マルチレベル分析</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">続・心理統計学の基礎</a></span>
+
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

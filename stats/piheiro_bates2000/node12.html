@@ -1,0 +1,409 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="変量効果のためのパターン化された分散共分散行列：pdMatクラス">
+<META NAME="keywords" CONTENT="piheiro_bates2000">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="piheiro_bates2000.css">
+
+<LINK REL="next" HREF="node13.html">
+<LINK REL="previous" HREF="node11.html">
+<LINK REL="up" HREF="node9.html">
+<LINK REL="next" HREF="node13.html">
+<TITLE>変量効果のためのパターン化された分散共分散行列：pdMatクラス</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html148"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html146"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html140"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html149"
+  HREF="node13.html">あてはめモデルの確認</A>
+<B>Up:</B> <A NAME="tex2html147"
+  HREF="node9.html">線形混合効果モデルのあてはめ</A>
+<B> Previous:</B> <A NAME="tex2html141"
+  HREF="node11.html">lmeによる線形混合効果モデルのあてはめ</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+
+<H2><A NAME="SECTION00043000000000000000">
+変量効果のためのパターン化された分散共分散行列：<TT>pdMat</TT>クラス</A>
+</H2>
+
+<P>
+変量効果の分散共分散行列 <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="14" ALIGN="BOTTOM" BORDER="0"
+ SRC="img4.png"
+ ALT="$ \bm{\Psi}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ に対して，何らかの特別な形を仮定する。
+
+<P>
+<TT>pdMat</TT>クラスには，以下のコンストラクタが標準装備されている。
+
+<UL>
+<LI><TT>pdBlocked</TT>：ブロック対角行列
+</LI>
+<LI><TT>pdCompSymm</TT>：複合対称型
+</LI>
+<LI><TT>pdDiag</TT>：対角行列
+</LI>
+<LI><TT>pdIdent</TT>：恒等行列の定数倍
+</LI>
+<LI><TT>pdSymm</TT>：一般的な正定値行列（デフォルト）
+</LI>
+</UL>
+
+<P>
+これらのコンストラクタで指定された <TT>pdMat</TT> オブジェクトは，関数 <TT>lme()</TT> に対して引数 <TT>random</TT> を渡す。
+
+<P>
+例として，データ <TT>Orthodont</TT> について，
+<P><!-- MATH
+ \begin{displaymath}
+\mathit{Distance}_{ij} = \pi_{0i} + \pi_{1i} (\mathit{Age}_{ij} - 11) + \pi_{2i} \mathit{Sex}_i + \pi_{3i} (\mathit{Age}_{ij} - 11)  \times \textit{Sex}_i + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="527" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img5.png"
+ ALT="$\displaystyle \mathit{Distance}_{ij} = \pi_{0i} + \pi_{1i} (\mathit{Age}_{ij} -...
+...ex}_i + \pi_{3i} (\mathit{Age}_{ij} - 11) \times \textit{Sex}_i + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+\pi_{0i} \sim N(0, \sigma_{b0}^2)
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="110" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img6.png"
+ ALT="$\displaystyle \pi_{0i} \sim N(0, \sigma_{b0}^2)$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+\pi_{1i} \sim N(0, \sigma_{b1}^2)
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="110" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img7.png"
+ ALT="$\displaystyle \pi_{1i} \sim N(0, \sigma_{b1}^2)$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+\epsilon_{ij} \sim N(0, \sigma^2)
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="102" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img8.png"
+ ALT="$\displaystyle \epsilon_{ij} \sim N(0, \sigma^2)$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+なるモデルをあてはめてみよう。
+
+<P>
+<TT>pdDiag</TT> を用いて以下のようにモデルを更新してみる。
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; fm6 &lt;- lme(distance ~ I(age - 11), data = Orthodont)
+&gt; fm7 &lt;- update(fm6, fixed = distance ~ Sex * I(age - 11))
+&gt; fm10 &lt;- update(fm7, random = pdDiag(~I(age - 11)))
+</PRE>
+</DIV>
+
+<P>
+<TT>Orthodont</TT> は <TT>groupedData</TT> クラスなので，<TT>random</TT> においてグルーピングを宣言する必要はない。
+もしグループ化構造と <TT>pdMat</TT> クラスの両方を <TT>random</TT> で指定したいのであれば，
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; fm10 &lt;- update(fm7, random = list(Subject = pdDiag(~I(age - 11))))
+</PRE>
+</DIV>
+としてもよい。
+
+<P>
+結果は以下の通り：
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; summary(fm10)
+Linear mixed-effects model fit by REML
+ Data: Orthodont 
+       AIC      BIC    logLik
+  446.8426 465.3533 -216.4213
+
+Random effects:
+ Formula: ~I(age - 11) | Subject
+ Structure: Diagonal
+        (Intercept) I(age - 11) Residual
+StdDev:    1.830327   0.1803455  1.31004  ## &lt;- 前者2つが独立になっている。
+
+Fixed effects: distance ~ Sex + I(age - 11) + Sex:I(age - 11) 
+                          Value Std.Error DF  t-value p-value
+(Intercept)           24.968750 0.4860008 79 51.37595  0.0000
+SexFemale             -2.321023 0.7614169 25 -3.04829  0.0054
+I(age - 11)            0.784375 0.0859995 79  9.12069  0.0000
+SexFemale:I(age - 11) -0.304830 0.1347353 79 -2.26243  0.0264
+ Correlation: 
+                      (Intr) SexFml I(-11)
+SexFemale             -0.638              
+I(age - 11)            0.000  0.000       
+SexFemale:I(age - 11)  0.000  0.000 -0.638
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-3.06658938 -0.39982538  0.02559617  0.43693649  3.85940304 
+
+Number of Observations: 108
+Number of Groups: 27 
+
+&gt; intervals(fm10)
+Approximate 95% confidence intervals
+
+ Fixed effects:
+                           lower       est.       upper
+(Intercept)           24.0013897 24.9687500 25.93611031
+SexFemale             -3.8891901 -2.3210227 -0.75285537
+I(age - 11)            0.6131972  0.7843750  0.95555276
+SexFemale:I(age - 11) -0.5730135 -0.3048295 -0.03664554
+attr(,"label")
+[1] "Fixed effects:"
+
+ Random Effects:
+  Level: Subject 
+                     lower      est.     upper
+sd((Intercept)) 1.33766885 1.8303270 2.5044291
+sd(I(age - 11)) 0.05858523 0.1803455 0.5551653
+
+ Within-group standard error:
+   lower     est.    upper 
+1.084934 1.310040 1.581850 
+
+&gt; anova(fm7, fm10)
+     Model df      AIC      BIC    logLik   Test  L.Ratio p-value
+fm7      1 15 458.9891 498.6550 -214.4946                        
+fm10     2  7 446.8426 465.3533 -216.4213 1 vs 2 3.853495  0.8701
+</PRE>
+</DIV>
+
+<P>
+あるいは，<TT>age</TT> を因子型とみなして，次のようなモデルを考える。
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; fm11 &lt;- lme(distance ~ factor(age)-1, data = Orthodont)
+&gt; summary(fm11)
+Linear mixed-effects model fit by REML
+ Data: Orthodont 
+       AIC      BIC    logLik
+  461.3733 501.0392 -215.6867
+
+Random effects:
+ Formula: ~factor(age) - 1 | Subject
+ Structure: General positive-definite
+              StdDev    Corr                
+factor(age)8  2.3283848 fct()8 fc()10 fc()12
+factor(age)10 2.0369847 0.693               
+factor(age)12 2.7265725 0.768  0.695        
+factor(age)14 2.6739501 0.649  0.832  0.850 
+Residual      0.7103124                     
+
+Fixed effects: distance ~ factor(age) - 1 
+                 Value Std.Error DF  t-value p-value
+factor(age)8  22.18519 0.4684853 78 47.35513       0
+factor(age)10 23.16667 0.4151684 78 55.80064       0
+factor(age)12 24.64815 0.5422430 78 45.45591       0
+factor(age)14 26.09259 0.5324490 78 49.00487       0
+ Correlation: 
+              fct()8 fc()10 fc()12
+factor(age)10 0.626               
+factor(age)12 0.711  0.635        
+factor(age)14 0.600  0.759  0.795 
+
+Standardized Within-Group Residuals:
+        Min          Q1         Med          Q3         Max 
+-1.63502985 -0.31750913  0.02383684  0.28193604  1.84108842 
+
+Number of Observations: 108
+Number of Groups: 27 
+&gt;
+</PRE>
+</DIV>
+
+<P>
+これを更新して，複合対称型構造をあてはめてみよう。
+
+<P>
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+&gt; fm12 &lt;- update(fm11, random = pdCompSymm(~ factor(age) - 1))
+&gt; summary(fm12)
+Linear mixed-effects model fit by REML
+ Data: Orthodont 
+       AIC      BIC    logLik
+  457.1976 475.7084 -221.5988
+
+Random effects:
+ Formula: ~factor(age) - 1 | Subject
+ Structure: Compound Symmetry
+              StdDev    Corr          
+factor(age)8  2.4403515               
+factor(age)10 2.4403515 0.75          
+factor(age)12 2.4403515 0.75 0.75     
+factor(age)14 2.4403515 0.75 0.75 0.75
+Residual      0.7667814               
+
+Fixed effects: distance ~ factor(age) - 1 
+                 Value Std.Error DF  t-value p-value
+factor(age)8  22.18519 0.4922838 78 45.06585       0
+factor(age)10 23.16667 0.4922838 78 47.05958       0
+factor(age)12 24.64815 0.4922838 78 50.06898       0
+factor(age)14 26.09259 0.4922838 78 53.00315       0
+ Correlation: 
+              fct()8 fc()10 fc()12
+factor(age)10 0.682               
+factor(age)12 0.682  0.682        
+factor(age)14 0.682  0.682  0.682 
+
+Standardized Within-Group Residuals:
+         Min           Q1          Med           Q3          Max 
+-1.987867665 -0.279141378  0.008124215  0.214199471  1.979189957 
+
+Number of Observations: 108
+Number of Groups: 27
+</PRE>
+</DIV>
+
+<P>
+<TT>pdBlocked</TT> コンストラクタは，<TT>pdIdent</TT> や <TT>pdSymm</TT>，<TT>pdCompSymm</TT> などを組み合わせて作ればよい。
+
+<P>
+例えば，
+<P><!-- MATH
+ \begin{displaymath}
+\bm{\Psi} =
+\begin{bmatrix}
+\sigma^2_1 & 0 & 0 \\
+0 & \sigma^2_2 & \sigma_{23} \\
+0 & \sigma_{32} & \sigma^2_2 
+\end{bmatrix}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="155" HEIGHT="87" ALIGN="MIDDLE" BORDER="0"
+ SRC="img9.png"
+ ALT="$\displaystyle \bm{\Psi} =
+\begin{bmatrix}
+\sigma^2_1 &amp; 0 &amp; 0 \\
+0 &amp; \sigma^2_2 &amp; \sigma_{23} \\
+0 &amp; \sigma_{32} &amp; \sigma^2_2
+\end{bmatrix}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+とかだったりすると，<SPAN CLASS="MATH"><IMG
+ WIDTH="40" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img10.png"
+ ALT="$ (1,1)$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ 成分を <TT>pdIdent</TT> で，<!-- MATH
+ $(2:3, 2:3)$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="82" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img11.png"
+ ALT="$ (2:3, 2:3)$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ 成分を <TT>pdCompSymm</TT> で表せばよい。
+従って，
+<DIV STYLE="border: inset blue; background-color: white">
+<PRE>
+random = pdBlocked(list(pdIdent(~ 1), pdCompSymm(~ Sex - 1)))
+</PRE>
+</DIV>
+みたいな感じで指定すればうまくいくんじゃないだろうか。
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html148"
+  HREF="node13.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html146"
+  HREF="node9.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html140"
+  HREF="node11.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html149"
+  HREF="node13.html">あてはめモデルの確認</A>
+<B>Up:</B> <A NAME="tex2html147"
+  HREF="node9.html">線形混合効果モデルのあてはめ</A>
+<B> Previous:</B> <A NAME="tex2html141"
+  HREF="node11.html">lmeによる線形混合効果モデルのあてはめ</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Okumura <BR>
+2017-10-27</I>
+</ADDRESS>
+</BODY>
+</HTML>

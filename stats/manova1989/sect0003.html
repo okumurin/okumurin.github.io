@@ -1,0 +1,416 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="多変量分散分析（SASによる実験データの解析：第14章）" rel="start" />
+<link href="index.html" title="多変量分散分析（SASによる実験データの解析：第14章）" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+
+<link href="sect0002.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>3 経時変化データ</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="2 独立な2群の比較（従属変数が2つ以上）" href="sect0002.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="多変量分散分析（SASによる実験データの解析：第14章）" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">多変量分散分析（SASによる実験データの解析：第14章）</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0002.html" class="sectref" rel="prev">独立な2群の比較（従属変数が2つ以上）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">多変量分散分析（SASによる実験データの解析：第14章）</a></span>
+
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000004">3 経時変化データ</h1>
+<h2 id="a0000000035">3.1 Hotellingの<img src="images/img-0003.png" alt="$T^2$" style="vertical-align:0px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" />とMANOVAによる2群比較</h2>
+<ul class="itemize">
+<li><p>分散共分散構造にH-F条件のような仮定を必要としない </p></li><li><p>多重性を考慮した同時信頼区間を算出できる </p></li><li><p>標本数は時点数に比べある程度大きくないと検定力が低くなる </p></li><li><p>欠測を含む個体は除去する必要がある </p></li><li><p>H-F条件が成り立っている場合は、通常のANOVAの方が検定力が高い </p></li>
+</ul><p>図<a href="sect0003.html#figdatabloodpressure">3.4</a>は、降圧剤の投与量（10mg, 20mg）と血圧の経時変化（投与前、1時間後、3時間後）に関するデータ <tt class="ttfamily">databloodpressure.csv</tt> を示したものである。 </p><div id="figdatabloodpressure" class="figure"><center> 
+<img src="images/img-0068.png" alt="\includegraphics[width=9cm]{figdatabloodpressure.png}" style="width:9cm" /> <div class="caption"><b>Figure 3.4</b>: <span>降圧剤の投与量と血圧の経時変化</span></div>  </center></div><p>図<a href="sect0003.html#figboxplotdatabloodpressure">3.5</a>は、このデータを箱ひげ図として表したものである。 投与後時間が経過するごとに血圧が下がっていくこと、また20mg投与群の方が10mg投与群より全体的に血圧の低いことがわかる。 低下の程度は20mg投与群の方が大きいようにも見えるが、判然とはしない。 </p><div id="figboxplotdatabloodpressure" class="figure"><center> 
+<img src="images/img-0069.png" alt="\includegraphics[width=7cm]{figboxplotdatabloodpressure.png}" style="width:7cm" /> <div class="caption"><b>Figure 3.5</b>: <span>箱ひげ図</span></div>  </center></div><p>今、Hotellingの<img src="images/img-0003.png" alt="$T^2$" style="vertical-align:0px; 
+                                     width:18px; 
+                                     height:14px" class="math gen" />とMANOVAによって、10mg群と20mg群で血圧の母平均ベクトルが等しいという帰無仮説を検定する。 すると、<img src="images/img-0070.png" alt="$F(3,8)=5.5624, p=.02334$" style="vertical-align:-4px; 
+                                     width:201px; 
+                                     height:18px" class="math gen" />となってこの帰無仮説は棄却される<a href="#a0000000036" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><p>ただし、母平均ベクトルが2群で等しくないという結果だけでは、「血圧の高さそのものが異なる」のか「血圧の下がり方が異なる」のかわからない。 </p><h2 id="a0000000037">Rによる分析</h2>
+<p> Rのスクリプトと実行結果は以下の通り。 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; HotellingsT2Test(cbind(投与前, 一時間後, 三時間後)~降圧剤, data=data01)
+
+	Hotelling's two sample T2-test
+
+data:  cbind(投与前, 一時間後, 三時間後) by 降圧剤
+T.2 = 5.5624, df1 = 3, df2 = 8, p-value = 0.02334
+alternative hypothesis: true location difference is not equal to c(0,0,0)
+
+&gt; fit01 &lt;- manova(cbind(投与前, 一時間後, 三時間後)~降圧剤, data=data01)
+&gt; summary(fit01, test="Wilks")
+          Df   Wilks approx F num Df den Df  Pr(&gt;F)  
+降圧剤     1 0.32405   5.5624      3      8 0.02334 *
+Residuals 10                                         
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></small> </blockquote><h2 id="a0000000038">3.2 Repeated ANOVAによる分析</h2>
+<p>同じデータについて、repeated ANOVAによる分析も行ってみることにしよう<a href="#a0000000039" class="footnote"><sup class="footnotemark">2</sup></a>。 Rのデフォルトの関数 <tt class="ttfamily">aov()</tt> を用いることにすると<a href="#a0000000040" class="footnote"><sup class="footnotemark">3</sup></a>、従属変数が1列になるようデータの変形を行って、 </p><h2 id="a0000000041">Rによる分析</h2>
+<blockquote class="quote"> <small class="small"><pre>
+&gt; data02 &lt;- data.frame(被験者=factor(rep(data01[,1],3)), 
++                      降圧剤=rep(data01[,2],3),
++                      時間=c(rep("0h",12),rep("1h",12),rep("3h",12)),
++                      血圧=rbind(as.matrix(data01[,3]),
++                                 as.matrix(data01[,4]),
++                                 as.matrix(data01[,5])))
+&gt; head(data02,5)                                
+  被験者 降圧剤 時間 血圧
+1      1   10mg   0h  119
+2      2   10mg   0h  110
+3      3   10mg   0h  123
+4      4   10mg   0h  130
+5      5   10mg   0h  121
+&gt; 
+&gt; fit02 &lt;- aov(血圧~降圧剤*時間+Error(被験者/時間), data=data02)
+&gt; summary(fit02)
+
+Error: 被験者
+          Df Sum Sq Mean Sq F value Pr(&gt;F)
+降圧剤     1  182.2   182.2   1.806  0.209
+Residuals 10 1009.4   100.9               
+
+Error: 被験者:時間
+            Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+時間         2  742.1   371.0  10.343 0.000824 ***
+降圧剤:時間  2  115.2    57.6   1.605 0.225663    
+Residuals   20  717.4    35.9                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></small> </blockquote><p> <span class="normalsize"><p>となる。 時間の主効果は有意であるものの、降圧剤の主効果、降圧剤と時間の交互作用は有意でない。 </p><p>ただし、関数 <tt class="ttfamily">aov()</tt> を用いるやり方では以下のような限界がある。 </p><ul class="itemize">
+<li><p>タイプIの平方和しか選べない（バランスデザインであることが大前提） </p></li><li><p>多重比較を <tt class="ttfamily">TukeyHSD()</tt> で行うことができない </p></li><li><p>球面性の仮定の検証、自由度の調整ができない </p></li><li><p>単純主効果の検証（多重比較も含めて）ができない </p></li>
+</ul><p>パッケージ <tt class="ttfamily">car</tt> の関数 <tt class="ttfamily">Anova()</tt> を用いることで、平方和の種類と球面性の仮定については解決できる<a href="#a0000000042" class="footnote"><sup class="footnotemark">4</sup></a>。 同じ分析を、タイプIIIの平方和を指定して行った場合の結果は以下の通り。 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; library(car)
+&gt; fit03 &lt;- Anova(lm(as.matrix(data01[,3:5])~降圧剤, data=data01), 
++                idata=data.frame(時間=factor(c(0,1,3))), 
++                idesign=~時間, type="III")
+&gt; summary(fit03, multivariate=F)
+
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+                SS num Df Error SS den Df         F    Pr(&gt;F)    
+(Intercept) 253235      1  1009.39     10 2508.7924 2.431e-13 ***
+降圧剤         182      1  1009.39     10    1.8055   0.20874    
+時間           342      2   717.44     20    4.7685   0.02026 *  
+降圧剤:時間    115      2   717.44     20    1.6052   0.22566    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+Mauchly Tests for Sphericity
+
+            Test statistic  p-value
+時間               0.56172 0.074618
+降圧剤:時間        0.56172 0.074618
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+             GG eps Pr(&gt;F[GG])  
+時間        0.69528    0.03672 *
+降圧剤:時間 0.69528    0.23315  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+               HF eps Pr(&gt;F[HF])
+時間        0.7721787 0.03157477
+降圧剤:時間 0.7721787 0.23172547
+</pre></small> </blockquote><p><span class="normalsize"><p>この例では、Mauchlyの検定により球面性の仮定は棄却されない。 よって結果は変わらず、時間の主効果のみが有意ということになる。 ただし、これでも<tt class="ttfamily">TukeyHSD()</tt>で多重比較を行うことはできない。 </p></span></p></span></p><h2 id="a0000000043">3.3 対比を用いた線形性の検定</h2>
+<p>時間の主効果が有意であったので、時間に伴う血圧変化が線形であるか対比を用いて検定する。 </p><table id="a0000000044" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0071.png" alt="\begin{equation}  \bm@general \boldmath \m@ne \mv@bold \bm@command {C} = \begin{pmatrix}  1 
+
+&amp;  -1 
+
+&amp;  0 
+
+\\ 0 
+
+&amp;  1 
+
+&amp;  -1 
+
+\end{pmatrix} \end{equation}" style="width:141px; 
+                            height:40px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.20</span>)</span></td>
+</tr>
+</table><p> として、 </p><table id="a0000000045" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000046">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0072.png" alt="$\displaystyle  \bm@general \boldmath \m@ne \mv@bold \bm@command {\psi }  $" style="vertical-align:-3px; width:11px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0073.png" alt="$\displaystyle = \bm@general \boldmath \m@ne \mv@bold \bm@command {X} \bm@general \boldmath \m@ne \mv@bold \bm@command {C}’  $" style="vertical-align:0px; width:50px; 
+                   height:14px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.21</span>)</span></td>
+</tr>
+</table><p> 対比を作る。 </p><h2 id="a0000000047">Rによる分析</h2>
+<blockquote class="quote"> <small class="small"><pre>
+&gt; contrast &lt;- matrix(c(1,-1,0, 
++                      0,1,-1), 2, 3, byrow=T)
+&gt; psi &lt;- cbind(data01$投与前, data01$一時間後, data01$三時間後) %*% t(contrast)
+&gt; data03 &lt;- cbind(data01[,1:2],data.frame(psi1=psi[,1],psi2=psi[,2]))
+&gt; head(data03, 5)
+  被験者 降圧剤 psi1 psi2
+1      1   10mg    6   -1
+2      2   10mg   -5    3
+3      3   10mg   -3   15
+4      4   10mg    3   27
+5      5   10mg    6   -9
+</pre></small> </blockquote><p> <span class="normalsize"><p>これをANOVAで分析することにする。 </p><blockquote class="quote"> <small class="small"><pre>
+&gt; data04 &lt;- data.frame(被験者=factor(rep(data03[,1],2)), # ※factor()を忘れないこと
++                      降圧剤=rep(data03[,2],2),
++                      対比=factor(c(rep(1,12),rep(2,12))),
++                      血圧変化=rbind(as.matrix(data03[,3]),
++                                 as.matrix(data03[,4])))
+&gt; head(data04,5)                                
+  被験者 降圧剤 対比 血圧変化
+1      1   10mg    1        6
+2      2   10mg    1       -5
+3      3   10mg    1       -3
+4      4   10mg    1        3
+5      5   10mg    1        6
+&gt; fit05 &lt;- aov(血圧変化~降圧剤*対比+Error(被験者/対比), data=data04)
+&gt; summary(fit05)
+
+Error: 被験者
+          Df Sum Sq Mean Sq F value Pr(&gt;F)
+降圧剤     1    2.7    2.67   0.055  0.819
+Residuals 10  485.3   48.53               
+
+Error: 被験者:対比
+            Df Sum Sq Mean Sq F value Pr(&gt;F)  
+対比         1   48.2    48.2   0.692 0.4250  
+降圧剤:対比  1  337.5   337.5   4.847 0.0523 .
+Residuals   10  696.3    69.6                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+</pre></small> </blockquote><p>対比の主効果は有意でなく、「血圧の減少は線形である」という帰無仮説は棄却されなかった（<img src="images/img-0074.png" alt="$F(1,10)=0.692, p=.425$" style="vertical-align:-4px; 
+                                     width:185px; 
+                                     height:18px" class="math gen" />）。 なお、降圧剤の効果および交互作用も有意でない。 </p></span></p><h2 id="a0000000048">3.4 球面性の仮定とその検証</h2>
+<p>以下、「SASによる実験データの解析」第12章（p.248-）による。 </p><p>ある群での経時観測値 <img src="images/img-0075.png" alt="$x_1, x_2, \cdots , x_ p$" style="vertical-align:-5px; 
+                                     width:97px; 
+                                     height:12px" class="math gen" /> の分散共分散行列が <img src="images/img-0076.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma } = \{  \sigma _{ij} \} $" style="vertical-align:-5px; 
+                                     width:70px; 
+                                     height:18px" class="math gen" /> であるとする。 このとき、正規性と分散共分散行列の等質性に加え、 </p><table id="a0000000049" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000050">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0077.png" alt="$\displaystyle  \sigma _{ij}  $" style="vertical-align:-5px; width:19px; 
+                   height:12px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0078.png" alt="$\displaystyle = \begin{cases}  2 \alpha _ i + \tau ~ ~ ~ ~ ~ (i=j) \\ \alpha _ i+\alpha _ j ~ ~ ~ ~ ~ ~ (i \neq j) \end{cases} \mathrm{where }~  \tau &gt; 0  $" style="vertical-align:-20px; width:274px; 
+                   height:50px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.22</span>)</span></td>
+</tr><tr id="a0000000051">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0038.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px; 
+                   height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0079.png" alt="$\displaystyle  \Longleftrightarrow V(x_ i-x_ j)=2 \tau ~ (\forall ~ i \neq j)  $" style="vertical-align:-5px; width:219px; 
+                   height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.25</span>)</span></td>
+</tr>
+</table><p> でないといけない（Huynh &amp; Feldt, 1970; <b class="bfseries">H-F条件</b>）。 </p><p>これは、<img src="images/img-0080.png" alt="$1,1,\cdots ,1$" style="vertical-align:-3px; 
+                                     width:69px; 
+                                     height:15px" class="math gen" />に直交する<img src="images/img-0081.png" alt="$(p-1)$" style="vertical-align:-4px; 
+                                     width:47px; 
+                                     height:18px" class="math gen" />本の正規直交対比 <img src="images/img-0082.png" alt="$z_1,z_2,\cdots ,z_{p-1}$" style="vertical-align:-5px; 
+                                     width:108px; 
+                                     height:12px" class="math gen" /> について、その分散共分散行列が <img src="images/img-0083.png" alt="$\tau \bm@general \boldmath \m@ne \mv@bold \bm@command {I}$" style="vertical-align:0px; 
+                                     width:19px; 
+                                     height:11px" class="math gen" /> であることとも同等である。 これを、正規直交対比の分布に関する<b class="bfseries">球面性の仮定</b>という。 </p><p>正規直交対比のプールされた平方和積和行列を<img src="images/img-0084.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {A}$" style="vertical-align:0px; 
+                                     width:12px; 
+                                     height:11px" class="math gen" />とすると、 </p><table id="a0000000052" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0085.png" alt="\begin{equation}  l = \frac{|\bm@general \boldmath \m@ne \mv@bold \bm@command {A}|}{\mathrm{tr} [ \bm@general \boldmath \m@ne \mv@bold \bm@command {A} /p ]^ p} \end{equation}" style="width:90px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.26</span>)</span></td>
+</tr>
+</table><p> を<b class="bfseries">Mauchlyの基準</b>といい（<img src="images/img-0086.png" alt="$0 \leq l \leq 1$" style="vertical-align:-2px; 
+                                     width:65px; 
+                                     height:14px" class="math gen" />）、<img src="images/img-0084.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {A}$" style="vertical-align:0px; 
+                                     width:12px; 
+                                     height:11px" class="math gen" />の自由度<img src="images/img-0087.png" alt="$df_ A$" style="vertical-align:-3px; 
+                                     width:24px; 
+                                     height:14px" class="math gen" />が大きければ、H-F条件の下で </p><table id="a0000000053" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0088.png" alt="\begin{equation}  - \left( df_ A - \frac{2p^2+p+2}{6p} \right) \log l \sim \chi ^2_{\frac{1}{2}p(p+1)-1} \end{equation}" style="width:301px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.27</span>)</span></td>
+</tr>
+</table><p> となることが知られている。 </p><h2 id="a0000000054">3.5 球面性仮定からの逸脱と自由度修正</h2>
+<p>球面性の仮定が満たされていないと、<img src="images/img-0024.png" alt="$p$" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:10px" class="math gen" />値は実際よりも小さくなることが知られている。 </p><p>Greenhouse &amp; Geiser (1959) により、母集団標準偏差<img src="images/img-0089.png" alt="$\sigma _{ij}$" style="vertical-align:-5px; 
+                                     width:19px; 
+                                     height:12px" class="math gen" />の関数<img src="images/img-0090.png" alt="$\epsilon $" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> </p><table id="a0000000055" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0091.png" alt="\begin{equation}  \frac{1}{p-1} \leq \epsilon \leq 1 \end{equation}" style="width:98px; 
+                            height:37px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.28</span>)</span></td>
+</tr>
+</table><p> を用いて<a href="#a0000000056" class="footnote"><sup class="footnotemark">5</sup></a>、時間の主効果もしくは時間と被験者間要因との交互作用について </p><table id="a0000000057" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0092.png" alt="\begin{equation}  F = \frac{SS_1 / (\epsilon \times df_1)}{SS_2 / (\epsilon \times df_2)} \end{equation}" style="width:136px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.29</span>)</span></td>
+</tr>
+</table><p> を自由度<img src="images/img-0093.png" alt="$(\epsilon \times df_1, \epsilon \times df_2)$" style="vertical-align:-4px; 
+                                     width:114px; 
+                                     height:18px" class="math gen" />の<img src="images/img-0025.png" alt="$F$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />分布で近似できることが示された。 </p><p>この<img src="images/img-0090.png" alt="$\epsilon $" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" />について、定義式中の<img src="images/img-0089.png" alt="$\sigma _{ij}$" style="vertical-align:-5px; 
+                                     width:19px; 
+                                     height:12px" class="math gen" />を<img src="images/img-0094.png" alt="$s_{ij}$" style="vertical-align:-5px; 
+                                     width:18px; 
+                                     height:12px" class="math gen" />で置き換えたものを<img src="images/img-0095.png" alt="$\hat{\epsilon }_{\mathrm{GG}}$" style="vertical-align:-3px; 
+                                     width:27px; 
+                                     height:16px" class="math gen" />とすると、Huynh &amp; Feldt (1976) によりバイアスを修正した </p><table id="a0000000058" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0096.png" alt="\begin{equation}  \hat{\epsilon }_{\mathrm{HF}} = \frac{n(p-1)\hat{\epsilon }_{\mathrm{GG}-2}}{(p-1)(n-1-(p-1)\hat{\epsilon }_{\mathrm{GG}})} \end{equation}" style="width:250px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.30</span>)</span></td>
+</tr>
+</table><p> が提案され、 </p><table id="a0000000059" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0097.png" alt="\begin{equation}  \frac{1}{p-1} \leq \hat{\epsilon }_{\mathrm{GG}} \leq \hat{\epsilon }_{\mathrm{HF}} \end{equation}" style="width:138px; 
+                            height:37px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.31</span>)</span></td>
+</tr>
+</table><p> であることが知られている。 </p><p>球面性の仮定が棄却されたり、<img src="images/img-0098.png" alt="$\hat{\epsilon }_{\mathrm{HF}} &lt; 1$" style="vertical-align:-3px; 
+                                     width:55px; 
+                                     height:16px" class="math gen" />となるようなケースでは、自由度修正を行うことが推奨される。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000036">この場合も2群比較であるから<img src="images/img-0053.png" alt="$l=1$" style="vertical-align:0px; 
+                                     width:34px; 
+                                     height:12px" class="math gen" />であり、いずれの方法でも結果は同じになる。</li><li id="a0000000039">https://ww2.coastal.edu/kingw/statistics/R-tutorials/repeated2.html 参照。</li><li id="a0000000040">AがBにネストしている場合、<tt class="ttfamily">Error(B/A)</tt>と指定する。</li><li id="a0000000042">https://egret.psychol.cam.ac.uk/statistics/R/anova.html</li><li id="a0000000056">H-F条件の下で<img src="images/img-0099.png" alt="$\epsilon =1$" style="vertical-align:0px; 
+                                     width:36px; 
+                                     height:12px" class="math gen" /></li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="2 独立な2群の比較（従属変数が2つ以上）" href="sect0002.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="多変量分散分析（SASによる実験データの解析：第14章）" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" width="32" height="32" border="0" /></td>
+<td align="center" width="100%">多変量分散分析（SASによる実験データの解析：第14章）</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0002.html" class="sectref" rel="prev">独立な2群の比較（従属変数が2つ以上）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">多変量分散分析（SASによる実験データの解析：第14章）</a></span>
+
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

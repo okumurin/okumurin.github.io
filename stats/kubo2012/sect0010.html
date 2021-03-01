@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="start" />
+<link href="index.html" title="データ解析のための統計モデリング入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0011.html" rel="next" />
+<link href="sect0009.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>10 階層ベイズモデル</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="9 GLMのベイズモデル化と事後分布の推定" href="sect0009.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="空間構造のある階層ベイズモデル" href="sect0011.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0009.html" class="sectref" rel="prev">GLMのベイズモデル化と事後分布の推定</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0011.html" class="sectref" rel="next">空間構造のある階層ベイズモデル</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000011">10 階層ベイズモデル</h1>
+<h2 id="a0000000134">10.1 例題：個体差と生存種子数（個体差あり）</h2>
+<p>100個体から8つの種子を採集し、生存種子数 <img src="images/img-0071.png" alt="$y_ i$" style="vertical-align:-3px; 
+                                     width:12px; 
+                                     height:10px" class="math gen" /> を調べる。 </p><p><img src="images/img-0051.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 二項分布が使えそうだが...平均種子数から計算できる分散は、二項分布に従うと仮定した場合よりもはるかに大きい。 </p><p><img src="images/img-0051.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 種子生存確率 <img src="images/img-0093.png" alt="$q$" style="vertical-align:-3px; 
+                                     width:8px; 
+                                     height:10px" class="math gen" /> が全個体で共通していると仮定することに問題がありそう。 </p><h2 id="a0000000135">10.2 GLMMの階層ベイズモデル化</h2>
+<p>各個体の種子生存確率 <img src="images/img-0054.png" alt="$q_ i$" style="vertical-align:-3px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" /> について、 </p><table id="a0000000136" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0121.png" alt="\begin{equation}  \text {logit} (q_ i) = \beta + r_ i,~ ~ ~ ~  r_ i \sim N(0,s) \end{equation}" style="width:239px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>10.43</span>)</span></td>
+</tr>
+</table><p> とする。 </p><p>切片 <img src="images/img-0060.png" alt="$\beta $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:14px" class="math gen" /> の事前分布は無情報事前分布（平たい正規分布）にするとして、<img src="images/img-0077.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> はどのようにすればよいのだろう？ </p><p>最尤推定では <img src="images/img-0077.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> の点推定値を特定したが、ベイズ統計モデルでは <img src="images/img-0077.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> にも分布を仮定する。 そこで、<img src="images/img-0122.png" alt="$p(s)$" style="vertical-align:-4px; 
+                                     width:28px; 
+                                     height:18px" class="math gen" /> を <img src="images/img-0123.png" alt="$0 &lt;s &lt; 10^4$" style="vertical-align:0px; 
+                                     width:82px; 
+                                     height:14px" class="math gen" /> の連続一様分布とする。 <img src="images/img-0122.png" alt="$p(s)$" style="vertical-align:-4px; 
+                                     width:28px; 
+                                     height:18px" class="math gen" /> は、<img src="images/img-0124.png" alt="$p(r_ i \mid s)$" style="vertical-align:-4px; 
+                                     width:55px; 
+                                     height:18px" class="math gen" /> のパラメータの事前分布であり、<b class="bfseries">階層事前分布、超事前分布</b>と呼ばれ、<img src="images/img-0077.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> は<b class="bfseries">超パラメータ</b>と呼ばれる。 </p><p>改装事前分布を使うベイズ統計モデルを<b class="bfseries">階層ベイズモデル</b>という。 </p><h2 id="a0000000137">10.3 階層ベイズモデルの推定・予測</h2>
+<h4 id="a0000000138">BUGSのコード</h4>
+<blockquote class="quote"> <small class="small"><pre>
+model{
+  for(i in 1:N){
+    Y[i] ~ dbin(q[i],8) # 二項分布
+    logit(q[i]) &lt;- beta + r[i] # 生存確率
+  }
+  beta ~ dnorm(0,1.0E-4) # 無情報事前分布
+  for(i in 1:N){
+    r[i] ~ dnorm(0, tau) # 階層事前分布
+  }
+  tau &lt;- 1/(s*s) # tauの定義（分散の逆数）
+  s ~ dunif(0, 1.0E-4) # 無情報事前分布
+}
+</pre> </small> </blockquote><h2 id="a0000000139">10.4 ベイズモデルで使うさまざまな事前分布</h2>
+<h4 id="a0000000140">無情報事前分布と階層事前分布のいずれを選ぶべきなのか？</h4>
+<ul class="itemize">
+<li><p>大域的なパラメータ <img src="images/img-0060.png" alt="$\beta $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:14px" class="math gen" /> : 無情報事前分布を指定 </p></li><li><p>局所的なパラメータ <img src="images/img-0090.png" alt="$r_ i$" style="vertical-align:-3px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" /> : 個々に無情報事前分布を指定するのではなく、<img src="images/img-0125.png" alt="$\{  r_ i \} $" style="vertical-align:-4px; 
+                                     width:27px; 
+                                     height:17px" class="math gen" /> 全体のばらつきを変えられる階層事前分布を指定 </p></li>
+</ul><h2 id="a0000000141">10.5 個体差 + 場所差の階層ベイズモデル</h2>
+<p>以下の条件で、得られたデータから植物の種子数をモデリングしたい。 </p><ul class="itemize">
+<li><p>10個の植木鉢（5つが無処理、5つが施肥処理） </p></li><li><p>各植木鉢に10個体の植物 </p></li>
+</ul><p> 各植木鉢の種子数と分散を算出すると、「平均 <img src="images/img-0126.png" alt="$&lt;$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:9px" class="math gen" /> 分散」となっており、過分散が生じている。 </p><p><img src="images/img-0051.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 個体差と場所差（植木鉢の差）によって生じた過分散（双方が擬似反復） </p><p>個体 <img src="images/img-0069.png" alt="$i$" style="vertical-align:0px; 
+                                     width:5px; 
+                                     height:11px" class="math gen" /> の種子数 <img src="images/img-0071.png" alt="$y_ i$" style="vertical-align:-3px; 
+                                     width:12px; 
+                                     height:10px" class="math gen" /> を平均 <img src="images/img-0013.png" alt="$\lambda _ i$" style="vertical-align:-3px; 
+                                     width:13px; 
+                                     height:14px" class="math gen" /> のポアソン分布で表現するが、さらに </p><table id="a0000000142" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000143">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0127.png" alt="$\displaystyle  \log \lambda _ i = \beta _1 + \beta _2 f_ i + r_ i + r_{j(i)}  $" style="vertical-align:-6px; width:210px; 
+                   height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>10.44</span>)</span></td>
+</tr><tr id="a0000000144">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0128.png" alt="$\displaystyle r_ i \sim N(0,s)  $" style="vertical-align:-4px; width:85px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>10.45</span>)</span></td>
+</tr><tr id="a0000000145">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0129.png" alt="$\displaystyle r_{j(i)} \sim N(0,s_ p)  $" style="vertical-align:-6px; width:109px; 
+                   height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>10.46</span>)</span></td>
+</tr>
+</table><p> とする。<img src="images/img-0069.png" alt="$i$" style="vertical-align:0px; 
+                                     width:5px; 
+                                     height:11px" class="math gen" /> は <img src="images/img-0130.png" alt="$j$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> にネストしている。 </p><p>各事前分布を、 </p><ul class="itemize">
+<li><p><img src="images/img-0060.png" alt="$\beta $" style="vertical-align:-3px; 
+                                     width:10px; 
+                                     height:14px" class="math gen" />s : 無情報事前分布（平たい正規分布） </p></li><li><p><img src="images/img-0077.png" alt="$s$" style="vertical-align:0px; 
+                                     width:7px; 
+                                     height:7px" class="math gen" /> と <img src="images/img-0131.png" alt="$s_ p$" style="vertical-align:-5px; 
+                                     width:15px; 
+                                     height:12px" class="math gen" /> : 無情報事前分布（<img src="images/img-0132.png" alt="$0 - 10^4$" style="vertical-align:0px; 
+                                     width:50px; 
+                                     height:14px" class="math gen" /> までの一様分布） </p></li>
+</ul><p> とする。 </p><h4 id="a0000000146">BUGSのコード</h4>
+<blockquote class="quote"> <small class="small"><pre>
+model{
+  for(i in 1:N.sample){
+    Y[i] ~ dpois(lambda[i]) # モデル分布（ポアソン分布）
+    log(lambda[i]) &lt;- beta1 + beta2 * F[i] + r[i] + rp[Pot[i]] # 対数リンク関数と線形予測子
+  }
+  beta1 ~ dnorm(0, 1.0E-4) # 切片の事前分布
+  beta2 ~ dnorm(0, 1.0E-4) # 傾きの事前分布
+  for(i in 1:N.sample){
+    r[i] ~ dnorm(0, tau[1]) # 個体差の分布
+  }
+  for(j in 1:N.pot){
+    rp[j] ~ dnorm(0, tau[2]) # 場所差の分布
+  }
+  for(k in 1:Ntau){
+    tau[k] &lt;- 1.0 / (s[k]*s[k]) # 個体差・場所差の分布の分散の逆数
+    s[k] ~ dunif(0, 1.0E+4) # 個体差・場所差の標準偏差の事前分布（超事前分布）
+  }
+}
+</pre> </small> </blockquote><ul class="itemize">
+<li><p>BUGSでは因子型変数をそのままあつかえないので、施肥処理 <tt class="ttfamily">F[i]</tt> はダミー変数化しておく必要がある </p></li><li><p>植木鉢の効果 <tt class="ttfamily">rp[j]</tt> は、個体 <img src="images/img-0069.png" alt="$i$" style="vertical-align:0px; 
+                                     width:5px; 
+                                     height:11px" class="math gen" /> が 植木鉢 <img src="images/img-0130.png" alt="$j$" style="vertical-align:-3px; 
+                                     width:7px; 
+                                     height:14px" class="math gen" /> のものであることを <tt class="ttfamily">Pot[i]</tt> で指定しておく必要がある </p></li>
+</ul></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="9 GLMのベイズモデル化と事後分布の推定" href="sect0009.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="データ解析のための統計モデリング入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="空間構造のある階層ベイズモデル" href="sect0011.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">データ解析のための統計モデリング入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0009.html" class="sectref" rel="prev">GLMのベイズモデル化と事後分布の推定</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">データ解析のための統計モデリング入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0011.html" class="sectref" rel="next">空間構造のある階層ベイズモデル</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

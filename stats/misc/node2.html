@@ -1,0 +1,291 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="適合度指標">
+<META NAME="keywords" CONTENT="misc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="misc.css">
+
+<LINK REL="next" HREF="node3.html">
+<LINK REL="previous" HREF="node1.html">
+<LINK REL="up" HREF="misc.html">
+<LINK REL="next" HREF="node3.html">
+<TITLE>適合度指標</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html69"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html67"
+  HREF="misc.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html61"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html70"
+  HREF="node3.html">平均構造のあるモデル</A>
+<B>Up:</B> <A NAME="tex2html68"
+  HREF="misc.html">研究法や分析法に関するメモ</A>
+<B> Previous:</B> <A NAME="tex2html62"
+  HREF="node1.html">レベル１説明変数の中心化（組織効果への応用）</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html71"
+  HREF="node2.html#SECTION00021000000000000000">豊田 (2014) 「R編」第14章</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00020000000000000000">
+適合度指標</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00021000000000000000">
+豊田 (2014) 「R編」第14章</A>
+</H2>
+
+<P>
+関数 <TT>sem(), cfa(), growth(), lavaan()</TT> を利用した場合，結果を関数 <TT>summary()</TT> に渡し引数 <TT>fit.measures=TRUE</TT> にするとよい。
+
+<P>
+<TT>lavaan()</TT> で結果を <TT>fit</TT> に代入している場合，<TT>fitMeasures(fit, fit.measures="all")</TT> で全ての適合度指標が表示される。
+
+<P>
+CFIとRMSEAの組み合わせが現在必要最小限。
+
+<P>
+
+<H3><A NAME="SECTION00021100000000000000">
+推定の尤度にもとづく<SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \chi ^2$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+検定</A>
+</H3>
+
+<P>
+
+<UL>
+<LI><TT>chisq, df, pval</TT>: 検定結果
+</LI>
+<LI><TT>fmin</TT>: <SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \chi ^2$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+値と標本サイズから計算される乖離度。0に近いほど当てはまりが良いとされる絶対的指標だが，判定基準が決まっておらず単体で使用されることはほぼない。
+</LI>
+<LI><TT>cn_05</TT>: ホルターの臨界標本サイズ（Hoelter's critical N, CN）。標本をどこまで小さくすればモデルが棄却されなくなるか。
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00021200000000000000">
+モデルの推定精度にもとづく指標</A>
+</H3>
+
+<P>
+
+<UL>
+<LI><TT>rmr</TT>: RMR
+</LI>
+<LI><TT>srmr</TT>: RMRを標準化したSRMR。SRMR <SPAN CLASS="MATH"><IMG
+ WIDTH="45" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img39.png"
+ ALT="$ &lt; .05$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ が多く利用される。
+</LI>
+<LI><TT>gfi, agfi</TT>: GFI, AGFI。GFI, AGFI <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img40.png"
+ ALT="$ &gt;$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ .95 が多く利用される。検定と同様，標本サイズの影響を受けるので避けるべきとする意見もある。
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00021300000000000000">
+非心度にもとづく指標</A>
+</H3>
+
+<P>
+
+<UL>
+<LI><TT>mfi, rni</TT>: MFI (McDonald's Fit Index), RNI (Relative Noncentrality Index)。大きいほど適合が良い。
+</LI>
+<LI><TT>rmsea</TT>: RMSEA，RMSEA <SPAN CLASS="MATH"><IMG
+ WIDTH="45" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img39.png"
+ ALT="$ &lt; .05$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ で適合よし，RMSEA <SPAN CLASS="MATH"><IMG
+ WIDTH="45" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img41.png"
+ ALT="$ &gt;.10$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ で適合悪し。<TT>rmsea.ci.lower, rmsea.ci.upper</TT> が90%信頼区間，<TT>rmsea.pvalue</TT> が <SPAN CLASS="MATH"><IMG
+ WIDTH="27" HEIGHT="32" ALIGN="MIDDLE" BORDER="0"
+ SRC="img42.png"
+ ALT="$ H_0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+: RMSEA <SPAN CLASS="MATH"><IMG
+ WIDTH="45" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img39.png"
+ ALT="$ &lt; .05$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ の検定結果。
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00021400000000000000">
+独立モデルとの比較による指標</A>
+</H3>
+
+<P>
+独立モデルの適合が良い場合は，あまり大きな値にならない。
+
+<P>
+
+<UL>
+<LI><TT>nfi</TT>: NFI，独立モデルと分析モデルの <SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="37" ALIGN="MIDDLE" BORDER="0"
+ SRC="img1.png"
+ ALT="$ \chi ^2$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+値を比較（標本サイズの影響を受ける）
+</LI>
+<LI><TT>rfi, ifi, nnfi, cfi</TT>: RFI, IFI, NNFI(TLI), CFI，いずれも 0-1（概ね）で，<SPAN CLASS="MATH"><IMG
+ WIDTH="45" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img43.png"
+ ALT="$ &gt;.95$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ が目安。
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00021500000000000000">
+倹約度および情報量規準</A>
+</H3>
+
+<P>
+データは母集団の一部でしかない。
+データに完全に合致したモデルを作ると，母集団の構造とは絶対に合致しない。
+一般化可能性の高いモデルを得るためには，モデルの適合を不必要に上げすぎないという観点も必要。
+
+<P>
+
+<UL>
+<LI>PGFI <TT>pgfi</TT>, PNFI <TT>pnfi</TT>: 大きい方が良いが，基準は決まっていない。
+</LI>
+<LI>AIC <TT>aic</TT>, BIC <TT>bic</TT>, SABIC <TT>bic2</TT>, ECVI <TT>ecvi</TT>: AIC <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img40.png"
+ ALT="$ &gt;$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ SABIC <SPAN CLASS="MATH"><IMG
+ WIDTH="18" HEIGHT="30" ALIGN="MIDDLE" BORDER="0"
+ SRC="img40.png"
+ ALT="$ &gt;$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ BIC の順に倹約度を重視（相対的指標）
+</LI>
+</UL>
+
+<P>
+
+<H3><A NAME="SECTION00021600000000000000">
+モデルの比較</A>
+</H3>
+
+<P>
+モデル同士がネストに関係にある場合，尤度比検定を用いることができる。
+関数 <TT>anova()</TT> で実行。
+
+<P>
+適合度指標ならば，ネスト関係にないモデル同士でも比較できる。（完全に同じデータセットをあてはめた場合）
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html69"
+  HREF="node3.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html67"
+  HREF="misc.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html61"
+  HREF="node1.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html70"
+  HREF="node3.html">平均構造のあるモデル</A>
+<B>Up:</B> <A NAME="tex2html68"
+  HREF="misc.html">研究法や分析法に関するメモ</A>
+<B> Previous:</B> <A NAME="tex2html62"
+  HREF="node1.html">レベル１説明変数の中心化（組織効果への応用）</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-11-24</I>
+</ADDRESS>
+</BODY>
+</HTML>

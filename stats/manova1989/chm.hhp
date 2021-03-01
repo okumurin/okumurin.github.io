@@ -1,0 +1,24 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=manova1989.chm
+Contents file=chm.hhc
+Default Window=Help
+Default topic=index.html
+Display compile progress=Yes
+Error log file=help.log
+Full-text search=Yes
+Index file=chm.hhk
+Language=0x0 
+Title=&#22810;&#22793;&#37327;&#20998;&#25955;&#20998;&#26512;&#65288;SAS&#12395;&#12424;&#12427;&#23455;&#39443;&#12487;&#12540;&#12479;&#12398;&#35299;&#26512;&#65306;&#31532;14&#31456;&#65289;
+
+[WINDOWS]
+Help="&#22810;&#22793;&#37327;&#20998;&#25955;&#20998;&#26512;&#65288;SAS&#12395;&#12424;&#12427;&#23455;&#39443;&#12487;&#12540;&#12479;&#12398;&#35299;&#26512;&#65306;&#31532;14&#31456;&#65289;","chm.hhc","chm.hhk","index.html","index.html",,,,,0x73520,,0x383e,[200,200,1000,800],,,,,,,0
+
+[FILES]
+sect0001.html
+sect0003.html
+index.html
+sect0002.html
+
+
+[MERGE FILES]

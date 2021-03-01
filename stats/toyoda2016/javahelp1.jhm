@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='ISO-8859-1' ?>
+<!DOCTYPE map PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp Map Version 1.0//EN" 
+"http://java.sun.com/products/javahelp/map_1_0.dtd"> 
+<map version="1.0"> 
+<mapid target="toplevelfolder">
+<mapid target="a0000000002" url="sect0001.html"></mapid>
+<mapid target="a0000000003" url="sect0002.html"></mapid>
+<mapid target="a0000000004" url="sect0003.html"></mapid>
+<mapid target="a0000000005" url="sect0004.html"></mapid>
+<mapid target="a0000000006" url="sect0005.html"></mapid>
+<mapid target="a0000000007" url="sect0006.html"></mapid>
+<mapid target="a0000000008" url="sect0007.html"></mapid>
+</mapid>
+</map>

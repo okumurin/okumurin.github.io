@@ -1,0 +1,481 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0008.html" rel="next" />
+<link href="sect0006.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>7 マルチレベルモデルの誤差共分散構造を検討する</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="6 非連続あるいは非線形の変化のモデリング" href="sect0006.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="共分散構造分析を用いて変化のモデリングを行う" href="sect0008.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0006.html" class="sectref" rel="prev">非連続あるいは非線形の変化のモデリング</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0008.html" class="sectref" rel="next">共分散構造分析を用いて変化のモデリングを行う</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000008">7 マルチレベルモデルの誤差共分散構造を検討する</h1>
+<h2 id="a0000000148">7.1 変化についての「標準的な」定式化</h2>
+<p>今、以下のモデルを考える。 </p><table id="a0000000149" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000150">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0091.png" alt="$\displaystyle  Y_{ij} = \pi _{0i} + \pi _{1i} \textit{TIME}_ j + e_{ij}  $" style="vertical-align:-5px; width:196px; 
+                   height:16px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.14</span>)</span></td>
+</tr><tr id="a0000000151">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0092.png" alt="$\displaystyle e_{ij} \overset {\textit{iid}}{\sim } N(0, \sigma ^2_ e) \notag  $" style="vertical-align:-4px; width:104px; 
+                   height:22px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000152">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0093.png" alt="$\displaystyle \pi _{0i} = \gamma _{00} + \gamma _{01} (\textit{COG}_ i-\overline{\textit{COG}}) + \zeta _{0i} \notag  $" style="vertical-align:-4px; width:261px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000153">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0094.png" alt="$\displaystyle \pi _{1i} = \gamma _{10} + \gamma _{11} (\textit{COG}_ i-\overline{\textit{COG}}) + \zeta _{1i} \notag  $" style="vertical-align:-4px; width:261px; 
+                   height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr><tr id="a0000000154">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0095.png" alt="$\displaystyle \begin{bmatrix}  \zeta _{0i} 
+
+\\ \zeta _{1i} 
+
+\end{bmatrix} \overset {\textit{iid}}{\sim } N \left( \begin{bmatrix}  0 
+
+\\ 0 
+
+\end{bmatrix} , \begin{bmatrix}  \sigma _0^2 
+
+&amp;  \sigma _{01} 
+
+\\ \sigma _{10} 
+
+&amp;  \sigma _1^2 
+
+\end{bmatrix} \right) \notag  $" style="vertical-align:-15px; width:214px; 
+                   height:40px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h2 id="a0000000155">7.2 合成モデルにおける誤差分散共分散行列</h2>
+<p>このとき、これを合成モデルで表すと、その確率部分は  </p><table id="a0000000156" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0096.png" alt="\begin{equation}  r_{ij} = [e_{ij} + \zeta _{0i} + \zeta _{1i} \textit{TIME}_ j] \end{equation}" style="width:200px; 
+                            height:18px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.5</span>)</span></td>
+</tr>
+</table><p> となる。 </p><p>すると、<img src="images/img-0097.png" alt="$r_{ij}$" style="vertical-align:-5px; 
+                                     width:17px; 
+                                     height:12px" class="math gen" /> は、個人間では独立であっても、個人内では時点間で相関しており、かつ非等質である。 </p><p>つまり、各個人単位の分散共分散行列を <img src="images/img-0098.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> と表すと、<img src="images/img-0099.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {r}$" style="vertical-align:0px; 
+                                     width:8px; 
+                                     height:7px" class="math gen" /> の分布は  </p><table id="a0000000157" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0100.png" alt="\begin{equation}  \bm@general \boldmath \m@ne \mv@bold \bm@command {r} \sim N \left( \bm@general \boldmath \m@ne \mv@bold \bm@command {0}, \begin{bmatrix}  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r 
+
+&amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {0} 
+
+&amp;  \dots 
+
+&amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {0} 
+
+\\ \bm@general \boldmath \m@ne \mv@bold \bm@command {0} 
+
+&amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r 
+
+&amp;  \dots 
+
+&amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {0} 
+
+\\ \vdots 
+
+&amp;  \vdots 
+
+&amp;  \ddots 
+
+&amp;  \vdots 
+
+\\ \bm@general \boldmath \m@ne \mv@bold \bm@command {0} 
+
+&amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {0} 
+
+&amp;  \dots 
+
+&amp;  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r 
+
+\end{bmatrix} \right) \end{equation}" style="width:241px; 
+                            height:91px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.9</span>)</span></td>
+</tr>
+</table><p> という、ブロック対角行列になる。 </p><h3 id="a0000000158">7.2.1 合成残差の分散</h3>
+<p>分散共分散行列 <img src="images/img-0098.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> の対角部分、つまり残差分散は、  </p><table id="a0000000159" class="eqnarray" cellspacing="0" cellpadding="7" width="100%">
+<tr id="a0000000160">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0101.png" alt="$\displaystyle  \sigma _{r_ j}^2  $" style="vertical-align:-8px; width:20px; 
+                   height:23px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0102.png" alt="$\displaystyle = \textit{Var} (e_{ij} + \zeta _{0i} + \zeta _{1i} t_ j)  $" style="vertical-align:-5px; width:166px; 
+                   height:19px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.11</span>)</span></td>
+</tr><tr id="a0000000161">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:right"><img src="images/img-0103.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px; 
+                   height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle; 
+                                  text-align:left"><img src="images/img-0104.png" alt="$\displaystyle = \left( \sigma _ e^2 + \frac{\sigma _0^2 \sigma _1^2 -\sigma _{01}}{\sigma _1^2} \right) + \sigma _1^2 \left( t_ j + \frac{\sigma _{01}}{\sigma _1^2} \right)^2  $" style="vertical-align:-16px; width:293px; 
+                   height:44px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.12</span>)</span></td>
+</tr>
+</table><p> となり、時間 <img src="images/img-0009.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" /> に対して2次の関係性を持つことになる。 つまり、1つの最小値から放射線状に増加すると仮定していることになる。 </p><h3 id="a0000000162">7.2.2 合成残差の共分散</h3>
+<p>分散共分散行列 <img src="images/img-0098.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> の非対角部分、つまり残差共分散は、 </p><table id="a0000000163" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0105.png" alt="\begin{equation}  \sigma _{r_ j r_{j'}} = \sigma _0^2 + \sigma _{01} (t_ j + t_{j'}) + \sigma _1^2 t_ j t_{j'} \end{equation}" style="width:253px; 
+                            height:23px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>7.13</span>)</span></td>
+</tr>
+</table><p> となり、強い時間依存性を持つことがわかる。 </p><p>もし <img src="images/img-0106.png" alt="$\sigma _0^2 = \sigma _1^2 = \sigma _{01} = 0$" style="vertical-align:-4px; 
+                                     width:133px; 
+                                     height:18px" class="math gen" /> なら、 <img src="images/img-0098.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> は対角行列となり、OLS を当てはめることができる。 </p><p>もし <img src="images/img-0107.png" alt="$\sigma _{01} = 0$" style="vertical-align:-3px; 
+                                     width:53px; 
+                                     height:15px" class="math gen" /> なら、 <img src="images/img-0098.png" alt="$\bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r$" style="vertical-align:-3px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" /> は複合対称性を持つことになる。 </p><h3 id="a0000000164">7.2.3 合成残差の自己相関</h3>
+<p>合成残差の自己相関は、 </p><table id="a0000000165" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0108.png" alt="\begin{equation*}  \rho _{r_ j r_{j'}} = \frac{\sigma _{r_ j r_{j'}}}{\sqrt{\sigma _{r_ j}^2 \sigma _{r_{j'}}^2}} \end{equation*}" style="width:130px; 
+                            height:50px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h2 id="a0000000166">7.3 誤差共分散構造の別の仮定の仕方</h2>
+<h3 id="a0000000167">7.3.1 非構造的誤差共分散行列</h3>
+<p>乖離度統計量は、あらゆる誤差共分散構造の中で常に最小になる。 </p><table id="a0000000168" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0109.png" alt="\begin{equation*}  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r = \begin{bmatrix}  \sigma _1^2 
+
+&amp;  \sigma _{12} 
+
+&amp;  \sigma _{13} 
+
+\\ \sigma _{21} 
+
+&amp;  \sigma _2^2 
+
+&amp;  \sigma _{23} 
+
+\\ \sigma _{31} 
+
+&amp;  \sigma _{32} 
+
+&amp;  \sigma _3^2 
+
+\\ \end{bmatrix}\end{equation*}" style="width:162px; 
+                            height:61px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h3 id="a0000000169">7.3.2 複合対称的誤差共分散行列</h3>
+<p>標準的モデルの特殊ケース。 </p><table id="a0000000170" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0110.png" alt="\begin{equation*}  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r = \begin{bmatrix}  \sigma ^2 + \sigma _1^2 
+
+&amp;  \sigma _1^2 
+
+&amp;  \sigma _1^2 
+
+\\ \sigma _1^2 
+
+&amp;  \sigma ^2 + \sigma _1^2 
+
+&amp; \sigma _1^2 
+
+\\ \sigma _1^2 
+
+&amp;  \sigma _1^2 
+
+&amp;  \sigma ^2 + \sigma _1^2 
+
+\\ \end{bmatrix}\end{equation*}" style="width:258px; 
+                            height:61px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h3 id="a0000000171">7.3.3 異分散複合対称的誤差共分散行列</h3>
+<p>自己相関 <img src="images/img-0111.png" alt="$\rho $" style="vertical-align:-3px; 
+                                     width:9px; 
+                                     height:10px" class="math gen" /> は共通。 各時点における分散が非等質となるため、共分散も非等質となる。 </p><table id="a0000000172" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0112.png" alt="\begin{equation*}  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r = \begin{bmatrix}  \sigma _1^2 
+
+&amp;  \sigma _1 \sigma _2 \rho 
+
+&amp;  \sigma _1 \sigma _3 \rho 
+
+\\ \sigma _2 \sigma _1 \rho 
+
+&amp;  \sigma _2^2 
+
+&amp;  \sigma _2 \sigma _3 \rho 
+
+\\ \sigma _3 \sigma _1 \rho 
+
+&amp;  \sigma _3 \sigma _2 \rho 
+
+&amp;  \sigma _3^2 
+
+\\ \end{bmatrix}\end{equation*}" style="width:219px; 
+                            height:61px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h3 id="a0000000173">7.3.4 （1次の）自己回帰的誤差共分散行列</h3>
+<p> 自由度を相当節約するが、かなり厳しい制約ではある。 </p><table id="a0000000174" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0113.png" alt="\begin{equation*}  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r = \begin{bmatrix}  \sigma ^2 
+
+&amp;  \sigma ^2 \rho 
+
+&amp;  \sigma ^2 \rho ^2 
+
+\\ \sigma ^2 \rho 
+
+&amp;  \sigma ^2 
+
+&amp;  \sigma ^2 \rho 
+
+\\ \sigma ^2 \rho ^2 
+
+&amp;  \sigma ^2 \rho 
+
+&amp;  \sigma ^2 
+
+\\ \end{bmatrix}\end{equation*}" style="width:185px; 
+                            height:61px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h3 id="a0000000175">7.3.5 異分散自己回帰的誤差共分散行列</h3>
+<table id="a0000000176" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0114.png" alt="\begin{equation*}  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r = \begin{bmatrix}  \sigma _1^2 
+
+&amp;  \sigma _1 \sigma _2 \rho 
+
+&amp;  \sigma _1 \sigma _3 \rho ^2 
+
+\\ \sigma _2 \sigma _1 \rho 
+
+&amp;  \sigma _2^2 
+
+&amp;  \sigma _2 \sigma _3 \rho 
+
+\\ \sigma _3 \sigma _1 \rho ^2 
+
+&amp;  \sigma _3 \sigma _2 \rho 
+
+&amp;  \sigma _3^2 
+
+\\ \end{bmatrix}\end{equation*}" style="width:234px; 
+                            height:61px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h3 id="a0000000177">7.3.6 トープリッツ誤差共分散行列</h3>
+<p>自己回帰的であるが、対角成分に対する各帯は同一比に制約されない。 </p><table id="a0000000178" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0115.png" alt="\begin{equation*}  \bm@general \boldmath \m@ne \mv@bold \bm@command {\Sigma }_ r = \begin{bmatrix}  \sigma ^2 
+
+&amp;  \sigma _{1} 
+
+&amp;  \sigma _{2} 
+
+\\ \sigma _{1} 
+
+&amp;  \sigma ^2 
+
+&amp;  \sigma _{1} 
+
+\\ \sigma _{2} 
+
+&amp;  \sigma _{1} 
+
+&amp;  \sigma ^2 
+
+\\ \end{bmatrix}\end{equation*}" style="width:144px; 
+                            height:61px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%">&nbsp;</td>
+</tr>
+</table><h3 id="a0000000179">7.3.7 「正しい」誤差共分散構造を選ぶことは本当に重要なのか？</h3>
+<ul class="itemize">
+<li><p>誤差構造に何を選ぶかに関わらず、固定効果のパラメータ推定値を本質的に変化させることは滅多にない </p></li><li><p>誤差共分散構造についての仮説を洗練させることは、固定効果の推定精度に影響を与える </p></li>
+</ul></div>
+
+
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="6 非連続あるいは非線形の変化のモデリング" href="sect0006.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="共分散構造分析を用いて変化のモデリングを行う" href="sect0008.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0006.html" class="sectref" rel="prev">非連続あるいは非線形の変化のモデリング</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0008.html" class="sectref" rel="next">共分散構造分析を用いて変化のモデリングを行う</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

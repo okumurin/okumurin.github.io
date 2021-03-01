@@ -1,0 +1,212 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="LOCF解析とITT分析">
+<META NAME="keywords" CONTENT="misc">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="misc.css">
+
+<LINK REL="next" HREF="node5.html">
+<LINK REL="previous" HREF="node3.html">
+<LINK REL="up" HREF="misc.html">
+<LINK REL="next" HREF="node5.html">
+<TITLE>LOCF解析とITT分析</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html93"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html91"
+  HREF="misc.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html85"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html94"
+  HREF="node5.html">一対比較法や順位法のためのIRTモデル</A>
+<B>Up:</B> <A NAME="tex2html92"
+  HREF="misc.html">研究法や分析法に関するメモ</A>
+<B> Previous:</B> <A NAME="tex2html86"
+  HREF="node3.html">平均構造のあるモデル</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html95"
+  HREF="node4.html#SECTION00041000000000000000">LOCF解析</A>
+<LI><A NAME="tex2html96"
+  HREF="node4.html#SECTION00042000000000000000">ITT分析</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00040000000000000000">
+LOCF解析とITT分析</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00041000000000000000">
+LOCF解析</A>
+</H2>
+
+<P>
+LOCF解析（last observation carried forward analysis）は，臨床試験における欠測データの処理方法の1つであり，欠測データを直近の先行観測値で補完して解析する方法である。
+以下，外部サイト<A NAME="tex2html11"
+  HREF="footnode.html#foot302"><SUP><SPAN CLASS="arabic">9</SPAN></SUP></A>より引用。
+<BLOCKQUOTE>
+LOCF解析は，欠測データを直近の先行観測値で補完して解析する方法である。
+たとえば，投与開始時から1週間ごとに4週目まで血圧を測定する場合を考える。
+4週目の測定値がない被験者は3週目の測定値があれば，4週目を3週目の測定値で代用する。
+もし，3週目から4週目の間で，血圧の経時的な推移が，ほぼ一定であると仮定できればよいが，増加傾向や減少傾向が疑われる場合には問題がある。
+
+</BLOCKQUOTE>
+
+<P>
+なお，ベースラインデータで欠測データを補完する方法は<SPAN  CLASS="textbf">BOCF解析（baseline observation carried forward analysis）</SPAN>と呼ばれる。
+
+<P>
+臨床試験におけるガイドラインについては，厚生労働省による<SPAN  CLASS="textbf">「臨床試験のための統計的原則」について（医薬審 第1047号, 平成10年11月30日）(1998)</SPAN><A NAME="tex2html12"
+  HREF="footnode.html#foot307"><SUP><SPAN CLASS="arabic">10</SPAN></SUP></A>を参照のこと。
+
+<P>
+
+<H2><A NAME="SECTION00042000000000000000">
+ITT分析</A>
+</H2>
+
+<P>
+臨床試験においては，諸般の事由から当初割り当てた条件を途中で中断したり別の条件に変更したりすることが生じる。
+
+<P>
+例えば，新しい治療と標準的治療の効果を比較しようとする場合に，
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">群</TD>
+<TD ALIGN="LEFT">治療</TD>
+</TR>
+<TR><TD ALIGN="CENTER">A</TD>
+<TD ALIGN="LEFT">新しい治療 <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img38.png"
+ ALT="$ \rightarrow$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ そのまま新しい治療を継続</TD>
+</TR>
+<TR><TD ALIGN="CENTER">B</TD>
+<TD ALIGN="LEFT">新しい治療 <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img38.png"
+ ALT="$ \rightarrow$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ 標準的治療に変更</TD>
+</TR>
+<TR><TD ALIGN="CENTER">C</TD>
+<TD ALIGN="LEFT">標準的治療 <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img38.png"
+ ALT="$ \rightarrow$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ そのまま標準的治療を継続</TD>
+</TR>
+<TR><TD ALIGN="CENTER">D</TD>
+<TD ALIGN="LEFT">標準的治療 <!-- MATH
+ $\rightarrow$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="22" HEIGHT="16" ALIGN="BOTTOM" BORDER="0"
+ SRC="img38.png"
+ ALT="$ \rightarrow$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ 新しい治療に変更</TD>
+</TR>
+</TABLE>
+</DIV>
+といったように当初の割り当て通りにいかない被験者が発生する場合がある。
+
+<P>
+ITT分析（intention-to-treat analysis）とは，対象者が実際に割り付けられた治療を完結したか，あるいは実際にはじめから受けたか どうかにかかわらず，当初割り付けた群にしたがって分析すること<A NAME="tex2html13"
+  HREF="footnode.html#foot314"><SUP><SPAN CLASS="arabic">11</SPAN></SUP></A>である。
+
+<P>
+つまり，
+<DIV ALIGN="CENTER">
+[A+B群] と [C+D群]
+
+</DIV>
+の比較を行う。
+
+<P>
+上記外部サイト<A NAME="tex2html14"
+  HREF="footnode.html#foot317"><SUP><SPAN CLASS="arabic">12</SPAN></SUP></A>によれば，
+<BLOCKQUOTE>
+対象者が最初に無作為に割り当てた治療方針に従わなかったのには何らかの 理由があるためであり、intention-to-treatに従って分析するということは、治療そのものというよりは、そのマイナスの治療効果も含めて「治療方針」を比較しているものであり、この治療方針の効果は「実践的な治療効果」ともよばれています。医療・保健機関として実際に知りたいのは、その治療を実施する際のサービスそのものに対する実践的な治療効果であり、むしろIntention-to-treat分析を行うほうが実用的といえます。 
+
+</BLOCKQUOTE>
+とされる。
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html93"
+  HREF="node5.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html91"
+  HREF="misc.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html85"
+  HREF="node3.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html94"
+  HREF="node5.html">一対比較法や順位法のためのIRTモデル</A>
+<B>Up:</B> <A NAME="tex2html92"
+  HREF="misc.html">研究法や分析法に関するメモ</A>
+<B> Previous:</B> <A NAME="tex2html86"
+  HREF="node3.html">平均構造のあるモデル</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-11-24</I>
+</ADDRESS>
+</BODY>
+</HTML>

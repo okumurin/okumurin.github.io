@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="縦断データの分析" rel="start" />
+<link href="index.html" title="縦断データの分析" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0004.html" rel="next" />
+<link href="sect0002.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>3 変化についてのマルチレベルモデルの紹介</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="2 時間についての縦断データの探索" href="sect0002.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="変化についてのマルチレベルモデルのデータ分析" href="sect0004.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0002.html" class="sectref" rel="prev">時間についての縦断データの探索</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0004.html" class="sectref" rel="next">変化についてのマルチレベルモデルのデータ分析</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000004">3 変化についてのマルチレベルモデルの紹介</h1>
+<h2 id="a0000000034">3.4 変化についてのマルチレベルモデルをデータに当てはめる</h2>
+<h3 id="a0000000035">3.4.1 最尤推定法の利点</h3>
+<ol class="enumerate">
+<li value="1"><p>漸近的に不偏 </p></li><li value="2"><p>漸近的に正規分布に従う </p></li><li value="3"><p>漸近的に有効（他の方法で求められたものよりも標準誤差が小さい） </p></li><li value="4"><p>ML 推定量の任意の関数もまた ML 推定量である </p></li>
+</ol><p>また、 </p><ul class="itemize">
+<li><p>釣り合い型デザイン </p></li><li><p>測定時点が計画的で欠測値がない </p></li><li><p>レベル２の各式で同じ予測変数が使われている </p></li>
+</ul><p> ならば、制限付き ML は小標本に対しても上記の性質は<b class="bfseries">漸近的にではなく</b>正確に当てはまる。 </p><h2 id="a0000000036">3.5 推定された固定効果の検討</h2>
+<p>最尤法によって推定を行なった場合、固定効果に関する帰無仮説 <img src="images/img-0007.png" alt="$H_0: \gamma =0$" style="vertical-align:-3px; 
+                                     width:74px; 
+                                     height:15px" class="math gen" /> の一母数検定は、漸近的な標準誤差を用いた検定統計量 </p><table id="a0000000037" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0008.png" alt="\begin{equation}  z = \frac{\hat{\gamma }}{\textit{ase}(\hat{\gamma })} \end{equation}" style="width:79px; 
+                            height:39px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.3</span>)</span></td>
+</tr>
+</table><p> によって行う<a href="#a0000000038" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><p>ソフトウェアによって、同じ検定量が 準 <img src="images/img-0009.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" /> 統計量、 <img src="images/img-0009.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" /> 統計量、<img src="images/img-0009.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" /> 比などと表記が異なる<a href="#a0000000039" class="footnote"><sup class="footnotemark">2</sup></a>。 </p><h2 id="a0000000040">3.6 推定された分散成分の検討</h2>
+<p>最尤法によって推定を行なった場合、固定効果に関する帰無仮説 <img src="images/img-0010.png" alt="$H_0: \sigma ^2=0$" style="vertical-align:-3px; 
+                                     width:82px; 
+                                     height:17px" class="math gen" /> の一母数検定は、漸近的な標準誤差を用いた検定統計量 </p><table id="a0000000041" class="equation" width="100%" cellspacing="0" cellpadding="7">
+<tr>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td><img src="images/img-0011.png" alt="\begin{equation}  z = \frac{\hat{\sigma }^2}{\textit{ase}(\hat{\sigma }^2)} \end{equation}" style="width:87px; 
+                            height:41px" class="math gen" /></td>
+    
+    <td style="width:40%">&nbsp;</td>
+    <td class="eqnnum" style="width:20%"><span>(<span>3.4</span>)</span></td>
+</tr>
+</table><p> もしくはこれを２乗した <img src="images/img-0012.png" alt="$\chi ^2$" style="vertical-align:-3px; 
+                                     width:16px; 
+                                     height:17px" class="math gen" /> 統計量によって行われる。 </p><p>ただし、この方法は </p><ul class="itemize">
+<li><p>正規性からの逸脱に敏感 </p></li><li><p>標本サイズやバランスの不釣り合い（個人ごとに測定回数が異なる） </p></li>
+</ul><p> の影響を受けやすく、使用されるべきではないと指摘する研究者もいる<a href="#a0000000042" class="footnote"><sup class="footnotemark">3</sup></a>。 </p></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000038">ただし、この検定の性質については漸近的にしか明らかにされていない。</li><li id="a0000000039">制限付き ML が正確検定になる条件のもとではこれは正確に <img src="images/img-0009.png" alt="$t$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:10px" class="math gen" /> 統計量としての性質を持つ。</li><li id="a0000000042">Miller (1986); Raudenbush &amp; Bryk (2002); Longford (1999)</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="2 時間についての縦断データの探索" href="sect0002.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="縦断データの分析" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="変化についてのマルチレベルモデルのデータ分析" href="sect0004.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">縦断データの分析</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0002.html" class="sectref" rel="prev">時間についての縦断データの探索</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">縦断データの分析</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0004.html" class="sectref" rel="next">変化についてのマルチレベルモデルのデータ分析</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

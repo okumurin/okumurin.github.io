@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css" />
+<link rel="shortcut icon" href="icons/pyfav.png" type="image/png" />
+<link href="index.html" title="心理学のためのサンプルサイズ設計入門" rel="start" />
+<link href="index.html" title="心理学のためのサンプルサイズ設計入門" rel="first" />
+<link href="index.html" rel="contents" title="Contents" />
+<link rel="index" title="Index" />
+<link href="sect0004.html" rel="next" />
+<link href="sect0002.html" rel="prev" />
+<link href="index.html" rel="parent" />
+<meta name="aesop" content="information" />
+<title>4 認知心理学研究におけるサンプルサイズ設計（井関）</title>
+</head>
+<body>
+<div class="navigation">
+<div id="top-navigation-panel" xml:id="top-navigation-panel">
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 信頼区間に基づくサンプルサイズ設計（石井）" href="sect0002.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="心理学のためのサンプルサイズ設計入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="臨床心理学研究におけるサンプルサイズ設計（国里）" href="sect0004.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">心理学のためのサンプルサイズ設計入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0002.html" class="sectref" rel="prev">信頼区間に基づくサンプルサイズ設計（石井）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">心理学のためのサンプルサイズ設計入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0004.html" class="sectref" rel="next">臨床心理学研究におけるサンプルサイズ設計（国里）</a></span>
+</div>
+<hr /></div>
+</div>
+
+
+
+<div><h1 id="a0000000004">4 認知心理学研究におけるサンプルサイズ設計（井関）</h1>
+<h2 id="a0000000039">4.2 既存の検定力分析の枠組みの限界</h2>
+<h3 id="a0000000040">デザインの複雑さに関する認識が研究領域としての統計学とユーザとしての心理学者の間で違っている</h3>
+<ul class="itemize">
+<li><p>心理学の論文では、2-3要因は当たり前、4-5要因も見かける </p></li><li><p>統計学の論文では、1要因の被験者間バランスデザインを想定したものが多く、2要因混合デザインですら複雑なものに相当する </p><ul class="itemize">
+<li><p>主効果と交互作用の違い、アンバランスデザイン、等分散性の仮定、球面性の仮定、など統計的な懸案事項が山ほどある </p></li>
+</ul></li>
+</ul><h3 id="a0000000041">繰り返しに対する扱いの問題</h3>
+<p>同条件下で異なる刺激の提示を被験者内で繰り返した場合、測定値を平均して分析にかけることが多い。 </p><p><img src="images/img-0001.png" alt="$\rightarrow $" style="vertical-align:0px; 
+                                     width:15px; 
+                                     height:9px" class="math gen" /> 「繰り返し」数は結局のところ「サンプルサイズ」としての単位には含まれず、被験者の人数のみが問題とされる。 </p><h2 id="a0000000042">4.3 一般的ANOVAデザインにおける検定力分析</h2>
+<h3 id="a0000000043">4.3.1 PANGEA</h3>
+<p>Westfall (2016) による<i class="itshape">PANGEA</i> (Power ANalysis fo GEneral Anova desings) <a href="#a0000000044" class="footnote"><sup class="footnotemark">1</sup></a> <span class="cite">[<a href="sect0006.html#westfall2016">8</a>]</span> </p><p>以下のものはすべて要因として扱う： </p><ul class="itemize">
+<li><p>研究者にとって主要な関心のある変数（群、条件の別など） </p></li><li><p>従属変数のばらつきを説明しそうな他のグループ変数（参加者、材料の違いなど） </p></li>
+</ul><p>例えば、A群とB群のいずれかに割り付けられた被験者について、いずれの群も刺激PとQが提示されるが、材料XとYは群間でカウンターバランスを取って提示したとする。 この場合、被験者は（いずれかの群にしか所属しないので）群要因にネストし、 材料も（群AにはX、群BにはYというようになっているので）群要因にネストしており、群要因と刺激要因はクロスしていることになる。 </p><div class="table"> <center> <table class="tabular" cellspacing="0">
+<tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p>被験者 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 群 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 刺激 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> 材料 </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p>1 </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> A </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> P, Q </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> X </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:center"><p>2 </p></td>
+
+    
+    <td style="text-align:center"><p> A </p></td>
+
+    
+    <td style="text-align:center"><p> P, Q </p></td>
+
+    
+    <td style="text-align:center"><p> X </p></td>
+
+</tr><tr>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+    
+    <td style="text-align:center">&nbsp;</td>
+
+</tr><tr>
+
+    
+    <td style="text-align:center"><p><img src="images/img-0055.png" alt="$N-1$" style="vertical-align:0px; 
+                                     width:42px; 
+                                     height:12px" class="math gen" /> </p></td>
+
+    
+    <td style="text-align:center"><p> B </p></td>
+
+    
+    <td style="text-align:center"><p> P, Q </p></td>
+
+    
+    <td style="text-align:center"><p> Y </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p>N </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> B </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> P, Q </p></td>
+
+    
+    <td style="border-bottom-width:1px; border-bottom-color:black; border-bottom-style:solid; text-align:center"><p> Y </p></td>
+
+</tr>
+</table> </center> </div><p>通常であれば、このデザインは一要因被験者内計画（刺激要因の水準P, Qを被験者内で操作）として扱われることが一般的だが、実際はもっと複雑。 </p><h3 id="a0000000045">4.3.3 固定要因と変量要因</h3>
+<p>Westfall, Judd, &amp; Kenny (2015) は、固定要因と変量要因を区別するための経験則として、追試するときに変えても良いと思えるかどうかで判断するという方法を提案。<span class="cite">[<a href="sect0006.html#westfall2015">9</a>]</span> </p><p>さらに複雑なデザインについては、Judd, Westfall, &amp; Kenny (2017) を参照。<span class="cite">[<a href="sect0006.html#judd2017">2</a>]</span> </p><h3 id="a0000000046">4.3.4 繰り返し</h3>
+<p>PANGEAでは、固定効果も変量効果も含むすべての要因を組み合わせた際の各セルの観測数を繰り返しという。 </p><h2 id="a0000000047">4.4 PANGEA</h2>
+<h3 id="a0000000048">4.4.8 実験パラメータの設定</h3>
+<ul class="itemize">
+<li><p>効果量 </p><ul class="itemize">
+<li><p>Cohenの<img src="images/img-0056.png" alt="$d=0.45$" style="vertical-align:0px; 
+                                     width:59px; 
+                                     height:13px" class="math gen" />がデフォルトで入っている<a href="#a0000000049" class="footnote"><sup class="footnotemark">2</sup></a> </p></li>
+</ul></li><li><p>サンプルサイズ </p></li><li><p>繰り返し数 </p></li><li><p><b class="bfseries">分散分割係数</b> <i class="itshape">variance partitioning coefficient</i> </p><ul class="itemize">
+<li><p>複数の変量要因が含まれる場合の、変量要因の分散の割合（変量要因の主効果、変量要因同士の交互作用、固定効果と変量要因の交互作用） </p></li><li><p>デフォルトでは、低次の要因ほど多くの分散が割り当てられる </p></li>
+</ul></li>
+</ul><p>効果量の値をわずかに変更しただけでも、検定力にかなりの影響が出る。 </p><h2 id="a0000000050">4.5 今後の課題とまとめ</h2>
+<ul class="itemize">
+<li><p>PANGEAは混合モデルを用いた分散分析を想定している </p></li><li><p>効果量を設定する際に関連する現象を全く見いだせないとしたら、それは研究しようとしている効果や現象を既存の研究の文脈に適切に位置づけられていないからではないか </p></li>
+</ul></div>
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000044">https://jakewestfall.shinyapps.io/pangea/</li><li id="a0000000049">社会心理学分野の大規模なメタ分析（Richard, Bond Jr., &amp; Stokes-Zoota, 2003）<span class="cite">[<a href="sect0006.html#richard2003">4</a>]</span> の結果に基づく。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<div class="online-navigation">
+<hr />
+<table align="center" width="100%" cellpadding="0" cellspacing="2">
+<tr>
+<td class="online-navigation"><a title="3 信頼区間に基づくサンプルサイズ設計（石井）" href="sect0002.html" rel="prev"><img src="icons/previous.png" border="0" height="32" alt="Previous Page" width="32" /></a></td>
+<td class="online-navigation"><a title="心理学のためのサンプルサイズ設計入門" href="index.html" rel="parent"><img src="icons/up.png" border="0" height="32" alt="Up One Level" width="32" /></a></td>
+<td class="online-navigation"><a title="臨床心理学研究におけるサンプルサイズ設計（国里）" href="sect0004.html" rel="next"><img src="icons/next.png" border="0" height="32" alt="Next Page" width="32" /></a></td>
+<td align="center" width="100%">心理学のためのサンプルサイズ設計入門</td>
+<td class="online-navigation"><a href="index.html" rel="contents" title="Table of Contents"><img src="icons/contents.png" border="0" height="32" alt="Contents" width="32" /></a></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" alt="" width="32" /></td>
+<td class="online-navigation"><img src="icons/blank.png" border="0" height="32" width="32" /></td>
+</tr></table>
+<div class="online-navigation">
+<span><b class="navlabel">Previous:</b>
+<a href="sect0002.html" class="sectref" rel="prev">信頼区間に基づくサンプルサイズ設計（石井）</a></span>
+<span><b class="navlabel">Up:</b>
+<a href="index.html" class="sectref" rel="parent">心理学のためのサンプルサイズ設計入門</a></span>
+<span><b class="navlabel">Next:</b>
+<a href="sect0004.html" class="sectref" rel="next">臨床心理学研究におけるサンプルサイズ設計（国里）</a></span>
+</div>
+</div>
+<hr />
+<!--
+<span class="release-info">Release 2.4.3, documentation updated on 29 March 2006.</span>
+-->
+</div>
+<!--End of Navigation Panel-->
+<!--
+<address>
+See <i><a href="about.html">About this document...</a></i> for information on suggesting changes.
+</address>
+-->
+</body>
+</html>

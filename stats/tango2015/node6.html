@@ -1,0 +1,1089 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+
+<!--Converted with jLaTeX2HTML 2016 (1.71) JA patch-2.1beta1.16
+patched version by:  Kenshi Muto, Debian Project.
+* modified by:  Shige TAKENO
+LaTeX2HTML 2016 (1.71),
+original version by:  Nikos Drakos, CBLU, University of Leeds
+* revised and updated by:  Marcus Hennecke, Ross Moore, Herb Swan
+* with significant contributions from:
+  Jens Lippmann, Marek Rouchal, Martin Wilck and others -->
+<HTML>
+<HEAD>
+
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
+<META NAME="Generator" CONTENT="jLaTeX2HTML v2016 JA patch-2.1beta1.16">
+<META HTTP-EQUIV="Content-Style-Type" CONTENT="text/css">
+<META NAME="description" CONTENT="臨床試験への混合効果モデル：ロジスティック回帰モデル">
+<META NAME="keywords" CONTENT="tango2015">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+
+<LINK REL="STYLESHEET" HREF="tango2015.css">
+
+<LINK REL="next" HREF="node7.html">
+<LINK REL="previous" HREF="node5.html">
+<LINK REL="up" HREF="tango2015.html">
+<LINK REL="next" HREF="node7.html">
+<TITLE>臨床試験への混合効果モデル：ロジスティック回帰モデル</TITLE>
+
+</HEAD>
+
+<BODY >
+
+<DIV CLASS="navigation">
+<A NAME="tex2html87"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html85"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html79"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html88"
+  HREF="node7.html">臨床試験への混合効果モデル：ポアソン回帰モデル</A>
+<B>Up:</B> <A NAME="tex2html86"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html80"
+  HREF="node5.html">臨床試験への混合効果モデル：正規線形回帰モデル</A>
+<BR> <P>
+</DIV>
+<!--End of Navigation Panel-->
+<!--Table of Child-Links-->
+<A NAME="CHILD_LINKS"><STRONG>Subsections</STRONG></A>
+
+<UL CLASS="ChildLinks">
+<LI><A NAME="tex2html89"
+  HREF="node6.html#SECTION00081000000000000000">データ</A>
+<LI><A NAME="tex2html90"
+  HREF="node6.html#SECTION00082000000000000000">治療効果が時点によって変化するRMモデル</A>
+<LI><A NAME="tex2html91"
+  HREF="node6.html#SECTION00083000000000000000">治療期間中の治療効果一定を仮定するRMモデル</A>
+<LI><A NAME="tex2html92"
+  HREF="node6.html#SECTION00084000000000000000">ベースライン調整のANCOVA型モデル</A>
+</UL>
+<!--End of Table of Child-Links-->
+<HR>
+
+<H1><A NAME="SECTION00080000000000000000">
+臨床試験への混合効果モデル：ロジスティック回帰モデル</A>
+</H1>
+
+<P>
+
+<H2><A NAME="SECTION00081000000000000000">
+データ</A>
+</H2>
+
+<P><PRE>
+&gt; ### 第8章：ロジスティック回帰モデル
+&gt; # データ
+&gt; data("respiratory", package="HSAUR2")
+&gt; data8.1 &lt;- respiratory
+&gt; data8.1$treatment &lt;- (data8.1$treatment=="treatment")*1
+&gt; data8.1$gender &lt;- (data8.1$gender=="male")*1
+&gt; data8.1$status &lt;- (data8.1$status=="good")*1
+&gt; head(data8.1)
+    centre treatment gender age status month subject
+1        1         0      0  46      0     0       1
+112      1         0      0  46      0     1       1
+223      1         0      0  46      0     2       1
+334      1         0      0  46      0     3       1
+445      1         0      0  46      0     4       1
+2        1         0      0  28      0     0       2
+
+&gt; # 各時点でstatus=1となるオッズ比
+&gt; (tab8.1.1 &lt;- xtabs(~status+month, data=data8.1[data8.1$treatment==1,]))
+      month
+status  0  1  2  3  4
+     0 30 17 16 15 20
+     1 24 37 38 39 34
+&gt; (tab8.1.0 &lt;- xtabs(~status+month, data=data8.1[data8.1$treatment==0,]))
+      month
+status  0  1  2  3  4
+     0 31 29 35 31 32
+     1 26 28 22 26 25
+&gt; (odds8.1.1 &lt;- apply(tab8.1.1, 2, function(x){return(x[2]/x[1])})) # Treatment
+       0        1        2        3        4 
+0.800000 2.176471 2.375000 2.600000 1.700000 
+&gt; (odds8.1.0 &lt;- apply(tab8.1.0, 2, function(x){return(x[2]/x[1])})) # Placebo
+        0         1         2         3         4 
+0.8387097 0.9655172 0.6285714 0.8387097 0.7812500
+</PRE>
+
+<P>
+ベースライン時点に対するオッズ比を群ごとに示したものが下の図。
+これは<SPAN  CLASS="textbf">母集団平均モデル</SPAN>の考え方。
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="473" HEIGHT="257" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig8_1.png"
+ ALT="Image fig8_1">
+
+</DIV>
+
+<P>
+
+<H2><A NAME="SECTION00082000000000000000">
+治療効果が時点によって変化するRMモデル</A>
+</H2>
+
+<P>
+
+<H4><A NAME="SECTION00082010000000000000">
+モデルI</A>
+</H4>
+
+<P>
+ベースライン時点での個人差 <SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img95.png"
+ ALT="$ b_{0i}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ が与えられた下で <SPAN CLASS="MATH"><IMG
+ WIDTH="52" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img147.png"
+ ALT="$ y_{ij}=1$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ となる条件付き確率のロジットをモデル化する。
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\text{logit} \text{Pr} (y_{ij}=1 | b_{0i}) = \beta_0 + b_{0i} + \beta_1 x_{1i} + \sum_{k=1}^T \beta_{2k} z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}^t \bm{\xi}+ \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+logit&nbsp; &nbsp;Pr<IMG
+ WIDTH="512" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img148.png"
+ ALT="$\displaystyle (y_{ij}=1 \vert b_{0i}) = \beta_0 + b_{0i} + \beta_1 x_{1i} + \su...
+...ij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}^t \bm{\xi}+ \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+b_{0i} \sim N(0, \sigma^2_{B0})
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="112" HEIGHT="35" ALIGN="MIDDLE" BORDER="0"
+ SRC="img149.png"
+ ALT="$\displaystyle b_{0i} \sim N(0, \sigma^2_{B0})$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+ただし，<SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img128.png"
+ ALT="$ \bm{w}_i'$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+は共変量ベクトルであり，
+<P><!-- MATH
+ \begin{displaymath}
+x_{1i} = \text{treatment (1 or 0)}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="42" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img129.png"
+ ALT="$\displaystyle x_{1i} =$">&nbsp; &nbsp;treatment (1 or 0)
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+z_{kij} = \begin{cases}1 & k=j \\0 & k \neq j \end{cases}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="128" HEIGHT="73" ALIGN="MIDDLE" BORDER="0"
+ SRC="img130.png"
+ ALT="$\displaystyle z_{kij} = \begin{cases}1 &amp; k=j  0 &amp; k \neq j \end{cases}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+とする。
+
+<P>
+このとき，共変量が全て同じ値の個人について，
+
+<UL>
+<LI><!-- MATH
+ $\exp (\beta_{2j})$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="63" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img150.png"
+ ALT="$ \exp (\beta_{2j})$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+: プラセボ群における各時点のベースラインに対するオッズ比
+</LI>
+<LI><!-- MATH
+ $\exp (\beta_{2j} + \beta_{3j})$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="104" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img151.png"
+ ALT="$ \exp (\beta_{2j} + \beta_{3j})$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+: 新薬群における各時点のベースラインに対するオッズ比
+</LI>
+</UL>
+である。
+
+<H4><A NAME="SECTION00082020000000000000">
+モデルII</A>
+</H4> 時点にかかわらず治療効果に一定の個人差を認めるモデル。
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\text{logit} \text{Pr} (y_{ij}=1 | b_{0i}, b_{1i}) = \beta_0 + b_{0i} + b_{1i} x_{2ij} + \beta_1 x_{1i} + \sum_{k=1}^T \beta_{2k} z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}^t \bm{\xi}+ \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+logit&nbsp; &nbsp;Pr<IMG
+ WIDTH="603" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img152.png"
+ ALT="$\displaystyle (y_{ij}=1 \vert b_{0i}, b_{1i}) = \beta_0 + b_{0i} + b_{1i} x_{2i...
+...ij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}^t \bm{\xi}+ \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+(b_{0i}, b_{1i}) \sim N(\bm{0}, \bm{\Phi})
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="138" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img153.png"
+ ALT="$\displaystyle (b_{0i}, b_{1i}) \sim N(\bm{0}, \bm{\Phi})$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+ただし，
+<P><!-- MATH
+ \begin{displaymath}
+x_{2ij} =  \begin{cases}1 & j > 0 \\0 & j = 0 \end{cases}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="129" HEIGHT="73" ALIGN="MIDDLE" BORDER="0"
+ SRC="img132.png"
+ ALT="$\displaystyle x_{2ij} = \begin{cases}1 &amp; j &gt; 0  0 &amp; j = 0 \end{cases}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+とする。
+
+<P>
+
+<H4><A NAME="SECTION00082030000000000000">
+モデルIII</A>
+</H4> 治療効果への個人差の大きさも時点ごとに変化するモデル。
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\text{logit} \text{Pr} (y_{ij}=1 | \bm{b}_{0i}) = \beta_0 + b_{0i} + \beta_1 x_{1i} + \sum_{k=1}^T (\beta_{2k} + b_{1ik})  z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}^t \bm{\xi}+ \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+logit&nbsp; &nbsp;Pr<IMG
+ WIDTH="569" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img154.png"
+ ALT="$\displaystyle (y_{ij}=1 \vert \bm{b}_{0i}) = \beta_0 + b_{0i} + \beta_1 x_{1i} ...
+...ij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}^t \bm{\xi}+ \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+<P><!-- MATH
+ \begin{displaymath}
+\bm{b}_{i} \sim N(\bm{0}, \bm{\Phi})
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="95" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img155.png"
+ ALT="$\displaystyle \bm{b}_{i} \sim N(\bm{0}, \bm{\Phi})$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+<BLOCKQUOTE>
+<SPAN  CLASS="textbf">RによるモデルIの推定</SPAN>
+</BLOCKQUOTE>
+<UL>
+<LI><TT>glmmML()</TT> と <TT>glmer</TT> ともに，カテゴリカルな説明変数については <TT>dummy()</TT> でダミーコード化しないとおかしな結果になる
+</LI>
+<LI><TT>glmmML()</TT> ではガウス・エルミート求積を選択，求積点を20として分析（テキストに合わせた）
+</LI>
+<LI><TT>glmer()</TT> では推定方法を工夫しても収束しない。
+</LI>
+<LI><TT>glmmML()</TT> では，<TT>glht()</TT> による多重比較が行えない。<TT>glmer()</TT> なら行える。
+</LI>
+</UL>
+<P><PRE>
+&gt; # モデルI（ベースラインの個人差のみ考慮）
+&gt; library(glmmML)
+&gt; library(lme4)
+&gt; library(multcomp)
+&gt; fit8.1 &lt;- glmmML(status~centre+gender+age+treatment*dummy(month), 
++                 cluster=subject, data=data8.1, 
++                 na.action=na.omit, family=binomial, 
++                 method="ghq", n.points=20) # ガウスエルミート求積，20ポイント
+&gt; summary(fit8.1)
+
+Call:  glmmML(formula = status ~ centre + gender + age + treatment *      
+dummy(month), family = binomial, data = data8.1, cluster = subject,      
+na.action = na.omit, method = "ghq", n.points = 20) 
+
+
+                              coef se(coef)          z Pr(&gt;|z|)
+(Intercept)             -2.813e-01  0.86030 -0.3269242 0.744000
+centre2                  2.029e+00  0.59084  3.4340880 0.000595
+gender                  -4.157e-01  0.73973 -0.5619094 0.574000
+age                     -3.024e-02  0.02192 -1.3794655 0.168000
+treatment               -1.785e-01  0.73627 -0.2424255 0.808000
+dummy(month)1            2.781e-01  0.52785  0.5269232 0.598000
+dummy(month)2           -5.593e-01  0.53166 -1.0520373 0.293000
+dummy(month)3           -7.339e-05  0.52692 -0.0001393 1.000000
+dummy(month)4           -1.390e-01  0.52727 -0.2637116 0.792000
+treatment:dummy(month)1  1.718e+00  0.79176  2.1695760 0.030000
+treatment:dummy(month)2  2.728e+00  0.80816  3.3760574 0.000735
+treatment:dummy(month)3  2.348e+00  0.80803  2.9060745 0.003660
+treatment:dummy(month)4  1.641e+00  0.77807  2.1095096 0.034900
+
+Scale parameter in mixing distribution:  2.443 gaussian 
+Std. Error:                              0.3405 
+
+        LR p-value for H_0: sigma = 0:  6.793e-30 
+
+Residual deviance: 565.9 on 541 degrees of freedom 	AIC: 593.9 
+
+&gt; fit8.1 &lt;- glmer(status~centre+gender+age+treatment*dummy(month)+(1|subject), data=data8.1,
++                 na.action=na.omit, family=binomial, 
++                 glmerControl(optimizer = c("bobyqa", "Nelder_Mead")))
+ 警告メッセージ: 
+ checkConv(attr(opt, "derivs"), opt$par, ctrl = control$checkConv,  で: 
+  Model failed to converge with max|grad| = 0.0216601 (tol = 0.001, component 1)
+&gt; summary(fit8.1)
+Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: status ~ centre + gender + age + treatment * dummy(month) + (1 |      subject)
+   Data: data8.1
+Control: glmerControl(optimizer = c("bobyqa", "Nelder_Mead"))
+
+     AIC      BIC   logLik deviance df.resid 
+   599.9    660.4   -286.0    571.9      541 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-3.2753 -0.3823  0.1482  0.4301  1.9873 
+
+Random effects:
+ Groups  Name        Variance Std.Dev.
+ subject (Intercept) 5.318    2.306   
+Number of obs: 555, groups:  subject, 111
+
+Fixed effects:
+                        Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)             -0.27298    0.83097  -0.329 0.742531    
+centre2                  2.03814    0.57267   3.559 0.000372 ***
+gender                  -0.41470    0.71057  -0.584 0.559484    
+age                     -0.03097    0.02111  -1.467 0.142375    
+treatment               -0.15097    0.71997  -0.210 0.833909    
+dummy(month)1            0.27837    0.52341   0.532 0.594839    
+dummy(month)2           -0.54497    0.52890  -1.030 0.302829    
+dummy(month)3            0.01015    0.52304   0.019 0.984518    
+dummy(month)4           -0.13015    0.52369  -0.249 0.803723    
+treatment:dummy(month)1  1.69148    0.78409   2.157 0.030985 *  
+treatment:dummy(month)2  2.68348    0.80123   3.349 0.000810 ***
+treatment:dummy(month)3  2.30317    0.80039   2.878 0.004008 ** 
+treatment:dummy(month)4  1.61315    0.77160   2.091 0.036560 *  
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation matrix not shown by default, as p = 13 &gt; 12.
+Use print(x, correlation=TRUE)  or
+	 vcov(x)	 if you need it
+
+convergence code: 0
+Model failed to converge with max|grad| = 0.0216601 (tol = 0.001, component 1)
+
+&gt; cont1 &lt;- matrix(c(0,0,0,0,0,0,0,0,-1,0,0,0,1),1) 
+&gt; at4m &lt;- glht(fit8.1, linfct=cont1)
+&gt; summary(at4m)
+
+	 Simultaneous Tests for General Linear Hypotheses
+
+Fit: glmer(formula = status ~ centre + gender + age + treatment * 
+    dummy(month) + (1 | subject), data = data8.1, family = binomial, 
+    control = glmerControl(optimizer = c("bobyqa", "Nelder_Mead")), 
+    na.action = na.omit)
+
+Linear Hypotheses:
+       Estimate Std. Error z value Pr(&gt;|z|)
+1 == 0    1.743      1.191   1.463    0.143
+(Adjusted p values reported -- single-step method)
+</PRE>
+
+<P>
+以上の結果をもとに，各群ごとにベースラインに対するオッズ比を示したものが以下の図。
+
+<P>
+<DIV ALIGN="CENTER">
+<IMG
+  WIDTH="473" HEIGHT="260" ALIGN="BOTTOM" BORDER="0"
+ SRC="./fig8_2.png"
+ ALT="Image fig8_2">
+
+</DIV>
+
+<P>
+ロジスティック回帰モデルにおいて個体間差を考慮した場合（<SPAN  CLASS="textbf">個体特異的モデル</SPAN>），母集団平均モデルと比べてオッズ比1からの離れ具合がより極端になる。
+
+<P>
+この違いは，
+<DL>
+<DT><STRONG> 母集団平均モデル</STRONG></DT>
+<DD>: 各時点における「<!-- MATH
+ $y_{ij}=\text{good}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="40" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img156.png"
+ ALT="$ y_{ij}=$">good</SPAN>
+<!-- MATHEND
+ 
+ -->
+になる」オッズ比は，各時点におけるオッズをベースライン時点でのオッズと比較したもの（対応のないオッズ比）
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">Time 0</TD>
+<TD ALIGN="CENTER">Time 1</TD>
+</TR>
+<TR><TD ALIGN="CENTER">good</TD>
+<TD ALIGN="CENTER">24</TD>
+<TD ALIGN="CENTER">37</TD>
+</TR>
+<TR><TD ALIGN="CENTER">poor</TD>
+<TD ALIGN="CENTER">30</TD>
+<TD ALIGN="CENTER">17</TD>
+</TR>
+</TABLE>
+</DIV>
+だと，Time 1 のオッズ比は，
+<P><!-- MATH
+ \begin{displaymath}
+\frac{37/17}{24/30} = 2.72
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="97" HEIGHT="53" ALIGN="MIDDLE" BORDER="0"
+ SRC="img157.png"
+ ALT="$\displaystyle \frac{37/17}{24/30} = 2.72$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+となる。
+</DD>
+<DT><STRONG> 個体特異的モデル</STRONG></DT>
+<DD>: 各時点における「<!-- MATH
+ $y_{ij}=\text{good}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="40" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img156.png"
+ ALT="$ y_{ij}=$">good</SPAN>
+<!-- MATHEND
+ 
+ -->
+になる」オッズ比は，ベースライン時点からその時点にかけて <!-- MATH
+ $(y_{i0} = \text{poor}) \rightarrow (y_{ij} = \text{good})$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="47" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img158.png"
+ ALT="$ (y_{i0} =$">&nbsp; &nbsp;poor<IMG
+ WIDTH="77" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img159.png"
+ ALT="$ ) \rightarrow (y_{ij} =$">&nbsp; &nbsp;good<IMG
+ WIDTH="10" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img160.png"
+ ALT="$ )$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ となった個体数を <!-- MATH
+ $(y_{i0} = \text{good}) \rightarrow (y_{ij} = \text{poor})$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="47" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img158.png"
+ ALT="$ (y_{i0} =$">&nbsp; &nbsp;good<IMG
+ WIDTH="77" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img159.png"
+ ALT="$ ) \rightarrow (y_{ij} =$">&nbsp; &nbsp;poor<IMG
+ WIDTH="10" HEIGHT="31" ALIGN="MIDDLE" BORDER="0"
+ SRC="img160.png"
+ ALT="$ )$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ となった個体数と比較したもの（対応のあるオッズ比）
+<DIV ALIGN="CENTER">
+<TABLE CELLPADDING=3 BORDER="1">
+<TR><TD ALIGN="CENTER">&nbsp;</TD>
+<TD ALIGN="CENTER">Time 1 good</TD>
+<TD ALIGN="CENTER">Time 1  poor</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Time 0 good</TD>
+<TD ALIGN="CENTER">24</TD>
+<TD ALIGN="CENTER">0</TD>
+</TR>
+<TR><TD ALIGN="CENTER">Time 0 poor</TD>
+<TD ALIGN="CENTER">13</TD>
+<TD ALIGN="CENTER">17</TD>
+</TR>
+</TABLE>
+</DIV>
+だと，Time 1 のオッズは，
+<P><!-- MATH
+ \begin{displaymath}
+\frac{13+0.5}{0+0.5} = 27
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+<IMG
+ WIDTH="101" HEIGHT="49" ALIGN="MIDDLE" BORDER="0"
+ SRC="img161.png"
+ ALT="$\displaystyle \frac{13+0.5}{0+0.5} = 27$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+となる<A NAME="tex2html4"
+  HREF="footnode.html#foot781"><SUP><SPAN CLASS="arabic">4</SPAN></SUP></A>。
+</DD>
+</DL>
+というところから来ている。
+
+<P>
+
+  <BLOCKQUOTE>
+<!-- MATH
+ $\fbox{\bf{はてな？}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="76" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img94.png"
+ ALT="\fbox{\bf{はてな？}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</BLOCKQUOTE>
+<P>
+<BLOCKQUOTE>P.108- 「この対応のあるオッズ比は，Model I における <SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img95.png"
+ ALT="$ b_{0i}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ を局外母数と考え，これに対する十分統計量である反応変数の和 <SPAN CLASS="MATH"><IMG
+ WIDTH="27" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img162.png"
+ ALT="$ y_{i+}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ で条件付けした，条件付き尤度を最大にする治療効果の最尤推定値であり（第12章），<SPAN CLASS="MATH"><IMG
+ WIDTH="23" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img95.png"
+ ALT="$ b_{0i}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ のモデル化に依存しない推定値である。」
+  
+<DIV ALIGN="RIGHT">
+<!-- MATH
+ $\fbox{\bf{はてな？ここまで}}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="137" HEIGHT="43" ALIGN="MIDDLE" BORDER="0"
+ SRC="img98.png"
+ ALT="\fbox{\bf{はてな？ここまで}}"></SPAN>
+<!-- MATHEND
+ 
+ -->
+</DIV>
+</BLOCKQUOTE>
+
+<P>
+
+<H2><A NAME="SECTION00083000000000000000">
+治療期間中の治療効果一定を仮定するRMモデル</A>
+</H2>
+
+<P>
+実際の臨床試験では，治療効果を評価する期間を事前に定め，
+
+<UL>
+<LI>その期間は治療効果を一定と考える。
+</LI>
+<LI>あるいは，大きな変動が期待されない評価期間での平均的な効果に興味がある
+</LI>
+</UL>
+ことが多い。
+
+<P>
+
+<H4><A NAME="SECTION00083010000000000000">
+モデルIV：RMモデル（治療効果は期間を通じて一定で，個体差はベースラインのみ考慮）</A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\text{logit} \text{Pr} (y_{ij}=1 | b_{0i}) = \beta_0 + b_{0i} + \beta_1 x_{1i} + \beta_{2}  x_{2ij} + \beta_{3} x_{1i} x_{2ij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+logit&nbsp; &nbsp;Pr<IMG
+ WIDTH="448" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img163.png"
+ ALT="$\displaystyle (y_{ij}=1 \vert b_{0i}) = \beta_0 + b_{0i} + \beta_1 x_{1i} + \beta_{2} x_{2ij} + \beta_{3} x_{1i} x_{2ij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H4><A NAME="SECTION00083020000000000000">
+モデルV：RMモデル（治療効果は期間を通じて一定で，ベースラインの個体差と治療効果の個体差を考慮）</A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\text{logit} \text{Pr} (y_{ij} =1 | b_{0i}) = \beta_0 + b_{0i} + \beta_1 x_{1i} + (\beta_{2}+b_{1i})  x_{2ij} + \beta_{3} x_{1i} x_{2ij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+logit&nbsp; &nbsp;Pr<IMG
+ WIDTH="498" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img164.png"
+ ALT="$\displaystyle (y_{ij} =1 \vert b_{0i}) = \beta_0 + b_{0i} + \beta_1 x_{1i} + (\...
+...b_{1i}) x_{2ij} + \beta_{3} x_{1i} x_{2ij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+<BLOCKQUOTE>
+<SPAN  CLASS="textbf">RによるモデルIVの推定</SPAN>
+</BLOCKQUOTE><PRE>
+&gt; data8.1$post &lt;- as.numeric(data8.1$month!=0)
+&gt; head(data8.1)
+    centre treatment gender age status month subject post
+1        1         0      0  46      0     0       1    0
+112      1         0      0  46      0     1       1    1
+223      1         0      0  46      0     2       1    1
+334      1         0      0  46      0     3       1    1
+445      1         0      0  46      0     4       1    1
+2        1         0      0  28      0     0       2    0
+&gt; 
+&gt; fit8.4 &lt;- glmer(status~centre+gender+age+treatment*post+(1|subject), 
++                 data=data8.1, na.action=na.omit, family=binomial)
+&gt; summary(fit8.4)
+Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: status ~ centre + gender + age + treatment * post + (1 | subject)
+   Data: data8.1
+
+     AIC      BIC   logLik deviance df.resid 
+   592.8    627.3   -288.4    576.8      547 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.9707 -0.3756  0.1568  0.4124  2.0754 
+
+Random effects:
+ Groups  Name        Variance Std.Dev.
+ subject (Intercept) 5.111    2.261   
+Number of obs: 555, groups:  subject, 111
+
+Fixed effects:
+               Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept)    -0.27564    0.81795  -0.337 0.736121    
+centre2         2.00688    0.56209   3.570 0.000356 ***
+gender         -0.40938    0.69801  -0.586 0.557542    
+age            -0.03017    0.02073  -1.456 0.145480    
+treatment      -0.15311    0.71081  -0.215 0.829451    
+post           -0.10148    0.41117  -0.247 0.805056    
+treatment:post  2.04577    0.62072   3.296 0.000981 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+            (Intr) centr2 gender age    trtmnt post  
+centre2     -0.152                                   
+gender       0.032 -0.156                            
+age         -0.702 -0.213 -0.263                     
+treatment   -0.427 -0.004  0.159 -0.026              
+post        -0.402 -0.005  0.001  0.003  0.462       
+tretmnt:pst  0.245  0.086 -0.013 -0.020 -0.642 -0.665
+</PRE><BLOCKQUOTE>
+本文中でSASを用いた結果と若干異なっている。
+（<TT>glmmML</TT>を用いてガウス・エルミート求積，求積点20とテキストと同じ方法でやってもあまり違いはない。）
+
+</BLOCKQUOTE>
+
+<P>
+
+<H2><A NAME="SECTION00084000000000000000">
+ベースライン調整のANCOVA型モデル</A>
+</H2>
+
+<P>
+
+<H4><A NAME="SECTION00084010000000000000">
+モデルII.B：ANCOVAモデル（ベースラインと治療期間を通じて一定の個人差を考慮）</A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\text{logit} \text{Pr} (y_{ij} =1 | b_{i\text(Ancova)}) = \beta_0 +  b_{i(\text{Ancova})} + \theta y_{i0} + \beta_1 x_{1i} + \sum_{k=1}^T \beta_{2k} z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} +  \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+logit&nbsp; &nbsp;Pr<IMG
+ WIDTH="649" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img165.png"
+ ALT="$\displaystyle (y_{ij} =1 \vert b_{i\text(Ancova)}) = \beta_0 + b_{i(\text{Ancov...
+...} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+このとき，<!-- MATH
+ $\beta_1+\beta_{3j}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="62" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img166.png"
+ ALT="$ \beta_1+\beta_{3j}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ が
+
+<UL>
+<LI>時点 <SPAN CLASS="MATH"><IMG
+ WIDTH="12" HEIGHT="28" ALIGN="MIDDLE" BORDER="0"
+ SRC="img28.png"
+ ALT="$ j$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ におけるプラセボ群に対する新薬群の治療効果
+</LI>
+<LI>ベースライン時点での得点を統制しているから，「ベースライン時点での得点が同じ被験者における群の効果」と「治療開始時点に対して各時点における効果の大きさが処置群では対照群に比べてどれくらいおおきいか」の和が「ベースライン時点での得点を統制した場合の対照群に対する処置群の差」
+</LI>
+<LI>RMモデルにおける <!-- MATH
+ $\beta_{3j}$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="26" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img167.png"
+ ALT="$ \beta_{3j}$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ に相当
+</LI>
+</UL>
+
+<P>
+
+<H4><A NAME="SECTION00084020000000000000">
+モデルIII.B：ANCOVAモデル（ベースラインと治療時点によって異なる個人差を考慮）</A>
+</H4>
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\text{logit} \text{Pr} (y_{ij} =1 | \bm{b}_{i\text(Ancova)}) = \beta_0 +  b_{i1(\text{Ancova})} + \theta y_{i0} + \beta_1 x_{1i} + \sum_{k=1}^T (\beta_{2k} + b_{ki(\text{Ancova})} )z_{kij} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} +  \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+logit&nbsp; &nbsp;Pr<IMG
+ WIDTH="752" HEIGHT="66" ALIGN="MIDDLE" BORDER="0"
+ SRC="img168.png"
+ ALT="$\displaystyle (y_{ij} =1 \vert \bm{b}_{i\text(Ancova)}) = \beta_0 + b_{i1(\text...
+...} + \sum_{k=1}^T \beta_{3k} x_{1i} z_{kij} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+
+<H4><A NAME="SECTION00084030000000000000">
+モデルV.B：ANCOVAモデル（治療効果も個体間差も一定）</A>
+</H4>
+
+<P>
+<!-- MATH
+ $\beta_{2j}=0$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="55" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img169.png"
+ ALT="$ \beta_{2j}=0$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ であり，治療効果は <!-- MATH
+ $\beta_1+\beta_{3j} = \beta_1 + \beta_3$
+ -->
+<SPAN CLASS="MATH"><IMG
+ WIDTH="135" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img170.png"
+ ALT="$ \beta_1+\beta_{3j} = \beta_1 + \beta_3$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ となるので，これを<SPAN CLASS="MATH"><IMG
+ WIDTH="20" HEIGHT="29" ALIGN="MIDDLE" BORDER="0"
+ SRC="img141.png"
+ ALT="$ \beta_3$"></SPAN>
+<!-- MATHEND
+ 
+ -->
+ と書くことにする。
+
+<P>
+<P><!-- MATH
+ \begin{displaymath}
+\text{logit} \text{Pr} (y_{ij} =1 | b_{i\text(Ancova)}) = \beta_0 +  b_{i(\text{Ancova})} + \theta y_{i0} + \beta_3 x_{1i} +  \bm{w}_i' \bm{\xi} + \epsilon_{ij}
+\end{displaymath}
+ -->
+</P>
+<DIV ALIGN="CENTER" CLASS="mathdisplay">
+logit&nbsp; &nbsp;Pr<IMG
+ WIDTH="440" HEIGHT="33" ALIGN="MIDDLE" BORDER="0"
+ SRC="img171.png"
+ ALT="$\displaystyle (y_{ij} =1 \vert b_{i\text(Ancova)}) = \beta_0 + b_{i(\text{Ancova})} + \theta y_{i0} + \beta_3 x_{1i} + \bm{w}_i' \bm{\xi} + \epsilon_{ij}$">
+</DIV><P>
+<!-- MATHEND
+ 
+ -->
+</P>
+
+<P>
+<BLOCKQUOTE>
+<SPAN  CLASS="textbf">RによるモデルII.Bの推定</SPAN>
+</BLOCKQUOTE>
+<P>
+<UL>
+<LI>ベースラインデータを <TT>status0</TT> とするだけだと，<TT>month</TT> の水準数が5のまま変わらない。
+これで分析するとエラーになってしまうので，4水準に直す必要がある（面倒）。
+</LI>
+<LI><TT>glmer()</TT> では収束しなかった。
+</LI>
+</UL>
+<P><PRE>
+&gt; # モデルII.B（治療期間を通じて一定の個人差を考慮）
+&gt; # ベースラインデータをstatus0として整形
+&gt; data8.1B &lt;- data8.1[data8.1$post==1,]
+&gt; data8.1B$status0 &lt;- rep(data8.1$status[data8.1$post==0], each=4)
+&gt; data8.1B$month &lt;- factor(as.numeric(data8.1B$month))
+&gt; head(data8.1B)
+    centre treatment gender age status month subject post status0
+112      1         0      0  46      0     2       1    1       0
+223      1         0      0  46      0     3       1    1       0
+334      1         0      0  46      0     4       1    1       0
+445      1         0      0  46      0     5       1    1       0
+113      1         0      0  28      0     2       2    1       0
+224      1         0      0  28      0     3       2    1       0
+&gt; 
+&gt; fit8.2B &lt;- glmmML(status~centre+gender+age+status0+treatment*dummy(month),
++                   cluster=subject, data=data8.1B, na.action=na.omit, 
++                   family=binomial, method="ghq", n.points=20)
+&gt; summary(fit8.2B)
+
+Call:  glmmML(formula = status ~ centre + gender + age + status0 + treatment *      dummy(month), family = binomial, data = data8.1B, cluster = subject,      na.action = na.omit, method = "ghq", n.points = 20) 
+
+
+                            coef se(coef)        z Pr(&gt;|z|)
+(Intercept)             -1.25564  0.87655 -1.43249 1.52e-01
+centre2                  1.06463  0.57241  1.85990 6.29e-02
+gender                   0.20258  0.70367  0.28790 7.73e-01
+age                     -0.02561  0.02114 -1.21143 2.26e-01
+status0                  3.10153  0.61669  5.02932 4.92e-07
+treatment                1.76666  0.75018  2.35496 1.85e-02
+dummy(month)3           -0.88564  0.55172 -1.60524 1.08e-01
+dummy(month)4           -0.29213  0.54245 -0.53855 5.90e-01
+dummy(month)5           -0.44101  0.54377 -0.81102 4.17e-01
+treatment:dummy(month)3  1.06399  0.81423  1.30674 1.91e-01
+treatment:dummy(month)4  0.65428  0.81165  0.80611 4.20e-01
+treatment:dummy(month)5 -0.06920  0.79860 -0.08665 9.31e-01
+
+Scale parameter in mixing distribution:  2.09 gaussian 
+Std. Error:                              0.3461 
+
+        LR p-value for H_0: sigma = 0:  8.387e-15 
+
+Residual deviance: 421.1 on 431 degrees of freedom 	AIC: 447.1
+</PRE>
+
+<P>
+<BLOCKQUOTE>
+<SPAN  CLASS="textbf">RによるモデルVの推定</SPAN>
+</BLOCKQUOTE><PRE>
+&gt; # モデルV.B（治療期間を通じて効果も個人差も一定）
+&gt; fit8.5B &lt;- glmer(status~centre+gender+age+status0+treatment+(1|subject),
++                  data=data8.1B, na.action=na.omit, family=binomial,
++                  glmerControl(optimizer = c("bobyqa", "Nelder_Mead")))
+&gt; summary(fit8.5B)
+Generalized linear mixed model fit by maximum likelihood (Laplace Approximation) ['glmerMod']
+ Family: binomial  ( logit )
+Formula: status ~ centre + gender + age + status0 + treatment + (1 | subject)
+   Data: data8.1B
+Control: glmerControl(optimizer = c("bobyqa", "Nelder_Mead"))
+
+     AIC      BIC   logLik deviance df.resid 
+   443.0    471.7   -214.5    429.0      437 
+
+Scaled residuals: 
+    Min      1Q  Median      3Q     Max 
+-2.7832 -0.3652  0.1428  0.3735  2.1801 
+
+Random effects:
+ Groups  Name        Variance Std.Dev.
+ subject (Intercept) 3.86     1.965   
+Number of obs: 444, groups:  subject, 111
+
+Fixed effects:
+            Estimate Std. Error z value Pr(&gt;|z|)    
+(Intercept) -1.64315    0.78096  -2.104 0.035378 *  
+centre2      1.04334    0.54606   1.911 0.056050 .  
+gender       0.20183    0.67055   0.301 0.763416    
+age         -0.02539    0.02008  -1.265 0.205943    
+status0      3.06822    0.60033   5.111 3.21e-07 ***
+treatment    2.15614    0.55445   3.889 0.000101 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Correlation of Fixed Effects:
+          (Intr) centr2 gender age    stats0
+centre2   -0.089                            
+gender    -0.010 -0.147                     
+age       -0.714 -0.223 -0.263              
+status0   -0.390 -0.151  0.102  0.016       
+treatment -0.435  0.058  0.220 -0.050  0.300
+</PRE><BLOCKQUOTE>
+テキストのSASによる結果とはいくぶん異なる。
+なお，<TT>glmmML()</TT> を用いるともっとSASに近い結果になる。
+
+</BLOCKQUOTE>
+
+<P>
+
+<DIV CLASS="navigation"><HR>
+<A NAME="tex2html87"
+  HREF="node7.html">
+<IMG WIDTH="37" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="next" SRC="next.png"></A> 
+<A NAME="tex2html85"
+  HREF="tango2015.html">
+<IMG WIDTH="26" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="up" SRC="up.png"></A> 
+<A NAME="tex2html79"
+  HREF="node5.html">
+<IMG WIDTH="63" HEIGHT="24" ALIGN="BOTTOM" BORDER="0" ALT="previous" SRC="prev.png"></A>   <BR>
+<B> Next:</B> <A NAME="tex2html88"
+  HREF="node7.html">臨床試験への混合効果モデル：ポアソン回帰モデル</A>
+<B>Up:</B> <A NAME="tex2html86"
+  HREF="tango2015.html">経時的繰り返し測定デザイン</A>
+<B> Previous:</B> <A NAME="tex2html80"
+  HREF="node5.html">臨床試験への混合効果モデル：正規線形回帰モデル</A>
+</DIV>
+<!--End of Navigation Panel-->
+<ADDRESS>
+<I>Taichi Okumura <BR>
+2017-10-05</I>
+</ADDRESS>
+</BODY>
+</HTML>
