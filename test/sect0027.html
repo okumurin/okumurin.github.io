@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>テスト理論: D研究</title>
+
+<link href="sect0028.html" title="G研究" rel="next" />
+<link href="sect0026.html" title="誤差の由来" rel="prev" />
+<link href="sect0025.html" title="一般化可能性理論" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0026.html" title="誤差の由来"><img alt="Previous: 誤差の由来" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0025.html" title="一般化可能性理論"><img alt="Up: 一般化可能性理論" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0028.html" title="G研究"><img alt="Next: G研究" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">テスト理論</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">テスト理論</a> <b>:</b>
+</span>
+
+</span><span>
+<span>
+<a href="sect0025.html">一般化可能性理論</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">D研究</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h2 id="a0000000028">5.2 D研究</h2>
+<p>一般化可能性理論では、データが得られる構造に応じて、測定モデルを柔軟に変化させる。 </p><p>Table <a href="sect0026.html#tab.mogul">8</a> のように1つの課題に対して複数の採点が行われる場合、古典的テスト理論に準じれば、回答者<img src="images/img-0024.png" alt="$i$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:14px" class="math gen" /> (<img src="images/img-0246.png" alt="$i=1,...,N$" style="vertical-align:-4px; 
+                                     width:93px; 
+                                     height:18px" class="math gen" />) における採点者<img src="images/img-0059.png" alt="$k$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:14px" class="math gen" /> (<img src="images/img-0176.png" alt="$k=1,...,K$" style="vertical-align:-4px; 
+                                     width:97px; 
+                                     height:18px" class="math gen" />) による採点結果<img src="images/img-0247.png" alt="$x_{ik}$" style="vertical-align:-3px; 
+                                     width:23px; 
+                                     height:12px" class="math gen" />は、 </p><table id="a0000000180" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000181">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0248.png" alt="$\displaystyle  x_{ik} = \mu + \alpha _ i + e_{ik}  $" style="vertical-align:-4px; width:149px;                     height:15px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>81</span>)</span></td>
+</tr>
+</table><p> のように表現できる。 ただし、<img src="images/img-0249.png" alt="$\mu $" style="vertical-align:-4px; 
+                                     width:11px; 
+                                     height:13px" class="math gen" />は総平均、<img src="images/img-0250.png" alt="$\alpha _ i$" style="vertical-align:-3px; 
+                                     width:16px; 
+                                     height:12px" class="math gen" />が回答者<img src="images/img-0024.png" alt="$i$" style="vertical-align:0px; 
+                                     width:6px; 
+                                     height:14px" class="math gen" />の能力による部分で、<img src="images/img-0251.png" alt="$e_{ik}$" style="vertical-align:-3px; 
+                                     width:21px; 
+                                     height:12px" class="math gen" />が誤差である。<img src="images/img-0252.png" alt="$(\mu +\alpha _ i)$" style="vertical-align:-5px; 
+                                     width:65px; 
+                                     height:20px" class="math gen" /> の部分が真値ということになる。 </p><p>一方、この誤差から採点のばらつきによる部分を取り除くことができる。 </p><table id="eq.2anova" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000182">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0253.png" alt="$\displaystyle  x_{ik} = \mu + \alpha _ i + \beta _ k + e_{ik} \label{eq.2anova}  $" style="vertical-align:-4px; width:193px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>82</span>)</span></td>
+</tr>
+</table><p> この場合、<img src="images/img-0254.png" alt="$\beta _ k$" style="vertical-align:-4px; 
+                                     width:18px; 
+                                     height:18px" class="math gen" />が採点者間での採点のばらつきを示す部分であり、<img src="images/img-0251.png" alt="$e_{ik}$" style="vertical-align:-3px; 
+                                     width:21px; 
+                                     height:12px" class="math gen" />はそれ以外の理由で得点が変動するような誤差ということになる。 </p><p>ここで、得られたデータ全体のばらつきを </p><table id="eq.sstotal" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000183">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0255.png" alt="$\displaystyle  SS_{T}  $" style="vertical-align:-3px; width:34px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0256.png" alt="$\displaystyle = \sum _{i=1}^ N \sum _{k=1}^ K (x_{ik} - \bar{x}_{\bullet \bullet })^2 \label{eq.sstotal}  $" style="vertical-align:-23px; width:178px;                     height:57px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>83</span>)</span></td>
+</tr>
+</table><p> と表す。 このとき、 </p><table id="eq.ssa" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000184">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0257.png" alt="$\displaystyle  SS_{\alpha }  $" style="vertical-align:-3px; width:33px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0258.png" alt="$\displaystyle = K \sum _{i=1}^ N (\bar{x}_{i \bullet } - \bar{x}_{\bullet \bullet })^2 \label{eq.ssa}  $" style="vertical-align:-23px; width:166px;                     height:57px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>84</span>)</span></td>
+</tr><tr id="eq.ssb">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0259.png" alt="$\displaystyle SS_{\beta }  $" style="vertical-align:-6px; width:32px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0260.png" alt="$\displaystyle = N \sum _{k=1}^ K (\bar{x}_{\bullet k} - \bar{x}_{\bullet \bullet })^2 \label{eq.ssb}  $" style="vertical-align:-23px; width:169px;                     height:57px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>85</span>)</span></td>
+</tr><tr id="eq.sse">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0261.png" alt="$\displaystyle SS_{e}  $" style="vertical-align:-3px; width:30px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0262.png" alt="$\displaystyle = \sum _{i=1}^ N \sum _{k=1}^ K (x_{ik} - \bar{x}_{i \bullet } - \bar{x}_{\bullet k} + \bar{x}_{\bullet \bullet })^2 \label{eq.sse}  $" style="vertical-align:-23px; width:276px;                     height:57px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>86</span>)</span></td>
+</tr>
+</table><p> とすると、 </p><table id="eq.ssbunkatsu" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000185">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0263.png" alt="$\displaystyle  SS_ T = SS_{\alpha } + SS_{\beta } + SS_{e} \label{eq.ssbunkatsu}  $" style="vertical-align:-6px; width:210px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>87</span>)</span></td>
+</tr>
+</table><p> という関係にあることが知られている。 </p><p>式(<a href="sect0027.html#eq.2anova">82</a>) の<img src="images/img-0250.png" alt="$\alpha _ i$" style="vertical-align:-3px; 
+                                     width:16px; 
+                                     height:12px" class="math gen" />、<img src="images/img-0254.png" alt="$\beta _ k$" style="vertical-align:-4px; 
+                                     width:18px; 
+                                     height:18px" class="math gen" />、<img src="images/img-0251.png" alt="$e_{ik}$" style="vertical-align:-3px; 
+                                     width:21px; 
+                                     height:12px" class="math gen" /> の分散をそれぞれ<img src="images/img-0264.png" alt="$V_{\alpha }$" style="vertical-align:-3px; 
+                                     width:19px; 
+                                     height:17px" class="math gen" />、<img src="images/img-0265.png" alt="$V_{\beta }$" style="vertical-align:-6px; 
+                                     width:18px; 
+                                     height:20px" class="math gen" />、<img src="images/img-0266.png" alt="$V_ e$" style="vertical-align:-3px; 
+                                     width:16px; 
+                                     height:17px" class="math gen" />とすると、これらは </p><table id="a0000000186" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000187">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0267.png" alt="$\displaystyle  V_{\alpha }  $" style="vertical-align:-3px; width:19px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0268.png" alt="$\displaystyle = \frac{\frac{SS_{\alpha }}{N-1} - \frac{SS_ e}{(N-1)(K-1)}}{K}  $" style="vertical-align:-13px; width:168px;                     height:48px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>88</span>)</span></td>
+</tr><tr id="a0000000188">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0269.png" alt="$\displaystyle V_{\beta }  $" style="vertical-align:-6px; width:18px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0270.png" alt="$\displaystyle = \frac{\frac{SS_{\beta }}{K-1} - \frac{SS_ e}{(N-1)(K-1)}}{N}  $" style="vertical-align:-14px; width:168px;                     height:51px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>89</span>)</span></td>
+</tr><tr id="a0000000189">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0271.png" alt="$\displaystyle V_{e}  $" style="vertical-align:-3px; width:16px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0272.png" alt="$\displaystyle = \frac{SS_ e}{(N-1)(K-1)}  $" style="vertical-align:-18px; width:156px;                     height:46px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>90</span>)</span></td>
+</tr>
+</table><p> と計算できることが知られている。 </p><p>Table <a href="sect0026.html#tab.mogul">8</a> のデータを用いてそれぞれの分散を計算すると、Table <a href="sect0027.html#tab.vars">9</a> のようになる。 </p><div id="tab.vars" class="table"><div class="caption"><b>Table 9</b>: <span>モーグルのデータにおける分散成分</span></div><center> <table cellspacing="0" class="tabular">
+<tr>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p><img src="images/img-0264.png" alt="$V_{\alpha }$" style="vertical-align:-3px; 
+                                     width:19px; 
+                                     height:17px" class="math gen" /> </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> <img src="images/img-0265.png" alt="$V_{\beta }$" style="vertical-align:-6px; 
+                                     width:18px; 
+                                     height:20px" class="math gen" /> </p></td>
+
+    
+    <td style="border-top-style:solid; border-top-color:black; border-top-width:1px; text-align:center"><p> <img src="images/img-0273.png" alt="$V_{e}$" style="vertical-align:-3px; 
+                                     width:16px; 
+                                     height:17px" class="math gen" /> </p></td>
+
+</tr><tr>
+
+    
+    <td style="border-top-style:solid; border-bottom-style:solid; text-align:center; border-bottom-width:1px; border-top-color:black; border-top-width:1px; border-bottom-color:black"><p>0.094633 </p></td>
+
+    
+    <td style="border-top-style:solid; border-bottom-style:solid; text-align:center; border-bottom-width:1px; border-top-color:black; border-top-width:1px; border-bottom-color:black"><p> 0.002233 </p></td>
+
+    
+    <td style="border-top-style:solid; border-bottom-style:solid; text-align:center; border-bottom-width:1px; border-top-color:black; border-top-width:1px; border-bottom-color:black"><p> 0.004433 </p></td>
+
+</tr>
+</table> </center></div><p>こうした情報は、得点の大小が何によってどれくらい生じているのか判断する上で重要である。 このように、得られたテストデータにおける変動要因の分散を見積もることを、一般化可能性理論ではD研究という。 </p></div>
+
+
+
+
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0026.html" title="誤差の由来"><img alt="Previous: 誤差の由来" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0025.html" title="一般化可能性理論"><img alt="Up: 一般化可能性理論" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0028.html" title="G研究"><img alt="Next: G研究" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">テスト理論</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

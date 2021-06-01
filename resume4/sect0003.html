@@ -1,0 +1,149 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>SPSSによる統計的データ解析入門: 相関係数の算出</title>
+
+<link href="sect0004.html" title="回帰分析" rel="next" />
+<link href="sect0002.html" title="基礎統計量の算出" rel="prev" />
+<link href="index.html" title="SPSSによる統計的データ解析入門" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0002.html" title="基礎統計量の算出"><img alt="Previous: 基礎統計量の算出" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="index.html" title="SPSSによる統計的データ解析入門"><img alt="Up: SPSSによる統計的データ解析入門" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0004.html" title="回帰分析"><img alt="Next: 回帰分析" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">SPSSによる統計的データ解析入門</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">SPSSによる統計的データ解析入門</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">相関係数の算出</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h1 id="a0000000004">3 相関係数の算出</h1>
+<h2 id="a0000000015">3.1 相関係数について</h2>
+<p>ここまで基本的な記述統計量の算出を行ったが，これでは各変数ごとの情報しか得られない。 相関係数を算出することで，複数（基本的には2つ）の変数間相互の関係を知ることが可能となる。 ここでいう「変数間相互の関係」とは，例えば「国語の成績が高い人ほど英語の成績も高いという傾向がある」といった情報のことである。 </p><p>変数<img src="images/img-0008.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />および<img src="images/img-0009.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />の間の相関係数は以下の式で計算される。 <a href="#a0000000016" class="footnote"><sup class="footnotemark">1</sup></a> </p><table id="a0000000017" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000018">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0010.png" alt="$\displaystyle  r  $" style="vertical-align:0px; width:8px;                     height:7px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0011.png" alt="$\displaystyle = \frac{\sum _{i=1}^ N (x_ i - \bar{x})(y_ i-\bar{y}) / N}{\sqrt {\sum _{i=1}^ N (x_ i - \bar{x})^2 / N} \sqrt {\sum _{i=1}^ N (y_ i-\bar{y})^2 /N }}  $" style="vertical-align:-29px; width:305px;                     height:57px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>1</span>)</span></td>
+</tr><tr id="a0000000019">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0012.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0013.png" alt="$\displaystyle = \frac{S_{xy}}{S_ x S_ y}  $" style="vertical-align:-15px; width:55px;                     height:38px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>2</span>)</span></td>
+</tr>
+</table><p>このうち，<img src="images/img-0014.png" alt="$S_{xy}$" style="vertical-align:-4px; 
+                                     width:24px; 
+                                     height:15px" class="math gen" />は<img src="images/img-0008.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />と<img src="images/img-0009.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />の共分散，<img src="images/img-0015.png" alt="$S_ x$" style="vertical-align:-2px; 
+                                     width:16px; 
+                                     height:13px" class="math gen" />および<img src="images/img-0016.png" alt="$S_ y$" style="vertical-align:-4px; 
+                                     width:16px; 
+                                     height:15px" class="math gen" />を<img src="images/img-0008.png" alt="$X$" style="vertical-align:0px; 
+                                     width:14px; 
+                                     height:11px" class="math gen" />と<img src="images/img-0009.png" alt="$Y$" style="vertical-align:0px; 
+                                     width:13px; 
+                                     height:11px" class="math gen" />の標準偏差である。 </p><p>相関係数は2変数が完全に正の直線的な関係にある場合1を，負の直線的な関係にある場合-1の値を取る。 また2変数間に直線的な関係が認められない場合は0となる。 <a href="sect0003.html#fig.scatterplots">*</a>ページの図は相関係数の値とそれに対応する2変数間の散布図を示したものである。 </p><p>ただし，相関係数はあくまで2変数間の「直線的」な関係を示すものであり，仮に曲線的な関係にあった場合，それを正しく検出することはできない。 <a href="#a0000000020" class="footnote"><sup class="footnotemark">2</sup></a> また，サンプルが何らかの変数によって群分けされているような場合や変数の範囲について切断が生じている場合にも不適切な相関係数が算出される可能性がある。 従って，相関係数を算出するだけでなく必ず散布図も出力して視覚的に関係性を確認することが重要である。 </p><div id="fig.scatterplots" class="figure"><center> <div class="caption"><b>Figure 1</b>: <span>相関係数と散布図</span></div> <center> 
+<img src="images/img-0017.png" alt="\includegraphics[width=15cm]{scatterplots.ps}" style="width:15cm" /> </center>  </center></div><h2 id="a0000000021">3.2 相関係数の算出の仕方</h2>
+<p>データエディタのメニューバーから[分析]-[相関]-[2変量]の順でクリックする。 </p><div class="figure"><center> 
+<img src="images/img-0018.png" alt="\includegraphics[width=12cm]{soukan1.ps}" style="width:12cm" /> </center></div><p>「2変量の相関分析」というウィンドウが立ち上がる。 </p><div class="figure"><center> 
+<img src="images/img-0019.png" alt="\includegraphics[width=8cm]{soukan2.ps}" style="width:8cm" /> </center></div><p>分析の対象としたい変数を選択して[ <img src="images/img-0005.png" alt="$&gt;$" style="vertical-align:0px; 
+                                     width:11px; 
+                                     height:10px" class="math gen" /> ]ボタンをクリックし左から右のボックスに移す。 </p><div class="figure"><center> 
+<img src="images/img-0020.png" alt="\includegraphics[width=8cm]{soukan3.ps}" style="width:8cm" /> </center></div><p>[OK]を押すとSPSSビューアが立ち上がり，結果が表示される。 </p><div class="figure"><center> 
+<img src="images/img-0021.png" alt="\includegraphics[width=15cm]{soukan4.ps}" style="width:15cm" /> </center></div><p>この例の場合，国語と数学では.312，国語と英語では.580，数学と英語では.588という相関係数の値が得られた。 相関の大きさとしては各教科とも中程度の大きさの相関があったといえる。 </p><p>また同時に統計的検定がなされ，その結果が有意確率および有意であることを表すシンボル（“ * "や“ ** "）によって表示されている。 </p><h2 id="a0000000022">3.3 統計的検定について</h2>
+<p>統計的検定とは，ある仮説（一般には「帰無仮説」と呼ばれる）の真偽について，統計学的に意思決定を行う手法のことである。 統計的検定では，帰無仮説とよばれる仮説が設定され，これを非合理的なものとして棄却するかどうかが興味の関心である。 帰無仮説としては，通常「相関係数はゼロである」や「実験の効果はゼロである」といった「点ゼロ仮説」が設定される。 そして実際にデータを取ってみて，そのデータと帰無仮説とが整合的かどうかを統計学の理論にもとづいて判断する。 </p><p>「統計的に有意であった」とは，「帰無仮説が棄却された」ということと等しい。 すなわち，「得られたデータから察するに相関係数がゼロであるという仮説を受け入れるのは非合理的だ」という判断を下したことになる。 必ずしも「大きな相関が得られた」など効果の大きさを意味するわけではないので注意が必要である。 <a href="#a0000000023" class="footnote"><sup class="footnotemark">3</sup></a> </p><p>また，「有意確率」とは，「仮に帰無仮説が正しいとした場合に今回得られたようなデータが得られる確率」のことである。 よく「帰無仮説が正しい確率」と誤解されることがあるが，これは間違っている。 帰無仮説は合っているか間違っているかのどちらかであり，確率的に判断することはできないというのが通常の統計学の立場である。 <a href="#a0000000024" class="footnote"><sup class="footnotemark">4</sup></a> </p><h2 id="a0000000025">3.4 散布図の表示の仕方</h2>
+<p>メニューバーから[グラフ]-[散布図]の順に選択する。 </p><div class="figure"><center> 
+<img src="images/img-0022.png" alt="\includegraphics[width=12cm]{sampuzu1.ps}" style="width:12cm" /> </center></div><p>「散布図」ウィンドウが立ち上がるので，「行列」を選択して[定義]をクリックする。 <a href="#a0000000026" class="footnote"><sup class="footnotemark">5</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0023.png" alt="\includegraphics[width=8cm]{sampuzu2.ps}" style="width:8cm" /> </center></div><p>「散布図の行列」ウィンドウが立ち上がるので，散布図を出したい変数を左のボックスから選択して右のボックスに移動させる。 </p><div class="figure"><center> 
+<img src="images/img-0024.png" alt="\includegraphics[width=8cm]{sampuzu3.ps}" style="width:8cm" /> </center></div><p>この場合は，「国語」，「数学」，「英語」3つの変数をすべて選択した。 </p><p>できたら[OK]ボタンをクリックする。 </p><div class="figure"><center> 
+<img src="images/img-0025.png" alt="\includegraphics[width=8cm]{sampuzu4.ps}" style="width:8cm" /> </center></div><p>SPSSビューアが立ち上がり，3つの変数のそれぞれの組について散布図が行列形式で表示される。 この例では特に目立った外れ値などは見出せない。 <a href="#a0000000027" class="footnote"><sup class="footnotemark">6</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0026.png" alt="\includegraphics[width=14cm]{sampuzu5.ps}" style="width:14cm" /> </center></div></div>
+
+
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000016">相関係数にはいくつかの種類があるが，ここでは最も基本的で多用される「ピアソンの積率相関係数」のみを取り上げる。</li><li id="a0000000020">変数間が曲線的な関係にある場合は，「相関比」と呼ばれる指標を用いて関連を調べるという方法が用いられることがある。</li><li id="a0000000023">このことからわかるように，統計的検定では「ゼロであるかどうか」しかいえない。得られた相関係数がどの程度の精度で得られたのかを知るためには区間推定を行う必要がある。区間推定と統計的検定は密接に関連しているが，ここでは取り上げない。</li><li id="a0000000024">逆に，こうした主張を積極的に行っていこうというのがベイズ統計学といわれる立場であるが，ここでは取り上げない。</li><li id="a0000000026">2変数ごとの相関を1つずつ出したい場合は，「単純な散布図」を選択する。</li><li id="a0000000027">散布図を描くことは，多変量外れ値を見つけるのにも有効である。ただし，3変数以上の場合は限界がある。３変数以上の多変量外れ値に関しては「レベレッジ（てこ比）と呼ばれる指標を算出することで計算する方法がある。」</li>
+</ol>
+</div>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0002.html" title="基礎統計量の算出"><img alt="Previous: 基礎統計量の算出" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="index.html" title="SPSSによる統計的データ解析入門"><img alt="Up: SPSSによる統計的データ解析入門" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0004.html" title="回帰分析"><img alt="Next: 回帰分析" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">SPSSによる統計的データ解析入門</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

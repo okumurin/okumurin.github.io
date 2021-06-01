@@ -1,0 +1,21 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=resume4.chm
+Contents file=chm.hhc
+Default Window=Help
+Default topic=index.html
+Display compile progress=Yes
+Error log file=help.log
+Full-text search=Yes
+Index file=chm.hhk
+Language=0x0 
+Title=SPSS&#12395;&#12424;&#12427;&#32113;&#35336;&#30340;&#12487;&#12540;&#12479;&#35299;&#26512;&#20837;&#38272;
+
+[WINDOWS]
+Help="SPSS&#12395;&#12424;&#12427;&#32113;&#35336;&#30340;&#12487;&#12540;&#12479;&#35299;&#26512;&#20837;&#38272;","chm.hhc","chm.hhk","index.html","index.html",,,,,0x73520,,0x383e,[200,200,1000,800],,,,,,,0
+
+[FILES]
+index.html
+
+
+[MERGE FILES]

@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>テスト理論: テストの長さと信頼性</title>
+
+<link href="sect0019.html" title="折半法による信頼性係数の推定" rel="next" />
+<link href="sect0017.html" title="再テスト法による信頼性係数の推定" rel="prev" />
+<link href="sect0013.html" title="古典的テスト理論" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0017.html" title="再テスト法による信頼性係数の推定"><img alt="Previous: 再テスト法による信頼性係数の推定" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0013.html" title="古典的テスト理論"><img alt="Up: 古典的テスト理論" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0019.html" title="折半法による信頼性係数の推定"><img alt="Next: 折半法による信頼性係数の推定" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">テスト理論</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">テスト理論</a> <b>:</b>
+</span>
+
+</span><span>
+<span>
+<a href="sect0013.html">古典的テスト理論</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">テストの長さと信頼性</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h2 id="a0000000019">4.5 テストの長さと信頼性</h2>
+<p> 今、テストが<img src="images/img-0055.png" alt="$K$" style="vertical-align:0px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" />項目から成り立っており、観測値<img src="images/img-0087.png" alt="$x_ k$" style="vertical-align:-3px; 
+                                     width:18px; 
+                                     height:12px" class="math gen" />（<img src="images/img-0176.png" alt="$k=1,...,K$" style="vertical-align:-4px; 
+                                     width:97px; 
+                                     height:18px" class="math gen" />）がすべて強平行測定によるとする。 このとき、すべての<img src="images/img-0059.png" alt="$k$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:14px" class="math gen" />について<img src="images/img-0177.png" alt="$\rho _{x_ k}=\rho $" style="vertical-align:-5px; 
+                                     width:62px; 
+                                     height:14px" class="math gen" />である<a href="#a0000000122" class="footnote"><sup class="footnotemark">1</sup></a>。 </p><p>また、テストの合計得点<img src="images/img-0106.png" alt="$x_{\bullet }$" style="vertical-align:-2px; 
+                                     width:18px; 
+                                     height:11px" class="math gen" />の信頼性は、 </p><table id="eq.spearman-brown" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000123">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0178.png" alt="$\displaystyle  \rho _{x_{\bullet }}=\frac{K \rho }{1+(K-1)\rho } \label{eq.spearman-brown}  $" style="vertical-align:-18px; width:166px;                     height:46px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>42</span>)</span></td>
+</tr>
+</table><p> となる。式(<a href="sect0018.html#eq.spearman-brown">42</a>)を、Spearman-Brownの公式という。 </p><h4 id="a0000000124">[証明]</h4>
+<p> 強平行測定の定義より、どのような<img src="images/img-0179.png" alt="$k \neq k’$" style="vertical-align:-5px; 
+                                     width:51px; 
+                                     height:21px" class="math gen" />についても<img src="images/img-0180.png" alt="$t_ k = t_{k'} = t$" style="vertical-align:-3px; 
+                                     width:95px; 
+                                     height:16px" class="math gen" />としてよい。 </p><p>従って、 </p><table id="a0000000125" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000126">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0181.png" alt="$\displaystyle  C_{t_ k t_{k'}}  $" style="vertical-align:-6px; width:41px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0182.png" alt="$\displaystyle = V_{t}  $" style="vertical-align:-3px; width:35px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>43</span>)</span></td>
+</tr><tr id="a0000000127">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0183.png" alt="$\displaystyle C_{x_ k x_{k'}}  $" style="vertical-align:-6px; width:47px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0184.png" alt="$\displaystyle = C_{(t_ k+e_ k)(t_{k'}+e_{k'})}  $" style="vertical-align:-7px; width:139px;                     height:21px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>44</span>)</span></td>
+</tr><tr id="a0000000128">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0030.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0185.png" alt="$\displaystyle = C_{t_ k t_{k'}}  $" style="vertical-align:-6px; width:62px;                     height:20px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>45</span>)</span></td>
+</tr><tr id="a0000000129">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0030.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0186.png" alt="$\displaystyle = V_ t  $" style="vertical-align:-3px; width:35px;                     height:17px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>46</span>)</span></td>
+</tr>
+</table><p> である。 つまり、真値間の共分散はどの項目間でも等しく、観測値間の共分散は真値間の共分散に等しい。 </p><p>また、信頼性係数の定義より </p><table id="a0000000130" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000131">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0187.png" alt="$\displaystyle  V_ t = \rho V_ x  $" style="vertical-align:-4px; width:71px;                     height:18px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>47</span>)</span></td>
+</tr>
+</table><p> である。これらを利用して、 </p><table id="a0000000132" cellpadding="7" width="100%" cellspacing="0" class="eqnarray">
+<tr id="a0000000133">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0188.png" alt="$\displaystyle  \frac{V_{t_{\bullet }}}{V_{x_{\bullet }}}  $" style="vertical-align:-18px; width:28px;                     height:46px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0189.png" alt="$\displaystyle = \frac{\sum _{k=1}^ K V_{t_ k} +\mathop {\sum _{k=1}^{K}\sum _{k'=1}^{K}}_{k \neq k'} C_{t_ k t_{k'}}}{\sum _{k=1}^ K V_{x_ k} + \mathop {\sum _{k=1}^{K}\sum _{k'=1}^{K}}_{k \neq k'} C_{x_ k x_{k'}}}  $" style="vertical-align:-27px; width:313px;                     height:62px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>48</span>)</span></td>
+</tr><tr id="a0000000134">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0030.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0190.png" alt="$\displaystyle = \frac{K V_ t + K(K-1) V_ t}{K V_ x + K(K-1) V_ t}  $" style="vertical-align:-19px; width:186px;                     height:47px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>49</span>)</span></td>
+</tr><tr id="a0000000135">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0030.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0191.png" alt="$\displaystyle = \frac{K^2 V_ t}{K V_ x + K(K-1) \rho V_ x}  $" style="vertical-align:-19px; width:199px;                     height:49px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>50</span>)</span></td>
+</tr><tr id="a0000000136">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0030.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0192.png" alt="$\displaystyle = \frac{KV_ t / V_ x}{1 + (K-1) \rho }  $" style="vertical-align:-19px; width:133px;                     height:48px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>51</span>)</span></td>
+</tr><tr id="a0000000137">
+    
+    <td style="width:40%">&nbsp;</td>
+    
+    
+        <td style="vertical-align:middle;                                    text-align:right"><img src="images/img-0030.png" alt="$\displaystyle  $" style="vertical-align:0px; width:1px;                     height:1px" class="math gen" /></td>
+    
+    
+    
+        <td style="vertical-align:middle;                                    text-align:left"><img src="images/img-0193.png" alt="$\displaystyle = \frac{K \rho }{1+(K-1)\rho }  $" style="vertical-align:-18px; width:133px;                     height:46px" class="math gen" /></td>
+    
+    
+    
+    <td style="width:40%">&nbsp;</td>
+    <td style="width:20%" class="eqnnum"><span>(<span>52</span>)</span></td>
+</tr>
+</table><p> となる。 [証明終わり]<br /></p><p>Spearman-Brownの公式は、各項目の信頼性が一定であれば、テストに含まれる項目数が大きくなるほど合計得点の信頼性も高くなることを示している。 つまり、信頼性の高い評価をするには項目数が多いほどよいということである。 これは、多枝選択式などを利用して多くの項目を設けた方が、テスト得点の信頼性を高く保つ上で有利であることを示している。 </p><p>Figure <a href="sect0018.html#fig.spearman-brown">6</a> は、Spearman-Brownの公式をもとに、項目の信頼性が0.5、0.8である場合に、項目数<img src="images/img-0055.png" alt="$K$" style="vertical-align:0px; 
+                                     width:17px; 
+                                     height:14px" class="math gen" />によって合計得点の信頼性がどのように変化するか図示したものである。 項目単体の信頼性が極端に低くない限り、項目数をある程度多くすることでテスト得点の信頼性はかなり高められることがわかる。 </p><div id="fig.spearman-brown" class="figure"><center> 
+<img src="images/img-0195.png" alt="\includegraphics[width=12cm]{fig.spearman-brown.ps}" style="width:12cm" /> <div class="caption"><b>Figure 6</b>: <span>項目数とテスト得点の信頼性</span></div>  </center></div></div>
+
+
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000122">強平行測定の定義より、観測値の分散と誤差分散がすべての<img src="images/img-0059.png" alt="$k$" style="vertical-align:0px; 
+                                     width:9px; 
+                                     height:14px" class="math gen" />について等しいことから明らか。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0017.html" title="再テスト法による信頼性係数の推定"><img alt="Previous: 再テスト法による信頼性係数の推定" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0013.html" title="古典的テスト理論"><img alt="Up: 古典的テスト理論" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0019.html" title="折半法による信頼性係数の推定"><img alt="Next: 折半法による信頼性係数の推定" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">テスト理論</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>

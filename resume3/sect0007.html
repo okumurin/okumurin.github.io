@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta name="generator" content="plasTeX" />
+<meta content="text/html; charset=utf-8" http-equiv="content-type" />
+<title>階層的線形モデルによるデータ分析の実際 — HLM6，SAS，Rを利用して —: MDMファイルの作成</title>
+
+<link href="sect0008.html" title="モデルの指定" rel="next" />
+<link href="sect0006.html" title="データファイルの作成" rel="prev" />
+<link href="sect0003.html" title="HLM6による分析の手順" rel="up" />
+<link rel="stylesheet" href="styles/styles.css" />
+</head>
+<body>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0006.html" title="データファイルの作成"><img alt="Previous: データファイルの作成" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0003.html" title="HLM6による分析の手順"><img alt="Up: HLM6による分析の手順" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0008.html" title="モデルの指定"><img alt="Next: モデルの指定" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<div class="breadcrumbs">
+<span>
+<span>
+<a href="index.html">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</a> <b>:</b>
+</span>
+
+</span><span>
+<span>
+<a href="sect0003.html">HLM6による分析の手順</a> <b>:</b>
+</span>
+
+</span><span>
+
+<span>
+<b class="current">MDMファイルの作成</b>
+</span>
+</span>
+<hr />
+</div>
+
+<div><h2 id="a0000000008">3.4 MDMファイルの作成</h2>
+<p>HLM6では，実際の分析は生データを直接用いるのではなく，それをいったん処理したMDM（Multivariate Data Matrix）ファイル（.mdm）の情報を用いて行われる。 <a href="#a0000000048" class="footnote"><sup class="footnotemark">1</sup></a> 従って，分析を行う前にまず生データを入力したファイルからMDMファイルを作成する必要がある。 また，いったんMDMファイルを作っておけば，その後の分析には生データファイルを直接用いることなく，すでに作ったMDMファイルを繰り返して使うことができる。 </p><p>ここでは，前項で取り上げたASCII形式で作成されたデータファイル（.datファイル）およびSPSSによって作成されたデータファイル（.savファイル）からMDMファイルを作成する方法について解説する。 </p><h3 id="a0000000049">HLM6の起動</h3>
+<p>まず，HLM6のショートカットをダブルクリックしてHLM6を起動する。 <a href="#a0000000050" class="footnote"><sup class="footnotemark">2</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0014.png" alt="\includegraphics[width=2cm]{kidou.ps}" style="width:2cm" /> </center></div><p>すると，以下のようなウィンドウが立ち上がるはずである。 HLM6の操作は基本的にこのウィンドウから行うことになる。 </p><div class="figure"><center> 
+<img src="images/img-0015.png" alt="\includegraphics[width=15cm]{kidougamen.ps}" style="width:15cm" /> </center></div><h3 id="a0000000051">ASCII形式によるデータファイルを用いたMDMファイルの作成</h3>
+<p>ここでは，ASCII形式で作成したデータファイルを用いてMDMファイルを作成する方法について説明する。 </p><p>前項で，データファイルはモデルの水準の数だけ必要であると説明したが，MDMファイルは1つのモデルに1つ作ればよい。 </p><p>まず，[File]-[Make new MDM file]-[ASCII input]とメニューを選択する。 </p><div class="figure"><center> 
+<img src="images/img-0016.png" alt="\includegraphics[width=12cm]{makemdm-ascii1.ps}" style="width:12cm" /> </center></div><p>次に，分析するモデルのタイプを選択し，[OK]をクリックする。 </p><p><a href="#a0000000052" class="footnote"><sup class="footnotemark">3</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0017.png" alt="\includegraphics[width=6cm]{makemdm-ascii2.ps}" style="width:6cm" /> </center></div><p>"Make MDM - HLM2"が開く。 ここで，データファイルからMDMファイルを作成するためのデータに関する情報を指定することになる。 </p><p>以下に，各項目について入力・指定の方法について述べる。 </p><div class="figure"><center> 
+<img src="images/img-0018.png" alt="\includegraphics[width=16cm]{makemdm-ascii3.ps}" style="width:16cm" /> </center></div><h3 id="a0000000053">MDM File Name</h3>
+<p>作成するMDMファイルの名前を拡張子つきで入力する。 <a href="#a0000000054" class="footnote"><sup class="footnotemark">4</sup></a> </p><h3 id="a0000000055">Nesting of input data</h3>
+<p>データの種類が，「集団−個人」であるか「個人−測定」であるかを指定する。 <a href="#a0000000056" class="footnote"><sup class="footnotemark">5</sup></a> 分析の内容には直接関係ないが，後にモデル式の指定をする際にどちらを選択したかで記号の区別がなされることになる。 </p><h3 id="a0000000057">Level-1 Specification</h3>
+<p>ここでは，レベル1のデータセットについての情報を指定することになる。 </p><dl class="description">
+
+    <dt>    Level-1 File Name:</dt>
+    <dd><p>レベル1のデータファイルをフルパスで入力する。 <a href="#a0000000058" class="footnote"><sup class="footnotemark">6</sup></a> あるいは，右にある"Browse"ボタンをクリックしてファイルを選択すれば，自動的にそのファイルのフルパスが入力される。 </p></dd>
+
+    <dt>    Number of Variables:</dt>
+    <dd><p><a href="#a0000000059" class="footnote"><sup class="footnotemark">7</sup></a>ID変数を除いた変数の数を半角で入力する。 </p></dd>
+
+    <dt>    Missing Data:</dt>
+    <dd><p>データに欠側がある場合はここで宣言しておく。 <a href="#a0000000060" class="footnote"><sup class="footnotemark">8</sup></a>欠測値があれば，欠側のあるケースをどの段階で削除するか（MDMファイルを作る段階/分析を行う段階）を選択することになる。 </p></dd>
+
+    <dt>    Data Format:</dt>
+    <dd><p>データのフォーマット（変数のカラム）の指定を行う。 <a href="#a0000000061" class="footnote"><sup class="footnotemark">9</sup></a> その際の規則は以下のとおりである。 </p><ul class="itemize">
+<li><p>"A"はID変数を読み込むための記述子である。"A"の後に，ID変数が何桁あるかを数字で入力する。 </p></li><li><p>"F"は実際のデータを読むための記述子である。<a href="#a0000000062" class="footnote"><sup class="footnotemark">10</sup></a>"F"の前にある数字は繰り返し数（ID変数を除く変数の数）である。"F"の後には，"[カラム数].[小数点以下の桁数]"を入力する。</p></li><li><p>"X"は，カラムを飛ばすための記述子である。<a href="#a0000000063" class="footnote"><sup class="footnotemark">11</sup></a> </p></li><li><p>"/"は，データの読み込みが2行以上にわたる際に改行を指定する記述子である。</p></li><li><p>以上の各記述子は，カンマ（","）で区切る。 </p></li>
+</ul></dd>
+
+    <dt>    Labels:</dt>
+    <dd><p>クリックしてウィンドウを開き，変数のラベル（変数名）を半角英数字で入力する。日本語で入力すると文字化けしてしまうので注意。<a href="#a0000000064" class="footnote"><sup class="footnotemark">12</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0019.png" alt="\includegraphics[width=8cm]{makemdm-ascii4.ps}" style="width:8cm" /> </center></div></dd>
+
+</dl><h3 id="a0000000065">Level-2 Specification</h3>
+<p> レベル2のデータファイルに関する情報を入力する。 <a href="#a0000000066" class="footnote"><sup class="footnotemark">13</sup></a> 基本的にレベル1の場合と同様に行えばよいが，欠測はレベル2以上では許容されないためこれに関しては指定を行わない。 </p><h3 id="a0000000067">Save mdmt file</h3>
+<p>[Save mdmt file]をクリックして，MDMT（MDM Template）ファイル（.mdmt）を作る。 MDMTファイルには，MDMファイルを作るために指定した情報<a href="#a0000000068" class="footnote"><sup class="footnotemark">14</sup></a>が格納される <a href="#a0000000069" class="footnote"><sup class="footnotemark">15</sup></a>。 </p><h3 id="a0000000070">Make MDM</h3>
+<p>[Make MDM]ボタンをクリックして，MDMファイルをつくる。 次のような画面が現れて，MDMファイルが作られたことがわかる。 <a href="#a0000000071" class="footnote"><sup class="footnotemark">16</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0020.png" alt="\includegraphics[width=10cm]{prompt1.ps}" style="width:10cm" /> </center></div><h3 id="a0000000072">Check Stats</h3>
+<p>[Check Stats]ボタンをクリックすると，各変数の基本統計量を格納したSTSファイル（hlm2mdm.sts）を確認することができる。<a href="#a0000000073" class="footnote"><sup class="footnotemark">17</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0021.png" alt="\includegraphics[width=15cm]{makemdm-ascii5.ps}" style="width:15cm" /> </center></div><h3 id="a0000000074">Done</h3>
+<p>[Done]ボタンをクリックすることでMDMファイルの作成段階は終了し，モデルの指定を行う画面が現れる。 <a href="#a0000000075" class="footnote"><sup class="footnotemark">18</sup></a> </p><h3 id="a0000000076">SPSSによるデータファイルを用いたMDMファイルの作成</h3>
+<p>ここでは，SPSSによって作成した.sav形式によるデータファイルを用いてMDMファイルを作成する方法を解説する。 </p><p>まず，[File]-[Make new MDM file]-[Stat package input]とメニューを選択する。 </p><div class="figure"><center> 
+<img src="images/img-0022.png" alt="\includegraphics[width=12cm]{makemdm-spss1.ps}" style="width:12cm" /> </center></div><p>次に，分析するモデルのタイプを選択し，[OK]をクリックする。 </p><p><a href="#a0000000077" class="footnote"><sup class="footnotemark">19</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0017.png" alt="\includegraphics[width=6cm]{makemdm-ascii2.ps}" style="width:6cm" /> </center></div><p>"Make MDM - HLM2"が開く。 </p><div class="figure"><center> 
+<img src="images/img-0023.png" alt="\includegraphics[width=15cm]{makemdm-spss5.ps}" style="width:15cm" /> </center></div><p>ここで，データファイルからMDMファイルを作成するためのデータに関する情報を指定することになる。 </p><p>以下に，各項目について入力・指定の方法について述べる。 </p><h3 id="a0000000078">MDM File Name</h3>
+<p>作成するMDMファイルの名前を拡張子（.mdm）つきで入力する。 <a href="#a0000000079" class="footnote"><sup class="footnotemark">20</sup></a> </p><h3 id="a0000000080">Input File Type</h3>
+<p>ここで，データファイルの形式をプルダウンメニューから選択する。 <a href="#a0000000081" class="footnote"><sup class="footnotemark">21</sup></a> </p><h3 id="a0000000082">Nesting of input data</h3>
+<p>データの種類が，「集団−個人」であるか「個人−測定」であるかを指定する。 <a href="#a0000000083" class="footnote"><sup class="footnotemark">22</sup></a> </p><h3 id="a0000000084">Level-1 Specification</h3>
+<p>ここでは，レベル1のデータファイルに関する指定を行う。 </p><dl class="description">
+
+    <dt>    Browse:</dt>
+    <dd><p>[Browse]ボタンをクリックしてファイルを選択し，<a href="#a0000000085" class="footnote"><sup class="footnotemark">23</sup></a>"Level-1 File Name: "の右側に，データファイルのフルパスが表示されるのを確認。 </p></dd>
+
+    <dt>    Choose Variabes: </dt>
+    <dd><p>[Choose Variables]をクリックして，レベル1のデータファイルから読み込む変数の指定（四角をクリックしてチェックをつける）を行う。SPSSファイルではすでに変数名がつけられているので，ここではID変数およびMDMファイルに読み込む変数（分析の対象としたい変数）を指定するだけでよい。 </p><div class="figure"><center> 
+<img src="images/img-0024.png" alt="\includegraphics[width=8cm]{makemdm-spss3.ps}" style="width:8cm" /> </center></div></dd>
+
+    <dt>    欠測値に関する指定:</dt>
+    <dd><p>もし欠測値があれば "Missing Data?" で "Yes" を，なければ "No" を選択する。 <a href="#a0000000086" class="footnote"><sup class="footnotemark">24</sup></a> "Yes"を選択した場合は，欠測値を含むケースをいずれの段階で除去するか（MDMファイルを作る段階 / 分析を行う段階），選択する。 </p></dd>
+
+</dl><h3 id="a0000000087">Level-2 Specification</h3>
+<p>次に，レベル2のデータファイルに関する指定を行う。 </p><dl class="description">
+
+    <dt>    Browse:</dt>
+    <dd><p>[Browse]ボタンをクリックして，<a href="#a0000000088" class="footnote"><sup class="footnotemark">25</sup></a>レベル2のデータファイルを指定する。 </p></dd>
+
+    <dt>    Choose Variables:</dt>
+    <dd><p>[Choose Variables]ボタンをクリックして，レベル2で読み込む変数の指定を行う。 </p></dd>
+
+</dl><div class="figure"><center> 
+<img src="images/img-0025.png" alt="\includegraphics[width=8cm]{makemdm-spss4.ps}" style="width:8cm" /> </center></div><h3 id="a0000000089">Save mdmt file</h3>
+<p> [Save mdmt file]をクリックして，MDMテンプレートファイルを保存する。 <a href="#a0000000090" class="footnote"><sup class="footnotemark">26</sup></a> </p><h3 id="a0000000091">Make MDM</h3>
+<p> [Make MDM]をクリックして，MDMファイルを作成する。 次のような画面が現れて，MDMファイルが作られたことがわかる。 <a href="#a0000000092" class="footnote"><sup class="footnotemark">27</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0020.png" alt="\includegraphics[width=8cm]{prompt1.ps}" style="width:8cm" /> </center></div><h3 id="a0000000093">Check Stats</h3>
+<p>[Check Stats]ボタンをクリックすると，各変数の基本統計量を格納したSTSファイル（hlm2mdm.sts）を確認することができる。<a href="#a0000000094" class="footnote"><sup class="footnotemark">28</sup></a> </p><div class="figure"><center> 
+<img src="images/img-0021.png" alt="\includegraphics[width=12cm]{makemdm-ascii5.ps}" style="width:12cm" /> </center></div><h3 id="a0000000095">Done</h3>
+<p>[Done]ボタンをクリックすることでMDMファイルの作成段階は終了し，モデルの指定を行う画面が現れる。 </p><div class="figure"><center> 
+<img src="images/img-0026.png" alt="\includegraphics[width=10cm]{makehlm1.ps}" style="width:10cm" /> </center></div></div>
+
+
+
+<div id="footnotes">
+<p><b>Footnotes</b></p>
+<ol>
+<li id="a0000000048">MDMファイルに相当するものは，以前のバージョンであるHLM5までは，SSM（Sufficient Statistics Matrix）ファイルといっていたが，バージョン6への改定の際に変更された。</li><li id="a0000000050">もしショートカットがなければ，"HLM6S"フォルダ内の"WHLMS.exe"ファイルをダブルクリックしてもよい。 あるいは，"WHLMS.exe"を右クリックし，[送る]→[デスクトップ（ショートカットを作成）]で，デスクトップ上にショートカットを作成することができる。</li><li id="a0000000052">今回の例では2レベルモデルなので，"HLM2"を選択する。</li><li id="a0000000054">ここでは，"hsb-gd.mdm"とした。</li><li id="a0000000056">ここでは，「学校という集団内の個人」を対象にしたデータであることから"persons within groups"を選択した。</li><li id="a0000000058">ここでは"C:￥Program Files￥HLM6S￥Examples￥AppendxA￥hsb1.dat" と入力するか，そのファイルを選択する。</li><li id="a0000000059">ここでは，"4"とした。</li><li id="a0000000060">今回の例では欠測はないのでそのままでよい。デフォルトでは欠測はないものとして扱われる。</li><li id="a0000000061">ここでは"(A4,4F12.3)"と入力する。"(" や ")" を忘れると警告が出る。</li><li id="a0000000062">"4F12.3"は，12カラムを占める小数点以下3桁までのデータが4つあるという意味になる。実際にデータファイル"hsb1.dat"を確認されたい。</li><li id="a0000000063">例えば"8X"であればデータ読み込みの際に8カラム飛ばすということになる。</li><li id="a0000000064">ここでは，順に"MINORITY", "FEMALE", "SES", "MATHACH"とする。</li><li id="a0000000066">データファイルは，C:￥Program Files￥HLM6S￥Examples￥AppendxA￥hsb2.dat と入力するか，そのファイルを選択する。 変数の数は6個で，Data Formatには"(A4,6F12.3)"と入力する。 また，変数名については順に"SIZE"，"SECTOR"，"PRACAD"，"DISCLIM"，"HIMINTY"，"MEANSES"とする。</li><li id="a0000000068">データファイルの種類や変数の数，カラム指定，欠測値に関する情報など。実際にテキストエディタで開いてみるとMDMファイルを作る際に指定した内容が確認できる。</li><li id="a0000000069">MDMTファイルを用いれば，以前に作成したMDMファイルを簡単に編集し直すことができる。[File]-[Make new MDM from old MDM template (.mdmt) file]メニューからMDMTファイルを指定すれば，MDMファイルを作成する画面に移動する。</li><li id="a0000000071">この画面は，数秒間現れたのち自動的に消える。</li><li id="a0000000073">STSファイルは自動的に作成され，あらかじめファイル名を指定することはできない。</li><li id="a0000000075">MDMファイルが指定された後は，[File]-[Display MDM stats]でMDMファイルに含まれる情報の一部を確認することができる。</li><li id="a0000000077">ASCII形式のときと同様，今回の例では2レベルモデルなので，"HLM2"を選択する。</li><li id="a0000000079">ここでは，"hsb-gd.mdm"とした。</li><li id="a0000000081">ここでは"SPSS/Windows"を選択（デフォルト）。</li><li id="a0000000083">ここでは，「学校という集団内の個人」を対象にしたデータであることから"persons within groups"を選択した。</li><li id="a0000000085">ここでは"C:￥Program Files￥HLM6S￥Examples￥AppendxA￥hsb1.sav" を選択した。</li><li id="a0000000086">hsb1.savには欠測値はないのでデフォルトのままでよい。</li><li id="a0000000088">ここでは"C:￥Program Files￥HLM6S￥Examples￥AppendxA￥hsb2.sav" を選択した。</li><li id="a0000000090">ここでは，"hsb-gd.mdmt"とした。</li><li id="a0000000092">この画面は，数秒間現れたのち自動的に消える。</li><li id="a0000000094">STSファイルは自動的に作成され，あらかじめファイル名を指定することはできない。</li>
+</ol>
+</div>
+
+<div class="navigation">
+<table cellspacing="2" cellpadding="0" width="100%">
+<tr>
+<td><a href="sect0006.html" title="データファイルの作成"><img alt="Previous: データファイルの作成" border="0" src="icons/previous.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0003.html" title="HLM6による分析の手順"><img alt="Up: HLM6による分析の手順" border="0" src="icons/up.gif" width="32" height="32" /></a></td>
+
+<td><a href="sect0008.html" title="モデルの指定"><img alt="Next: モデルの指定" border="0" src="icons/next.gif" width="32" height="32" /></a></td>
+
+<td class="navtitle" align="center">階層的線形モデルによるデータ分析の実際 <br />— HLM6，SAS，Rを利用して —</td>
+<td><a href="index.html" title="Table of Contents"><img border="0" alt="" src="icons/contents.gif" width="32" height="32" /></a></td>
+
+
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+<td><img border="0" alt="" src="icons/blank.gif" width="32" height="32" /></td>
+</tr>
+</table>
+</div>
+
+<script language="javascript" src="icons/imgadjust.js" type="text/javascript"></script>
+
+</body>
+</html>
