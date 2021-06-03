@@ -1,6 +1,0 @@
-<?xml version='1.0' encoding='ISO-8859-1' ?>
-<plugin name="&#12487;&#12540;&#12479;&#35299;&#26512;&#12398;&#12383;&#12417;&#12398;&#32113;&#35336;&#12514;&#12487;&#12522;&#12531;&#12464;&#20837;&#38272;" id="a0000000001" version="1.0.0">
-   <extension point="org.eclipse.help.toc">
-      <toc file="eclipse-contents.xml" primary="true"></toc>
-   </extension>
-</plugin>
