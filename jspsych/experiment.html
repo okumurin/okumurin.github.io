@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- 下2行がないとブラウザによっては日本語が文字化けする。 -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>My experiment</title> 
+    <script src = "https://unpkg.com/jspsych@7.1.2"></script>
+    <!-- キーボード利用 -->
+    <script src = "https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+    <!-- 画像提示のプラグイン -->
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+    <!-- プリロードするためのプラグイン -->
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet" type="text/css" /> 
+  </head>
+  <body></body>
+  <script>
+    var jsPsych = initJsPsych();  
+    var timeline = [];  // 空のタイムライン配列を作成（トライアルをこの配列に追加する）
+    
+    /* プリロード */
+    var preload = {
+      type: jsPsychPreload, 
+      images: ['img/blue.png', 'img/orange.png']
+    }; 
+    
+    /* ウェルカムメッセージ（welcome タイムトライアル）*/
+    var welcome = {
+      type: jsPsychHtmlKeyboardResponse, 
+      stimulus: "実験へようこそ。どれかキーを押して開始して下さい。"
+    }; 
+    timeline.push(welcome);  // welcome タイムトライアルをプッシュ（タイムライン配列の最後に追加）
+    
+    /* 教示 */
+    var instructions = {
+      type: jsPsychHtmlKeyboardResponse,       
+      stimulus: `
+      <p>この実験では、円がスクリーンの中央に表示されます。</p>
+      <p>もし円が<strong>青</strong>なら F キーを、
+      もし円が<strong>オレンジ</strong>なら J キーをなるべく早く押して下さい。</p>
+      <div style='width: 700px;'>
+        <div style='float: left;'><img src='img/blue.png'></img><p class='small'>F キーを押す</p></div>
+        <div style='float: right;'><img src='img/orange.png'></img><p class='small'>J キーを押す</p></div>
+      </div>
+      <p>どれかキーを押してスタートして下さい。</p>
+      `,     // 複数行に渡るときはバックティック `` で囲むこと。
+      post_trial_gap: 2000  // 次のトライアルが始まるまでの待ち時間と思われる。
+    }; 
+    timeline.push(instructions); 
+    
+    /* 刺激の提示（青とオレンジ1回のみ）（キーは F と J にしか反応しない。） */
+    var blue_trial = {
+    	type: jsPsychImageKeyboardResponse,
+    	stimulus: 'img/blue.png',
+    	choices: ['f', 'j']
+    };
+    
+    var orange_trial = {
+    	type: jsPsychImageKeyboardResponse,
+    	stimulus: 'img/orange.png',
+    	choices: ['f', 'j']
+    }; 
+    timeline.push(blue_trial, orange_trial);  
+    
+    /* テスト刺激を全て含む配列（後でリンクされる） */
+    var test_stimuli = [
+      { stimulus: "img/blue.png", correct_response: 'f'},  // 刺激の画像ファイルと正反応
+      { stimulus: "img/orange.png", correct_response: 'j'}
+    ]; 
+        
+    /* クロス（+印）の表示 */
+    var fixation = {
+      type: jsPsychHtmlKeyboardResponse, 
+      stimulus: '<div style="font-size: 60px;">+</div>', 
+      choices: "NO_KEYS", // キーボード入力を受け付けない。
+      trial_duration: 1000  // 表示時間
+    }; 
+    
+    /* 刺激の提示 */
+    var test = {
+      type: jsPsychImageKeyboardResponse, 
+      stimulus: jsPsych.timelineVariable('stimulus'), // 先に作った変数 stimulus の画像が刺激
+      choices: ['f', 'j'], 
+      data: {
+      	 task: 'response',  // 画像に対する反応はデータに "response" というタグがつく。
+      	 correct_response: jsPsych.timelineVariable('correct_response') // 正誤に corrtect_response のタグがつく。
+      }
+    }; 
+    
+    /* 実験手続き */
+    var test_procedure = {
+      timeline: [fixation, test],  // 先に作った fixation --> test (blue) --> test (orange) の順で提示される。
+      timeline_variables: test_stimuli,  // test_stimuli タイムラインで読み込んだ画像を使用すること。
+      randomize_order: true,  // test の中身だけがランダムな順序で提示される。（+ --> 色つき円の順序は不変。）
+      repetitions: 5  // 5回繰り返し
+    }; 
+    timeline.push(test_procedure); 
+    
+    jsPsych.run(timeline);  // 実験の実行
+
+  </script>
+</html>
