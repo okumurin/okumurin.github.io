@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Implicit Association Test</title>
+    <!-- 日本語を使用 -->
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <!-- jsPsych 本体とプラグインは CDC から持ってくる -->
+    <script src="https://unpkg.com/jspsych@7.1.2"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-iat-html@1.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-iat-image@1.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.0.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.0.0"></script>
+    <link href="https://unpkg.com/jspsych@7.1.2/css/jspsych.css" rel="stylesheet">
+  </head>
+  <body></body>
+  <script>
+
+    var jsPsych = initJsPsych({
+      on_finish: function() {
+        jsPsych.data.displayData();
+      }
+    });
+
+    // manually preload images due to presenting them with timeline variables
+    //var images = ['img/flower1.jpeg', 'img/flower2.jpeg', 'img/flower3.jpeg', 'img/flower4.jpeg', 'img/flower5.jpeg', 'img/flower6.jpeg', 
+     //                       'img/insect1.jpeg', 'img/insect2.jpeg', 'img/insect3.jpeg', 'img/insect4.jpeg', 'img/insect5.jpeg', 'img/insect6.jpeg'];
+
+    //var preload = {
+    //  type: jsPsychPreload,
+    //  images: images
+    //};
+
+    var welcome_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: '<p>この実験では、画面上に提示された単語をできる限り早く分類することが求められます。</p>' + 
+      '<p> >>> 始めるにはどれかキーを押して下さい。</p>', 
+      post_trial_gap: 1500
+    };
+
+    var category_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: 
+      '<p>この実験で提示される単語は、「良い」「悪い」「花」「虫」の4つのグループから成ります。<br>各グループに含まれる単語が以下に表示されています。</p>' + 
+      '<p><strong>良い</strong><br>すてきな, わくわくする, みごとな, ゆかいな, かわいい, おもしろい, たのしい, うれしい</p>' +
+      '<p><strong>悪い</strong><br>きたない, くさい, ぞっとする, みにくい, かなしい, きもちわるい, こわい, いやな</p>' + 
+      '<p><strong>花</strong><br>チューリップ, シロツメクサ, ヒヤシンス, マリーゴールド, ポピー, アザリア, クロッカス, アヤメ</p>' + 
+      '<p><strong>虫</strong><br>アリ, イモムシ, ノミ, バッタ, クモ, シラミ, ムカデ, ハエ</p>' + 
+      '<p>これらの単語と画像を、キーボードの <strong>f</strong> と  <strong>j</strong> のキーを使って分類してもらいます。</p>' + 
+      '<p> >>> 次に進むにはどれかキーを押して下さい。</p>', 
+      post_trial_gap: 1500
+    };
+
+    var instructions_block = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'><p>Press f for:<br><strong>花</strong></p></div>" +
+      "<div style='position: absolute; top: 18%; right: 20%'><p>Press j for:<br><strong>虫</strong></p></div>" +
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
+      "画面の中央に、「花」もしくは「虫」の名前が表示されます。<br>" + 
+      "<strong>花</strong>が表示されたら <strong>f</strong> を、<strong>虫</strong>が表示されたら <strong>j</strong> を押して下さい。<br>" + 
+      "一度に表示されるのはひとつです。<br>" + 
+      "間違いだった場合は <span style='color: red'>X</span> が表示されますので、もう一方のキーを押して続けて下さい。<br>" +  
+      "できる限り早く、そして正確に分類を行って下さい。<br><br>" + 
+      ">>> どれかキーを押すとスタートします。</div>"
+    };
+
+    var trial_block = {
+      timeline: [
+        {
+          type: jsPsychIatHtml,
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>間違いだった場合は赤の X が表示されますので、もう一方のキーを押して続けて下さい。</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'f',
+          right_category_key: 'j',
+          left_category_label: ['花'],
+          right_category_label: ['虫'],
+          response_ends_trial: true,
+          data: { iat_type: 'practice' }
+        }
+      ],
+      timeline_variables: [
+        {stimulus: "チューリップ", stim_key_association: "left"},
+        {stimulus: "シロツメクサ", stim_key_association: "left"},
+        {stimulus: "ヒヤシンス", stim_key_association: "left"},
+        {stimulus: "マリーゴールド", stim_key_association: "left"},
+        {stimulus: "ポピー", stim_key_association: "left"},
+        {stimulus: "アザリア", stim_key_association: "left"},
+        {stimulus: "クロッカス", stim_key_association: "left"},
+        {stimulus: "アヤメ", stim_key_association: "left"},
+        {stimulus: "アリ", stim_key_association: "right"},
+        {stimulus: "イモムシ", stim_key_association: "right"},
+        {stimulus: "ノミ", stim_key_association: "right"},
+        {stimulus: "バッタ", stim_key_association: "right"},
+        {stimulus: "クモ", stim_key_association: "right"},
+        {stimulus: "シラミ", stim_key_association: "right"},
+        {stimulus: "ムカデ", stim_key_association: "right"},
+        {stimulus: "ハエ", stim_key_association: "right"}
+      ],
+      randomize_order: true,
+      repetitions: 2
+    };
+
+    var instructions_block2 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'><p>Press f for:<br><strong>良い</strong></p></div>" +
+      "<div style='position: absolute; top: 18%; right: 20%'><p>Press j for:<br><strong>悪い</strong></p></div>" +
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
+      "画面の中央に、「良い」単語もしくは「悪い」単語が表示されます。<br>" + 
+      "<strong>良い</strong>単語が表示されたら <strong>f</strong> を、<strong>悪い</strong>単語が表示されたら <strong>j</strong> を押して下さい。<br>" + 
+      "一度に表示されるのはひとつです。<br>" + 
+      "間違いだった場合は <span style='color: red'>X</span> が表示されますので、もう一方のキーを押して続けて下さい。<br>" +  
+      "できる限り早く、そして正確に分類を行って下さい。<br><br>" + 
+      ">>> どれかキーを押すとスタートします。</div>"
+    };
+
+    var trial_block2 = {
+      timeline: [
+        {
+          type: jsPsychIatHtml,
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>間違いだった場合は赤の X が表示されますので、もう一方のキーを押して続けて下さい。</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'f',
+          right_category_key: 'j',
+          left_category_label: ['良い'],
+          right_category_label: ['悪い'],
+          response_ends_trial: true,
+          data: { iat_type: 'practice' }
+        }
+      ],
+      timeline_variables: [
+        {stimulus: "すてきな", stim_key_association: "left"},
+        {stimulus: "わくわくする", stim_key_association: "left"},
+        {stimulus: "みごとな", stim_key_association: "left"},
+        {stimulus: "ゆかいな", stim_key_association: "left"},
+        {stimulus: "かわいい", stim_key_association: "left"},
+        {stimulus: "おもしろい", stim_key_association: "left"},
+        {stimulus: "たのしい", stim_key_association: "left"},
+        {stimulus: "うれしい", stim_key_association: "left"},
+        {stimulus: "きたない", stim_key_association: "right"},
+        {stimulus: "くさい", stim_key_association: "right"},
+        {stimulus: "ぞっとする", stim_key_association: "right"},
+        {stimulus: "みにくい", stim_key_association: "right"},
+        {stimulus: "かなしい", stim_key_association: "right"},
+        {stimulus: "きもちわるい", stim_key_association: "right"},
+        {stimulus: "こわい", stim_key_association: "right"},
+        {stimulus: "いやな", stim_key_association: "right"}
+      ],
+      randomize_order: true,
+      repetitions: 2
+    };
+
+    var instructions_block3 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press f for:<br> " +
+      "<strong>良い</strong><br>" + "or<br>" + "<strong>花</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
+      "Press i for:<br>" + "<strong>悪い</strong><br>" + "or<br>" + "<strong>虫</strong></div>" + 
+      "画面の中央に、単語がひとつずつ表示されます。<br>" + 
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'><strong>良い</strong>言葉もしくは<strong>花</strong>の名前が表示された場合は <strong>f</strong> を押して下さい。<br>" +
+      "<strong>悪い</strong>言葉もしくは<strong>虫</strong>の名前が表示された場合は、<strong>i</strong> を押して下さい。<br>" + 
+      "間違いだった場合は <span style='color: red'>X</span> が表示されますので、もう一方のキーを押して続けて下さい。<br>" +  
+      "できる限り早く、そして正確に分類を行って下さい。<br><br>" + 
+      ">>> どれかキーを押すとスタートします。</div>",
+    };
+
+    var trial_block3 = {
+      timeline: [
+        {
+          type: jsPsychIatHtml,
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>間違いだった場合は赤の X が表示されますので、もう一方のキーを押して続けて下さい。</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'f',
+          right_category_key: 'j',
+          left_category_label: ['良い', '花'],
+          right_category_label: ['悪い', '虫'],
+          response_ends_trial: true,
+          data: { iat_type: 'good-flower' }
+        }
+      ],
+      timeline_variables: [
+        {stimulus: "チューリップ", stim_key_association: "left"},
+        {stimulus: "シロツメクサ", stim_key_association: "left"},
+        {stimulus: "ヒヤシンス", stim_key_association: "left"},
+        {stimulus: "マリーゴールド", stim_key_association: "left"},
+        {stimulus: "ポピー", stim_key_association: "left"},
+        {stimulus: "アザリア", stim_key_association: "left"},
+        {stimulus: "クロッカス", stim_key_association: "left"},
+        {stimulus: "アヤメ", stim_key_association: "left"},
+        {stimulus: "アリ", stim_key_association: "right"},
+        {stimulus: "イモムシ", stim_key_association: "right"},
+        {stimulus: "ノミ", stim_key_association: "right"},
+        {stimulus: "バッタ", stim_key_association: "right"},
+        {stimulus: "クモ", stim_key_association: "right"},
+        {stimulus: "シラミ", stim_key_association: "right"},
+        {stimulus: "ムカデ", stim_key_association: "right"},
+        {stimulus: "ハエ", stim_key_association: "right"}, 
+        {stimulus: "すてきな", stim_key_association: "left"},
+        {stimulus: "わくわくする", stim_key_association: "left"},
+        {stimulus: "みごとな", stim_key_association: "left"},
+        {stimulus: "ゆかいな", stim_key_association: "left"},
+        {stimulus: "かわいい", stim_key_association: "left"},
+        {stimulus: "おもしろい", stim_key_association: "left"},
+        {stimulus: "たのしい", stim_key_association: "left"},
+        {stimulus: "うれしい", stim_key_association: "left"},
+        {stimulus: "きたない", stim_key_association: "right"},
+        {stimulus: "くさい", stim_key_association: "right"},
+        {stimulus: "ぞっとする", stim_key_association: "right"},
+        {stimulus: "みにくい", stim_key_association: "right"},
+        {stimulus: "かなしい", stim_key_association: "right"},
+        {stimulus: "きもちわるい", stim_key_association: "right"},
+        {stimulus: "こわい", stim_key_association: "right"},
+        {stimulus: "いやな", stim_key_association: "right"}
+      ],
+      randomize_order: true,
+      repetitions: 1
+    };
+
+    var instructions_block4 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press f for:<br> " +
+      "<strong>良い</strong><br>" + "or<br>" + "<strong>虫</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
+      "Press i for:<br>" + "<strong>悪い</strong><br>" + "or<br>" + "<strong>花</strong></div>" + 
+      "画面の中央に、単語がひとつずつ表示されます。<br>" + 
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'><strong>良い</strong>言葉もしくは<strong>虫</strong>の名前が表示された場合は <strong>f</strong> を押して下さい。<br>" +
+      "<strong>悪い</strong>言葉もしくは<strong>花</strong>の単語が表示された場合は、<strong>i</strong> を押して下さい。<br>" + 
+      "間違いだった場合は <span style='color: red'>X</span> が表示されますので、もう一方のキーを押して続けて下さい。<br>" +  
+      "できる限り早く、そして正確に分類を行って下さい。<br><br>" + 
+      ">>> どれかキーを押すとスタートします。</div>",
+    };
+
+    var trial_block4 = {
+      timeline: [
+          {
+            type: jsPsychIatHtml,
+            stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>間違いだった場合は赤の X が表示されますので、もう一方のキーを押して続けて下さい。</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'f',
+          right_category_key: 'j',
+          left_category_label: ['良い', '虫'],
+          right_category_label: ['悪い', '花'],
+          response_ends_trial: true,
+          data: { iat_type: 'good-insect' }
+          }
+        ],
+        timeline_variables: [
+        {stimulus: "チューリップ", stim_key_association: "right"},
+        {stimulus: "シロツメクサ", stim_key_association: "right"},
+        {stimulus: "ヒヤシンス", stim_key_association: "right"},
+        {stimulus: "マリーゴールド", stim_key_association: "right"},
+        {stimulus: "ポピー", stim_key_association: "right"},
+        {stimulus: "アザリア", stim_key_association: "right"},
+        {stimulus: "クロッカス", stim_key_association: "right"},
+        {stimulus: "アヤメ", stim_key_association: "right"},
+        {stimulus: "アリ", stim_key_association: "left"},
+        {stimulus: "イモムシ", stim_key_association: "left"},
+        {stimulus: "ノミ", stim_key_association: "left"},
+        {stimulus: "バッタ", stim_key_association: "left"},
+        {stimulus: "クモ", stim_key_association: "left"},
+        {stimulus: "シラミ", stim_key_association: "left"},
+        {stimulus: "ムカデ", stim_key_association: "left"},
+        {stimulus: "ハエ", stim_key_association: "left"}, 
+        {type: jsPsychIatHtml, stimulus: "すてきな", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "わくわくする", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "みごとな", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "ゆかいな", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "かわいい", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "おもしろい", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "たのしい", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "うれしい", stim_key_association: "left"},
+        {type: jsPsychIatHtml, stimulus: "きたない", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "くさい", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "ぞっとする", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "みにくい", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "かなしい", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "きもちわるい", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "こわい", stim_key_association: "right"},
+        {type: jsPsychIatHtml, stimulus: "いやな", stim_key_association: "right"}
+        ],
+        randomize_order: true,
+        repetitions: 1
+      };
+
+      var debrief_block = {
+        type: jsPsychHtmlKeyboardResponse,
+        stimulus: function() {
+          // calculate D-score from https://faculty.washington.edu/agg/pdf/GB&N.JPSP.2003.pdf
+          // first find mean RT
+          var good_flower = jsPsych.data.get().filter({iat_type: 'good-flower'}).filterCustom(function(x) { return x.rt < 10000 });
+          var mean_correct_responses_good_flower = good_flower.filter({correct: true}).select('rt').mean();
+          var good_insect = jsPsych.data.get().filter({iat_type: 'good-insect'}).filterCustom(function(x) { return x.rt < 10000 });
+          var mean_correct_responses_good_insect = good_insect.filter({correct: true}).select('rt').mean();
+
+          // get overall sd
+          var sd = good_flower.join(good_insect).filter({correct: true}).select('rt').sd();
+
+          var d = (mean_correct_responses_good_insect - mean_correct_responses_good_flower) / sd;
+
+          return "<p>実験はこれで終了です。</p>"+
+                 "<p>「良い」と「花」、「悪い」と「虫」がペアであった場合、あなたの平均反応時間は"+Math.floor(mean_correct_responses_good_flower)+"ms でした。</p>"+
+                 "<p>「良い」と「虫」、「悪い」と「花」がペアであった場合、あなたの平均反応時間は"+Math.floor(mean_correct_responses_good_insect)+"ms でした。</p>"+
+                 "<p>あなたの D 得点は、"+d.toFixed(2)+"でした。</p>"+ 
+                 "<p>この値が大きいほど、虫に対する嫌悪が強いと判定されます。（0.15: 小, 0.35: 中, 0.65: 大）</p>"
+        }
+      };
+
+      var timeline = [];
+      //timeline.push(preload);
+      timeline.push(welcome_block);
+      timeline.push(category_block);
+      timeline.push(instructions_block);
+      timeline.push(trial_block);
+      timeline.push(instructions_block2);
+      timeline.push(trial_block2);
+      timeline.push(instructions_block3);
+      timeline.push(trial_block3);
+      timeline.push(instructions_block4);
+      timeline.push(trial_block4);
+      timeline.push(debrief_block);
+
+      jsPsych.run(timeline);
+
+  </script>
+</html>
