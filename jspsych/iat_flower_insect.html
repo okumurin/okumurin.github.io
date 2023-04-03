@@ -41,21 +41,24 @@
     var category_block = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: 
-      '<p>この実験で提示される単語は、「良い」「悪い」「花」「虫」の4つのグループから成ります。<br>各グループに含まれる単語が以下に表示されています。</p>' + 
-      '<p><strong>良い</strong><br>すてきな, わくわくする, みごとな, ゆかいな, かわいい, おもしろい, たのしい, うれしい</p>' +
-      '<p><strong>悪い</strong><br>きたない, くさい, ぞっとする, みにくい, かなしい, きもちわるい, こわい, いやな</p>' + 
-      '<p><strong>花</strong><br>チューリップ, シロツメクサ, ヒヤシンス, マリーゴールド, ポピー, アザリア, クロッカス, アヤメ</p>' + 
-      '<p><strong>虫</strong><br>アリ, イモムシ, ノミ, バッタ, クモ, シラミ, ムカデ, ハエ</p>' + 
+      '<p>この実験で提示される単語は、「良い」「悪い」「花」「虫」の4つのグループから成ります。<br>各グループに含まれる単語は以下のとおりです。</p>' + 
+      '<ul style = "text-align:left">'+
+      '<li><strong>花</strong>：チューリップ, シロツメクサ, ヒヤシンス, マリーゴールド, ポピー, アザリア, クロッカス, アヤメ' + 
+      '<li><strong>虫</strong>：アリ, イモムシ, ノミ, バッタ, クモ, シラミ, ムカデ, ハエ' + 
+      '<li><strong>良い</strong>：すてきな, わくわくする, みごとな, ゆかいな, かわいい, おもしろい, たのしい, うれしい' +
+      '<li><strong>悪い</strong>：きたない, くさい, ぞっとする, みにくい, かなしい, きもちわるい, こわい, いやな' + 
+      '</ul>' + 
       '<p>これらの単語と画像を、キーボードの <strong>f</strong> と  <strong>j</strong> のキーを使って分類してもらいます。</p>' + 
       '<p> >>> 次に進むにはどれかキーを押して下さい。</p>', 
       post_trial_gap: 1500
     };
 
-    var instructions_block = {
+    // 第1ブロック
+    var instructions_block1 = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "<div style='position: absolute; top: 18%; left: 20%'><p>Press f for:<br><strong>花</strong></p></div>" +
       "<div style='position: absolute; top: 18%; right: 20%'><p>Press j for:<br><strong>虫</strong></p></div>" +
-      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>(1/5)<br><br>左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
       "画面の中央に、「花」もしくは「虫」の名前が表示されます。<br>" + 
       "<strong>花</strong>が表示されたら <strong>f</strong> を、<strong>虫</strong>が表示されたら <strong>j</strong> を押して下さい。<br>" + 
       "一度に表示されるのはひとつです。<br>" + 
@@ -64,7 +67,7 @@
       ">>> どれかキーを押すとスタートします。</div>"
     };
 
-    var trial_block = {
+    var trial_block1 = {
       timeline: [
         {
           type: jsPsychIatHtml,
@@ -105,11 +108,12 @@
       repetitions: 2
     };
 
+    // 第2ブロック
     var instructions_block2 = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "<div style='position: absolute; top: 18%; left: 20%'><p>Press f for:<br><strong>良い</strong></p></div>" +
       "<div style='position: absolute; top: 18%; right: 20%'><p>Press j for:<br><strong>悪い</strong></p></div>" +
-      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>(2/5)<br><br>左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
       "画面の中央に、「良い」単語もしくは「悪い」単語が表示されます。<br>" + 
       "<strong>良い</strong>単語が表示されたら <strong>f</strong> を、<strong>悪い</strong>単語が表示されたら <strong>j</strong> を押して下さい。<br>" + 
       "一度に表示されるのはひとつです。<br>" + 
@@ -159,13 +163,17 @@
       repetitions: 2
     };
 
+    // 第3ブロック
     var instructions_block3 = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press f for:<br> " +
       "<strong>良い</strong><br>" + "or<br>" + "<strong>花</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
       "Press i for:<br>" + "<strong>悪い</strong><br>" + "or<br>" + "<strong>虫</strong></div>" + 
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>" +
+      "(3/5)<br><br>" + 
+      "左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
       "画面の中央に、単語がひとつずつ表示されます。<br>" + 
-      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'><strong>良い</strong>言葉もしくは<strong>花</strong>の名前が表示された場合は <strong>f</strong> を押して下さい。<br>" +
+      "<strong>良い</strong>言葉もしくは<strong>花</strong>の名前が表示された場合は <strong>f</strong> を押して下さい。<br>" +
       "<strong>悪い</strong>言葉もしくは<strong>虫</strong>の名前が表示された場合は、<strong>j</strong> を押して下さい。<br>" + 
       "間違いだった場合は <span style='color: red'>X</span> が表示されますので、もう一方のキーを押して続けて下さい。<br>" +  
       "できる限り早く、そして正確に分類を行って下さい。<br><br>" + 
@@ -229,11 +237,69 @@
       repetitions: 1
     };
 
-    var instructions_block4 = {
+    // 第4ブロック
+      var instructions_block4 = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "<div style='position: absolute; top: 18%; left: 20%'><p>Press f for:<br><strong>虫</strong></p></div>" +
+      "<div style='position: absolute; top: 18%; right: 20%'><p>Press j for:<br><strong>花</strong></p></div>" +
+      "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'>(4/5)<br><br>左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
+      "画面の中央に、「虫」もしくは「花」の名前が表示されます。<br>" + 
+      "<strong>虫</strong>が表示されたら <strong>f</strong> を、<strong>花</strong>が表示されたら <strong>j</strong> を押して下さい。<br>" + 
+      "一度に表示されるのはひとつです。<br>" + 
+      "間違いだった場合は <span style='color: red'>X</span> が表示されますので、もう一方のキーを押して続けて下さい。<br>" +  
+      "できる限り早く、そして正確に分類を行って下さい。<br><br>" + 
+      ">>> どれかキーを押すとスタートします。</div>"
+    };
+
+    var trial_block4 = {
+      timeline: [
+        {
+          type: jsPsychIatHtml,
+          stimulus: jsPsych.timelineVariable('stimulus'),
+          stim_key_association: jsPsych.timelineVariable('stim_key_association'),
+          html_when_wrong: '<span style="color: red; font-size: 80px">X</span>',
+          bottom_instructions: '<p>間違いだった場合は赤の X が表示されますので、もう一方のキーを押して続けて下さい。</p>',
+          force_correct_key_press: true,
+          display_feedback: true,
+          trial_duration: 3000, //Only if display_feedback is false
+          left_category_key: 'f',
+          right_category_key: 'j',
+          left_category_label: ['虫'],
+          right_category_label: ['花'],
+          response_ends_trial: true,
+          data: { iat_type: 'practice' }
+        }
+      ],
+      timeline_variables: [
+        {stimulus: "チューリップ", stim_key_association: "right"},
+        {stimulus: "シロツメクサ", stim_key_association: "right"},
+        {stimulus: "ヒヤシンス", stim_key_association: "right"},
+        {stimulus: "マリーゴールド", stim_key_association: "right"},
+        {stimulus: "ポピー", stim_key_association: "right"},
+        {stimulus: "アザリア", stim_key_association: "right"},
+        {stimulus: "クロッカス", stim_key_association: "right"},
+        {stimulus: "アヤメ", stim_key_association: "right"},
+        {stimulus: "アリ", stim_key_association: "left"},
+        {stimulus: "イモムシ", stim_key_association: "left"},
+        {stimulus: "ノミ", stim_key_association: "left"},
+        {stimulus: "バッタ", stim_key_association: "left"},
+        {stimulus: "クモ", stim_key_association: "left"},
+        {stimulus: "シラミ", stim_key_association: "left"},
+        {stimulus: "ムカデ", stim_key_association: "left"},
+        {stimulus: "ハエ", stim_key_association: "left"}
+      ],
+      randomize_order: true,
+      repetitions: 2
+    };
+
+    
+    // 第5ブロック
+    var instructions_block5 = {
       type: jsPsychHtmlKeyboardResponse,
       stimulus: "<div style='position: absolute; top: 18%; left: 20%'>Press f for:<br> " +
       "<strong>良い</strong><br>" + "or<br>" + "<strong>虫</strong></div>" + "<div style='position: absolute; top: 18%; right: 20%'>" +
       "Press i for:<br>" + "<strong>悪い</strong><br>" + "or<br>" + "<strong>花</strong></div>" + 
+      "(5/5)<br><br>左手の人差し指を <strong>f</strong> のキーに、右手の人差し指を <strong>j</strong> のキーに置きます。<br>" + 
       "画面の中央に、単語がひとつずつ表示されます。<br>" + 
       "<div style='position: relative; top: 42%; margin-left: auto; margin-right: auto'><strong>良い</strong>言葉もしくは<strong>虫</strong>の名前が表示された場合は <strong>f</strong> を押して下さい。<br>" +
       "<strong>悪い</strong>言葉もしくは<strong>花</strong>の単語が表示された場合は、<strong>j</strong> を押して下さい。<br>" + 
@@ -242,7 +308,7 @@
       ">>> どれかキーを押すとスタートします。</div>",
     };
 
-    var trial_block4 = {
+    var trial_block5 = {
       timeline: [
           {
             type: jsPsychIatHtml,
@@ -327,14 +393,16 @@
       //timeline.push(preload);
       timeline.push(welcome_block);
       timeline.push(category_block);
-      timeline.push(instructions_block);
-      timeline.push(trial_block);
+      timeline.push(instructions_block1);
+      timeline.push(trial_block1);
       timeline.push(instructions_block2);
       timeline.push(trial_block2);
       timeline.push(instructions_block3);
       timeline.push(trial_block3);
       timeline.push(instructions_block4);
       timeline.push(trial_block4);
+      timeline.push(instructions_block5);
+      timeline.push(trial_block5);
       timeline.push(debrief_block);
 
       jsPsych.run(timeline);
